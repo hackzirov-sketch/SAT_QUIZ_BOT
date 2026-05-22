@@ -7,8 +7,6 @@ from bot.database import get_db, now_iso
 
 router = Router()
 
-from bot.database import get_db, now_iso
-
 @router.my_chat_member()
 async def bot_added_to_chat(event: ChatMemberUpdated):
     chat = event.chat

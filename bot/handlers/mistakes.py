@@ -37,37 +37,37 @@ async def mistakes_start(callback: CallbackQuery):
         await callback.answer("Xato qilgan so'z topilmadi.")
         return
 
-        target_field = 'uzbek' if mode == 'eng_uzb' else 'english'
-        prompt_field = 'english' if mode == 'eng_uzb' else 'uzbek'
-        questions = []
-        for m in mistakes:
-            correct = m[target_field]
-            entry = {'id': m['vocab_id'], 'english': m['english'], 'uzbek': m['uzbek'], 'category': m.get('category', ''), 'difficulty': ''}
-            distractors = await _build_mistake_distractors(db, entry, target_field, {correct.lower()})
-            options = list(dict.fromkeys([correct] + distractors[:3]))
-            while len(options) < 4:
-                options.append('—')
-            questions.append({
-                'id': entry['id'], 'english': entry['english'], 'uzbek': entry['uzbek'],
-                'category': entry.get('category', ''), 'difficulty': '',
-                'prompt': entry[prompt_field], 'correct_answer': correct,
-                'options': options[:4],
-            })
+    target_field = 'uzbek' if mode == 'eng_uzb' else 'english'
+    prompt_field = 'english' if mode == 'eng_uzb' else 'uzbek'
+    questions = []
+    for m in mistakes:
+        correct = m[target_field]
+        entry = {'id': m['vocab_id'], 'english': m['english'], 'uzbek': m['uzbek'], 'category': m.get('category', ''), 'difficulty': ''}
+        distractors = await _build_mistake_distractors(db, entry, target_field, {correct.lower()})
+        options = list(dict.fromkeys([correct] + distractors[:3]))
+        while len(options) < 4:
+            options.append('—')
+        questions.append({
+            'id': entry['id'], 'english': entry['english'], 'uzbek': entry['uzbek'],
+            'category': entry.get('category', ''), 'difficulty': '',
+            'prompt': entry[prompt_field], 'correct_answer': correct,
+            'options': options[:4],
+        })
 
-        qty = len(questions)
-        now = now_iso()
-        await db.execute(
-            'INSERT INTO attempts (user_id, mode, difficulty, category, total_questions, question_order_json, order_hash, started_at, status, quiz_mode) VALUES (?,?,?,?,?,?,?,?,?,?)',
-            (user['id'], mode, '', '', qty, json.dumps(questions), '', now, 'active', 'mistakes'))
-        await db.commit()
-        cursor = await db.execute('SELECT last_insert_rowid() AS id')
-        attempt_id = (await cursor.fetchone())['id']
-        await db.execute(
-            'INSERT INTO active_sessions (attempt_id, user_id, chat_id, expires_at, status, created_at, updated_at) VALUES (?,?,?,?,?,?,?)',
-            (attempt_id, user['id'], callback.message.chat.id, 0, 'active', now, now))
-        await db.commit()
-        attempt = {'id': attempt_id, 'user_id': user['id'], 'current_index': 0, 'total_questions': qty, 'mode': mode, 'quiz_mode': 'mistakes'}
-        session = {'attempt_id': attempt_id, 'expires_at': 0}
+    qty = len(questions)
+    now = now_iso()
+    await db.execute(
+        'INSERT INTO attempts (user_id, mode, difficulty, category, total_questions, question_order_json, order_hash, started_at, status, quiz_mode) VALUES (?,?,?,?,?,?,?,?,?,?)',
+        (user['id'], mode, '', '', qty, json.dumps(questions), '', now, 'active', 'mistakes'))
+    await db.commit()
+    cursor = await db.execute('SELECT last_insert_rowid() AS id')
+    attempt_id = (await cursor.fetchone())['id']
+    await db.execute(
+        'INSERT INTO active_sessions (attempt_id, user_id, chat_id, expires_at, status, created_at, updated_at) VALUES (?,?,?,?,?,?,?)',
+        (attempt_id, user['id'], callback.message.chat.id, 0, 'active', now, now))
+    await db.commit()
+    attempt = {'id': attempt_id, 'user_id': user['id'], 'current_index': 0, 'total_questions': qty, 'mode': mode, 'quiz_mode': 'mistakes'}
+    session = {'attempt_id': attempt_id, 'expires_at': 0}
 
     await callback.message.edit_text('📚 Xato qilgan so\'zlar bo\'yicha test boshlandi! To\'g\'ri javob bersangiz, xato ro\'yxatidan o\'chiriladi.')
     await send_current_question(callback.message, attempt, session, questions)

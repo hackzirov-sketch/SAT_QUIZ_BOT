@@ -247,11 +247,6 @@ def get_db_sync() -> aiosqlite.Connection:
     global _db_conn
     return _db_conn
 
-async def get_db() -> aiosqlite.Connection:
-    db = await aiosqlite.connect(DB_PATH)
-    db.row_factory = aiosqlite.Row
-    return db
-
 def now_iso() -> str:
     from datetime import datetime, timezone
     return datetime.now(timezone.utc).isoformat()

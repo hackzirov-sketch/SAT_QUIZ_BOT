@@ -40,41 +40,41 @@ async def settings_callback(callback: CallbackQuery):
     db = await get_db()
     user = await upsert_user(db, callback.from_user.id, callback.from_user.username, callback.from_user.first_name)
 
-        if data == 'settings:mode':
-            await callback.answer('Rejimni tanlang.')
-            return
-        elif data == 'settings:difficulty':
-            await callback.answer('Qiyinlikni tanlang.')
-            return
-        elif data == 'settings:setmode:eng_uzb':
-            await db.execute('UPDATE settings SET preferred_mode = ?, updated_at = ? WHERE user_id = ?', ('eng_uzb', now_iso(), user['id']))
-            await db.commit()
-            await callback.answer('Rejim yangilandi.')
-        elif data == 'settings:setmode:uzb_eng':
-            await db.execute('UPDATE settings SET preferred_mode = ?, updated_at = ? WHERE user_id = ?', ('uzb_eng', now_iso(), user['id']))
-            await db.commit()
-            await callback.answer('Rejim yangilandi.')
-        elif data == 'settings:setdiff:easy':
-            await db.execute('UPDATE settings SET preferred_difficulty = ?, updated_at = ? WHERE user_id = ?', ('easy', now_iso(), user['id']))
-            await db.commit()
-            await callback.answer('Oson.')
-        elif data == 'settings:setdiff:hard':
-            await db.execute('UPDATE settings SET preferred_difficulty = ?, updated_at = ? WHERE user_id = ?', ('hard', now_iso(), user['id']))
-            await db.commit()
-            await callback.answer('Qiyin.')
-        elif data == 'settings:toggle_sound':
-            cur = await (await db.execute('SELECT sound_enabled FROM settings WHERE user_id = ?', (user['id'],))).fetchone()
-            await db.execute('UPDATE settings SET sound_enabled = ?, updated_at = ? WHERE user_id = ?', (0 if cur['sound_enabled'] else 1, now_iso(), user['id']))
-            await db.commit()
-            await callback.answer('Yangilandi.')
-        elif data == 'settings:toggle_minimal':
-            cur = await (await db.execute('SELECT minimal_mode FROM settings WHERE user_id = ?', (user['id'],))).fetchone()
-            await db.execute('UPDATE settings SET minimal_mode = ?, updated_at = ? WHERE user_id = ?', (0 if cur['minimal_mode'] else 1, now_iso(), user['id']))
-            await db.commit()
-            await callback.answer('Yangilandi.')
-        # Refresh
-        cursor = await db.execute('SELECT * FROM settings WHERE user_id = ?', (user['id'],))
-        s = await cursor.fetchone()
+    if data == 'settings:mode':
+        await callback.answer('Rejimni tanlang.')
+        return
+    elif data == 'settings:difficulty':
+        await callback.answer('Qiyinlikni tanlang.')
+        return
+    elif data == 'settings:setmode:eng_uzb':
+        await db.execute('UPDATE settings SET preferred_mode = ?, updated_at = ? WHERE user_id = ?', ('eng_uzb', now_iso(), user['id']))
+        await db.commit()
+        await callback.answer('Rejim yangilandi.')
+    elif data == 'settings:setmode:uzb_eng':
+        await db.execute('UPDATE settings SET preferred_mode = ?, updated_at = ? WHERE user_id = ?', ('uzb_eng', now_iso(), user['id']))
+        await db.commit()
+        await callback.answer('Rejim yangilandi.')
+    elif data == 'settings:setdiff:easy':
+        await db.execute('UPDATE settings SET preferred_difficulty = ?, updated_at = ? WHERE user_id = ?', ('easy', now_iso(), user['id']))
+        await db.commit()
+        await callback.answer('Oson.')
+    elif data == 'settings:setdiff:hard':
+        await db.execute('UPDATE settings SET preferred_difficulty = ?, updated_at = ? WHERE user_id = ?', ('hard', now_iso(), user['id']))
+        await db.commit()
+        await callback.answer('Qiyin.')
+    elif data == 'settings:toggle_sound':
+        cur = await (await db.execute('SELECT sound_enabled FROM settings WHERE user_id = ?', (user['id'],))).fetchone()
+        await db.execute('UPDATE settings SET sound_enabled = ?, updated_at = ? WHERE user_id = ?', (0 if cur['sound_enabled'] else 1, now_iso(), user['id']))
+        await db.commit()
+        await callback.answer('Yangilandi.')
+    elif data == 'settings:toggle_minimal':
+        cur = await (await db.execute('SELECT minimal_mode FROM settings WHERE user_id = ?', (user['id'],))).fetchone()
+        await db.execute('UPDATE settings SET minimal_mode = ?, updated_at = ? WHERE user_id = ?', (0 if cur['minimal_mode'] else 1, now_iso(), user['id']))
+        await db.commit()
+        await callback.answer('Yangilandi.')
+    # Refresh
+    cursor = await db.execute('SELECT * FROM settings WHERE user_id = ?', (user['id'],))
+    s = await cursor.fetchone()
     if s:
         try:
             await callback.message.edit_text(_settings_text(dict(s)), reply_markup=settings_kb(dict(s)))

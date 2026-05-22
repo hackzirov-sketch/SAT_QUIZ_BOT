@@ -59,87 +59,87 @@ async def _handle_admin_action(msg, action: str, payload: str = ''):
             f"📝 Javoblar: <b>{c['answers']}</b>\n"
             f"📚 Lug'at: <b>{c['vocab']}</b>")
 
-        elif action == 'active':
-            rows = await (await db.execute(
-                'SELECT s.*, u.telegram_id, u.username, u.first_name, a.current_index, a.total_questions, a.mode '
-                'FROM active_sessions s JOIN users u ON u.id = s.user_id JOIN attempts a ON a.id = s.attempt_id '
-                'WHERE s.status = ? AND a.status = ? ORDER BY s.expires_at ASC', ('active', 'active'))).fetchall()
-            if not rows:
-                await msg.reply('Faol testlar yo\'q.')
-                return
-            lines = ['👥 <b>Faol testlar</b>', '']
-            for row in rows[:20]:
-                remaining = max(0, row['expires_at'] - int(time.time())) if row['expires_at'] else 0
-                name = f"@{row['username']}" if row['username'] else (row['first_name'] or 'Foydalanuvchi')
-                lines.append(f"• {name} — {row['current_index']}/{row['total_questions']} — {row['mode']} — {format_seconds(remaining)}")
-            await msg.reply('\n'.join(lines))
+    elif action == 'active':
+        rows = await (await db.execute(
+            'SELECT s.*, u.telegram_id, u.username, u.first_name, a.current_index, a.total_questions, a.mode '
+            'FROM active_sessions s JOIN users u ON u.id = s.user_id JOIN attempts a ON a.id = s.attempt_id '
+            'WHERE s.status = ? AND a.status = ? ORDER BY s.expires_at ASC', ('active', 'active'))).fetchall()
+        if not rows:
+            await msg.reply('Faol testlar yo\'q.')
+            return
+        lines = ['👥 <b>Faol testlar</b>', '']
+        for row in rows[:20]:
+            remaining = max(0, row['expires_at'] - int(time.time())) if row['expires_at'] else 0
+            name = f"@{row['username']}" if row['username'] else (row['first_name'] or 'Foydalanuvchi')
+            lines.append(f"• {name} — {row['current_index']}/{row['total_questions']} — {row['mode']} — {format_seconds(remaining)}")
+        await msg.reply('\n'.join(lines))
 
-        elif action == 'clean':
-            days = int(payload) if payload.isdigit() else 30
-            res = await _clean_old_data(db, days)
-            total_del = sum(res['deleted'].values())
-            # Get DB size
-            import os
-            from bot.config import DATABASE_PATH
-            size_kb = os.path.getsize(DATABASE_PATH) / 1024 if os.path.exists(DATABASE_PATH) else 0
-            await msg.reply(f"🧹 Tozalandi! {total_del} ta o'chirildi. DB: {size_kb:.1f} KB")
+    elif action == 'clean':
+        days = int(payload) if payload.isdigit() else 30
+        res = await _clean_old_data(db, days)
+        total_del = sum(res['deleted'].values())
+        # Get DB size
+        import os
+        from bot.config import DATABASE_PATH
+        size_kb = os.path.getsize(DATABASE_PATH) / 1024 if os.path.exists(DATABASE_PATH) else 0
+        await msg.reply(f"🧹 Tozalandi! {total_del} ta o'chirildi. DB: {size_kb:.1f} KB")
 
-        elif action == 'channels':
-            channels = await (await db.execute('SELECT * FROM channel_config WHERE enabled = 1')).fetchall()
-            lines = ['📢 <b>Kanal/Group sozlamalari</b>\n\n/admin add_chat <chat_id> <type> <title>\n/admin remove_chat <chat_id>\n']
-            if channels:
-                lines.append('Faol kanallar:')
-                for ch in channels:
-                    lines.append(f"• {ch['chat_title'] or 'N/A'} ({ch['chat_id']}) — {ch['chat_type']} — Weekly: {'✅' if ch['weekly_report'] else '❌'}")
-            await msg.reply('\n'.join(lines))
+    elif action == 'channels':
+        channels = await (await db.execute('SELECT * FROM channel_config WHERE enabled = 1')).fetchall()
+        lines = ['📢 <b>Kanal/Group sozlamalari</b>\n\n/admin add_chat <chat_id> <type> <title>\n/admin remove_chat <chat_id>\n']
+        if channels:
+            lines.append('Faol kanallar:')
+            for ch in channels:
+                lines.append(f"• {ch['chat_title'] or 'N/A'} ({ch['chat_id']}) — {ch['chat_type']} — Weekly: {'✅' if ch['weekly_report'] else '❌'}")
+        await msg.reply('\n'.join(lines))
 
-        elif action == 'add_chat':
-            parts = payload.split()
-            if len(parts) < 2:
-                await msg.reply('Format: /admin add_chat <id> <type> <title>')
-                return
-            chat_id = int(parts[0])
-            chat_type = parts[1]
-            title = ' '.join(parts[2:]) if len(parts) > 2 else None
-            await db.execute(
-                "INSERT INTO channel_config (chat_id, chat_type, chat_title, enabled, weekly_report) VALUES (?,?,?,1,0) ON CONFLICT(chat_id) DO UPDATE SET chat_type=excluded.chat_type, chat_title=excluded.chat_title",
-                (chat_id, chat_type, title))
-            await db.commit()
-            await msg.reply(f'✅ Kanal qo\'shildi: {chat_id}')
+    elif action == 'add_chat':
+        parts = payload.split()
+        if len(parts) < 2:
+            await msg.reply('Format: /admin add_chat <id> <type> <title>')
+            return
+        chat_id = int(parts[0])
+        chat_type = parts[1]
+        title = ' '.join(parts[2:]) if len(parts) > 2 else None
+        await db.execute(
+            "INSERT INTO channel_config (chat_id, chat_type, chat_title, enabled, weekly_report) VALUES (?,?,?,1,0) ON CONFLICT(chat_id) DO UPDATE SET chat_type=excluded.chat_type, chat_title=excluded.chat_title",
+            (chat_id, chat_type, title))
+        await db.commit()
+        await msg.reply(f'✅ Kanal qo\'shildi: {chat_id}')
 
-        elif action == 'remove_chat':
-            chat_id = payload.strip()
-            if not chat_id.isdigit():
-                await msg.reply('ID kiriting.')
-                return
-            await db.execute('DELETE FROM channel_config WHERE chat_id = ?', (int(chat_id),))
-            await db.commit()
-            await msg.reply(f'✅ O\'chirildi: {chat_id}')
+    elif action == 'remove_chat':
+        chat_id = payload.strip()
+        if not chat_id.isdigit():
+            await msg.reply('ID kiriting.')
+            return
+        await db.execute('DELETE FROM channel_config WHERE chat_id = ?', (int(chat_id),))
+        await db.commit()
+        await msg.reply(f'✅ O\'chirildi: {chat_id}')
 
-        elif action == 'weekly':
-            if not bot_instance:
-                await msg.reply('Bot ishga tushmagan.')
-                return
-            result = await _send_weekly_report(db)
-            await msg.reply(result)
+    elif action == 'weekly':
+        if not bot_instance:
+            await msg.reply('Bot ishga tushmagan.')
+            return
+        result = await _send_weekly_report(db)
+        await msg.reply(result)
 
-        elif action == 'duels':
-            duels = await (await db.execute(
-                'SELECT d.*, u1.username AS p1name, u1.first_name AS p1first, u2.username AS p2name, u2.first_name AS p2first '
-                'FROM duel_matches d LEFT JOIN users u1 ON u1.id = d.player1_id LEFT JOIN users u2 ON u2.id = d.player2_id '
-                'WHERE d.status = ? ORDER BY d.finished_at DESC LIMIT 20', ('finished',))).fetchall()
-            if not duels:
-                await msg.reply('Duel yo\'q.')
-                return
-            lines = ['🔥 <b>Duellar</b>\n']
-            for d in duels:
-                p1 = d['p1name'] or d['p1first'] or 'P1'
-                p2 = d['p2name'] or d['p2first'] or 'P2'
-                lines.append(f"• {p1} {d['player1_score']} - {d['player2_score']} {p2}")
-            await msg.reply('\n'.join(lines))
+    elif action == 'duels':
+        duels = await (await db.execute(
+            'SELECT d.*, u1.username AS p1name, u1.first_name AS p1first, u2.username AS p2name, u2.first_name AS p2first '
+            'FROM duel_matches d LEFT JOIN users u1 ON u1.id = d.player1_id LEFT JOIN users u2 ON u2.id = d.player2_id '
+            'WHERE d.status = ? ORDER BY d.finished_at DESC LIMIT 20', ('finished',))).fetchall()
+        if not duels:
+            await msg.reply('Duel yo\'q.')
+            return
+        lines = ['🔥 <b>Duellar</b>\n']
+        for d in duels:
+            p1 = d['p1name'] or d['p1first'] or 'P1'
+            p2 = d['p2name'] or d['p2first'] or 'P2'
+            lines.append(f"• {p1} {d['player1_score']} - {d['player2_score']} {p2}")
+        await msg.reply('\n'.join(lines))
 
-        else:
-            await msg.reply('Noma\'lum buyruq.')
+    else:
+        await msg.reply('Noma\'lum buyruq.')
 
 async def _admin_counts(db):
     rows = await (await db.execute(

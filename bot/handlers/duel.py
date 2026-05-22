@@ -92,50 +92,50 @@ async def duel_find_opponent(callback: CallbackQuery):
         cursor = await db.execute('SELECT last_insert_rowid() AS id')
         match_id = (await cursor.fetchone())['id']
 
-            await callback.message.edit_text(f'⚔️ <b>Duel topildi!</b>\n\nRaqib bilan bellashuv boshlandi!\nKod: <b>{code}</b>\n\n10 ta savol, kim tez va to\'g\'ri javob bersa yutadi!')
+        await callback.message.edit_text(f'⚔️ <b>Duel topildi!</b>\n\nRaqib bilan bellashuv boshlandi!\nKod: <b>{code}</b>\n\n10 ta savol, kim tez va to\'g\'ri javob bersa yutadi!')
 
-            now = now_iso()
-            attempts_map = {}
-            for pid in (opponent['user_id'], user['id']):
-                await db.execute(
-                    'INSERT INTO attempts (user_id, mode, difficulty, category, total_questions, question_order_json, order_hash, started_at, status, quiz_mode) VALUES (?,?,?,?,?,?,?,?,?,?)',
-                    (pid, mode, difficulty, '', 10, qjson, '', now, 'active', 'duel'))
-                await db.commit()
-                c = await db.execute('SELECT last_insert_rowid() AS id')
-                aid = (await c.fetchone())['id']
-                chat = opponent['chat_id'] if pid == opponent['user_id'] else callback.message.chat.id
-                await db.execute(
-                    'INSERT INTO active_sessions (attempt_id, user_id, chat_id, expires_at, status, created_at, updated_at) VALUES (?,?,?,?,?,?,?)',
-                    (aid, pid, chat, 0, 'active', now, now))
-                await db.execute(
-                    "INSERT INTO user_state (user_id, key, value, updated_at) VALUES (?,?,?,?) ON CONFLICT(user_id,key) DO UPDATE SET value=excluded.value, updated_at=excluded.updated_at",
-                    (pid, f'duel_attempt_{match_id}', str(aid), now))
-                attempts_map[pid] = {'aid': aid, 'chat': chat}
-            await db.commit()
-
-            # Send questions to both players
-            for pid, info in attempts_map.items():
-                a = {'id': info['aid'], 'user_id': pid, 'current_index': 0, 'total_questions': 10, 'mode': mode, 'quiz_mode': 'duel'}
-                s = {'attempt_id': info['aid'], 'expires_at': 0}
-                if pid == user['id']:
-                    await callback.message.answer('⚔️ Duel boshlandi! Savollar kelmoqda...')
-                    await send_current_question(callback.message, a, s, questions)
-                else:
-                    try:
-                        await bot_instance.send_message(info['chat'], '⚔️ <b>Duel topildi!</b>\n\nRaqib bilan bellashuv boshlandi!')
-                        q = questions[0]
-                        text = question_text(q, 0, 10, 0, mode, False)
-                        await bot_instance.send_message(info['chat'], text, reply_markup=answer_kb(info['aid'], 0, q['options']))
-                    except Exception as e:
-                        logging.error(f'Failed to send duel to opponent: {e}')
-            await callback.answer()
-        else:
+        now = now_iso()
+        attempts_map = {}
+        for pid in (opponent['user_id'], user['id']):
             await db.execute(
-                "INSERT INTO duel_queue (user_id, mode, difficulty, chat_id, created_at) VALUES (?,?,?,?,?) ON CONFLICT(user_id) DO UPDATE SET mode=excluded.mode, difficulty=excluded.difficulty, chat_id=excluded.chat_id, created_at=excluded.created_at",
-                (user['id'], mode, difficulty, callback.message.chat.id, now_iso()))
+                'INSERT INTO attempts (user_id, mode, difficulty, category, total_questions, question_order_json, order_hash, started_at, status, quiz_mode) VALUES (?,?,?,?,?,?,?,?,?,?)',
+                (pid, mode, difficulty, '', 10, qjson, '', now, 'active', 'duel'))
             await db.commit()
-            await callback.message.edit_text('⏳ Raqib qidirilmoqda... Birozdan so\'ng qayta urinib ko\'ring.', reply_markup=duel_menu_kb())
-            await callback.answer('Navbatga qo\'shildingiz.')
+            c = await db.execute('SELECT last_insert_rowid() AS id')
+            aid = (await c.fetchone())['id']
+            chat = opponent['chat_id'] if pid == opponent['user_id'] else callback.message.chat.id
+            await db.execute(
+                'INSERT INTO active_sessions (attempt_id, user_id, chat_id, expires_at, status, created_at, updated_at) VALUES (?,?,?,?,?,?,?)',
+                (aid, pid, chat, 0, 'active', now, now))
+            await db.execute(
+                "INSERT INTO user_state (user_id, key, value, updated_at) VALUES (?,?,?,?) ON CONFLICT(user_id,key) DO UPDATE SET value=excluded.value, updated_at=excluded.updated_at",
+                (pid, f'duel_attempt_{match_id}', str(aid), now))
+            attempts_map[pid] = {'aid': aid, 'chat': chat}
+        await db.commit()
+
+        # Send questions to both players
+        for pid, info in attempts_map.items():
+            a = {'id': info['aid'], 'user_id': pid, 'current_index': 0, 'total_questions': 10, 'mode': mode, 'quiz_mode': 'duel'}
+            s = {'attempt_id': info['aid'], 'expires_at': 0}
+            if pid == user['id']:
+                await callback.message.answer('⚔️ Duel boshlandi! Savollar kelmoqda...')
+                await send_current_question(callback.message, a, s, questions)
+            else:
+                try:
+                    await bot_instance.send_message(info['chat'], '⚔️ <b>Duel topildi!</b>\n\nRaqib bilan bellashuv boshlandi!')
+                    q = questions[0]
+                    text = question_text(q, 0, 10, 0, mode, False)
+                    await bot_instance.send_message(info['chat'], text, reply_markup=answer_kb(info['aid'], 0, q['options']))
+                except Exception as e:
+                    logging.error(f'Failed to send duel to opponent: {e}')
+        await callback.answer()
+    else:
+        await db.execute(
+            "INSERT INTO duel_queue (user_id, mode, difficulty, chat_id, created_at) VALUES (?,?,?,?,?) ON CONFLICT(user_id) DO UPDATE SET mode=excluded.mode, difficulty=excluded.difficulty, chat_id=excluded.chat_id, created_at=excluded.created_at",
+            (user['id'], mode, difficulty, callback.message.chat.id, now_iso()))
+        await db.commit()
+        await callback.message.edit_text('⏳ Raqib qidirilmoqda... Birozdan so\'ng qayta urinib ko\'ring.', reply_markup=duel_menu_kb())
+        await callback.answer('Navbatga qo\'shildingiz.')
 
 @router.message(Command('duel_join'))
 async def duel_join_code(message: Message):
@@ -161,26 +161,26 @@ async def duel_join_code(message: Message):
     await db.commit()
     await message.answer('⚔️ Duelga qo\'shildingiz! Test boshlandi.')
 
-        questions = json.loads(match['questions_json'])
-        mode = 'eng_uzb'
-        difficulty = 'easy'
-        now = now_iso()
-        qjson = match['questions_json']
-        await db.execute(
-            'INSERT INTO attempts (user_id, mode, difficulty, category, total_questions, question_order_json, order_hash, started_at, status, quiz_mode) VALUES (?,?,?,?,?,?,?,?,?,?)',
-            (user['id'], mode, difficulty, '', 10, qjson, '', now, 'active', 'duel'))
-        await db.commit()
-        cursor = await db.execute('SELECT last_insert_rowid() AS id')
-        aid = (await cursor.fetchone())['id']
-        await db.execute(
-            'INSERT INTO active_sessions (attempt_id, user_id, chat_id, expires_at, status, created_at, updated_at) VALUES (?,?,?,?,?,?,?)',
-            (aid, user['id'], message.chat.id, 0, 'active', now, now))
-        await db.commit()
-        await db.execute(
-            "INSERT INTO user_state (user_id, key, value, updated_at) VALUES (?,?,?,?) ON CONFLICT(user_id,key) DO UPDATE SET value=excluded.value, updated_at=excluded.updated_at",
-            (user['id'], f'duel_attempt_{match["id"]}', str(aid), now))
-        await db.commit()
+    questions = json.loads(match['questions_json'])
+    mode = 'eng_uzb'
+    difficulty = 'easy'
+    now = now_iso()
+    qjson = match['questions_json']
+    await db.execute(
+        'INSERT INTO attempts (user_id, mode, difficulty, category, total_questions, question_order_json, order_hash, started_at, status, quiz_mode) VALUES (?,?,?,?,?,?,?,?,?,?)',
+        (user['id'], mode, difficulty, '', 10, qjson, '', now, 'active', 'duel'))
+    await db.commit()
+    cursor = await db.execute('SELECT last_insert_rowid() AS id')
+    aid = (await cursor.fetchone())['id']
+    await db.execute(
+        'INSERT INTO active_sessions (attempt_id, user_id, chat_id, expires_at, status, created_at, updated_at) VALUES (?,?,?,?,?,?,?)',
+        (aid, user['id'], message.chat.id, 0, 'active', now, now))
+    await db.commit()
+    await db.execute(
+        "INSERT INTO user_state (user_id, key, value, updated_at) VALUES (?,?,?,?) ON CONFLICT(user_id,key) DO UPDATE SET value=excluded.value, updated_at=excluded.updated_at",
+        (user['id'], f'duel_attempt_{match["id"]}', str(aid), now))
+    await db.commit()
 
-        attempt = {'id': aid, 'user_id': user['id'], 'current_index': 0, 'total_questions': 10, 'mode': mode, 'quiz_mode': 'duel'}
-        session = {'attempt_id': aid, 'expires_at': 0}
-        await send_current_question(message, attempt, session, questions)
+    attempt = {'id': aid, 'user_id': user['id'], 'current_index': 0, 'total_questions': 10, 'mode': mode, 'quiz_mode': 'duel'}
+    session = {'attempt_id': aid, 'expires_at': 0}
+    await send_current_question(message, attempt, session, questions)

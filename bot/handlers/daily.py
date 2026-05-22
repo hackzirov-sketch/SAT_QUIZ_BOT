@@ -30,23 +30,23 @@ async def _start_daily(message_or_callback, user_id: int, chat_id: int):
         cursor = await db.execute('SELECT last_insert_rowid() AS id')
         challenge = await cursor.fetchone()
 
-        # Start attempt
-        cursor = await db.execute('SELECT questions_json FROM daily_challenge WHERE id = ?', (challenge['id'],))
-        row = await cursor.fetchone()
-        questions = json.loads(row['questions_json'])
-        now = now_iso()
-        await db.execute(
-            'INSERT INTO attempts (user_id, mode, difficulty, category, total_questions, question_order_json, order_hash, started_at, status, quiz_mode) VALUES (?,?,?,?,?,?,?,?,?,?)',
-            (user_id, 'eng_uzb', 'mixed', 'all', len(questions), json.dumps([{k: q[k] for k in ('id','english','uzbek','category','difficulty','prompt','correct_answer','options')} for q in questions]), '', now, 'active', 'daily'))
-        await db.commit()
-        cursor = await db.execute('SELECT last_insert_rowid() AS id')
-        attempt_id = (await cursor.fetchone())['id']
-        await db.execute(
-            'INSERT INTO active_sessions (attempt_id, user_id, chat_id, expires_at, status, created_at, updated_at) VALUES (?,?,?,?,?,?,?)',
-            (attempt_id, user_id, chat_id, 0, 'active', now, now))
-        await db.commit()
-        attempt = {'id': attempt_id, 'user_id': user_id, 'current_index': 0, 'total_questions': len(questions), 'mode': 'eng_uzb', 'quiz_mode': 'daily'}
-        session = {'attempt_id': attempt_id, 'expires_at': 0}
+    # Start attempt
+    cursor = await db.execute('SELECT questions_json FROM daily_challenge WHERE id = ?', (challenge['id'],))
+    row = await cursor.fetchone()
+    questions = json.loads(row['questions_json'])
+    now = now_iso()
+    await db.execute(
+        'INSERT INTO attempts (user_id, mode, difficulty, category, total_questions, question_order_json, order_hash, started_at, status, quiz_mode) VALUES (?,?,?,?,?,?,?,?,?,?)',
+        (user_id, 'eng_uzb', 'mixed', 'all', len(questions), json.dumps([{k: q[k] for k in ('id','english','uzbek','category','difficulty','prompt','correct_answer','options')} for q in questions]), '', now, 'active', 'daily'))
+    await db.commit()
+    cursor = await db.execute('SELECT last_insert_rowid() AS id')
+    attempt_id = (await cursor.fetchone())['id']
+    await db.execute(
+        'INSERT INTO active_sessions (attempt_id, user_id, chat_id, expires_at, status, created_at, updated_at) VALUES (?,?,?,?,?,?,?)',
+        (attempt_id, user_id, chat_id, 0, 'active', now, now))
+    await db.commit()
+    attempt = {'id': attempt_id, 'user_id': user_id, 'current_index': 0, 'total_questions': len(questions), 'mode': 'eng_uzb', 'quiz_mode': 'daily'}
+    session = {'attempt_id': attempt_id, 'expires_at': 0}
     return attempt, session, questions
 
 @router.message(F.text == '🗓 Daily Challenge')
