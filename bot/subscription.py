@@ -2,7 +2,7 @@ import logging
 from aiogram import Router, BaseMiddleware, F
 from aiogram.types import Message, CallbackQuery, ChatMemberUpdated, InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.enums import ChatMemberStatus
-from bot.config import REQUIRED_SUBSCRIPTIONS
+from bot.config import REQUIRED_SUBSCRIPTIONS, ADMIN_IDS
 from bot.database import get_db, now_iso
 
 router = Router()
@@ -25,11 +25,14 @@ async def bot_added_to_chat(event: ChatMemberUpdated):
 async def check_sub_callback(callback: CallbackQuery):
     bot = callback.bot
     user = callback.from_user
+    if user.id in ADMIN_IDS:
+        await callback.message.edit_text("✅ <b>Admin sifatida barcha imkoniyatlar ochiq!</b>\n\n/start")
+        await callback.answer()
+        return
     missing = []
     for req in REQUIRED_SUBSCRIPTIONS:
         chat_id = req.get('chat_id')
         if not chat_id:
-            missing.append(req)
             continue
         try:
             member = await bot.get_chat_member(chat_id, user.id)
@@ -70,6 +73,9 @@ class SubscriptionMiddleware(BaseMiddleware):
         if text.startswith('/start') or text == 'check_sub':
             return await handler(event, data)
 
+        if user.id in ADMIN_IDS:
+            return await handler(event, data)
+
         bot = data.get('bot')
         if not bot or not REQUIRED_SUBSCRIPTIONS:
             return await handler(event, data)
@@ -78,7 +84,6 @@ class SubscriptionMiddleware(BaseMiddleware):
         for req in REQUIRED_SUBSCRIPTIONS:
             chat_id = req.get('chat_id')
             if not chat_id:
-                missing.append(req)
                 continue
             try:
                 member = await bot.get_chat_member(chat_id, user.id)
