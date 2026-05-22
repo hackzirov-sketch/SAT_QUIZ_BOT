@@ -24,7 +24,7 @@ async def chill_menu(callback: CallbackQuery):
 @router.callback_query(F.data.startswith('chill:'))
 async def chill_start(callback: CallbackQuery):
     diff = callback.data.split(':')[1]
-    async with await get_db() as db:
+    db = await get_db()
         user = await upsert_user(db, callback.from_user.id, callback.from_user.username, callback.from_user.first_name)
         mode = 'eng_uzb'
         cat = 'all'

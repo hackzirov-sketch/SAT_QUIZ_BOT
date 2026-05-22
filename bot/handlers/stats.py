@@ -13,7 +13,7 @@ router = Router()
 @router.message(F.text == '📚 Statistika')
 @router.message(Command('stats'))
 async def statistika(message: Message):
-    async with await get_db() as db:
+    db = await get_db()
         user = await upsert_user(db, message.from_user.id, message.from_user.username, message.from_user.first_name)
         cursor = await db.execute('SELECT * FROM statistics WHERE user_id = ?', (user['id'],))
         stats = await cursor.fetchone()
@@ -44,7 +44,7 @@ async def statistika(message: Message):
 @router.message(F.text == '📊 Natijalarim')
 @router.message(Command('result'))
 async def natijalarim(message: Message):
-    async with await get_db() as db:
+    db = await get_db()
         user = await upsert_user(db, message.from_user.id, message.from_user.username, message.from_user.first_name)
         cursor = await db.execute(
             "SELECT * FROM attempts WHERE user_id = ? AND status IN ('completed','timed_out') ORDER BY finished_at DESC LIMIT 1",
@@ -66,7 +66,7 @@ async def natijalarim(message: Message):
 @router.message(F.text == '🏆 Reyting')
 @router.message(Command('rating'))
 async def reyting(message: Message):
-    async with await get_db() as db:
+    db = await get_db()
         user = await upsert_user(db, message.from_user.id, message.from_user.username, message.from_user.first_name)
         cursor = await db.execute(
             'SELECT l.*, u.username, u.first_name FROM leaderboard l JOIN users u ON u.id = l.user_id ORDER BY l.score DESC, l.completion_seconds ASC, l.finished_at ASC LIMIT 10')

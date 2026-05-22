@@ -16,7 +16,7 @@ def set_quiz_engine(e: QuizEngine):
     engine = e
 
 async def _start_daily(message_or_callback, user_id: int, chat_id: int):
-    async with await get_db() as db:
+    db = await get_db()
         today = now_iso()[:10]
         cursor = await db.execute('SELECT * FROM daily_challenge WHERE date = ?', (today,))
         challenge = await cursor.fetchone()
@@ -52,7 +52,7 @@ async def _start_daily(message_or_callback, user_id: int, chat_id: int):
 @router.message(F.text == '🗓 Daily Challenge')
 @router.message(Command('daily'))
 async def daily_challenge(message: Message):
-    async with await get_db() as db:
+    db = await get_db()
         user = await upsert_user(db, message.from_user.id, message.from_user.username, message.from_user.first_name)
     attempt, session, questions = await _start_daily(message, user['id'], message.chat.id)
     await message.answer('🗓 <b>Daily SAT Challenge</b>\n\n10 ta savol, tezlik va aniqlik muhim!', reply_markup=main_menu_kb())
@@ -60,7 +60,7 @@ async def daily_challenge(message: Message):
 
 @router.callback_query(F.data == 'daily:start')
 async def daily_callback(callback: CallbackQuery):
-    async with await get_db() as db:
+    db = await get_db()
         user = await upsert_user(db, callback.from_user.id, callback.from_user.username, callback.from_user.first_name)
     attempt, session, questions = await _start_daily(callback, user['id'], callback.message.chat.id)
     await callback.message.answer('🗓 Daily Challenge boshlandi!')

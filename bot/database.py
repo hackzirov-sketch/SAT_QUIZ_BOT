@@ -4,9 +4,10 @@ import os
 from typing import Optional, Any
 
 DB_PATH: str = ''
+_db_conn: Optional[aiosqlite.Connection] = None
 
 async def init_db(db_path: str):
-    global DB_PATH
+    global DB_PATH, _db_conn
     DB_PATH = db_path
     os.makedirs(os.path.dirname(db_path), exist_ok=True)
     db = await aiosqlite.connect(db_path)
@@ -227,13 +228,24 @@ async def init_db(db_path: str):
         CREATE INDEX IF NOT EXISTS idx_answers_attempt ON answers(attempt_id);
         CREATE INDEX IF NOT EXISTS idx_active_sessions_status ON active_sessions(status);
     ''')
-    # Migrations for existing tables
     try:
         await db.execute('ALTER TABLE duel_queue ADD COLUMN chat_id INTEGER NOT NULL DEFAULT 0')
     except:
         pass
     await db.commit()
+    _db_conn = db
     return db
+
+async def get_db() -> aiosqlite.Connection:
+    global _db_conn
+    if _db_conn is None:
+        _db_conn = await aiosqlite.connect(DB_PATH)
+        _db_conn.row_factory = aiosqlite.Row
+    return _db_conn
+
+def get_db_sync() -> aiosqlite.Connection:
+    global _db_conn
+    return _db_conn
 
 async def get_db() -> aiosqlite.Connection:
     db = await aiosqlite.connect(DB_PATH)

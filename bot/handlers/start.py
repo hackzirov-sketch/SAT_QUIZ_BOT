@@ -9,7 +9,7 @@ router = Router()
 
 @router.message(CommandStart())
 async def cmd_start(message: Message):
-    async with await get_db() as db:
+    db = await get_db()
         await upsert_user(db, message.from_user.id, message.from_user.username, message.from_user.first_name)
     await message.answer(
         "🧠 <b>SAT LUĠĞAT QUIZ BOT</b>\n\nSAT Matematika terminlariga ixtisoslashgan lug'at testi.\n\n"
@@ -21,7 +21,7 @@ async def cmd_start(message: Message):
 @router.message(F.text == '🧠 Test boshlash')
 @router.message(Command('quiz'))
 async def test_boshlash(message: Message):
-    async with await get_db() as db:
+    db = await get_db()
         user = await upsert_user(db, message.from_user.id, message.from_user.username, message.from_user.first_name)
         cursor = await db.execute('SELECT * FROM active_sessions WHERE user_id = ? AND status = ?', (user['id'], 'active'))
         active = await cursor.fetchone()
@@ -63,7 +63,7 @@ async def back_main(callback: CallbackQuery):
 
 @router.message(Command('cancel'))
 async def cancel(message: Message):
-    async with await get_db() as db:
+    db = await get_db()
         user = await upsert_user(db, message.from_user.id, message.from_user.username, message.from_user.first_name)
         cursor = await db.execute(
             'SELECT s.* FROM active_sessions s JOIN attempts a ON a.id = s.attempt_id '

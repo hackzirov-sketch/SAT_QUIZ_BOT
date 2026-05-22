@@ -26,7 +26,7 @@ def _settings_text(s: dict) -> str:
 @router.message(F.text == '⚙️ Sozlamalar')
 @router.message(Command('settings'))
 async def settings_menu(message: Message):
-    async with await get_db() as db:
+    db = await get_db()
         user = await upsert_user(db, message.from_user.id, message.from_user.username, message.from_user.first_name)
         cursor = await db.execute('SELECT * FROM settings WHERE user_id = ?', (user['id'],))
         s = await cursor.fetchone()
@@ -37,7 +37,7 @@ async def settings_menu(message: Message):
 @router.callback_query(F.data.startswith('settings:'))
 async def settings_callback(callback: CallbackQuery):
     data = callback.data
-    async with await get_db() as db:
+    db = await get_db()
         user = await upsert_user(db, callback.from_user.id, callback.from_user.username, callback.from_user.first_name)
 
         if data == 'settings:mode':

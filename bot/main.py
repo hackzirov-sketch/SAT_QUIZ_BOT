@@ -36,7 +36,6 @@ def run_flask():
 async def main():
     db = await init_db(DATABASE_PATH)
     vocab_data = await load_vocabulary(db)
-    await db.close()
 
     engine = QuizEngine(None, vocab_data)
     set_qe(engine)

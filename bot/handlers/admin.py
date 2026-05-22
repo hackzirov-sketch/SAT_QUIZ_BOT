@@ -47,7 +47,7 @@ async def admin_callback(callback: CallbackQuery):
     await _handle_admin_action(callback.message, action, '')
 
 async def _handle_admin_action(msg, action: str, payload: str = ''):
-    async with await get_db() as db:
+    db = await get_db()
         if action == 'stats':
             c = await _admin_counts(db)
             await msg.reply(

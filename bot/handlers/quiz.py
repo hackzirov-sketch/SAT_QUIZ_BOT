@@ -17,7 +17,7 @@ def set_quiz_engine(e: QuizEngine):
     engine = e
 
 async def send_current_question(message_or_callback, attempt: dict, session: dict, questions: list = None):
-    async with await get_db() as db:
+    db = await get_db()
         if questions is None:
             cursor = await db.execute('SELECT question_order_json FROM attempts WHERE id = ?', (attempt['id'],))
             row = await cursor.fetchone()
@@ -50,7 +50,7 @@ async def start_callback(callback: CallbackQuery):
         if category not in ('all', 'Algebra', 'Geometry', 'Statistics', 'other'):
             await callback.answer('Noto\'g\'ri kategoriya.')
             return
-        async with await get_db() as db:
+        db = await get_db()
             user = await upsert_user(db, callback.from_user.id, callback.from_user.username, callback.from_user.first_name)
             cursor = await db.execute(
                 'SELECT s.* FROM active_sessions s JOIN attempts a ON a.id = s.attempt_id WHERE s.user_id = ? AND s.status = ? AND a.status = ?',
@@ -85,7 +85,7 @@ async def active_quiz_callback(callback: CallbackQuery):
     parts = callback.data.split(':')
     action = parts[1]
     attempt_id = int(parts[2])
-    async with await get_db() as db:
+    db = await get_db()
         user = await upsert_user(db, callback.from_user.id, callback.from_user.username, callback.from_user.first_name)
         attempt = await (await db.execute('SELECT * FROM attempts WHERE id = ?', (attempt_id,))).fetchone()
         if not attempt or attempt['user_id'] != user['id']:
@@ -124,7 +124,7 @@ async def answer_callback(callback: CallbackQuery):
     question_index = int(parts[2])
     selected_letter = parts[3]
 
-    async with await get_db() as db:
+    db = await get_db()
         user = await upsert_user(db, callback.from_user.id, callback.from_user.username, callback.from_user.first_name)
         attempt = await (await db.execute('SELECT * FROM attempts WHERE id = ?', (attempt_id,))).fetchone()
         if not attempt or attempt['user_id'] != user['id']:
@@ -282,7 +282,7 @@ async def answer_callback(callback: CallbackQuery):
 @router.callback_query(F.data.startswith('review:'))
 async def review_callback(callback: CallbackQuery):
     attempt_id = int(callback.data.split(':')[1])
-    async with await get_db() as db:
+    db = await get_db()
         user = await upsert_user(db, callback.from_user.id, callback.from_user.username, callback.from_user.first_name)
         attempt = await (await db.execute('SELECT * FROM attempts WHERE id = ?', (attempt_id,))).fetchone()
         if not attempt or attempt['user_id'] != user['id']:

@@ -33,7 +33,7 @@ async def duel_menu(message: Message):
 
 @router.callback_query(F.data == 'duel:find')
 async def duel_find(callback: CallbackQuery):
-    async with await get_db() as db:
+    db = await get_db()
         user = await upsert_user(db, callback.from_user.id, callback.from_user.username, callback.from_user.first_name)
         active = await (await db.execute(
             "SELECT * FROM duel_matches WHERE (player1_id = ? OR player2_id = ?) AND status IN ('waiting','active') ORDER BY created_at DESC LIMIT 1",
@@ -50,7 +50,7 @@ async def duel_join_prompt(callback: CallbackQuery):
 
 @router.callback_query(F.data == 'duel:stats')
 async def duel_stats(callback: CallbackQuery):
-    async with await get_db() as db:
+    db = await get_db()
         duels = await (await db.execute(
             'SELECT d.*, u1.username AS p1name, u1.first_name AS p1first, u2.username AS p2name, u2.first_name AS p2first '
             'FROM duel_matches d LEFT JOIN users u1 ON u1.id = d.player1_id LEFT JOIN users u2 ON u2.id = d.player2_id '
@@ -73,7 +73,7 @@ async def duel_find_opponent(callback: CallbackQuery):
     parts = callback.data.split(':')
     difficulty = parts[2]
     mode = parts[3] if len(parts) > 3 else 'eng_uzb'
-    async with await get_db() as db:
+    db = await get_db()
         user = await upsert_user(db, callback.from_user.id, callback.from_user.username, callback.from_user.first_name)
         opponent = await (await db.execute(
             'SELECT * FROM duel_queue WHERE user_id != ? AND mode = ? AND difficulty = ? ORDER BY created_at ASC LIMIT 1',
@@ -145,7 +145,7 @@ async def duel_join_code(message: Message):
         await message.answer('Kodni kiriting: /duel_join ABC123')
         return
     code = parts[1].strip().upper()
-    async with await get_db() as db:
+    db = await get_db()
         match = await (await db.execute('SELECT * FROM duel_matches WHERE code = ?', (code,))).fetchone()
         if not match:
             await message.answer('Bunday duel topilmadi.')

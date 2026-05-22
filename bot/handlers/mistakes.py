@@ -16,7 +16,7 @@ def set_quiz_engine(e: QuizEngine):
 
 @router.callback_query(F.data == 'mistakes')
 async def mistakes_menu(callback: CallbackQuery):
-    async with await get_db() as db:
+    db = await get_db()
         user = await upsert_user(db, callback.from_user.id, callback.from_user.username, callback.from_user.first_name)
         cnt = await mistake_count(db, user['id'])
     if cnt == 0:
@@ -30,7 +30,7 @@ async def mistakes_menu(callback: CallbackQuery):
 @router.callback_query(F.data.startswith('mistakes:'))
 async def mistakes_start(callback: CallbackQuery):
     mode = callback.data.split(':', 1)[1]
-    async with await get_db() as db:
+    db = await get_db()
         user = await upsert_user(db, callback.from_user.id, callback.from_user.username, callback.from_user.first_name)
         mistakes = await get_mistakes(db, user['id'])
         if not mistakes:
