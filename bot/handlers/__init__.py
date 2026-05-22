@@ -10,6 +10,7 @@ from .mistakes import router as mistakes_router
 from .duel import router as duel_router
 from .stats import router as stats_router
 from .settings import router as settings_router
+from bot.subscription import router as subscription_router
 
 error_router = Router()
 
@@ -26,6 +27,7 @@ async def global_error_handler(event: ErrorEvent):
 
 routers = [
     error_router,
+    subscription_router,
     start_router, quiz_router, daily_router, admin_router,
     chill_router, mistakes_router, duel_router, stats_router, settings_router,
 ]

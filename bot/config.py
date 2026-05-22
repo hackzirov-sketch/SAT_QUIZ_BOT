@@ -34,5 +34,10 @@ CATEGORY_ALL = 'all'
 CATEGORY_OTHER = 'other'
 SMALL_CATEGORIES = {'Arithmetic', 'Functions', 'Probability', 'Number Types', 'Coordinate Geometry', 'Basic Operations'}
 
+REQUIRED_SUBSCRIPTIONS = [
+    {'chat_id': '@mathacademy01', 'title': 'Math Academy', 'link': 'https://t.me/mathacademy01'},
+    {'chat_id': None, 'title': 'SAT Quiz Bot Group', 'link': 'https://t.me/+xN0rLsUBkGY2NjZi'},
+]
+
 if not BOT_TOKEN:
     raise SystemExit('BOT_TOKEN is required')

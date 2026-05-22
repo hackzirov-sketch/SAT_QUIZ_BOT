@@ -17,6 +17,7 @@ from bot.handlers.daily import set_quiz_engine as set_daily_qe
 from bot.handlers.mistakes import set_quiz_engine as set_mistakes_qe
 from bot.handlers.duel import set_quiz_engine as set_duel_qe, set_bot as set_duel_bot
 from bot.handlers.admin import set_bot as set_admin_bot
+from bot.subscription import SubscriptionMiddleware
 
 logging.basicConfig(level=logging.INFO, stream=sys.stdout)
 
@@ -46,6 +47,8 @@ async def main():
 
     bot = Bot(token=BOT_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
     dp = Dispatcher()
+    dp.message.middleware(SubscriptionMiddleware())
+    dp.callback_query.middleware(SubscriptionMiddleware())
     set_admin_bot(bot)
     set_duel_bot(bot)
 
