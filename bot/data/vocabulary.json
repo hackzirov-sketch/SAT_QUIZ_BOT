@@ -1,0 +1,3434 @@
+[
+  {
+    "id": 1,
+    "english": "absolute",
+    "uzbek": "absolyut qiymat",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 2,
+    "english": "abstract",
+    "uzbek": "mavhum",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 3,
+    "english": "algebra",
+    "uzbek": "algebra",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 4,
+    "english": "algorithm",
+    "uzbek": "algoritm",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 5,
+    "english": "argument",
+    "uzbek": "argument",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 6,
+    "english": "asymptote",
+    "uzbek": "asimptota",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 7,
+    "english": "base",
+    "uzbek": "asos",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 8,
+    "english": "binomial",
+    "uzbek": "binom",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 9,
+    "english": "coefficient",
+    "uzbek": "koeffitsiyent",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 10,
+    "english": "commutative",
+    "uzbek": "o'rin almashtirish",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 11,
+    "english": "complex",
+    "uzbek": "kompleks",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 12,
+    "english": "composite",
+    "uzbek": "murakkab",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 13,
+    "english": "congruent",
+    "uzbek": "teng",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 14,
+    "english": "conjugate",
+    "uzbek": "tutashma",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 15,
+    "english": "constant",
+    "uzbek": "doimiy",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 16,
+    "english": "coordinate",
+    "uzbek": "koordinata",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 17,
+    "english": "cubic",
+    "uzbek": "kubik",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 18,
+    "english": "deductive",
+    "uzbek": "deduktiv",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 19,
+    "english": "degree",
+    "uzbek": "daraja",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 20,
+    "english": "denominator",
+    "uzbek": "maxraj",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 21,
+    "english": "dependent",
+    "uzbek": "bog'liq",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 22,
+    "english": "derivative",
+    "uzbek": "hosila",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 23,
+    "english": "determinant",
+    "uzbek": "determinant",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 24,
+    "english": "difference",
+    "uzbek": "ayirma",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 25,
+    "english": "differential",
+    "uzbek": "differensial",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 26,
+    "english": "dimension",
+    "uzbek": "o'lcham",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 27,
+    "english": "discriminant",
+    "uzbek": "diskriminant",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 28,
+    "english": "domain",
+    "uzbek": "aniqlanish sohasi",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 29,
+    "english": "element",
+    "uzbek": "element",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 30,
+    "english": "elimination",
+    "uzbek": "yo'qotish",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 31,
+    "english": "equation",
+    "uzbek": "tenglama",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 32,
+    "english": "equivalent",
+    "uzbek": "ekvivalent",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 33,
+    "english": "estimate",
+    "uzbek": "baholash",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 34,
+    "english": "evaluate",
+    "uzbek": "hisoblash",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 35,
+    "english": "exponent",
+    "uzbek": "daraja ko'rsatkichi",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 36,
+    "english": "expression",
+    "uzbek": "ifoda",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 37,
+    "english": "extraneous",
+    "uzbek": "chet",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 38,
+    "english": "factor",
+    "uzbek": "ko'paytuvchi",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 39,
+    "english": "formula",
+    "uzbek": "formula",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 40,
+    "english": "fraction",
+    "uzbek": "kasr",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 41,
+    "english": "graph",
+    "uzbek": "grafik",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 42,
+    "english": "hypothesis",
+    "uzbek": "gipoteza",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 43,
+    "english": "identity",
+    "uzbek": "ayniyat",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 44,
+    "english": "imaginary",
+    "uzbek": "mavhum",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 45,
+    "english": "independent",
+    "uzbek": "mustaqil",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 46,
+    "english": "index",
+    "uzbek": "indeks",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 47,
+    "english": "inductive",
+    "uzbek": "induktiv",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 48,
+    "english": "inequality",
+    "uzbek": "tengsizlik",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 49,
+    "english": "infinite",
+    "uzbek": "cheksiz",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 50,
+    "english": "integer",
+    "uzbek": "butun son",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 51,
+    "english": "integral",
+    "uzbek": "integral",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 52,
+    "english": "intersection",
+    "uzbek": "kesishma",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 53,
+    "english": "interval",
+    "uzbek": "oraliq",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 54,
+    "english": "inverse",
+    "uzbek": "teskari",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 55,
+    "english": "irrational",
+    "uzbek": "irratsional",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 56,
+    "english": "linear",
+    "uzbek": "chiziqli",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 57,
+    "english": "logarithm",
+    "uzbek": "logarifm",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 58,
+    "english": "matrix",
+    "uzbek": "matritsa",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 59,
+    "english": "monomial",
+    "uzbek": "birhad",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 60,
+    "english": "multiple",
+    "uzbek": "karrali",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 61,
+    "english": "notation",
+    "uzbek": "belgilash",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 62,
+    "english": "numerator",
+    "uzbek": "surat",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 63,
+    "english": "operation",
+    "uzbek": "amal",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 64,
+    "english": "parabola",
+    "uzbek": "parabola",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 65,
+    "english": "parallel",
+    "uzbek": "parallel",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 66,
+    "english": "parameter",
+    "uzbek": "parametr",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 67,
+    "english": "polynomial",
+    "uzbek": "ko'phad",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 68,
+    "english": "power",
+    "uzbek": "daraja",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 69,
+    "english": "prime",
+    "uzbek": "tub",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 70,
+    "english": "product",
+    "uzbek": "ko'paytma",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 71,
+    "english": "proof",
+    "uzbek": "isbot",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 72,
+    "english": "proportion",
+    "uzbek": "proporsiya",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 73,
+    "english": "quadratic",
+    "uzbek": "kvadrat",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 74,
+    "english": "quotient",
+    "uzbek": "bo'linma",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 75,
+    "english": "radical",
+    "uzbek": "radikal",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 76,
+    "english": "radicand",
+    "uzbek": "ildiz ostidagi",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 77,
+    "english": "range",
+    "uzbek": "qiymatlar sohasi",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 78,
+    "english": "rate",
+    "uzbek": "tezlik",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 79,
+    "english": "ratio",
+    "uzbek": "nisbat",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 80,
+    "english": "rational",
+    "uzbek": "ratsional",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 81,
+    "english": "real",
+    "uzbek": "haqiqiy",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 82,
+    "english": "reciprocal",
+    "uzbek": "teskari",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 83,
+    "english": "relation",
+    "uzbek": "munosabat",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 84,
+    "english": "remainder",
+    "uzbek": "qoldiq",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 85,
+    "english": "root",
+    "uzbek": "ildiz",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 86,
+    "english": "scalar",
+    "uzbek": "skalyar",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 87,
+    "english": "sequence",
+    "uzbek": "ketma-ketlik",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 88,
+    "english": "series",
+    "uzbek": "qator",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 89,
+    "english": "set",
+    "uzbek": "to'plam",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 90,
+    "english": "simultaneous",
+    "uzbek": "birgalikdagi",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 91,
+    "english": "slope",
+    "uzbek": "burchak koeffitsiyenti",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 92,
+    "english": "solution",
+    "uzbek": "yechim",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 93,
+    "english": "solve",
+    "uzbek": "yechish",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 94,
+    "english": "square",
+    "uzbek": "kvadrat",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 95,
+    "english": "substitution",
+    "uzbek": "o'rniga qo'yish",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 96,
+    "english": "subset",
+    "uzbek": "qism to'plam",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 97,
+    "english": "subtract",
+    "uzbek": "ayirish",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 98,
+    "english": "sum",
+    "uzbek": "yig'indi",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 99,
+    "english": "system",
+    "uzbek": "sistema",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 100,
+    "english": "term",
+    "uzbek": "had",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 101,
+    "english": "trinomial",
+    "uzbek": "uchhad",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 102,
+    "english": "undefined",
+    "uzbek": "aniqlanmagan",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 103,
+    "english": "union",
+    "uzbek": "birlashma",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 104,
+    "english": "variable",
+    "uzbek": "o'zgaruvchi",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 105,
+    "english": "variance",
+    "uzbek": "dispersiya",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 106,
+    "english": "acute",
+    "uzbek": "o'tkir",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 107,
+    "english": "adjacent",
+    "uzbek": "qo'shni",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 108,
+    "english": "altitude",
+    "uzbek": "balandlik",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 109,
+    "english": "angle",
+    "uzbek": "burchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 110,
+    "english": "apex",
+    "uzbek": "uch",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 111,
+    "english": "arc",
+    "uzbek": "yoy",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 112,
+    "english": "area",
+    "uzbek": "yuza",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 113,
+    "english": "bisector",
+    "uzbek": "bissektrisa",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 114,
+    "english": "center",
+    "uzbek": "markaz",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 115,
+    "english": "central",
+    "uzbek": "markaziy",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 116,
+    "english": "chord",
+    "uzbek": "vatar",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 117,
+    "english": "circle",
+    "uzbek": "aylana",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 118,
+    "english": "circumference",
+    "uzbek": "aylana uzunligi",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 119,
+    "english": "complement",
+    "uzbek": "to'ldiruvchi",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 120,
+    "english": "concave",
+    "uzbek": "botiq",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 121,
+    "english": "cone",
+    "uzbek": "konus",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 122,
+    "english": "convex",
+    "uzbek": "qavariq",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 123,
+    "english": "cube",
+    "uzbek": "kub",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 124,
+    "english": "cylinder",
+    "uzbek": "tsilindr",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 125,
+    "english": "decagon",
+    "uzbek": "o'nburchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 126,
+    "english": "depth",
+    "uzbek": "chuqurlik",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 127,
+    "english": "diagonal",
+    "uzbek": "diagonal",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 128,
+    "english": "diameter",
+    "uzbek": "diametr",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 129,
+    "english": "edge",
+    "uzbek": "qirra",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 130,
+    "english": "ellipse",
+    "uzbek": "ellips",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 131,
+    "english": "equidistant",
+    "uzbek": "teng masofali",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 132,
+    "english": "equilateral",
+    "uzbek": "teng tomonli",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 133,
+    "english": "exterior",
+    "uzbek": "tashqi",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 134,
+    "english": "face",
+    "uzbek": "yoq",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 135,
+    "english": "geometry",
+    "uzbek": "geometriya",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 136,
+    "english": "height",
+    "uzbek": "balandlik",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 137,
+    "english": "heptagon",
+    "uzbek": "yettiburchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 138,
+    "english": "hexagon",
+    "uzbek": "oltiburchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 139,
+    "english": "hypotenuse",
+    "uzbek": "gipotenuza",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 140,
+    "english": "inscribed",
+    "uzbek": "ichki chizilgan",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 141,
+    "english": "interior",
+    "uzbek": "ichki",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 142,
+    "english": "isosceles",
+    "uzbek": "teng yonli",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 143,
+    "english": "lateral",
+    "uzbek": "yon",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 144,
+    "english": "leg",
+    "uzbek": "katet",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 145,
+    "english": "length",
+    "uzbek": "uzunlik",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 146,
+    "english": "line",
+    "uzbek": "to'g'ri chiziq",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 147,
+    "english": "median",
+    "uzbek": "mediana",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 148,
+    "english": "midpoint",
+    "uzbek": "o'rta nuqta",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 149,
+    "english": "obtuse",
+    "uzbek": "o'tmas",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 150,
+    "english": "octagon",
+    "uzbek": "sakkizburchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 151,
+    "english": "orthocenter",
+    "uzbek": "ortosentr",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 152,
+    "english": "parallelogram",
+    "uzbek": "parallelogramm",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 153,
+    "english": "pentagon",
+    "uzbek": "beshburchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 154,
+    "english": "perimeter",
+    "uzbek": "perimetr",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 155,
+    "english": "perpendicular",
+    "uzbek": "perpendikulyar",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 156,
+    "english": "pi",
+    "uzbek": "pi",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 157,
+    "english": "plane",
+    "uzbek": "tekislik",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 158,
+    "english": "polygon",
+    "uzbek": "ko'pburchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 159,
+    "english": "polyhedron",
+    "uzbek": "ko'pyoqli",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 160,
+    "english": "prism",
+    "uzbek": "prizma",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 161,
+    "english": "pyramid",
+    "uzbek": "piramida",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 162,
+    "english": "quadrilateral",
+    "uzbek": "to'rtburchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 163,
+    "english": "radius",
+    "uzbek": "radius",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 164,
+    "english": "ray",
+    "uzbek": "nur",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 165,
+    "english": "rectangle",
+    "uzbek": "to'g'ri to'rtburchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 166,
+    "english": "reflection",
+    "uzbek": "akslantirish",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 167,
+    "english": "regular",
+    "uzbek": "muntazam",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 168,
+    "english": "rhombus",
+    "uzbek": "rombi",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 169,
+    "english": "right",
+    "uzbek": "to'g'ri",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 170,
+    "english": "rotation",
+    "uzbek": "burilish",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 171,
+    "english": "scalene",
+    "uzbek": "turli tomonli",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 172,
+    "english": "sector",
+    "uzbek": "sektor",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 173,
+    "english": "segment",
+    "uzbek": "kesma",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 174,
+    "english": "semicircle",
+    "uzbek": "yarim aylana",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 175,
+    "english": "similar",
+    "uzbek": "o'xshash",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 176,
+    "english": "solid",
+    "uzbek": "jism",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 177,
+    "english": "sphere",
+    "uzbek": "shar",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 178,
+    "english": "straight",
+    "uzbek": "to'g'ri",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 179,
+    "english": "supplement",
+    "uzbek": "to'ldiruvchi",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 180,
+    "english": "surface",
+    "uzbek": "sirt",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 181,
+    "english": "symmetry",
+    "uzbek": "simmetriya",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 182,
+    "english": "tangent",
+    "uzbek": "urinma",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 183,
+    "english": "theorem",
+    "uzbek": "teorema",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 184,
+    "english": "trapezoid",
+    "uzbek": "trapetsiya",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 185,
+    "english": "triangle",
+    "uzbek": "uchburchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 186,
+    "english": "vertex",
+    "uzbek": "uch",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 187,
+    "english": "vertical",
+    "uzbek": "vertikal",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 188,
+    "english": "volume",
+    "uzbek": "hajm",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 189,
+    "english": "width",
+    "uzbek": "kenglik",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 190,
+    "english": "addend",
+    "uzbek": "qo'shiluvchi",
+    "category": "Arithmetic",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 191,
+    "english": "arithmetic",
+    "uzbek": "arifmetika",
+    "category": "Arithmetic",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 192,
+    "english": "average",
+    "uzbek": "o'rtacha",
+    "category": "Arithmetic",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 193,
+    "english": "common",
+    "uzbek": "umumiy",
+    "category": "Arithmetic",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 194,
+    "english": "decimal",
+    "uzbek": "o'nli kasr",
+    "category": "Arithmetic",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 195,
+    "english": "digit",
+    "uzbek": "raqam",
+    "category": "Arithmetic",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 196,
+    "english": "dividend",
+    "uzbek": "bo'linuvchi",
+    "category": "Arithmetic",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 197,
+    "english": "division",
+    "uzbek": "bo'lish",
+    "category": "Arithmetic",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 198,
+    "english": "divisor",
+    "uzbek": "bo'luvchi",
+    "category": "Arithmetic",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 199,
+    "english": "improper",
+    "uzbek": "noto'g'ri",
+    "category": "Arithmetic",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 200,
+    "english": "minuend",
+    "uzbek": "kamayuvchi",
+    "category": "Arithmetic",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 201,
+    "english": "mixed",
+    "uzbek": "aralash",
+    "category": "Arithmetic",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 202,
+    "english": "multiplication",
+    "uzbek": "ko'paytirish",
+    "category": "Arithmetic",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 203,
+    "english": "natural",
+    "uzbek": "natural",
+    "category": "Arithmetic",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 204,
+    "english": "numeral",
+    "uzbek": "raqam",
+    "category": "Arithmetic",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 205,
+    "english": "percent",
+    "uzbek": "foiz",
+    "category": "Arithmetic",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 206,
+    "english": "place",
+    "uzbek": "xona",
+    "category": "Arithmetic",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 207,
+    "english": "proper",
+    "uzbek": "to'g'ri",
+    "category": "Arithmetic",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 208,
+    "english": "subtrahend",
+    "uzbek": "ayriluvchi",
+    "category": "Arithmetic",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 209,
+    "english": "whole",
+    "uzbek": "butun",
+    "category": "Arithmetic",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 210,
+    "english": "attribute",
+    "uzbek": "belgi",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 211,
+    "english": "bias",
+    "uzbek": "sistematik xatolik",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 212,
+    "english": "causation",
+    "uzbek": "sababiy bog'liqlik",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 213,
+    "english": "census",
+    "uzbek": "sanoq",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 214,
+    "english": "confidence",
+    "uzbek": "ishonchlilik",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 215,
+    "english": "correlation",
+    "uzbek": "korrelyatsiya",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 216,
+    "english": "data",
+    "uzbek": "ma'lumot",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 217,
+    "english": "deviation",
+    "uzbek": "chetlanish",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 218,
+    "english": "distribution",
+    "uzbek": "taqsimot",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 219,
+    "english": "expected",
+    "uzbek": "kutilgan",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 220,
+    "english": "frequency",
+    "uzbek": "chastota",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 221,
+    "english": "histogram",
+    "uzbek": "gistogramma",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 222,
+    "english": "interquartile",
+    "uzbek": "kvartillararo",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 223,
+    "english": "margin",
+    "uzbek": "chegara",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 224,
+    "english": "mean",
+    "uzbek": "o'rtacha qiymat",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 225,
+    "english": "mode",
+    "uzbek": "moda",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 226,
+    "english": "normal",
+    "uzbek": "normal",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 227,
+    "english": "outcome",
+    "uzbek": "natija",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 228,
+    "english": "outlier",
+    "uzbek": "chet qiymat",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 229,
+    "english": "percentile",
+    "uzbek": "persentil",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 230,
+    "english": "population",
+    "uzbek": "populyatsiya",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 231,
+    "english": "probability",
+    "uzbek": "ehtimollik",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 232,
+    "english": "quantile",
+    "uzbek": "kvantil",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 233,
+    "english": "quartile",
+    "uzbek": "kvartil",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 234,
+    "english": "random",
+    "uzbek": "tasodifiy",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 235,
+    "english": "regression",
+    "uzbek": "regressiya",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 236,
+    "english": "sample",
+    "uzbek": "tanlanma",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 237,
+    "english": "scatterplot",
+    "uzbek": "nuqtali diagramma",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 238,
+    "english": "significance",
+    "uzbek": "ahamiyatlilik",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 239,
+    "english": "standard",
+    "uzbek": "standart",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 240,
+    "english": "statistic",
+    "uzbek": "statistika",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 241,
+    "english": "survey",
+    "uzbek": "so'rov",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 242,
+    "english": "trend",
+    "uzbek": "tendensiya",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 243,
+    "english": "consecutive",
+    "uzbek": "ketma-ket",
+    "category": "Number Types",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 244,
+    "english": "distinct",
+    "uzbek": "har xil",
+    "category": "Number Types",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 245,
+    "english": "even",
+    "uzbek": "juft",
+    "category": "Number Types",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 246,
+    "english": "negative",
+    "uzbek": "manfiy",
+    "category": "Number Types",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 247,
+    "english": "odd",
+    "uzbek": "toq",
+    "category": "Number Types",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 248,
+    "english": "ordinal",
+    "uzbek": "tartib",
+    "category": "Number Types",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 249,
+    "english": "positive",
+    "uzbek": "musbat",
+    "category": "Number Types",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 250,
+    "english": "continuous",
+    "uzbek": "uzluksiz",
+    "category": "Functions",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 251,
+    "english": "decreasing",
+    "uzbek": "kamayuvchi",
+    "category": "Functions",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 252,
+    "english": "function",
+    "uzbek": "funksiya",
+    "category": "Functions",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 253,
+    "english": "increasing",
+    "uzbek": "osuvchi",
+    "category": "Functions",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 254,
+    "english": "limit",
+    "uzbek": "limit",
+    "category": "Functions",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 255,
+    "english": "mapping",
+    "uzbek": "akslantirish",
+    "category": "Functions",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 256,
+    "english": "maximum",
+    "uzbek": "maksimum",
+    "category": "Functions",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 257,
+    "english": "minimum",
+    "uzbek": "minimum",
+    "category": "Functions",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 258,
+    "english": "periodic",
+    "uzbek": "davriy",
+    "category": "Functions",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 259,
+    "english": "trigonometric",
+    "uzbek": "trigonometrik",
+    "category": "Functions",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 260,
+    "english": "add",
+    "uzbek": "qo'shish",
+    "category": "Basic Operations",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 261,
+    "english": "divide",
+    "uzbek": "bo'lish",
+    "category": "Basic Operations",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 262,
+    "english": "multiply",
+    "uzbek": "ko'paytirish",
+    "category": "Basic Operations",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 263,
+    "english": "abscissa",
+    "uzbek": "abssissa",
+    "category": "Coordinate Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 264,
+    "english": "axis",
+    "uzbek": "o'q",
+    "category": "Coordinate Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 265,
+    "english": "cartesian",
+    "uzbek": "Dekart",
+    "category": "Coordinate Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 266,
+    "english": "intercept",
+    "uzbek": "kesishish nuqtasi",
+    "category": "Coordinate Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 267,
+    "english": "ordinate",
+    "uzbek": "ordinata",
+    "category": "Coordinate Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 268,
+    "english": "origin",
+    "uzbek": "boshlang'ich nuqta",
+    "category": "Coordinate Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 269,
+    "english": "quadrant",
+    "uzbek": "kvadrant",
+    "category": "Coordinate Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 270,
+    "english": "certain",
+    "uzbek": "muqarrar",
+    "category": "Probability",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 271,
+    "english": "event",
+    "uzbek": "hodisa",
+    "category": "Probability",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 272,
+    "english": "impossible",
+    "uzbek": "mumkin emas",
+    "category": "Probability",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 273,
+    "english": "likelihood",
+    "uzbek": "ehtimollik",
+    "category": "Probability",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 274,
+    "english": "mutually",
+    "uzbek": "o'zaro",
+    "category": "Probability",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 275,
+    "english": "trial",
+    "uzbek": "sinov",
+    "category": "Probability",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "easy"
+  },
+  {
+    "id": 276,
+    "english": "absolute value",
+    "uzbek": "absolyut qiymat",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 277,
+    "english": "algebraic expression",
+    "uzbek": "algebraik ifoda",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 278,
+    "english": "binomial coefficient",
+    "uzbek": "binomial koeffitsiyent",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 279,
+    "english": "common factor",
+    "uzbek": "umumiy ko'paytuvchi",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 280,
+    "english": "complex conjugate",
+    "uzbek": "kompleks tutashma",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 281,
+    "english": "complex number",
+    "uzbek": "kompleks son",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 282,
+    "english": "composite number",
+    "uzbek": "murakkab son",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 283,
+    "english": "coordinate plane",
+    "uzbek": "koordinata tekisligi",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 284,
+    "english": "cubic equation",
+    "uzbek": "kub tenglama",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 285,
+    "english": "dependent variable",
+    "uzbek": "bog'liq o'zgaruvchi",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 286,
+    "english": "direct variation",
+    "uzbek": "to'g'ri proporsionallik",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 287,
+    "english": "distributive property",
+    "uzbek": "taqsimot xossasi",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 288,
+    "english": "empty set",
+    "uzbek": "bo'sh to'plam",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 289,
+    "english": "exponential function",
+    "uzbek": "ko'rsatkichli funksiya",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 290,
+    "english": "greatest common",
+    "uzbek": "eng katta umumiy",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 291,
+    "english": "horizontal asymptote",
+    "uzbek": "gorizontal asimptota",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 292,
+    "english": "imaginary number",
+    "uzbek": "mavhum son",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 293,
+    "english": "independent variable",
+    "uzbek": "mustaqil o'zgaruvchi",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 294,
+    "english": "inverse function",
+    "uzbek": "teskari funksiya",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 295,
+    "english": "inverse variation",
+    "uzbek": "teskari proporsionallik",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 296,
+    "english": "irrational number",
+    "uzbek": "irratsional son",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 297,
+    "english": "least common",
+    "uzbek": "eng kichik umumiy",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 298,
+    "english": "linear equation",
+    "uzbek": "chiziqli tenglama",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 299,
+    "english": "linear function",
+    "uzbek": "chiziqli funksiya",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 300,
+    "english": "linear inequality",
+    "uzbek": "chiziqli tengsizlik",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 301,
+    "english": "logarithmic function",
+    "uzbek": "logarifmik funksiya",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 302,
+    "english": "matrix multiplication",
+    "uzbek": "matritsalarni ko'paytirish",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 303,
+    "english": "natural number",
+    "uzbek": "natural son",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 304,
+    "english": "perfect square",
+    "uzbek": "to'liq kvadrat",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 305,
+    "english": "polynomial function",
+    "uzbek": "ko'phadli funksiya",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 306,
+    "english": "prime factorization",
+    "uzbek": "tub ko'paytuvchilarga ajralish",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 307,
+    "english": "quadratic equation",
+    "uzbek": "kvadrat tenglama",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 308,
+    "english": "quadratic formula",
+    "uzbek": "kvadrat formula",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 309,
+    "english": "quadratic function",
+    "uzbek": "kvadrat funksiya",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 310,
+    "english": "radical expression",
+    "uzbek": "radikal ifoda",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 311,
+    "english": "radical function",
+    "uzbek": "radikal funksiya",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 312,
+    "english": "rational expression",
+    "uzbek": "ratsional ifoda",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 313,
+    "english": "rational function",
+    "uzbek": "ratsional funksiya",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 314,
+    "english": "rational number",
+    "uzbek": "ratsional son",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 315,
+    "english": "real number",
+    "uzbek": "haqiqiy son",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 316,
+    "english": "remainder theorem",
+    "uzbek": "qoldiq teoremasi",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 317,
+    "english": "repeating decimal",
+    "uzbek": "davriy kasr",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 318,
+    "english": "scientific notation",
+    "uzbek": "ilmiy yozuv",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 319,
+    "english": "significant digit",
+    "uzbek": "muhim raqam",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 320,
+    "english": "slope intercept",
+    "uzbek": "burchak koeffitsiyentli tenglama",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 321,
+    "english": "solution set",
+    "uzbek": "yechimlar to'plami",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 322,
+    "english": "square root",
+    "uzbek": "kvadrat ildiz",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 323,
+    "english": "substitution method",
+    "uzbek": "o'rniga qo'yish usuli",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 324,
+    "english": "system equation",
+    "uzbek": "tenglamalar sistemasi",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 325,
+    "english": "terminating decimal",
+    "uzbek": "chekli kasr",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 326,
+    "english": "variable expression",
+    "uzbek": "o'zgaruvchili ifoda",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 327,
+    "english": "vertical asymptote",
+    "uzbek": "vertikal asimptota",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 328,
+    "english": "whole number",
+    "uzbek": "butun son",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 329,
+    "english": "zero product",
+    "uzbek": "nol ko'paytma",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 330,
+    "english": "arithmetic sequence",
+    "uzbek": "arifmetik progressiya",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 331,
+    "english": "geometric sequence",
+    "uzbek": "geometrik progressiya",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 332,
+    "english": "infinite series",
+    "uzbek": "cheksiz qator",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 333,
+    "english": "recursive formula",
+    "uzbek": "rekurrent formula",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 334,
+    "english": "set builder",
+    "uzbek": "to'plam tuzuvchi",
+    "category": "Algebra",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 335,
+    "english": "acute angle",
+    "uzbek": "o'tkir burchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 336,
+    "english": "acute triangle",
+    "uzbek": "o'tkir burchakli uchburchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 337,
+    "english": "adjacent angle",
+    "uzbek": "qo'shni burchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 338,
+    "english": "alternate interior",
+    "uzbek": "almashinuvchi ichki",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 339,
+    "english": "central angle",
+    "uzbek": "markaziy burchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 340,
+    "english": "circumscribed circle",
+    "uzbek": "tashqi chizilgan aylana",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 341,
+    "english": "complementary angle",
+    "uzbek": "to'ldiruvchi burchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 342,
+    "english": "concentric circle",
+    "uzbek": "markazdosh aylana",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 343,
+    "english": "congruent triangle",
+    "uzbek": "teng uchburchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 344,
+    "english": "corresponding angle",
+    "uzbek": "mos burchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 345,
+    "english": "cross section",
+    "uzbek": "kesim yuzi",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 346,
+    "english": "equilateral triangle",
+    "uzbek": "teng tomonli uchburchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 347,
+    "english": "exterior angle",
+    "uzbek": "tashqi burchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 348,
+    "english": "geometric solid",
+    "uzbek": "geometrik jism",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 349,
+    "english": "inscribed angle",
+    "uzbek": "ichki chizilgan burchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 350,
+    "english": "interior angle",
+    "uzbek": "ichki burchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 351,
+    "english": "isosceles triangle",
+    "uzbek": "teng yonli uchburchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 352,
+    "english": "line segment",
+    "uzbek": "kesma",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 353,
+    "english": "midpoint formula",
+    "uzbek": "o'rta nuqta formulasi",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 354,
+    "english": "obtuse angle",
+    "uzbek": "o'tmas burchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 355,
+    "english": "obtuse triangle",
+    "uzbek": "o'tmas burchakli uchburchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 356,
+    "english": "parallel line",
+    "uzbek": "parallel chiziq",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 357,
+    "english": "perpendicular bisector",
+    "uzbek": "perpendikulyar bissektrisa",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 358,
+    "english": "plane figure",
+    "uzbek": "tekis shakl",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 359,
+    "english": "polygon interior",
+    "uzbek": "ko'pburchak ichki burchagi",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 360,
+    "english": "Pythagorean theorem",
+    "uzbek": "Pifagor teoremasi",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 361,
+    "english": "rectangular prism",
+    "uzbek": "to'g'ri burchakli prizma",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 362,
+    "english": "regular polygon",
+    "uzbek": "muntazam ko'pburchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 363,
+    "english": "right angle",
+    "uzbek": "to'g'ri burchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 364,
+    "english": "right cone",
+    "uzbek": "to'g'ri konus",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 365,
+    "english": "right cylinder",
+    "uzbek": "to'g'ri silindr",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 366,
+    "english": "right prism",
+    "uzbek": "to'g'ri prizma",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 367,
+    "english": "right triangle",
+    "uzbek": "to'g'ri burchakli uchburchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 368,
+    "english": "scalene triangle",
+    "uzbek": "turli tomonli uchburchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 369,
+    "english": "similar triangle",
+    "uzbek": "o'xshash uchburchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 370,
+    "english": "straight angle",
+    "uzbek": "yoyiq burchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 371,
+    "english": "supplementary angle",
+    "uzbek": "to'ldiruvchi burchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 372,
+    "english": "surface area",
+    "uzbek": "sirt yuzi",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 373,
+    "english": "transversal line",
+    "uzbek": "kesuvchi chiziq",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 374,
+    "english": "triangular prism",
+    "uzbek": "uchburchakli prizma",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 375,
+    "english": "vertical angle",
+    "uzbek": "vertikal burchak",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 376,
+    "english": "volume formula",
+    "uzbek": "hajm formulasi",
+    "category": "Geometry",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 377,
+    "english": "box plot",
+    "uzbek": "quti diagramma",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 378,
+    "english": "central tendency",
+    "uzbek": "markaziy tendensiya",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 379,
+    "english": "confidence interval",
+    "uzbek": "ishonchlilik oraligi",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 380,
+    "english": "correlation coefficient",
+    "uzbek": "korrelyatsiya koeffitsiyenti",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 381,
+    "english": "cumulative frequency",
+    "uzbek": "yig'ma chastota",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 382,
+    "english": "dependent event",
+    "uzbek": "bog'liq hodisa",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 383,
+    "english": "expected value",
+    "uzbek": "kutilgan qiymat",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 384,
+    "english": "frequency distribution",
+    "uzbek": "chastota taqsimoti",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 385,
+    "english": "independent event",
+    "uzbek": "mustaqil hodisa",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 386,
+    "english": "interquartile range",
+    "uzbek": "kvartillararo kenglik",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 387,
+    "english": "margin error",
+    "uzbek": "xatolik chegarasi",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 388,
+    "english": "normal distribution",
+    "uzbek": "normal taqsimot",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 389,
+    "english": "null hypothesis",
+    "uzbek": "nol gipoteza",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 390,
+    "english": "probability distribution",
+    "uzbek": "ehtimollik taqsimoti",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 391,
+    "english": "random variable",
+    "uzbek": "tasodifiy o'zgaruvchi",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 392,
+    "english": "regression line",
+    "uzbek": "regressiya chizig'i",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 393,
+    "english": "relative frequency",
+    "uzbek": "nisbiy chastota",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 394,
+    "english": "sample space",
+    "uzbek": "natijalar to'plami",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 395,
+    "english": "scatter plot",
+    "uzbek": "nuqtali diagramma",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 396,
+    "english": "standard deviation",
+    "uzbek": "standart chetlanish",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 397,
+    "english": "standard error",
+    "uzbek": "standart xato",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 398,
+    "english": "tree diagram",
+    "uzbek": "daraxtsimon diagramma",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 399,
+    "english": "uniform distribution",
+    "uzbek": "tekis taqsimot",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 400,
+    "english": "z score",
+    "uzbek": "z qiymat",
+    "category": "Statistics",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 401,
+    "english": "conditional probability",
+    "uzbek": "shartli ehtimollik",
+    "category": "Probability",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 402,
+    "english": "geometric probability",
+    "uzbek": "geometrik ehtimollik",
+    "category": "Probability",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 403,
+    "english": "theoretical probability",
+    "uzbek": "nazariy ehtimollik",
+    "category": "Probability",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 404,
+    "english": "experimental probability",
+    "uzbek": "tajribiy ehtimollik",
+    "category": "Probability",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 405,
+    "english": "compound event",
+    "uzbek": "murakkab hodisa",
+    "category": "Probability",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 406,
+    "english": "simple event",
+    "uzbek": "oddiy hodisa",
+    "category": "Probability",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 407,
+    "english": "sample point",
+    "uzbek": "tanlanma nuqta",
+    "category": "Probability",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 408,
+    "english": "random experiment",
+    "uzbek": "tasodifiy tajriba",
+    "category": "Probability",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 409,
+    "english": "absolute maximum",
+    "uzbek": "absolyut maksimum",
+    "category": "Functions",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 410,
+    "english": "absolute minimum",
+    "uzbek": "absolyut minimum",
+    "category": "Functions",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 411,
+    "english": "composite function",
+    "uzbek": "murakkab funksiya",
+    "category": "Functions",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 412,
+    "english": "exponential decay",
+    "uzbek": "eksponensial kamayish",
+    "category": "Functions",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 413,
+    "english": "exponential growth",
+    "uzbek": "eksponensial o'sish",
+    "category": "Functions",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 414,
+    "english": "periodic function",
+    "uzbek": "davriy funksiya",
+    "category": "Functions",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 415,
+    "english": "piecewise function",
+    "uzbek": "bo'lakli funksiya",
+    "category": "Functions",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 416,
+    "english": "trigonometric function",
+    "uzbek": "trigonometrik funksiya",
+    "category": "Functions",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 417,
+    "english": "common denominator",
+    "uzbek": "umumiy maxraj",
+    "category": "Arithmetic",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 418,
+    "english": "common multiple",
+    "uzbek": "umumiy karrali",
+    "category": "Arithmetic",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 419,
+    "english": "decimal fraction",
+    "uzbek": "o'nli kasr",
+    "category": "Arithmetic",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 420,
+    "english": "improper fraction",
+    "uzbek": "noto'g'ri kasr",
+    "category": "Arithmetic",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 421,
+    "english": "mixed number",
+    "uzbek": "aralash son",
+    "category": "Arithmetic",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 422,
+    "english": "proper fraction",
+    "uzbek": "to'g'ri kasr",
+    "category": "Arithmetic",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 423,
+    "english": "consecutive integer",
+    "uzbek": "ketma-ket butun son",
+    "category": "Number Types",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 424,
+    "english": "counting number",
+    "uzbek": "sanoq soni",
+    "category": "Number Types",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 425,
+    "english": "even number",
+    "uzbek": "juft son",
+    "category": "Number Types",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 426,
+    "english": "odd number",
+    "uzbek": "toq son",
+    "category": "Number Types",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 427,
+    "english": "prime number",
+    "uzbek": "tub son",
+    "category": "Number Types",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 428,
+    "english": "square number",
+    "uzbek": "kvadrat son",
+    "category": "Number Types",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  },
+  {
+    "id": 429,
+    "english": "unit rate",
+    "uzbek": "birlik tezlik",
+    "category": "Basic Operations",
+    "source": "SAT Vocabulary Handbook",
+    "difficulty": "hard"
+  }
+]

@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.env
+bot/data/quiz_bot.db
+*.db
+.venv/
