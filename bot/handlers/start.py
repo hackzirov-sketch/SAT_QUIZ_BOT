@@ -10,7 +10,7 @@ router = Router()
 @router.message(CommandStart())
 async def cmd_start(message: Message):
     db = await get_db()
-        await upsert_user(db, message.from_user.id, message.from_user.username, message.from_user.first_name)
+    await upsert_user(db, message.from_user.id, message.from_user.username, message.from_user.first_name)
     await message.answer(
         "🧠 <b>SAT LUĠĞAT QUIZ BOT</b>\n\nSAT Matematika terminlariga ixtisoslashgan lug'at testi.\n\n"
         "🏆 <b>Yangi:</b> XP & Level, Daily Challenge, Duel, Cheksiz rejim!\n\n"
@@ -22,14 +22,14 @@ async def cmd_start(message: Message):
 @router.message(Command('quiz'))
 async def test_boshlash(message: Message):
     db = await get_db()
-        user = await upsert_user(db, message.from_user.id, message.from_user.username, message.from_user.first_name)
-        cursor = await db.execute('SELECT * FROM active_sessions WHERE user_id = ? AND status = ?', (user['id'], 'active'))
-        active = await cursor.fetchone()
-        if active:
-            await message.answer('Sizda faol test bor.')
-            return
-        cursor = await db.execute('SELECT preferred_mode, preferred_difficulty FROM settings WHERE user_id = ?', (user['id'],))
-        s = await cursor.fetchone()
+    user = await upsert_user(db, message.from_user.id, message.from_user.username, message.from_user.first_name)
+    cursor = await db.execute('SELECT * FROM active_sessions WHERE user_id = ? AND status = ?', (user['id'], 'active'))
+    active = await cursor.fetchone()
+    if active:
+        await message.answer('Sizda faol test bor.')
+        return
+    cursor = await db.execute('SELECT preferred_mode, preferred_difficulty FROM settings WHERE user_id = ?', (user['id'],))
+    s = await cursor.fetchone()
     pref_mode = s['preferred_mode'] if s else 'eng_uzb'
     pref_diff = s['preferred_difficulty'] if s else 'easy'
     await message.answer(
@@ -64,13 +64,13 @@ async def back_main(callback: CallbackQuery):
 @router.message(Command('cancel'))
 async def cancel(message: Message):
     db = await get_db()
-        user = await upsert_user(db, message.from_user.id, message.from_user.username, message.from_user.first_name)
-        cursor = await db.execute(
-            'SELECT s.* FROM active_sessions s JOIN attempts a ON a.id = s.attempt_id '
-            'WHERE s.user_id = ? AND s.status = ? AND a.status = ?', (user['id'], 'active', 'active'))
-        active = await cursor.fetchone()
-        if active:
-            await db.execute('UPDATE attempts SET status = ? WHERE id = ?', ('cancelled', active['attempt_id']))
-            await db.execute('UPDATE active_sessions SET status = ? WHERE id = ?', ('cancelled', active['id']))
-            await db.commit()
+    user = await upsert_user(db, message.from_user.id, message.from_user.username, message.from_user.first_name)
+    cursor = await db.execute(
+        'SELECT s.* FROM active_sessions s JOIN attempts a ON a.id = s.attempt_id '
+        'WHERE s.user_id = ? AND s.status = ? AND a.status = ?', (user['id'], 'active', 'active'))
+    active = await cursor.fetchone()
+    if active:
+        await db.execute('UPDATE attempts SET status = ? WHERE id = ?', ('cancelled', active['attempt_id']))
+        await db.execute('UPDATE active_sessions SET status = ? WHERE id = ?', ('cancelled', active['id']))
+        await db.commit()
     await message.answer('🛑 Faol test bekor qilindi.', reply_markup=main_menu_kb())

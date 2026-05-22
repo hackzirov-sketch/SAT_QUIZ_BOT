@@ -48,16 +48,16 @@ async def admin_callback(callback: CallbackQuery):
 
 async def _handle_admin_action(msg, action: str, payload: str = ''):
     db = await get_db()
-        if action == 'stats':
-            c = await _admin_counts(db)
-            await msg.reply(
-                f"📊 <b>Admin</b>\n\n"
-                f"👥 Foydalanuvchilar: <b>{c['users']}</b>\n"
-                f"🧠 Testlar: <b>{c['attempts']}</b>\n"
-                f"✅ Tugagan: <b>{c['finished_attempts']}</b>\n"
-                f"⏱ Faol: <b>{c['active_sessions']}</b>\n"
-                f"📝 Javoblar: <b>{c['answers']}</b>\n"
-                f"📚 Lug'at: <b>{c['vocab']}</b>")
+    if action == 'stats':
+        c = await _admin_counts(db)
+        await msg.reply(
+            f"📊 <b>Admin</b>\n\n"
+            f"👥 Foydalanuvchilar: <b>{c['users']}</b>\n"
+            f"🧠 Testlar: <b>{c['attempts']}</b>\n"
+            f"✅ Tugagan: <b>{c['finished_attempts']}</b>\n"
+            f"⏱ Faol: <b>{c['active_sessions']}</b>\n"
+            f"📝 Javoblar: <b>{c['answers']}</b>\n"
+            f"📚 Lug'at: <b>{c['vocab']}</b>")
 
         elif action == 'active':
             rows = await (await db.execute(

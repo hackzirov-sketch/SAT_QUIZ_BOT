@@ -27,9 +27,9 @@ def _settings_text(s: dict) -> str:
 @router.message(Command('settings'))
 async def settings_menu(message: Message):
     db = await get_db()
-        user = await upsert_user(db, message.from_user.id, message.from_user.username, message.from_user.first_name)
-        cursor = await db.execute('SELECT * FROM settings WHERE user_id = ?', (user['id'],))
-        s = await cursor.fetchone()
+    user = await upsert_user(db, message.from_user.id, message.from_user.username, message.from_user.first_name)
+    cursor = await db.execute('SELECT * FROM settings WHERE user_id = ?', (user['id'],))
+    s = await cursor.fetchone()
     if not s:
         s = {'preferred_mode': 'eng_uzb', 'preferred_difficulty': 'easy', 'question_count': 50, 'sound_enabled': 1, 'minimal_mode': 0}
     await message.answer(_settings_text(dict(s)), reply_markup=settings_kb(dict(s)))
@@ -38,7 +38,7 @@ async def settings_menu(message: Message):
 async def settings_callback(callback: CallbackQuery):
     data = callback.data
     db = await get_db()
-        user = await upsert_user(db, callback.from_user.id, callback.from_user.username, callback.from_user.first_name)
+    user = await upsert_user(db, callback.from_user.id, callback.from_user.username, callback.from_user.first_name)
 
         if data == 'settings:mode':
             await callback.answer('Rejimni tanlang.')

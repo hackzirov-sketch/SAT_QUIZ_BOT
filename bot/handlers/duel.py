@@ -34,13 +34,13 @@ async def duel_menu(message: Message):
 @router.callback_query(F.data == 'duel:find')
 async def duel_find(callback: CallbackQuery):
     db = await get_db()
-        user = await upsert_user(db, callback.from_user.id, callback.from_user.username, callback.from_user.first_name)
-        active = await (await db.execute(
-            "SELECT * FROM duel_matches WHERE (player1_id = ? OR player2_id = ?) AND status IN ('waiting','active') ORDER BY created_at DESC LIMIT 1",
-            (user['id'], user['id']))).fetchone()
-        if active:
-            await callback.answer('Sizda faol duel bor.')
-            return
+    user = await upsert_user(db, callback.from_user.id, callback.from_user.username, callback.from_user.first_name)
+    active = await (await db.execute(
+        "SELECT * FROM duel_matches WHERE (player1_id = ? OR player2_id = ?) AND status IN ('waiting','active') ORDER BY created_at DESC LIMIT 1",
+        (user['id'], user['id']))).fetchone()
+    if active:
+        await callback.answer('Sizda faol duel bor.')
+        return
     await callback.message.edit_text('Qiyinlik tanlang:', reply_markup=duel_difficulty_kb())
     await callback.answer()
 
@@ -51,10 +51,10 @@ async def duel_join_prompt(callback: CallbackQuery):
 @router.callback_query(F.data == 'duel:stats')
 async def duel_stats(callback: CallbackQuery):
     db = await get_db()
-        duels = await (await db.execute(
-            'SELECT d.*, u1.username AS p1name, u1.first_name AS p1first, u2.username AS p2name, u2.first_name AS p2first '
-            'FROM duel_matches d LEFT JOIN users u1 ON u1.id = d.player1_id LEFT JOIN users u2 ON u2.id = d.player2_id '
-            'WHERE d.status = ? ORDER BY d.finished_at DESC LIMIT 10', ('finished',))).fetchall()
+    duels = await (await db.execute(
+        'SELECT d.*, u1.username AS p1name, u1.first_name AS p1first, u2.username AS p2name, u2.first_name AS p2first '
+        'FROM duel_matches d LEFT JOIN users u1 ON u1.id = d.player1_id LEFT JOIN users u2 ON u2.id = d.player2_id '
+        'WHERE d.status = ? ORDER BY d.finished_at DESC LIMIT 10', ('finished',))).fetchall()
     if not duels:
         await callback.answer("Hali duel o'tkazilmagan.")
         return
@@ -74,23 +74,23 @@ async def duel_find_opponent(callback: CallbackQuery):
     difficulty = parts[2]
     mode = parts[3] if len(parts) > 3 else 'eng_uzb'
     db = await get_db()
-        user = await upsert_user(db, callback.from_user.id, callback.from_user.username, callback.from_user.first_name)
-        opponent = await (await db.execute(
-            'SELECT * FROM duel_queue WHERE user_id != ? AND mode = ? AND difficulty = ? ORDER BY created_at ASC LIMIT 1',
-            (user['id'], mode, difficulty))).fetchone()
-        if opponent:
-            await db.execute('DELETE FROM duel_queue WHERE user_id = ?', (opponent['user_id'],))
-            await db.commit()
-            code = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
-            res = engine.generate_questions(user['id'], mode, 10, difficulty if difficulty != 'mixed' else '', '')
-            questions = res['questions']
-            qjson = json.dumps([{k: q[k] for k in ('id','english','uzbek','category','difficulty','prompt','correct_answer','options')} for q in questions])
-            await db.execute(
-                "INSERT INTO duel_matches (code, player1_id, player2_id, questions_json, status, created_at) VALUES (?,?,?,?,'active',?)",
-                (code, opponent['user_id'], user['id'], qjson, now_iso()))
-            await db.commit()
-            cursor = await db.execute('SELECT last_insert_rowid() AS id')
-            match_id = (await cursor.fetchone())['id']
+    user = await upsert_user(db, callback.from_user.id, callback.from_user.username, callback.from_user.first_name)
+    opponent = await (await db.execute(
+        'SELECT * FROM duel_queue WHERE user_id != ? AND mode = ? AND difficulty = ? ORDER BY created_at ASC LIMIT 1',
+        (user['id'], mode, difficulty))).fetchone()
+    if opponent:
+        await db.execute('DELETE FROM duel_queue WHERE user_id = ?', (opponent['user_id'],))
+        await db.commit()
+        code = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
+        res = engine.generate_questions(user['id'], mode, 10, difficulty if difficulty != 'mixed' else '', '')
+        questions = res['questions']
+        qjson = json.dumps([{k: q[k] for k in ('id','english','uzbek','category','difficulty','prompt','correct_answer','options')} for q in questions])
+        await db.execute(
+            "INSERT INTO duel_matches (code, player1_id, player2_id, questions_json, status, created_at) VALUES (?,?,?,?,'active',?)",
+            (code, opponent['user_id'], user['id'], qjson, now_iso()))
+        await db.commit()
+        cursor = await db.execute('SELECT last_insert_rowid() AS id')
+        match_id = (await cursor.fetchone())['id']
 
             await callback.message.edit_text(f'⚔️ <b>Duel topildi!</b>\n\nRaqib bilan bellashuv boshlandi!\nKod: <b>{code}</b>\n\n10 ta savol, kim tez va to\'g\'ri javob bersa yutadi!')
 
@@ -146,20 +146,20 @@ async def duel_join_code(message: Message):
         return
     code = parts[1].strip().upper()
     db = await get_db()
-        match = await (await db.execute('SELECT * FROM duel_matches WHERE code = ?', (code,))).fetchone()
-        if not match:
-            await message.answer('Bunday duel topilmadi.')
-            return
-        if match['status'] != 'waiting':
-            await message.answer('Bu duel allaqachon boshlangan.')
-            return
-        user = await upsert_user(db, message.from_user.id, message.from_user.username, message.from_user.first_name)
-        if match['player1_id'] == user['id']:
-            await message.answer('Bu sizning duelingiz.')
-            return
-        await db.execute("UPDATE duel_matches SET player2_id = ?, status = ? WHERE id = ?", (user['id'], 'active', match['id']))
-        await db.commit()
-        await message.answer('⚔️ Duelga qo\'shildingiz! Test boshlandi.')
+    match = await (await db.execute('SELECT * FROM duel_matches WHERE code = ?', (code,))).fetchone()
+    if not match:
+        await message.answer('Bunday duel topilmadi.')
+        return
+    if match['status'] != 'waiting':
+        await message.answer('Bu duel allaqachon boshlangan.')
+        return
+    user = await upsert_user(db, message.from_user.id, message.from_user.username, message.from_user.first_name)
+    if match['player1_id'] == user['id']:
+        await message.answer('Bu sizning duelingiz.')
+        return
+    await db.execute("UPDATE duel_matches SET player2_id = ?, status = ? WHERE id = ?", (user['id'], 'active', match['id']))
+    await db.commit()
+    await message.answer('⚔️ Duelga qo\'shildingiz! Test boshlandi.')
 
         questions = json.loads(match['questions_json'])
         mode = 'eng_uzb'

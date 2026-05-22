@@ -18,12 +18,12 @@ def set_quiz_engine(e: QuizEngine):
 
 async def send_current_question(message_or_callback, attempt: dict, session: dict, questions: list = None):
     db = await get_db()
-        if questions is None:
-            cursor = await db.execute('SELECT question_order_json FROM attempts WHERE id = ?', (attempt['id'],))
-            row = await cursor.fetchone()
-            questions = json.loads(row['question_order_json']) if row else []
-        cursor = await db.execute('SELECT * FROM settings WHERE user_id = ?', (attempt['user_id'],))
-        s = await cursor.fetchone()
+    if questions is None:
+        cursor = await db.execute('SELECT question_order_json FROM attempts WHERE id = ?', (attempt['id'],))
+        row = await cursor.fetchone()
+        questions = json.loads(row['question_order_json']) if row else []
+    cursor = await db.execute('SELECT * FROM settings WHERE user_id = ?', (attempt['user_id'],))
+    s = await cursor.fetchone()
     index = attempt['current_index']
     if index >= len(questions):
         return
@@ -51,31 +51,31 @@ async def start_callback(callback: CallbackQuery):
             await callback.answer('Noto\'g\'ri kategoriya.')
             return
         db = await get_db()
-            user = await upsert_user(db, callback.from_user.id, callback.from_user.username, callback.from_user.first_name)
-            cursor = await db.execute(
-                'SELECT s.* FROM active_sessions s JOIN attempts a ON a.id = s.attempt_id WHERE s.user_id = ? AND s.status = ? AND a.status = ?',
-                (user['id'], 'active', 'active'))
-            if await cursor.fetchone():
-                await callback.answer('Sizda faol test bor.')
-                return
-            qty = 50
-            expires = 900
-            res = engine.generate_questions(user['id'], mode, qty, difficulty, category)
-            questions = res['questions']
-            now = now_iso()
-            await db.execute(
-                'INSERT INTO attempts (user_id, mode, difficulty, category, total_questions, question_order_json, order_hash, started_at, status) VALUES (?,?,?,?,?,?,?,?,?)',
-                (user['id'], mode, difficulty, category, qty, json.dumps([{k: q[k] for k in ('id','english','uzbek','category','difficulty','prompt','correct_answer','options')} for q in questions]), res['order_hash'], now, 'active'))
-            await db.commit()
-            cursor = await db.execute('SELECT last_insert_rowid() AS id')
-            attempt_id = (await cursor.fetchone())['id']
-            expires_at = int(time.time()) + expires
-            await db.execute(
-                'INSERT INTO active_sessions (attempt_id, user_id, chat_id, expires_at, status, created_at, updated_at) VALUES (?,?,?,?,?,?,?)',
-                (attempt_id, user['id'], callback.message.chat.id, expires_at, 'active', now, now))
-            await db.commit()
-            attempt = {'id': attempt_id, 'user_id': user['id'], 'current_index': 0, 'total_questions': qty, 'mode': mode}
-            session = {'attempt_id': attempt_id, 'expires_at': expires_at}
+        user = await upsert_user(db, callback.from_user.id, callback.from_user.username, callback.from_user.first_name)
+        cursor = await db.execute(
+            'SELECT s.* FROM active_sessions s JOIN attempts a ON a.id = s.attempt_id WHERE s.user_id = ? AND s.status = ? AND a.status = ?',
+            (user['id'], 'active', 'active'))
+        if await cursor.fetchone():
+            await callback.answer('Sizda faol test bor.')
+            return
+        qty = 50
+        expires = 900
+        res = engine.generate_questions(user['id'], mode, qty, difficulty, category)
+        questions = res['questions']
+        now = now_iso()
+        await db.execute(
+            'INSERT INTO attempts (user_id, mode, difficulty, category, total_questions, question_order_json, order_hash, started_at, status) VALUES (?,?,?,?,?,?,?,?,?)',
+            (user['id'], mode, difficulty, category, qty, json.dumps([{k: q[k] for k in ('id','english','uzbek','category','difficulty','prompt','correct_answer','options')} for q in questions]), res['order_hash'], now, 'active'))
+        await db.commit()
+        cursor = await db.execute('SELECT last_insert_rowid() AS id')
+        attempt_id = (await cursor.fetchone())['id']
+        expires_at = int(time.time()) + expires
+        await db.execute(
+            'INSERT INTO active_sessions (attempt_id, user_id, chat_id, expires_at, status, created_at, updated_at) VALUES (?,?,?,?,?,?,?)',
+            (attempt_id, user['id'], callback.message.chat.id, expires_at, 'active', now, now))
+        await db.commit()
+        attempt = {'id': attempt_id, 'user_id': user['id'], 'current_index': 0, 'total_questions': qty, 'mode': mode}
+        session = {'attempt_id': attempt_id, 'expires_at': expires_at}
         await callback.answer('Test boshlandi!')
         await callback.message.edit_text('⏱ Timer boshlandi: 15:00')
         await send_current_question(callback.message, attempt, session, questions)
@@ -86,36 +86,36 @@ async def active_quiz_callback(callback: CallbackQuery):
     action = parts[1]
     attempt_id = int(parts[2])
     db = await get_db()
-        user = await upsert_user(db, callback.from_user.id, callback.from_user.username, callback.from_user.first_name)
-        attempt = await (await db.execute('SELECT * FROM attempts WHERE id = ?', (attempt_id,))).fetchone()
-        if not attempt or attempt['user_id'] != user['id']:
-            await callback.answer('Test topilmadi.')
+    user = await upsert_user(db, callback.from_user.id, callback.from_user.username, callback.from_user.first_name)
+    attempt = await (await db.execute('SELECT * FROM attempts WHERE id = ?', (attempt_id,))).fetchone()
+    if not attempt or attempt['user_id'] != user['id']:
+        await callback.answer('Test topilmadi.')
+        return
+    if action == 'continue':
+        session = await (await db.execute('SELECT * FROM active_sessions WHERE attempt_id = ? AND status = ?', (attempt_id, 'active'))).fetchone()
+        if not session:
+            await callback.answer('Sessiya topilmadi.')
             return
-        if action == 'continue':
-            session = await (await db.execute('SELECT * FROM active_sessions WHERE attempt_id = ? AND status = ?', (attempt_id, 'active'))).fetchone()
-            if not session:
-                await callback.answer('Sessiya topilmadi.')
-                return
-            if session['expires_at'] and int(time.time()) > session['expires_at']:
-                await _finish_attempt(db, attempt_id, 'timed_out')
-                await callback.answer('Vaqt tugadi.')
-                ta = await (await db.execute('SELECT * FROM attempts WHERE id = ?', (attempt_id,))).fetchone()
-                if ta:
-                    await callback.message.edit_reply_markup(reply_markup=None)
-                    rt = final_result_text(dict(ta))
-                    await callback.message.answer(rt)
-                return
-            await callback.answer()
-            await send_current_question(callback.message, attempt, session)
-        elif action == 'restart':
-            await db.execute('UPDATE attempts SET status = ? WHERE id = ?', ('cancelled', attempt_id))
-            await db.execute('UPDATE active_sessions SET status = ? WHERE attempt_id = ?', ('cancelled', attempt_id))
-            await db.commit()
-            await callback.answer('Faol test bekor qilindi.')
-            s = await (await db.execute('SELECT * FROM settings WHERE user_id = ?', (user['id'],))).fetchone()
-            pref_mode = s['preferred_mode'] if s else 'eng_uzb'
-            pref_diff = s['preferred_difficulty'] if s else 'easy'
-            await callback.message.edit_text('📘 <b>Test sozlamalari</b>', reply_markup=start_kb(pref_mode, pref_diff))
+        if session['expires_at'] and int(time.time()) > session['expires_at']:
+            await _finish_attempt(db, attempt_id, 'timed_out')
+            await callback.answer('Vaqt tugadi.')
+            ta = await (await db.execute('SELECT * FROM attempts WHERE id = ?', (attempt_id,))).fetchone()
+            if ta:
+                await callback.message.edit_reply_markup(reply_markup=None)
+                rt = final_result_text(dict(ta))
+                await callback.message.answer(rt)
+            return
+        await callback.answer()
+        await send_current_question(callback.message, attempt, session)
+    elif action == 'restart':
+        await db.execute('UPDATE attempts SET status = ? WHERE id = ?', ('cancelled', attempt_id))
+        await db.execute('UPDATE active_sessions SET status = ? WHERE attempt_id = ?', ('cancelled', attempt_id))
+        await db.commit()
+        await callback.answer('Faol test bekor qilindi.')
+        s = await (await db.execute('SELECT * FROM settings WHERE user_id = ?', (user['id'],))).fetchone()
+        pref_mode = s['preferred_mode'] if s else 'eng_uzb'
+        pref_diff = s['preferred_difficulty'] if s else 'easy'
+        await callback.message.edit_text('📘 <b>Test sozlamalari</b>', reply_markup=start_kb(pref_mode, pref_diff))
 
 @router.callback_query(F.data.startswith('ans:'))
 async def answer_callback(callback: CallbackQuery):
@@ -125,17 +125,17 @@ async def answer_callback(callback: CallbackQuery):
     selected_letter = parts[3]
 
     db = await get_db()
-        user = await upsert_user(db, callback.from_user.id, callback.from_user.username, callback.from_user.first_name)
-        attempt = await (await db.execute('SELECT * FROM attempts WHERE id = ?', (attempt_id,))).fetchone()
-        if not attempt or attempt['user_id'] != user['id']:
-            await callback.answer('Bu test sizniki emas.')
-            return
-        if attempt['status'] != 'active':
-            await callback.answer('Test allaqachon yakunlangan.')
-            return
-        if attempt['current_index'] != question_index:
-            await callback.answer('Eski tugma.')
-            return
+    user = await upsert_user(db, callback.from_user.id, callback.from_user.username, callback.from_user.first_name)
+    attempt = await (await db.execute('SELECT * FROM attempts WHERE id = ?', (attempt_id,))).fetchone()
+    if not attempt or attempt['user_id'] != user['id']:
+        await callback.answer('Bu test sizniki emas.')
+        return
+    if attempt['status'] != 'active':
+        await callback.answer('Test allaqachon yakunlangan.')
+        return
+    if attempt['current_index'] != question_index:
+        await callback.answer('Eski tugma.')
+        return
 
         session = await (await db.execute('SELECT * FROM active_sessions WHERE attempt_id = ? AND status = ?', (attempt_id, 'active'))).fetchone()
         if not session:
@@ -283,13 +283,13 @@ async def answer_callback(callback: CallbackQuery):
 async def review_callback(callback: CallbackQuery):
     attempt_id = int(callback.data.split(':')[1])
     db = await get_db()
-        user = await upsert_user(db, callback.from_user.id, callback.from_user.username, callback.from_user.first_name)
-        attempt = await (await db.execute('SELECT * FROM attempts WHERE id = ?', (attempt_id,))).fetchone()
-        if not attempt or attempt['user_id'] != user['id']:
-            await callback.answer('Bu test sizniki emas.')
-            return
-        answers = await (await db.execute('SELECT * FROM answers WHERE attempt_id = ? ORDER BY question_index', (attempt_id,))).fetchall()
-        questions = json.loads(attempt['question_order_json'])
+    user = await upsert_user(db, callback.from_user.id, callback.from_user.username, callback.from_user.first_name)
+    attempt = await (await db.execute('SELECT * FROM attempts WHERE id = ?', (attempt_id,))).fetchone()
+    if not attempt or attempt['user_id'] != user['id']:
+        await callback.answer('Bu test sizniki emas.')
+        return
+    answers = await (await db.execute('SELECT * FROM answers WHERE attempt_id = ? ORDER BY question_index', (attempt_id,))).fetchall()
+    questions = json.loads(attempt['question_order_json'])
     await callback.answer()
     await callback.message.answer(format_wrong_answers(questions, [dict(a) for a in answers]))
 

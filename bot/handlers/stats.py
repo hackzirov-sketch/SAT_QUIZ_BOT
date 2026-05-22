@@ -14,10 +14,10 @@ router = Router()
 @router.message(Command('stats'))
 async def statistika(message: Message):
     db = await get_db()
-        user = await upsert_user(db, message.from_user.id, message.from_user.username, message.from_user.first_name)
-        cursor = await db.execute('SELECT * FROM statistics WHERE user_id = ?', (user['id'],))
-        stats = await cursor.fetchone()
-        analysis = await weakness_data(db, user['id'])
+    user = await upsert_user(db, message.from_user.id, message.from_user.username, message.from_user.first_name)
+    cursor = await db.execute('SELECT * FROM statistics WHERE user_id = ?', (user['id'],))
+    stats = await cursor.fetchone()
+    analysis = await weakness_data(db, user['id'])
 
     if not stats:
         await message.answer('Hali test ishlamagansiz.', reply_markup=main_menu_kb())
@@ -45,15 +45,15 @@ async def statistika(message: Message):
 @router.message(Command('result'))
 async def natijalarim(message: Message):
     db = await get_db()
-        user = await upsert_user(db, message.from_user.id, message.from_user.username, message.from_user.first_name)
-        cursor = await db.execute(
-            "SELECT * FROM attempts WHERE user_id = ? AND status IN ('completed','timed_out') ORDER BY finished_at DESC LIMIT 1",
-            (user['id'],))
-        latest = await cursor.fetchone()
-        cursor = await db.execute(
-            "SELECT * FROM attempts WHERE user_id = ? AND status IN ('completed','timed_out') ORDER BY score DESC, completion_seconds ASC LIMIT 1",
-            (user['id'],))
-        best = await cursor.fetchone()
+    user = await upsert_user(db, message.from_user.id, message.from_user.username, message.from_user.first_name)
+    cursor = await db.execute(
+        "SELECT * FROM attempts WHERE user_id = ? AND status IN ('completed','timed_out') ORDER BY finished_at DESC LIMIT 1",
+        (user['id'],))
+    latest = await cursor.fetchone()
+    cursor = await db.execute(
+        "SELECT * FROM attempts WHERE user_id = ? AND status IN ('completed','timed_out') ORDER BY score DESC, completion_seconds ASC LIMIT 1",
+        (user['id'],))
+    best = await cursor.fetchone()
     if not latest:
         await message.answer('📊 Hali test yo\'q.', reply_markup=main_menu_kb())
         return
@@ -67,13 +67,13 @@ async def natijalarim(message: Message):
 @router.message(Command('rating'))
 async def reyting(message: Message):
     db = await get_db()
-        user = await upsert_user(db, message.from_user.id, message.from_user.username, message.from_user.first_name)
-        cursor = await db.execute(
-            'SELECT l.*, u.username, u.first_name FROM leaderboard l JOIN users u ON u.id = l.user_id ORDER BY l.score DESC, l.completion_seconds ASC, l.finished_at ASC LIMIT 10')
-        lb = await cursor.fetchall()
-        cursor = await db.execute(
-            'SELECT s.xp, s.level, u.telegram_id, u.username, u.first_name FROM statistics s JOIN users u ON u.id = s.user_id WHERE s.xp > 0 ORDER BY s.xp DESC LIMIT 10')
-        xp_lb = await cursor.fetchall()
+    user = await upsert_user(db, message.from_user.id, message.from_user.username, message.from_user.first_name)
+    cursor = await db.execute(
+        'SELECT l.*, u.username, u.first_name FROM leaderboard l JOIN users u ON u.id = l.user_id ORDER BY l.score DESC, l.completion_seconds ASC, l.finished_at ASC LIMIT 10')
+    lb = await cursor.fetchall()
+    cursor = await db.execute(
+        'SELECT s.xp, s.level, u.telegram_id, u.username, u.first_name FROM statistics s JOIN users u ON u.id = s.user_id WHERE s.xp > 0 ORDER BY s.xp DESC LIMIT 10')
+    xp_lb = await cursor.fetchall()
     lines = ['🏆 <b>Reyting</b>\n']
     for i, r in enumerate(lb):
         name = f"@{r['username']}" if r['username'] else (r['first_name'] or 'User')
