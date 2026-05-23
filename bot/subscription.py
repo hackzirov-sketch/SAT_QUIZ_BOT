@@ -108,10 +108,10 @@ class SubscriptionMiddleware(BaseMiddleware):
             return await handler(event, data)
 
         if isinstance(event, Message):
-            text = event.text or ''
+            event_text = event.text or ''
         else:
-            text = event.data or ''
-        if text.startswith('/start') or text == 'check_sub':
+            event_text = event.data or ''
+        if event_text == 'check_sub':
             return await handler(event, data)
 
         if is_admin_id(user.id):
@@ -128,6 +128,12 @@ class SubscriptionMiddleware(BaseMiddleware):
 
         text = subscription_text(missing)
         keyboard = subscription_keyboard(missing)
+        logger.info(
+            "subscription_gate_shown user_id=%s missing=%s event=%s",
+            user.id,
+            [req.get('chat_id') for req in missing],
+            event_text[:32],
+        )
         if isinstance(event, Message):
             await event.answer(text, reply_markup=keyboard)
         elif isinstance(event, CallbackQuery):

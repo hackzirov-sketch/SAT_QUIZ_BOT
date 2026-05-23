@@ -1,6 +1,8 @@
 import pytest
 import pytest_asyncio
 import aiosqlite
+from datetime import datetime, timezone
+from aiogram.types import Chat, Message, User
 from bot.database import _column_exists, _migrate_schema
 
 OLD_USERS_DDL = '''
@@ -86,3 +88,38 @@ async def test_mark_subscription_ok(old_db):
         'SELECT subscription_required FROM users WHERE telegram_id = ?', (12345,)
     )).fetchone()
     assert row['subscription_required'] == 0
+
+
+@pytest.mark.asyncio
+async def test_start_command_requires_subscription_for_non_admin(monkeypatch):
+    from bot import subscription
+
+    called = False
+    answers = []
+
+    async def handler(_event, _data):
+        nonlocal called
+        called = True
+
+    async def fake_missing_subscriptions(_bot, _user_id, *, force_refresh=False):
+        return [{'chat_id': '@mathacademy01', 'title': 'Kanalimiz', 'link': 'https://t.me/mathacademy01'}]
+
+    async def fake_answer(_self, text, **_kwargs):
+        answers.append(text)
+
+    monkeypatch.setattr(subscription, 'missing_subscriptions', fake_missing_subscriptions)
+    monkeypatch.setattr(Message, 'answer', fake_answer)
+
+    message = Message(
+        message_id=1,
+        date=datetime.now(timezone.utc),
+        chat=Chat(id=123456789, type='private'),
+        from_user=User(id=123456789, is_bot=False, first_name='Test'),
+        text='/start',
+    )
+
+    await subscription.SubscriptionMiddleware()(handler, message, {'bot': object()})
+
+    assert called is False
+    assert answers
+    assert 'Botdan foydalanish' in answers[0]
