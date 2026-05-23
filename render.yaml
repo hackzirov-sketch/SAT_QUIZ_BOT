@@ -6,6 +6,8 @@ services:
     startCommand: python render_start.py
     autoDeploy: true
     envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.11
       - key: BOT_TOKEN
         sync: false
       - key: ADMIN_IDS
