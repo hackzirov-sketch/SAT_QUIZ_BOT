@@ -126,8 +126,11 @@ async def main() -> None:
     configure_logging()
     logger.info("render_start_main pid=%s polling=%s", os.getpid(), BOT_POLLING_ENABLED)
     loop = asyncio.get_event_loop()
-    loop.add_signal_handler(signal.SIGTERM, _signal_handler)
-    loop.add_signal_handler(signal.SIGINT, _signal_handler)
+    try:
+        loop.add_signal_handler(signal.SIGTERM, _signal_handler)
+        loop.add_signal_handler(signal.SIGINT, _signal_handler)
+    except NotImplementedError:
+        logger.warning("signal_handlers_not_supported_on_windows_fallback_keyboard_interrupt")
     run_flask_with_health()
     if BOT_POLLING_ENABLED:
         await run_telegram_bot()
