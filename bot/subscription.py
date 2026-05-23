@@ -7,7 +7,7 @@ from aiogram.enums import ChatMemberStatus
 from aiogram.exceptions import TelegramAPIError
 from aiogram.types import CallbackQuery, ChatMemberUpdated, InlineKeyboardButton, InlineKeyboardMarkup, Message
 
-from bot.config import REQUIRED_SUBSCRIPTIONS, SUBSCRIPTION_CACHE_TTL, is_admin_id
+from bot.config import REQUIRED_SUBSCRIPTIONS, SUBSCRIPTION_CACHE_TTL, SUBSCRIPTION_STRICT, is_admin_id
 from bot.database import get_db
 
 router = Router()
@@ -53,7 +53,7 @@ async def _is_subscribed(bot, user_id: int, req: dict[str, Any], *, force_refres
         ok = member.status not in (ChatMemberStatus.LEFT, ChatMemberStatus.KICKED)
     except TelegramAPIError as exc:
         logger.warning("subscription_check_failed chat_id=%s user_id=%s error=%s", chat_id, user_id, exc)
-        ok = False
+        ok = not SUBSCRIPTION_STRICT
 
     ttl = SUBSCRIPTION_CACHE_TTL if ok else min(SUBSCRIPTION_CACHE_TTL, 60)
     if ttl > 0:
