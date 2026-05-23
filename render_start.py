@@ -19,7 +19,7 @@ from aiogram.enums import ParseMode
 from waitress import serve
 
 from bot.config import BOT_POLLING_ENABLED, BOT_TOKEN, DATABASE_PATH, PORT
-from bot.database import get_db, init_db
+from bot.database import db_transaction, get_db, init_db
 from bot.handlers.admin import set_bot as set_admin_bot
 from bot.handlers.duel import set_bot as set_duel_bot
 from bot.main import configure_logging, setup_dispatcher
@@ -34,6 +34,7 @@ logger = logging.getLogger(__name__)
 _shutdown_event = asyncio.Event()
 _polling_started = False
 _POLLING_LOCK_PATH = '/tmp/quiz_bot_polling.lock'
+_DB_MAINT_INTERVAL = 14_400  # 4 hours between incremental_vacuum
 
 
 def _acquire_polling_lock() -> bool:
@@ -54,6 +55,23 @@ def _acquire_polling_lock() -> bool:
 def _signal_handler():
     logger.info("shutdown_signal_received")
     _shutdown_event.set()
+
+
+async def run_db_maintenance() -> None:
+    """Periodic DB maintenance to prevent file bloat on Render's disk."""
+    while not _shutdown_event.is_set():
+        try:
+            await asyncio.sleep(_DB_MAINT_INTERVAL)
+            db = await get_db()
+            async with db_transaction():
+                await db.execute('PRAGMA incremental_vacuum(500)')
+            async with db_transaction():
+                await db.execute('PRAGMA wal_checkpoint(TRUNCATE)')
+            logger.info("db_maintenance_completed interval=%ss", _DB_MAINT_INTERVAL)
+        except asyncio.CancelledError:
+            break
+        except Exception:
+            logger.exception("db_maintenance_failed")
 
 
 async def run_telegram_bot() -> None:
@@ -80,6 +98,7 @@ async def run_telegram_bot() -> None:
 
     sweeper_task = asyncio.create_task(run_session_sweeper(_shutdown_event), name='session-sweeper')
     weekly_task = asyncio.create_task(run_weekly_report_scheduler(bot, _shutdown_event), name='weekly-report')
+    maint_task = asyncio.create_task(run_db_maintenance(), name='db-maintenance')
     polling_task = asyncio.create_task(dp.start_polling(bot), name='polling')
     try:
         await bot.delete_webhook(drop_pending_updates=False)
@@ -97,10 +116,9 @@ async def run_telegram_bot() -> None:
         logger.exception("telegram_polling_failed")
         raise
     finally:
-        sweeper_task.cancel()
-        weekly_task.cancel()
-        polling_task.cancel()
-        await asyncio.gather(sweeper_task, weekly_task, polling_task, return_exceptions=True)
+        for t in (sweeper_task, weekly_task, maint_task, polling_task):
+            t.cancel()
+        await asyncio.gather(sweeper_task, weekly_task, maint_task, polling_task, return_exceptions=True)
         try:
             db = await get_db()
             await db.execute('PRAGMA wal_checkpoint(TRUNCATE)')
@@ -125,6 +143,8 @@ def _run_flask_site() -> None:
 async def main() -> None:
     configure_logging()
     logger.info("render_start_main pid=%s polling=%s", os.getpid(), BOT_POLLING_ENABLED)
+    _data_disk = os.path.isdir('/data') if os.name == 'posix' else None
+    logger.info("db_path=%s render_disk_mounted=%s", DATABASE_PATH, _data_disk)
     loop = asyncio.get_event_loop()
     try:
         loop.add_signal_handler(signal.SIGTERM, _signal_handler)

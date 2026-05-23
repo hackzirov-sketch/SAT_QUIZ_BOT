@@ -5,27 +5,55 @@ services:
     buildCommand: pip install -r requirements.txt
     startCommand: python render_start.py
     autoDeploy: true
+    healthCheckPath: /health
+    # === Persistent Disk (paid plan) ===
+    # Mounts a 1GB persistent volume at /data
+    # All bot data (DB, uploads) stored here survives deploys/restarts
+    # Enable in Render Dashboard → Environment → Disk
+    # disk:
+    #   name: data
+    #   mountPath: /data
+    #   sizeGB: 1
     envVars:
-      - key: WEB_CONCURRENCY
-        value: "1"
-      - key: PYTHON_VERSION
-        value: 3.11.11
+      # === Required (set in Render Dashboard) ===
       - key: BOT_TOKEN
         sync: false
       - key: ADMIN_IDS
         sync: false
-      - key: TZ
-        value: Asia/Tashkent
-      - key: LOG_LEVEL
-        value: INFO
+
+      # === Python Runtime ===
+      - key: PYTHON_VERSION
+        value: 3.11.11
+      - key: WEB_CONCURRENCY
+        value: "1"
+
+      # === Bot Settings ===
       - key: BOT_POLLING_ENABLED
         value: "1"
-      - key: SUBSCRIPTION_STRICT
-        value: "0"
+      - key: LOG_LEVEL
+        value: INFO
+      - key: TZ
+        value: Asia/Tashkent
+
+      # === Database Path ===
+      # Free tier (default): bot/data/quiz_bot.db — ephemeral, lost on restart
+      # Paid plan (with Disk at /data): use /data/quiz_bot.db to persist
       - key: DATABASE_PATH
         value: data/quiz_bot.db
+      - key: DB_BUSY_TIMEOUT_MS
+        value: "10000"
+
+      # === Vocabulary (tracked in git, keep relative) ===
       - key: VOCABULARY_PATH
         value: data/vocabulary.json
+
+      # === Subscription ===
+      - key: SUBSCRIPTION_STRICT
+        value: "0"
+      - key: SUBSCRIPTION_CACHE_TTL
+        value: "300"
+
+      # === Weekly Report ===
       - key: WEEKLY_REPORT_ENABLED
         value: "1"
       - key: WEEKLY_REPORT_WEEKDAY
