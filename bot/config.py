@@ -82,9 +82,12 @@ CATEGORY_ALL = 'all'
 CATEGORY_OTHER = 'other'
 SMALL_CATEGORIES = {'Arithmetic', 'Functions', 'Probability', 'Number Types', 'Coordinate Geometry', 'Basic Operations'}
 
+GROUP_ID = _env_str('GROUP_ID')
+CHANNEL_ID = _env_str('CHANNEL_ID')
+
 REQUIRED_SUBSCRIPTIONS = [
-    {'chat_id': '@mathacademy01', 'title': 'Math Academy', 'link': 'https://t.me/mathacademy01'},
-    {'chat_id': None, 'title': 'SAT Quiz Bot Group', 'link': 'https://t.me/+xN0rLsUBkGY2NjZi'},
+    {'chat_id': CHANNEL_ID or '@mathacademy01', 'title': 'Kanalimiz', 'link': 'https://t.me/mathacademy01'},
+    {'chat_id': GROUP_ID, 'title': 'Guruximiz', 'link': 'https://t.me/+xN0rLsUBkGY2NjZi'},
 ]
 
 if not BOT_TOKEN:

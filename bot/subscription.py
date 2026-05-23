@@ -1,28 +1,21 @@
 import logging
-import time
 from typing import Any
 
 from aiogram import BaseMiddleware, F, Router
-from aiogram.enums import ChatMemberStatus
 from aiogram.exceptions import TelegramAPIError
 from aiogram.types import CallbackQuery, ChatMemberUpdated, InlineKeyboardButton, InlineKeyboardMarkup, Message
 
-from bot.config import REQUIRED_SUBSCRIPTIONS, SUBSCRIPTION_CACHE_TTL, SUBSCRIPTION_STRICT, is_admin_id
+from bot.config import REQUIRED_SUBSCRIPTIONS, is_admin_id
 from bot.database import get_db
+from bot.services.subscription_service import invalidate_cache, missing_subscriptions
 
 router = Router()
 logger = logging.getLogger(__name__)
 
-_subscription_cache: dict[tuple[int, str], tuple[bool, float]] = {}
 
-
-def _cache_key(user_id: int, chat_id: Any) -> tuple[int, str]:
-    return user_id, str(chat_id)
-
-
-def _subscription_keyboard() -> InlineKeyboardMarkup:
+def subscription_keyboard(missing: list[dict[str, Any]]) -> InlineKeyboardMarkup:
     buttons = []
-    for req in REQUIRED_SUBSCRIPTIONS:
+    for req in missing:
         link = req.get('link')
         if link:
             buttons.append([InlineKeyboardButton(text=f"📢 {req['title']}", url=link)])
@@ -30,43 +23,37 @@ def _subscription_keyboard() -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 
-def _subscription_text(missing: list[dict[str, Any]]) -> str:
-    lines = ["⚠️ <b>Botdan foydalanish uchun quyidagilarga a'zo bo'ling:</b>", ""]
+def subscription_text(missing: list[dict[str, Any]]) -> str:
+    lines = [
+        "🚫 <b>Botdan foydalanish cheklangan</b>",
+        "",
+        "Botdan foydalanish uchun quyidagi kanal/guruhga a'zo bo'lishingiz kerak:",
+        "",
+    ]
     for req in missing:
-        lines.append(f"• {req['title']}")
+        lines.append(f"🔹 {req['title']}")
+    lines.extend([
+        "",
+        "A'zo bo'lgach, <b>✅ Tekshirish</b> tugmasini bosing.",
+        "Adminlar uchun cheklov mavjud emas.",
+    ])
     return '\n'.join(lines)
 
 
-async def _is_subscribed(bot, user_id: int, req: dict[str, Any], *, force_refresh: bool = False) -> bool:
-    chat_id = req.get('chat_id')
-    if not chat_id:
+async def is_subscription_required(user_id: int) -> bool:
+    db = await get_db()
+    cursor = await db.execute('SELECT subscription_required FROM users WHERE telegram_id = ?', (user_id,))
+    row = await cursor.fetchone()
+    if row is None:
         return True
-
-    key = _cache_key(user_id, chat_id)
-    cached = _subscription_cache.get(key)
-    now = time.monotonic()
-    if not force_refresh and cached and cached[1] > now:
-        return cached[0]
-
-    try:
-        member = await bot.get_chat_member(chat_id, user_id)
-        ok = member.status not in (ChatMemberStatus.LEFT, ChatMemberStatus.KICKED)
-    except TelegramAPIError as exc:
-        logger.warning("subscription_check_failed chat_id=%s user_id=%s error=%s", chat_id, user_id, exc)
-        ok = not SUBSCRIPTION_STRICT
-
-    ttl = SUBSCRIPTION_CACHE_TTL if ok else min(SUBSCRIPTION_CACHE_TTL, 60)
-    if ttl > 0:
-        _subscription_cache[key] = (ok, now + ttl)
-    return ok
+    return bool(row['subscription_required'])
 
 
-async def _missing_subscriptions(bot, user_id: int, *, force_refresh: bool = False) -> list[dict[str, Any]]:
-    missing = []
-    for req in REQUIRED_SUBSCRIPTIONS:
-        if not await _is_subscribed(bot, user_id, req, force_refresh=force_refresh):
-            missing.append(req)
-    return missing
+async def mark_subscription_ok(user_id: int):
+    db = await get_db()
+    await db.execute('UPDATE users SET subscription_required = 0 WHERE telegram_id = ?', (user_id,))
+    await db.commit()
+    invalidate_cache(user_id)
 
 
 @router.my_chat_member()
@@ -91,17 +78,22 @@ async def bot_added_to_chat(event: ChatMemberUpdated):
 async def check_sub_callback(callback: CallbackQuery):
     user = callback.from_user
     if is_admin_id(user.id):
+        await mark_subscription_ok(user.id)
         await callback.message.edit_text("✅ <b>Admin sifatida barcha imkoniyatlar ochiq!</b>\n\n/start")
         await callback.answer()
         return
 
-    missing = await _missing_subscriptions(callback.bot, user.id, force_refresh=True)
+    missing = await missing_subscriptions(callback.bot, user.id, force_refresh=True)
     if not missing:
-        await callback.message.edit_text("✅ <b>Barcha kanal/guruhlarga a'zosiz! Botdan foydalanishingiz mumkin.</b>\n\n/start")
+        await mark_subscription_ok(user.id)
+        await callback.message.edit_text(
+            "✅ <b>Barcha kanal/guruhlarga a'zosiz!</b>\n\n"
+            "Endi botdan to'liq foydalanishingiz mumkin.\n\n/start"
+        )
         await callback.answer()
         return
 
-    await callback.message.edit_text(_subscription_text(missing), reply_markup=_subscription_keyboard())
+    await callback.message.edit_text(subscription_text(missing), reply_markup=subscription_keyboard(missing))
     await callback.answer()
 
 
@@ -125,16 +117,20 @@ class SubscriptionMiddleware(BaseMiddleware):
         if is_admin_id(user.id):
             return await handler(event, data)
 
+        if not await is_subscription_required(user.id):
+            return await handler(event, data)
+
         bot = data.get('bot')
         if not bot or not REQUIRED_SUBSCRIPTIONS:
             return await handler(event, data)
 
-        missing = await _missing_subscriptions(bot, user.id)
+        missing = await missing_subscriptions(bot, user.id)
         if not missing:
+            await mark_subscription_ok(user.id)
             return await handler(event, data)
 
-        text = _subscription_text(missing)
-        keyboard = _subscription_keyboard()
+        text = subscription_text(missing)
+        keyboard = subscription_keyboard(missing)
         if isinstance(event, Message):
             await event.answer(text, reply_markup=keyboard)
         elif isinstance(event, CallbackQuery):

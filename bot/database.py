@@ -277,12 +277,16 @@ async def _migrate_schema(db: aiosqlite.Connection) -> None:
         ('attempts', 'quiz_mode', "TEXT NOT NULL DEFAULT 'standard'"),
         ('statistics', 'xp', 'INTEGER NOT NULL DEFAULT 0'),
         ('statistics', 'level', 'INTEGER NOT NULL DEFAULT 1'),
+        ('users', 'subscription_required', 'INTEGER NOT NULL DEFAULT 1'),
     ]
     for table, column, col_def in migrations:
         if not await _column_exists(db, table, column):
             try:
                 await db.execute(f'ALTER TABLE {table} ADD COLUMN {column} {col_def}')
                 logger.info("migration_added_column table=%s column=%s", table, column)
+                if table == 'users' and column == 'subscription_required':
+                    await db.execute('UPDATE users SET subscription_required = 0')
+                    logger.info("migration_existing_users_subscription_required_set_to_0")
             except aiosqlite.OperationalError as exc:
                 logger.warning("migration_failed table=%s column=%s error=%s", table, column, exc)
 
