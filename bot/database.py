@@ -32,6 +32,7 @@ async def init_db(db_path: str):
         PRAGMA synchronous=NORMAL;
         PRAGMA cache_size=-8000;
         PRAGMA foreign_keys=ON;
+        PRAGMA auto_vacuum=INCREMENTAL;
 
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -249,6 +250,13 @@ async def init_db(db_path: str):
     try:
         await db.execute('ALTER TABLE duel_queue ADD COLUMN chat_id INTEGER NOT NULL DEFAULT 0')
     except aiosqlite.OperationalError:
+        pass
+    try:
+        row = await (await db.execute('PRAGMA integrity_check')).fetchone()
+        if row and row[0] != 'ok':
+            logger = __import__('logging').getLogger(__name__)
+            logger.critical("integrity_check_failed result=%s", row[0])
+    except Exception:
         pass
     await db.commit()
     _db_conn = db

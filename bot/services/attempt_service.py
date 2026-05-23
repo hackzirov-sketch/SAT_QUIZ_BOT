@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from bot.config import WIN_SCORE_THRESHOLD
-from bot.database import now_iso
+from bot.database import db_transaction, now_iso
 
 
 def _completion_seconds(started_at: str, finished_at: str) -> int:
@@ -97,21 +97,20 @@ async def finish_attempt(db, attempt_id: int, status: str) -> dict | None:
         return None
 
     seconds = _completion_seconds(attempt['started_at'], now)
-    cursor = await db.execute(
-        'UPDATE attempts SET status = ?, finished_at = ?, completion_seconds = ? WHERE id = ? AND status = ?',
-        (status, now, seconds, attempt_id, 'active'),
-    )
-    await db.execute(
-        'UPDATE active_sessions SET status = ?, updated_at = ? WHERE attempt_id = ? AND status = ?',
-        (status, now, attempt_id, 'active'),
-    )
-    if cursor.rowcount != 1:
-        await db.commit()
-        return await (await db.execute('SELECT * FROM attempts WHERE id = ?', (attempt_id,))).fetchone()
+    async with db_transaction() as tx:
+        cursor = await tx.execute(
+            'UPDATE attempts SET status = ?, finished_at = ?, completion_seconds = ? WHERE id = ? AND status = ?',
+            (status, now, seconds, attempt_id, 'active'),
+        )
+        await tx.execute(
+            'UPDATE active_sessions SET status = ?, updated_at = ? WHERE attempt_id = ? AND status = ?',
+            (status, now, attempt_id, 'active'),
+        )
+        if cursor.rowcount != 1:
+            return await (await tx.execute('SELECT * FROM attempts WHERE id = ?', (attempt_id,))).fetchone()
 
-    finished = await (await db.execute('SELECT * FROM attempts WHERE id = ?', (attempt_id,))).fetchone()
-    if finished:
-        await _update_statistics(db, dict(finished), now)
-        await _upsert_leaderboard(db, dict(finished), now)
-    await db.commit()
-    return dict(finished) if finished else None
+        finished = await (await tx.execute('SELECT * FROM attempts WHERE id = ?', (attempt_id,))).fetchone()
+        if finished:
+            await _update_statistics(tx, dict(finished), now)
+            await _upsert_leaderboard(tx, dict(finished), now)
+        return dict(finished) if finished else None

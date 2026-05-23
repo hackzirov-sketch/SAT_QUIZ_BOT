@@ -1,6 +1,6 @@
 import json
 import os
-from bot.database import get_db, now_iso
+from bot.database import db_transaction, get_db, now_iso
 from bot.config import ROOT, VOCABULARY_PATH, LEVEL_THRESHOLDS
 from bot.quiz_engine import level_name
 
@@ -48,17 +48,17 @@ async def load_vocabulary(db) -> list:
 
 async def upsert_user(db, telegram_id: int, username: str = None, first_name: str = None) -> dict:
     now = now_iso()
-    await db.execute(
-        'INSERT INTO users (telegram_id, username, first_name, created_at, updated_at) VALUES (?, ?, ?, ?, ?) '
-        'ON CONFLICT(telegram_id) DO UPDATE SET username=excluded.username, first_name=excluded.first_name, updated_at=excluded.updated_at',
-        (telegram_id, username, first_name, now, now),
-    )
-    cursor = await db.execute('SELECT * FROM users WHERE telegram_id = ?', (telegram_id,))
-    user = await cursor.fetchone()
-    if user:
-        await db.execute('INSERT OR IGNORE INTO settings (user_id, updated_at) VALUES (?, ?)', (user['id'], now))
-        await db.execute('INSERT OR IGNORE INTO statistics (user_id, updated_at) VALUES (?, ?)', (user['id'], now))
-    await db.commit()
+    async with db_transaction() as tx:
+        await tx.execute(
+            'INSERT INTO users (telegram_id, username, first_name, created_at, updated_at) VALUES (?, ?, ?, ?, ?) '
+            'ON CONFLICT(telegram_id) DO UPDATE SET username=excluded.username, first_name=excluded.first_name, updated_at=excluded.updated_at',
+            (telegram_id, username, first_name, now, now),
+        )
+        cursor = await tx.execute('SELECT * FROM users WHERE telegram_id = ?', (telegram_id,))
+        user = await cursor.fetchone()
+        if user:
+            await tx.execute('INSERT OR IGNORE INTO settings (user_id, updated_at) VALUES (?, ?)', (user['id'], now))
+            await tx.execute('INSERT OR IGNORE INTO statistics (user_id, updated_at) VALUES (?, ?)', (user['id'], now))
     return user
 
 async def ensure_settings(db, user_id: int):
@@ -74,20 +74,33 @@ async def ensure_statistics(db, user_id: int):
         await db.commit()
 
 async def add_xp(db, user_id: int, amount: int) -> dict:
-    cursor = await db.execute('SELECT xp, level FROM statistics WHERE user_id = ?', (user_id,))
-    row = await cursor.fetchone()
-    old_level = row['level'] if row else 1
-    old_xp = row['xp'] if row else 0
-    new_xp = old_xp + amount
-    new_level = 1
-    for i in range(len(LEVEL_THRESHOLDS) - 1, -1, -1):
-        if new_xp >= LEVEL_THRESHOLDS[i]:
-            new_level = i
-            break
-    await db.execute('UPDATE statistics SET xp = ?, level = ? WHERE user_id = ?', (new_xp, new_level, user_id))
-    await db.commit()
+    async with db_transaction() as tx:
+        cursor = await tx.execute('SELECT xp, level FROM statistics WHERE user_id = ?', (user_id,))
+        row = await cursor.fetchone()
+        old_level = row['level'] if row else 1
+        old_xp = row['xp'] if row else 0
+        new_xp = old_xp + amount
+        new_level = 1
+        for i in range(len(LEVEL_THRESHOLDS) - 1, -1, -1):
+            if new_xp >= LEVEL_THRESHOLDS[i]:
+                new_level = i
+                break
+        await tx.execute('UPDATE statistics SET xp = ?, level = ? WHERE user_id = ?', (new_xp, new_level, user_id))
     leveled_up = new_level > old_level
     return {'xp': new_xp, 'level': new_level, 'leveled_up': leveled_up, 'level_name': level_name(new_level)}
+
+def row_get(row, key: str, default=None):
+    if row is None:
+        return default
+    if hasattr(row, 'keys') and key in row.keys():
+        return row[key]
+    if isinstance(row, dict):
+        return row.get(key, default)
+    try:
+        return row[key]
+    except (KeyError, IndexError, TypeError):
+        return default
+
 
 async def weakness_data(db, user_id: int) -> list:
     cursor = await db.execute('''
@@ -101,18 +114,18 @@ async def weakness_data(db, user_id: int) -> list:
 async def record_mistake(db, user_id: int, vocab_id: int, english: str, uzbek: str, category: str):
     now = now_iso()
     try:
-        await db.execute(
-            'INSERT INTO mistakes (user_id, vocab_id, english, uzbek, category, wrong_count, last_wrong_at) VALUES (?, ?, ?, ?, ?, 1, ?) '
-            'ON CONFLICT(user_id, vocab_id) DO UPDATE SET wrong_count = wrong_count + 1, last_wrong_at = excluded.last_wrong_at',
-            (user_id, vocab_id, english, uzbek, category, now),
-        )
-        await db.commit()
+        async with db_transaction() as tx:
+            await tx.execute(
+                'INSERT INTO mistakes (user_id, vocab_id, english, uzbek, category, wrong_count, last_wrong_at) VALUES (?, ?, ?, ?, ?, 1, ?) '
+                'ON CONFLICT(user_id, vocab_id) DO UPDATE SET wrong_count = wrong_count + 1, last_wrong_at = excluded.last_wrong_at',
+                (user_id, vocab_id, english, uzbek, category, now),
+            )
     except Exception:
         pass
 
 async def clear_mistake(db, user_id: int, vocab_id: int):
-    await db.execute('DELETE FROM mistakes WHERE user_id = ? AND vocab_id = ?', (user_id, vocab_id))
-    await db.commit()
+    async with db_transaction() as tx:
+        await tx.execute('DELETE FROM mistakes WHERE user_id = ? AND vocab_id = ?', (user_id, vocab_id))
 
 async def get_mistakes(db, user_id: int) -> list:
     cursor = await db.execute('SELECT * FROM mistakes WHERE user_id = ? ORDER BY wrong_count DESC, last_wrong_at DESC', (user_id,))

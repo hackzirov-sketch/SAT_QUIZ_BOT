@@ -173,7 +173,7 @@ def _next_run(now: datetime) -> datetime:
     return target
 
 
-async def run_weekly_report_scheduler(bot) -> None:
+async def run_weekly_report_scheduler(bot, shutdown_event: asyncio.Event | None = None) -> None:
     if not WEEKLY_REPORT_ENABLED:
         logger.info("weekly_report_scheduler_disabled")
         return
@@ -190,7 +190,17 @@ async def run_weekly_report_scheduler(bot) -> None:
         try:
             now = datetime.now(tz)
             target = _next_run(now)
-            await asyncio.sleep(max(1, (target - now).total_seconds()))
+            wait_secs = max(1, (target - now).total_seconds())
+            if shutdown_event:
+                try:
+                    await asyncio.wait_for(shutdown_event.wait(), timeout=wait_secs)
+                    break
+                except asyncio.TimeoutError:
+                    pass
+            else:
+                await asyncio.sleep(wait_secs)
+            if shutdown_event and shutdown_event.is_set():
+                break
             db = await get_db()
             result = await send_weekly_report(db, bot)
             logger.info("weekly_report_sent result=%s", result)
@@ -199,4 +209,11 @@ async def run_weekly_report_scheduler(bot) -> None:
             raise
         except Exception:
             logger.exception("weekly_report_scheduler_failed")
-            await asyncio.sleep(300)
+            if shutdown_event:
+                try:
+                    await asyncio.wait_for(shutdown_event.wait(), timeout=300)
+                    break
+                except asyncio.TimeoutError:
+                    pass
+            else:
+                await asyncio.sleep(300)

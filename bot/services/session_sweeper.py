@@ -37,7 +37,7 @@ async def expire_overdue_sessions(limit: int = 100) -> int:
     return expired
 
 
-async def run_session_sweeper() -> None:
+async def run_session_sweeper(shutdown_event: asyncio.Event | None = None) -> None:
     while True:
         try:
             expired = await expire_overdue_sessions()
@@ -47,4 +47,11 @@ async def run_session_sweeper() -> None:
             raise
         except Exception:
             logger.exception("session_sweeper_failed")
-        await asyncio.sleep(SESSION_SWEEP_INTERVAL)
+        if shutdown_event:
+            try:
+                await asyncio.wait_for(shutdown_event.wait(), timeout=SESSION_SWEEP_INTERVAL)
+                break
+            except asyncio.TimeoutError:
+                continue
+        else:
+            await asyncio.sleep(SESSION_SWEEP_INTERVAL)

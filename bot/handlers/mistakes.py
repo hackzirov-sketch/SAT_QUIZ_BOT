@@ -41,7 +41,7 @@ async def mistakes_start(callback: CallbackQuery):
     questions = []
     for m in mistakes:
         correct = m[target_field]
-        entry = {'id': m['vocab_id'], 'english': m['english'], 'uzbek': m['uzbek'], 'category': m.get('category', ''), 'difficulty': ''}
+        entry = {'id': m['vocab_id'], 'english': m['english'], 'uzbek': m['uzbek'], 'category': m['category'], 'difficulty': ''}
         distractors = await _build_mistake_distractors(db, entry, target_field, {correct.lower()})
         options = list(dict.fromkeys([correct] + distractors[:3]))
         while len(options) < 4:

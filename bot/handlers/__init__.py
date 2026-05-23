@@ -18,14 +18,22 @@ logger = logging.getLogger(__name__)
 @error_router.errors()
 async def global_error_handler(event: ErrorEvent):
     exc = event.exception
-    logger.error("handler_error", exc_info=(type(exc), exc, exc.__traceback__))
+    update = event.update
+    user_id = None
+    update_id = getattr(update, 'update_id', None) if update else None
+    if update:
+        if update.message:
+            user_id = update.message.from_user.id if update.message.from_user else None
+        elif update.callback_query:
+            user_id = update.callback_query.from_user.id if update.callback_query.from_user else None
+    logger.error("handler_error update_id=%s user_id=%s", update_id, user_id, exc_info=(type(exc), exc, exc.__traceback__))
     try:
-        if event.update.message:
-            await event.update.message.answer("❌ Xatolik yuz berdi. Iltimos qayta urinib ko'ring.")
-        elif event.update.callback_query:
-            await event.update.callback_query.answer("❌ Xatolik yuz berdi.")
+        if update and update.message:
+            await update.message.answer("❌ Xatolik yuz berdi. Iltimos qayta urinib ko'ring.")
+        elif update and update.callback_query:
+            await update.callback_query.answer("❌ Xatolik yuz berdi.")
     except Exception:
-        logger.exception("failed_to_notify_user_about_error")
+        logger.exception("failed_to_notify_user_about_error update_id=%s user_id=%s", update_id, user_id)
 
 routers = [
     error_router,

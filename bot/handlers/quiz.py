@@ -257,23 +257,22 @@ async def answer_callback(callback: CallbackQuery):
             today = now_iso()[:10]
             challenge = await (await db.execute('SELECT * FROM daily_challenge WHERE date = ?', (today,))).fetchone()
             if challenge:
-                await db.execute(
-                    "INSERT INTO daily_leaderboard (challenge_id, user_id, score, total_questions, completion_seconds, finished_at) VALUES (?,?,?,?,?,?) ON CONFLICT(challenge_id, user_id) DO UPDATE SET score=excluded.score, completion_seconds=excluded.completion_seconds, finished_at=excluded.finished_at",
-                    (challenge['id'], user['id'], attempt_after['score'] or 0, attempt_after['total_questions'] or 10, attempt_after['completion_seconds'] or 0, now))
-                # Update daily streak
-                srow = await (await db.execute('SELECT last_quiz_date, daily_streak FROM statistics WHERE user_id = ?', (user['id'],))).fetchone()
-                if srow:
-                    last = srow['last_quiz_date'] or ''
-                    streak = srow['daily_streak'] or 0
-                    yesterday = (datetime.now(timezone.utc) - timedelta(days=1)).strftime('%Y-%m-%d')
-                    if last == yesterday:
-                        streak += 1
-                    elif last != today:
-                        streak = 1
-                    await db.execute('UPDATE statistics SET daily_streak = ?, last_quiz_date = ? WHERE user_id = ?', (streak, today, user['id']))
-                else:
-                    await db.execute('UPDATE statistics SET daily_streak = 1, last_quiz_date = ? WHERE user_id = ?', (today, user['id']))
-                await db.commit()
+                async with db_transaction() as tx:
+                    await tx.execute(
+                        "INSERT INTO daily_leaderboard (challenge_id, user_id, score, total_questions, completion_seconds, finished_at) VALUES (?,?,?,?,?,?) ON CONFLICT(challenge_id, user_id) DO UPDATE SET score=excluded.score, completion_seconds=excluded.completion_seconds, finished_at=excluded.finished_at",
+                        (challenge['id'], user['id'], attempt_after['score'] or 0, attempt_after['total_questions'] or 10, attempt_after['completion_seconds'] or 0, now))
+                    srow = await (await tx.execute('SELECT last_quiz_date, daily_streak FROM statistics WHERE user_id = ?', (user['id'],))).fetchone()
+                    if srow:
+                        last = srow['last_quiz_date'] or ''
+                        streak = srow['daily_streak'] or 0
+                        yesterday = (datetime.now(timezone.utc) - timedelta(days=1)).strftime('%Y-%m-%d')
+                        if last == yesterday:
+                            streak += 1
+                        elif last != today:
+                            streak = 1
+                        await tx.execute('UPDATE statistics SET daily_streak = ?, last_quiz_date = ? WHERE user_id = ?', (streak, today, user['id']))
+                    else:
+                        await tx.execute('UPDATE statistics SET daily_streak = 1, last_quiz_date = ? WHERE user_id = ?', (today, user['id']))
                 dlb = await (await db.execute(
                     'SELECT d.*, u.username, u.first_name FROM daily_leaderboard d JOIN users u ON u.id = d.user_id WHERE d.challenge_id = ? ORDER BY d.score DESC, d.completion_seconds ASC LIMIT 10',
                     (challenge['id'],))).fetchall()
@@ -297,30 +296,29 @@ async def answer_callback(callback: CallbackQuery):
                         side = 'player1' if match['player1_id'] == user['id'] else 'player2'
                         sc = attempt_after['score'] or 0
                         tm = attempt_after['completion_seconds'] or 0
-                        if side == 'player1':
-                            await db.execute('UPDATE duel_matches SET player1_score = ?, player1_time = ? WHERE id = ?', (sc, tm, match_id))
-                        else:
-                            await db.execute('UPDATE duel_matches SET player2_score = ?, player2_time = ? WHERE id = ?', (sc, tm, match_id))
-                        await db.commit()
-                        match = await (await db.execute('SELECT * FROM duel_matches WHERE id = ?', (match_id,))).fetchone()
-                        if match['player1_time'] > 0 and match['player2_time'] > 0:
-                            if match['player1_score'] > match['player2_score']:
-                                winner_id = match['player1_id']
-                            elif match['player2_score'] > match['player1_score']:
-                                winner_id = match['player2_id']
+                        async with db_transaction() as tx:
+                            if side == 'player1':
+                                await tx.execute('UPDATE duel_matches SET player1_score = ?, player1_time = ? WHERE id = ?', (sc, tm, match_id))
                             else:
-                                winner_id = match['player1_id'] if match['player1_time'] <= match['player2_time'] else match['player2_id']
-                            await db.execute(
-                                "UPDATE duel_matches SET status = 'finished', winner_id = ?, finished_at = ? WHERE id = ?",
-                                (winner_id, un, match_id))
-                            await db.commit()
-                            w = await (await db.execute('SELECT * FROM users WHERE id = ?', (winner_id,))).fetchone()
-                            wname = f"@{w['username']}" if w and w['username'] else (w['first_name'] or 'Player')
-                            await callback.message.answer(
-                                f"🏆 <b>Duel yakunlandi!</b>\n\n"
-                                f"Player 1: {match['player1_score']} ball\n"
-                                f"Player 2: {match['player2_score']} ball\n"
-                                f"G'olib: <b>{wname}</b>! 🎉")
+                                await tx.execute('UPDATE duel_matches SET player2_score = ?, player2_time = ? WHERE id = ?', (sc, tm, match_id))
+                            match = await (await tx.execute('SELECT * FROM duel_matches WHERE id = ?', (match_id,))).fetchone()
+                            if match['player1_time'] > 0 and match['player2_time'] > 0:
+                                if match['player1_score'] > match['player2_score']:
+                                    winner_id = match['player1_id']
+                                elif match['player2_score'] > match['player1_score']:
+                                    winner_id = match['player2_id']
+                                else:
+                                    winner_id = match['player1_id'] if match['player1_time'] <= match['player2_time'] else match['player2_id']
+                                await tx.execute(
+                                    "UPDATE duel_matches SET status = 'finished', winner_id = ?, finished_at = ? WHERE id = ?",
+                                    (winner_id, un, match_id))
+                                w = await (await db.execute('SELECT * FROM users WHERE id = ?', (winner_id,))).fetchone()
+                                wname = f"@{w['username']}" if w and w['username'] else (w['first_name'] or 'Player')
+                                await callback.message.answer(
+                                    f"🏆 <b>Duel yakunlandi!</b>\n\n"
+                                    f"Player 1: {match['player1_score']} ball\n"
+                                    f"Player 2: {match['player2_score']} ball\n"
+                                    f"G'olib: <b>{wname}</b>! 🎉")
 
         return
 
