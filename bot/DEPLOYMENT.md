@@ -57,6 +57,7 @@ sudo journalctl -u sat-quiz-bot -f
 - Rotate the Telegram token if it was ever shared publicly.
 - Use polling for simple VPS deployments. Use webhook only with HTTPS and a strong `WEBHOOK_SECRET`.
 - Pin Render/PaaS Python to 3.11 using `.python-version` or `PYTHON_VERSION=3.11.11`; Python 3.14 can force `pydantic-core` to build from Rust source.
+- If you run a second Render service for the same repo, set `BOT_POLLING_ENABLED=0` there so only one service polls Telegram.
 - Keep `bot/data/*.db*` and `.env` out of Git.
 - Back up `bot/data/quiz_bot.db` regularly.
 

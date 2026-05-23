@@ -1,11 +1,10 @@
 from aiogram import Router, F
 from aiogram.types import CallbackQuery
-from aiogram.filters import Command
 from bot.database import get_db, now_iso
 from bot.utils.db_helpers import upsert_user
 from bot.keyboards import chill_kb
 from bot.quiz_engine import QuizEngine
-from bot.handlers.quiz import send_current_question
+from bot.handlers.quiz import question_payload, send_current_question
 
 router = Router()
 engine: QuizEngine = None
@@ -34,7 +33,7 @@ async def chill_start(callback: CallbackQuery):
     now = now_iso()
     await db.execute(
         'INSERT INTO attempts (user_id, mode, difficulty, category, total_questions, question_order_json, order_hash, started_at, status, quiz_mode) VALUES (?,?,?,?,?,?,?,?,?,?)',
-        (user['id'], mode, diff, cat, qty, str([{k: q[k] for k in ('id','english','uzbek','category','difficulty','prompt','correct_answer','options')} for q in questions]), res['order_hash'], now, 'active', 'chill'))
+        (user['id'], mode, diff, cat, qty, question_payload(questions), res['order_hash'], now, 'active', 'chill'))
     await db.commit()
     cursor = await db.execute('SELECT last_insert_rowid() AS id')
     attempt_id = (await cursor.fetchone())['id']

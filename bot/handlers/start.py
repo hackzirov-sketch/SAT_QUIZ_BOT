@@ -5,7 +5,8 @@ from aiogram.filters import CommandStart, Command
 from aiogram.types import Message, CallbackQuery
 from bot.database import get_db
 from bot.utils.db_helpers import upsert_user
-from bot.keyboards import main_menu_kb, start_kb
+from bot.keyboards import active_quiz_kb, main_menu_kb, start_kb
+from bot.services.active_session_service import get_resumable_attempt
 from bot.services.attempt_service import finish_attempt
 
 router = Router()
@@ -27,13 +28,12 @@ async def cmd_start(message: Message):
 async def test_boshlash(message: Message):
     db = await get_db()
     user = await upsert_user(db, message.from_user.id, message.from_user.username, message.from_user.first_name)
-    cursor = await db.execute(
-        'SELECT s.* FROM active_sessions s JOIN attempts a ON a.id = s.attempt_id '
-        'WHERE s.user_id = ? AND s.status = ? AND a.status = ?',
-        (user['id'], 'active', 'active'))
-    active = await cursor.fetchone()
-    if active:
-        await message.answer('Sizda faol test bor.')
+    attempt, _session = await get_resumable_attempt(db, user['id'])
+    if attempt:
+        await message.answer(
+            'Sizda faol test bor. Davom ettirasizmi yoki yangidan boshlaysizmi?',
+            reply_markup=active_quiz_kb(attempt['id']),
+        )
         return
     cursor = await db.execute('SELECT preferred_mode, preferred_difficulty FROM settings WHERE user_id = ?', (user['id'],))
     s = await cursor.fetchone()

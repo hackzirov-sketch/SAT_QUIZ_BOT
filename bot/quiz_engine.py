@@ -1,4 +1,3 @@
-import json
 import hashlib
 import random
 from datetime import datetime, timezone
@@ -23,20 +22,48 @@ def shuffle(arr: list) -> list:
     random.shuffle(a)
     return a
 
-def levenshtein(a: str, b: str) -> int:
-    m, n = len(a), len(b)
-    dp = [[0] * (n + 1) for _ in range(m + 1)]
-    for i in range(m + 1): dp[i][0] = i
-    for j in range(n + 1): dp[0][j] = j
-    for i in range(1, m + 1):
-        for j in range(1, n + 1):
-            dp[i][j] = dp[i - 1][j - 1] if a[i - 1] == b[j - 1] else min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]) + 1
-    return dp[m][n]
-
 class QuizEngine:
     def __init__(self, db_pool, vocabulary: list):
         self.db = db_pool
-        self.vocabulary = vocabulary
+        self.vocabulary = [dict(item) for item in vocabulary]
+        self._pool_cache: dict[tuple[str, str, int], list[dict]] = {}
+
+    def _pool(self, difficulty: str = '', category: str = '', minimum: int = QUIZ_QUESTION_COUNT) -> list[dict]:
+        key = (difficulty or '', category or '', minimum)
+        cached = self._pool_cache.get(key)
+        if cached is not None:
+            return cached
+
+        pool = self.vocabulary
+        if difficulty:
+            pool = [e for e in pool if e.get('difficulty') == difficulty]
+        if category and category != CATEGORY_ALL:
+            if category == CATEGORY_OTHER:
+                pool = [e for e in pool if e.get('category') in SMALL_CATEGORIES]
+            else:
+                pool = [e for e in pool if e.get('category') == category]
+
+        if len(pool) < minimum:
+            pool = self.vocabulary
+        self._pool_cache[key] = pool
+        return pool
+
+    def _distractor_score(self, entry: dict, cand: dict, target_field: str) -> int:
+        score = 0
+        if cand.get('category') == entry.get('category'):
+            score += 100
+        if cand.get('difficulty') == entry.get('difficulty'):
+            score += 20
+        if cand.get('source') == entry.get('source'):
+            score += 10
+
+        # Cheap lexical closeness keeps options plausible without O(n*m) Levenshtein DP per candidate.
+        correct = str(entry[target_field]).lower()
+        value = str(cand[target_field]).lower()
+        score += max(0, 12 - abs(len(correct) - len(value)))
+        if correct[:1] and correct[:1] == value[:1]:
+            score += 4
+        return score + random.randint(0, 5)
 
     def _build_distractors(self, entry: dict, target_field: str, protected: set, used: set) -> list:
         correct_value = str(entry[target_field])
@@ -49,18 +76,7 @@ class QuizEngine:
             key = value.lower()
             if key == correct_key or key in used or key in protected:
                 continue
-            score = 0
-            if cand.get('category') == entry.get('category'):
-                score += 80
-            if cand.get('source') == entry.get('source'):
-                score += 15
-            eng_dist = levenshtein(entry['english'].lower(), cand['english'].lower())
-            uzb_dist = levenshtein(entry['uzbek'].lower(), cand['uzbek'].lower())
-            score += max(0, 50 - eng_dist * 5)
-            score += max(0, 50 - uzb_dist * 5)
-            if cand.get('difficulty'):
-                score += 10 if cand['difficulty'] == 'hard' else 5
-            candidates.append({'value': value, 'score': score})
+            candidates.append({'value': value, 'score': self._distractor_score(entry, cand, target_field)})
         candidates.sort(key=lambda c: -c['score'])
         return [c['value'] for c in candidates[:3]]
 
@@ -90,16 +106,7 @@ class QuizEngine:
 
     def generate_questions(self, user_id: int, mode: str, count: int = QUIZ_QUESTION_COUNT,
                            difficulty: str = '', category: str = '', for_daily: bool = False) -> dict:
-        pool = list(self.vocabulary)
-        if difficulty:
-            pool = [e for e in pool if e.get('difficulty') == difficulty]
-        if category and category != CATEGORY_ALL:
-            if category == CATEGORY_OTHER:
-                pool = [e for e in pool if e.get('category') in SMALL_CATEGORIES]
-            else:
-                pool = [e for e in pool if e.get('category') == category]
-        if len(pool) < count:
-            pool = list(self.vocabulary)
+        pool = list(self._pool(difficulty, category, count))
         if len(pool) < count:
             raise ValueError(f"Vocabulary has only {len(pool)} entries, but {count} are required")
 

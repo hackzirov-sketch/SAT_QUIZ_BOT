@@ -6,10 +6,10 @@ from aiogram import Router, F
 from aiogram.filters import Command
 from aiogram.types import Message, CallbackQuery
 from bot.database import get_db, now_iso
-from bot.utils.db_helpers import upsert_user, add_xp
+from bot.utils.db_helpers import upsert_user
 from bot.quiz_engine import QuizEngine
-from bot.keyboards import duel_menu_kb, duel_difficulty_kb, main_menu_kb, answer_kb
-from bot.handlers.quiz import send_current_question
+from bot.keyboards import duel_menu_kb, duel_difficulty_kb, answer_kb
+from bot.handlers.quiz import question_payload, send_current_question
 from bot.formatting import question_text
 
 router = Router()
@@ -84,7 +84,7 @@ async def duel_find_opponent(callback: CallbackQuery):
         code = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
         res = engine.generate_questions(user['id'], mode, 10, difficulty if difficulty != 'mixed' else '', '')
         questions = res['questions']
-        qjson = json.dumps([{k: q[k] for k in ('id','english','uzbek','category','difficulty','prompt','correct_answer','options')} for q in questions])
+        qjson = question_payload(questions)
         await db.execute(
             "INSERT INTO duel_matches (code, player1_id, player2_id, questions_json, status, created_at) VALUES (?,?,?,?,'active',?)",
             (code, opponent['user_id'], user['id'], qjson, now_iso()))

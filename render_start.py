@@ -10,7 +10,7 @@ from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 from waitress import serve
 
-from bot.config import BOT_TOKEN, DATABASE_PATH, PORT
+from bot.config import BOT_POLLING_ENABLED, BOT_TOKEN, DATABASE_PATH, PORT
 from bot.database import init_db
 from bot.handlers.admin import set_bot as set_admin_bot
 from bot.handlers.duel import set_bot as set_duel_bot
@@ -60,7 +60,11 @@ async def main() -> None:
     configure_logging()
     site_thread = threading.Thread(target=run_flask_site, name='flask-site', daemon=True)
     site_thread.start()
-    await run_telegram_bot()
+    if BOT_POLLING_ENABLED:
+        await run_telegram_bot()
+    else:
+        logger.info("telegram_polling_disabled")
+        await asyncio.Event().wait()
 
 
 if __name__ == '__main__':

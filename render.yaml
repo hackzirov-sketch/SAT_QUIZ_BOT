@@ -16,6 +16,8 @@ services:
         value: Asia/Tashkent
       - key: LOG_LEVEL
         value: INFO
+      - key: BOT_POLLING_ENABLED
+        value: "1"
       - key: DATABASE_PATH
         value: data/quiz_bot.db
       - key: VOCABULARY_PATH

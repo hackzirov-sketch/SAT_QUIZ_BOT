@@ -4,12 +4,13 @@ import logging
 
 import aiosqlite
 from aiogram import Router, F
-from aiogram.types import Message, CallbackQuery
+from aiogram.types import CallbackQuery
 from bot.database import db_transaction, get_db, now_iso
 from bot.utils.db_helpers import upsert_user, add_xp, record_mistake, clear_mistake
 from bot.quiz_engine import QuizEngine
 from bot.formatting import question_text, answer_feedback, final_result_text, format_wrong_answers
-from bot.keyboards import answer_kb, main_menu_kb, start_kb, category_kb
+from bot.keyboards import active_quiz_kb, answer_kb, main_menu_kb, start_kb, category_kb
+from bot.services.active_session_service import get_resumable_attempt
 from bot.services.attempt_service import finish_attempt
 
 router = Router()
@@ -29,9 +30,13 @@ def _parse_int(value: str) -> int | None:
         return None
 
 
-def _question_payload(questions: list[dict]) -> str:
+def question_payload(questions: list[dict]) -> str:
     fields = ('id', 'english', 'uzbek', 'category', 'difficulty', 'prompt', 'correct_answer', 'options')
-    return json.dumps([{k: q[k] for k in fields} for q in questions], ensure_ascii=False)
+    return json.dumps(
+        [{k: q[k] for k in fields} for q in questions],
+        ensure_ascii=False,
+        separators=(',', ':'),
+    )
 
 async def send_current_question(message_or_callback, attempt: dict, session: dict, questions: list = None):
     db = await get_db()
@@ -72,22 +77,35 @@ async def start_callback(callback: CallbackQuery):
             return
         db = await get_db()
         user = await upsert_user(db, callback.from_user.id, callback.from_user.username, callback.from_user.first_name)
-        cursor = await db.execute(
-            'SELECT s.* FROM active_sessions s JOIN attempts a ON a.id = s.attempt_id WHERE s.user_id = ? AND s.status = ? AND a.status = ?',
-            (user['id'], 'active', 'active'))
-        if await cursor.fetchone():
-            await callback.answer('Sizda faol test bor.')
+        active_attempt, _active_session = await get_resumable_attempt(db, user['id'])
+        if active_attempt:
+            await callback.message.answer(
+                'Sizda faol test bor. Davom ettirasizmi yoki yangidan boshlaysizmi?',
+                reply_markup=active_quiz_kb(active_attempt['id']),
+            )
+            await callback.answer('Faol test mavjud.')
             return
         qty = 50
         expires = 900
-        res = engine.generate_questions(user['id'], mode, qty, difficulty, category)
+        try:
+            res = engine.generate_questions(user['id'], mode, qty, difficulty, category)
+        except ValueError:
+            logger.exception(
+                'question_generation_failed user_id=%s mode=%s difficulty=%s category=%s',
+                user['id'],
+                mode,
+                difficulty,
+                category,
+            )
+            await callback.answer('Bu kategoriya uchun savollar yetarli emas.', show_alert=True)
+            return
         questions = res['questions']
         now = now_iso()
         expires_at = int(time.time()) + expires
         async with db_transaction() as tx:
             await tx.execute(
                 'INSERT INTO attempts (user_id, mode, difficulty, category, total_questions, question_order_json, order_hash, started_at, status) VALUES (?,?,?,?,?,?,?,?,?)',
-                (user['id'], mode, difficulty, category, qty, _question_payload(questions), res['order_hash'], now, 'active'))
+                (user['id'], mode, difficulty, category, qty, question_payload(questions), res['order_hash'], now, 'active'))
             cursor = await tx.execute('SELECT last_insert_rowid() AS id')
             attempt_id = (await cursor.fetchone())['id']
             await tx.execute(

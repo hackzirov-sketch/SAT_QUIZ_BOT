@@ -52,12 +52,12 @@ async def upsert_user(db, telegram_id: int, username: str = None, first_name: st
         'ON CONFLICT(telegram_id) DO UPDATE SET username=excluded.username, first_name=excluded.first_name, updated_at=excluded.updated_at',
         (telegram_id, username, first_name, now, now),
     )
-    await db.commit()
     cursor = await db.execute('SELECT * FROM users WHERE telegram_id = ?', (telegram_id,))
     user = await cursor.fetchone()
     if user:
-        await ensure_settings(db, user['id'])
-        await ensure_statistics(db, user['id'])
+        await db.execute('INSERT OR IGNORE INTO settings (user_id, updated_at) VALUES (?, ?)', (user['id'], now))
+        await db.execute('INSERT OR IGNORE INTO statistics (user_id, updated_at) VALUES (?, ?)', (user['id'], now))
+    await db.commit()
     return user
 
 async def ensure_settings(db, user_id: int):

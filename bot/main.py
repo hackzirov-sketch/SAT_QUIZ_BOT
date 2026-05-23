@@ -22,6 +22,7 @@ from bot.services.session_sweeper import run_session_sweeper
 from bot.services.weekly_report_service import run_weekly_report_scheduler
 from bot.subscription import SubscriptionMiddleware
 from bot.utils.db_helpers import load_vocabulary
+from bot.utils.rate_limit import RateLimitMiddleware
 
 logger = logging.getLogger(__name__)
 
@@ -48,6 +49,8 @@ def setup_dispatcher(engine: QuizEngine, bot: Bot) -> Dispatcher:
     set_duel_bot(bot)
 
     dp = Dispatcher()
+    dp.message.middleware(RateLimitMiddleware(min_interval=0.20))
+    dp.callback_query.middleware(RateLimitMiddleware(min_interval=0.20))
     dp.message.middleware(SubscriptionMiddleware())
     dp.callback_query.middleware(SubscriptionMiddleware())
     for router in routers:

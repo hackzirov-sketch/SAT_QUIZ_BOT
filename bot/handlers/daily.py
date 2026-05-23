@@ -6,7 +6,7 @@ from bot.database import get_db, now_iso
 from bot.utils.db_helpers import upsert_user
 from bot.keyboards import main_menu_kb
 from bot.quiz_engine import QuizEngine
-from bot.handlers.quiz import send_current_question
+from bot.handlers.quiz import question_payload, send_current_question
 
 router = Router()
 engine: QuizEngine = None
@@ -25,7 +25,7 @@ async def _start_daily(message_or_callback, user_id: int, chat_id: int):
         questions = res['questions']
         await db.execute(
             'INSERT INTO daily_challenge (date, questions_json, created_at) VALUES (?,?,?)',
-            (today, json.dumps(questions), now_iso()))
+            (today, question_payload(questions), now_iso()))
         await db.commit()
         cursor = await db.execute('SELECT last_insert_rowid() AS id')
         challenge = await cursor.fetchone()
@@ -37,7 +37,7 @@ async def _start_daily(message_or_callback, user_id: int, chat_id: int):
     now = now_iso()
     await db.execute(
         'INSERT INTO attempts (user_id, mode, difficulty, category, total_questions, question_order_json, order_hash, started_at, status, quiz_mode) VALUES (?,?,?,?,?,?,?,?,?,?)',
-        (user_id, 'eng_uzb', 'mixed', 'all', len(questions), json.dumps([{k: q[k] for k in ('id','english','uzbek','category','difficulty','prompt','correct_answer','options')} for q in questions]), '', now, 'active', 'daily'))
+        (user_id, 'eng_uzb', 'mixed', 'all', len(questions), question_payload(questions), '', now, 'active', 'daily'))
     await db.commit()
     cursor = await db.execute('SELECT last_insert_rowid() AS id')
     attempt_id = (await cursor.fetchone())['id']
