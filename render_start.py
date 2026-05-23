@@ -99,12 +99,15 @@ async def run_telegram_bot() -> None:
     sweeper_task = asyncio.create_task(run_session_sweeper(_shutdown_event), name='session-sweeper')
     weekly_task = asyncio.create_task(run_weekly_report_scheduler(bot, _shutdown_event), name='weekly-report')
     maint_task = asyncio.create_task(run_db_maintenance(), name='db-maintenance')
-    polling_task = asyncio.create_task(dp.start_polling(bot), name='polling')
+    polling_task = None
+    shutdown_task = None
     try:
         await bot.delete_webhook(drop_pending_updates=False)
+        polling_task = asyncio.create_task(dp.start_polling(bot), name='polling')
+        shutdown_task = asyncio.create_task(_shutdown_event.wait(), name='shutdown-wait')
         logger.info("telegram_polling_started pid=%s polling_task=%s", os.getpid(), id(polling_task))
         done, pending = await asyncio.wait(
-            [polling_task, asyncio.create_task(_shutdown_event.wait())],
+            [polling_task, shutdown_task],
             return_when=asyncio.FIRST_COMPLETED,
         )
         for task in pending:
@@ -116,9 +119,10 @@ async def run_telegram_bot() -> None:
         logger.exception("telegram_polling_failed")
         raise
     finally:
-        for t in (sweeper_task, weekly_task, maint_task, polling_task):
-            t.cancel()
-        await asyncio.gather(sweeper_task, weekly_task, maint_task, polling_task, return_exceptions=True)
+        tasks = [task for task in (sweeper_task, weekly_task, maint_task, polling_task, shutdown_task) if task]
+        for task in tasks:
+            task.cancel()
+        await asyncio.gather(*tasks, return_exceptions=True)
         try:
             db = await get_db()
             await db.execute('PRAGMA wal_checkpoint(TRUNCATE)')
@@ -129,7 +133,7 @@ async def run_telegram_bot() -> None:
         logger.info("telegram_polling_stopped")
 
 
-async def run_flask_with_health() -> None:
+def run_flask_with_health() -> None:
     site_thread = threading.Thread(target=_run_flask_site, name='flask-site', daemon=True)
     site_thread.start()
 
