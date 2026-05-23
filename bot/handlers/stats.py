@@ -1,4 +1,3 @@
-import json
 from aiogram import Router, F
 from aiogram.filters import Command
 from aiogram.types import Message
@@ -61,7 +60,9 @@ async def natijalarim(message: Message):
         if not a:
             return f'{title}: —'
         return f'{title}: <b>{a["score"]}/100</b> — {mode_label(a["mode"])} — {format_seconds(a["completion_seconds"] or 0)}'
-    await message.answer(f'📊 <b>Mening natijalarim</b>\n\n{line("So\'nggi", latest)}\n{line("Eng yaxshi", best)}')
+    latest_line = line("So'nggi", latest)
+    best_line = line("Eng yaxshi", best)
+    await message.answer(f'📊 <b>Mening natijalarim</b>\n\n{latest_line}\n{best_line}')
 
 @router.message(F.text == '🏆 Reyting')
 @router.message(Command('rating'))
