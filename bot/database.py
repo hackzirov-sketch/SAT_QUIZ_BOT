@@ -1,5 +1,6 @@
 import asyncio
 from contextlib import asynccontextmanager
+from datetime import datetime, timezone
 import aiosqlite
 import os
 from typing import Optional
@@ -269,7 +270,6 @@ def get_db_sync() -> aiosqlite.Connection:
     return _db_conn
 
 def now_iso() -> str:
-    from datetime import datetime, timezone
     return datetime.now(timezone.utc).isoformat()
 
 

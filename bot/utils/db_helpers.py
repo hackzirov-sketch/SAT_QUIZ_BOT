@@ -2,6 +2,7 @@ import json
 import os
 from bot.database import get_db, now_iso
 from bot.config import ROOT, VOCABULARY_PATH, LEVEL_THRESHOLDS
+from bot.quiz_engine import level_name
 
 async def load_vocabulary(db) -> list:
     """Load vocabulary from DB; if empty, import from JSON."""
@@ -86,7 +87,6 @@ async def add_xp(db, user_id: int, amount: int) -> dict:
     await db.execute('UPDATE statistics SET xp = ?, level = ? WHERE user_id = ?', (new_xp, new_level, user_id))
     await db.commit()
     leveled_up = new_level > old_level
-    from bot.quiz_engine import level_name
     return {'xp': new_xp, 'level': new_level, 'leveled_up': leveled_up, 'level_name': level_name(new_level)}
 
 async def weakness_data(db, user_id: int) -> list:

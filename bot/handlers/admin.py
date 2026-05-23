@@ -1,11 +1,13 @@
+import os
 import time
+from datetime import datetime, timedelta, timezone
 from html import escape
 
 from aiogram import Router, F
 from aiogram.filters import Command
 from aiogram.types import Message, CallbackQuery
 from bot.database import get_db
-from bot.config import is_admin_id
+from bot.config import DATABASE_PATH, is_admin_id
 from bot.keyboards import admin_kb
 from bot.formatting import format_seconds
 from bot.services.weekly_report_service import send_weekly_report
@@ -129,9 +131,6 @@ async def _handle_admin_action(msg, action: str, payload: str = ''):
         days = int(payload) if payload.isdigit() else 30
         res = await _clean_old_data(db, days)
         total_del = sum(res['deleted'].values())
-        # Get DB size
-        import os
-        from bot.config import DATABASE_PATH
         size_kb = os.path.getsize(DATABASE_PATH) / 1024 if os.path.exists(DATABASE_PATH) else 0
         await msg.reply(f"🧹 Tozalandi! {total_del} ta o'chirildi. DB: {size_kb:.1f} KB")
 
@@ -231,7 +230,6 @@ async def _admin_counts(db):
     return result
 
 async def _clean_old_data(db, days_old: int = 30):
-    from datetime import datetime, timezone, timedelta
     cutoff = (datetime.now(timezone.utc) - timedelta(days=days_old)).isoformat()
     old_ids = [r['id'] for r in await (await db.execute(
         "SELECT id FROM attempts WHERE status IN ('completed','timed_out','cancelled') AND finished_at < ?", (cutoff,))).fetchall()]

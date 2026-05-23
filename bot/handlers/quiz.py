@@ -1,6 +1,7 @@
 import json
 import time
 import logging
+from datetime import datetime, timezone, timedelta
 
 import aiosqlite
 from aiogram import Router, F
@@ -50,8 +51,8 @@ async def send_current_question(message_or_callback, attempt: dict, session: dic
     if index >= len(questions):
         return
     q = questions[index]
-    remaining = max(0, session['expires_at'] - int(time.time())) if session.get('expires_at') else 0
-    minimal = bool(s and s.get('minimal_mode')) if s else False
+    remaining = max(0, session['expires_at'] - int(time.time())) if session['expires_at'] else 0
+    minimal = bool(s and s['minimal_mode']) if s else False
     text = question_text(q, index, attempt['total_questions'], remaining, attempt['mode'], minimal)
     await message_or_callback.answer(text, reply_markup=answer_kb(attempt['id'], index, q['options']))
 
@@ -264,7 +265,6 @@ async def answer_callback(callback: CallbackQuery):
                 if srow:
                     last = srow['last_quiz_date'] or ''
                     streak = srow['daily_streak'] or 0
-                    from datetime import datetime, timezone, timedelta
                     yesterday = (datetime.now(timezone.utc) - timedelta(days=1)).strftime('%Y-%m-%d')
                     if last == yesterday:
                         streak += 1
@@ -305,16 +305,16 @@ async def answer_callback(callback: CallbackQuery):
                         match = await (await db.execute('SELECT * FROM duel_matches WHERE id = ?', (match_id,))).fetchone()
                         if match['player1_time'] > 0 and match['player2_time'] > 0:
                             if match['player1_score'] > match['player2_score']:
-                                match['winner_id'] = match['player1_id']
+                                winner_id = match['player1_id']
                             elif match['player2_score'] > match['player1_score']:
-                                match['winner_id'] = match['player2_id']
+                                winner_id = match['player2_id']
                             else:
-                                match['winner_id'] = match['player1_id'] if match['player1_time'] <= match['player2_time'] else match['player2_id']
+                                winner_id = match['player1_id'] if match['player1_time'] <= match['player2_time'] else match['player2_id']
                             await db.execute(
                                 "UPDATE duel_matches SET status = 'finished', winner_id = ?, finished_at = ? WHERE id = ?",
-                                (match['winner_id'], un, match_id))
+                                (winner_id, un, match_id))
                             await db.commit()
-                            w = await (await db.execute('SELECT * FROM users WHERE id = ?', (match['winner_id'],))).fetchone()
+                            w = await (await db.execute('SELECT * FROM users WHERE id = ?', (winner_id,))).fetchone()
                             wname = f"@{w['username']}" if w and w['username'] else (w['first_name'] or 'Player')
                             await callback.message.answer(
                                 f"🏆 <b>Duel yakunlandi!</b>\n\n"

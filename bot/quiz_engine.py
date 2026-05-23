@@ -44,7 +44,7 @@ class QuizEngine:
                 pool = [e for e in pool if e.get('category') == category]
 
         if len(pool) < minimum:
-            pool = self.vocabulary
+            return self.vocabulary
         self._pool_cache[key] = pool
         return pool
 
