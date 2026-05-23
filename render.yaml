@@ -49,9 +49,15 @@ services:
 
       # === Subscription ===
       - key: SUBSCRIPTION_STRICT
-        value: "0"
+        value: "1"
       - key: SUBSCRIPTION_CACHE_TTL
         value: "300"
+      - key: CHANNEL_ID
+        value: "@mathacademy01"
+      # For private groups/channels set numeric id, for example -1001234567890.
+      # Bot must be added to the group/channel to verify membership.
+      - key: GROUP_ID
+        sync: false
 
       # === Weekly Report ===
       - key: WEEKLY_REPORT_ENABLED

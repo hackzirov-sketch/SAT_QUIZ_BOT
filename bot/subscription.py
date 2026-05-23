@@ -27,7 +27,7 @@ def subscription_text(missing: list[dict[str, Any]]) -> str:
     lines = [
         "🚫 <b>Botdan foydalanish cheklangan</b>",
         "",
-        "Botdan foydalanish uchun quyidagi 2 ta manbaga obuna bo'ling:",
+        "Botdan foydalanish uchun quyidagi manbalarga obuna bo'ling:",
         "",
     ]
     for req in missing:
@@ -115,9 +115,6 @@ class SubscriptionMiddleware(BaseMiddleware):
             return await handler(event, data)
 
         if is_admin_id(user.id):
-            return await handler(event, data)
-
-        if not await is_subscription_required(user.id):
             return await handler(event, data)
 
         bot = data.get('bot')

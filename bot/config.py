@@ -50,7 +50,7 @@ WEBHOOK_SETUP_TOKEN = _env_str('WEBHOOK_SETUP_TOKEN')
 
 DB_BUSY_TIMEOUT_MS = _env_int('DB_BUSY_TIMEOUT_MS', 5000, minimum=1000)
 SUBSCRIPTION_CACHE_TTL = _env_int('SUBSCRIPTION_CACHE_TTL', 600, minimum=0)
-SUBSCRIPTION_STRICT = _env_bool('SUBSCRIPTION_STRICT', False)
+SUBSCRIPTION_STRICT = _env_bool('SUBSCRIPTION_STRICT', True)
 SESSION_SWEEP_INTERVAL = _env_int('SESSION_SWEEP_INTERVAL', 10, minimum=2)
 BOT_POLLING_ENABLED = _env_bool('BOT_POLLING_ENABLED', True)
 WEEKLY_REPORT_ENABLED = _env_bool('WEEKLY_REPORT_ENABLED', True)
@@ -85,10 +85,11 @@ SMALL_CATEGORIES = {'Arithmetic', 'Functions', 'Probability', 'Number Types', 'C
 GROUP_ID = _env_str('GROUP_ID')
 CHANNEL_ID = _env_str('CHANNEL_ID')
 
-REQUIRED_SUBSCRIPTIONS = [
+_REQUIRED_SUBSCRIPTIONS = [
     {'chat_id': CHANNEL_ID or '@mathacademy01', 'title': 'Kanalimiz', 'link': 'https://t.me/mathacademy01'},
     {'chat_id': GROUP_ID, 'title': 'Guruximiz', 'link': 'https://t.me/+xN0rLsUBkGY2NjZi'},
 ]
+REQUIRED_SUBSCRIPTIONS = [req for req in _REQUIRED_SUBSCRIPTIONS if req['chat_id']]
 
 if not BOT_TOKEN:
     raise SystemExit('BOT_TOKEN is required')
