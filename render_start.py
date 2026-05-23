@@ -4,6 +4,7 @@ import asyncio
 import logging
 import os
 import signal
+import tempfile
 import threading
 import time
 
@@ -12,6 +13,12 @@ try:
     _HAVE_FCNTL = True
 except ImportError:
     _HAVE_FCNTL = False
+
+try:
+    import msvcrt
+    _HAVE_MSVCRT = True
+except ImportError:
+    _HAVE_MSVCRT = False
 
 from aiogram import Bot
 from aiogram.client.default import DefaultBotProperties
@@ -34,7 +41,7 @@ logger = logging.getLogger(__name__)
 _shutdown_event = asyncio.Event()
 _polling_started = False
 _polling_lock_fd: int | None = None
-_POLLING_LOCK_PATH = '/tmp/quiz_bot_polling.lock'
+_POLLING_LOCK_PATH = os.path.join(tempfile.gettempdir(), 'quiz_bot_polling.lock')
 _DB_MAINT_INTERVAL = 14_400  # 4 hours between incremental_vacuum
 
 
@@ -42,12 +49,19 @@ def _acquire_polling_lock() -> bool:
     global _polling_lock_fd
     if _polling_lock_fd is not None:
         return True
-    if not _HAVE_FCNTL:
-        logger.warning("fcntl_unavailable_lockfile_skipped")
-        return True
     try:
         fd = os.open(_POLLING_LOCK_PATH, os.O_CREAT | os.O_RDWR, 0o644)
-        fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        if _HAVE_FCNTL:
+            fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        elif _HAVE_MSVCRT:
+            if os.path.getsize(_POLLING_LOCK_PATH) == 0:
+                os.write(fd, b' ')
+            os.lseek(fd, 0, os.SEEK_SET)
+            msvcrt.locking(fd, msvcrt.LK_NBLCK, 1)
+        else:
+            logger.warning("file_lock_unavailable_lockfile_skipped")
+            os.close(fd)
+            return True
         os.ftruncate(fd, 0)
         os.write(fd, str(os.getpid()).encode())
         _polling_lock_fd = fd
@@ -60,10 +74,14 @@ def _acquire_polling_lock() -> bool:
 
 def _release_polling_lock() -> None:
     global _polling_lock_fd
-    if _polling_lock_fd is None or not _HAVE_FCNTL:
+    if _polling_lock_fd is None:
         return
     try:
-        fcntl.flock(_polling_lock_fd, fcntl.LOCK_UN)
+        if _HAVE_FCNTL:
+            fcntl.flock(_polling_lock_fd, fcntl.LOCK_UN)
+        elif _HAVE_MSVCRT:
+            os.lseek(_polling_lock_fd, 0, os.SEEK_SET)
+            msvcrt.locking(_polling_lock_fd, msvcrt.LK_UNLCK, 1)
         os.close(_polling_lock_fd)
         logger.info("polling_lock_released pid=%s", os.getpid())
     except OSError:

@@ -12,16 +12,23 @@ from bot.services.attempt_service import finish_attempt
 router = Router()
 logger = logging.getLogger(__name__)
 
-@router.message(CommandStart())
-async def cmd_start(message: Message):
+
+async def send_start_menu(message: Message):
     db = await get_db()
     await upsert_user(db, message.from_user.id, message.from_user.username, message.from_user.first_name)
+    logger.info("start_menu_sent user_id=%s username=%s", message.from_user.id, message.from_user.username)
     await message.answer(
         "🧠 <b>SAT LUĠĞAT QUIZ BOT</b>\n\nSAT Matematika terminlariga ixtisoslashgan lug'at testi.\n\n"
         "🏆 <b>Yangi:</b> XP & Level, Daily Challenge, Duel, Cheksiz rejim!\n\n"
         "Boshlash uchun <b>🧠 Test boshlash</b> tugmasini bosing.",
         reply_markup=main_menu_kb(),
     )
+
+
+@router.message(CommandStart())
+@router.message(F.text.regexp(r'^/start(?:@\w+)?(?:\s+.*)?$'))
+async def cmd_start(message: Message):
+    await send_start_menu(message)
 
 @router.message(F.text == '🧠 Test boshlash')
 @router.message(Command('quiz'))

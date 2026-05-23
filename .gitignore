@@ -7,6 +7,7 @@ bot/data/quiz_bot.db-wal
 bot/data/*.db*
 .venv/
 bot/logs/
+local.*.log
 teacher_site/.venv/
 teacher_site/__pycache__/
 *.zip
