@@ -33,23 +33,55 @@ from teacher_site.app import app as flask_app
 logger = logging.getLogger(__name__)
 _shutdown_event = asyncio.Event()
 _polling_started = False
+_polling_lock_fd: int | None = None
 _POLLING_LOCK_PATH = '/tmp/quiz_bot_polling.lock'
 _DB_MAINT_INTERVAL = 14_400  # 4 hours between incremental_vacuum
 
 
 def _acquire_polling_lock() -> bool:
+    global _polling_lock_fd
+    if _polling_lock_fd is not None:
+        return True
     if not _HAVE_FCNTL:
         logger.warning("fcntl_unavailable_lockfile_skipped")
         return True
     try:
         fd = os.open(_POLLING_LOCK_PATH, os.O_CREAT | os.O_RDWR, 0o644)
         fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        os.ftruncate(fd, 0)
         os.write(fd, str(os.getpid()).encode())
+        _polling_lock_fd = fd
         logger.info("polling_lock_acquired pid=%s path=%s", os.getpid(), _POLLING_LOCK_PATH)
         return True
     except (IOError, OSError) as exc:
         logger.critical("polling_lock_failed pid=%s error=%s is_another_instance_running?", os.getpid(), exc)
         return False
+
+
+def _release_polling_lock() -> None:
+    global _polling_lock_fd
+    if _polling_lock_fd is None or not _HAVE_FCNTL:
+        return
+    try:
+        fcntl.flock(_polling_lock_fd, fcntl.LOCK_UN)
+        os.close(_polling_lock_fd)
+        logger.info("polling_lock_released pid=%s", os.getpid())
+    except OSError:
+        logger.exception("polling_lock_release_failed")
+    finally:
+        _polling_lock_fd = None
+
+
+async def _wait_for_polling_lock(retry_seconds: int = 10) -> bool:
+    while not _shutdown_event.is_set():
+        if _acquire_polling_lock():
+            return True
+        logger.warning("polling_lock_busy_retrying seconds=%s", retry_seconds)
+        try:
+            await asyncio.wait_for(_shutdown_event.wait(), timeout=retry_seconds)
+        except asyncio.TimeoutError:
+            continue
+    return False
 
 
 def _signal_handler():
@@ -81,8 +113,8 @@ async def run_telegram_bot() -> None:
         return
     _polling_started = True
 
-    if not _acquire_polling_lock():
-        logger.critical("another_polling_instance_active_aborting")
+    if not await _wait_for_polling_lock():
+        logger.info("polling_lock_wait_cancelled")
         return
 
     db = await init_db(DATABASE_PATH)
@@ -130,6 +162,7 @@ async def run_telegram_bot() -> None:
         except Exception:
             pass
         await bot.session.close()
+        _release_polling_lock()
         logger.info("telegram_polling_stopped")
 
 
