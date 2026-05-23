@@ -5,7 +5,7 @@ from aiogram.filters import CommandStart, Command
 from aiogram.types import Message, CallbackQuery
 from bot.database import get_db
 from bot.utils.db_helpers import upsert_user
-from bot.keyboards import active_quiz_kb, main_menu_kb, start_kb
+from bot.keyboards import active_quiz_kb, future_plan_kb, main_menu_kb, start_kb
 from bot.services.active_session_service import get_resumable_attempt
 from bot.services.attempt_service import finish_attempt
 
@@ -44,6 +44,26 @@ async def test_boshlash(message: Message):
         reply_markup=start_kb(pref_mode, pref_diff),
     )
 
+@router.message(F.text == '🚀 Kelajak uchun rejalar')
+async def future_plans(message: Message):
+    await message.answer(
+        "🚀 <b>Kelajak uchun rejalar</b>\n\n"
+        "Tez orada botimizga yangi imkoniyatlar qo'shiladi:\n\n"
+        "🤖 <b>AI Mentor</b>\n"
+        "— Savollaringizga tushunarli izoh beradi va o'rganishingizga yordam beradi.\n\n"
+        "📝 <b>Mock test</b>\n"
+        "— SAT uslubidagi to'liq sinov testlari va natijalar tahlili.\n\n"
+        "📖 <b>Reading so'zlari</b>\n"
+        "— Reading bo'limi uchun eng kerakli akademik so'zlar.\n\n"
+        "⚔️ <b>Duel</b>\n"
+        "— Do'stlaringiz bilan bilim bo'yicha bellashish imkoniyati.\n\n"
+        "🚀 <b>Rivojlantirishlar</b>\n"
+        "— Reyting, yutuqlar, streak, statistika va boshqa foydali funksiyalar.\n\n"
+        "Hozircha asosiy testlardan foydalanishda davom etishingiz mumkin ✅",
+        reply_markup=future_plan_kb(),
+    )
+
+
 @router.message(F.text == 'ℹ️ Yordam')
 @router.message(Command('help'))
 async def yordam(message: Message):
@@ -51,12 +71,11 @@ async def yordam(message: Message):
         "ℹ️ <b>Yordam</b>\n\n"
         "🧠 Test boshlash — standart 50 savol\n"
         "🗓 Daily Challenge — kungi 10 savol\n"
-        "🔥 Duel — 1v1 jonli bellashuv\n"
         "🏆 Reyting — eng yaxshi 10\n"
         "📊 Natijalarim — oxirgi va eng yaxshi\n"
         "📚 Statistika — XP, level, tahlil\n"
         "⚙️ Sozlamalar — rejim va qiyinlik\n\n"
-        "Buyruqlar: /quiz /daily /duel /rating /result /stats /settings /cancel",
+        "Buyruqlar: /quiz /daily /rating /result /stats /settings /cancel",
         reply_markup=main_menu_kb(),
     )
 

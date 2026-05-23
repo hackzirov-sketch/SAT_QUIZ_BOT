@@ -19,7 +19,7 @@ def subscription_keyboard(missing: list[dict[str, Any]]) -> InlineKeyboardMarkup
         link = req.get('link')
         if link:
             buttons.append([InlineKeyboardButton(text=f"📢 {req['title']}", url=link)])
-    buttons.append([InlineKeyboardButton(text="✅ Tekshirish", callback_data='check_sub')])
+    buttons.append([InlineKeyboardButton(text="✅ Obunani tekshirish", callback_data='check_sub')])
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 
@@ -27,14 +27,14 @@ def subscription_text(missing: list[dict[str, Any]]) -> str:
     lines = [
         "🚫 <b>Botdan foydalanish cheklangan</b>",
         "",
-        "Botdan foydalanish uchun quyidagi kanal/guruhga a'zo bo'lishingiz kerak:",
+        "Botdan foydalanish uchun quyidagi 2 ta manbaga obuna bo'ling:",
         "",
     ]
     for req in missing:
         lines.append(f"🔹 {req['title']}")
     lines.extend([
         "",
-        "A'zo bo'lgach, <b>✅ Tekshirish</b> tugmasini bosing.",
+        "Obuna bo'lganingizdan keyin <b>✅ Obunani tekshirish</b> tugmasini bosing.",
         "Adminlar uchun cheklov mavjud emas.",
     ])
     return '\n'.join(lines)
@@ -87,7 +87,7 @@ async def check_sub_callback(callback: CallbackQuery):
     if not missing:
         await mark_subscription_ok(user.id)
         await callback.message.edit_text(
-            "✅ <b>Barcha kanal/guruhlarga a'zosiz!</b>\n\n"
+            "✅ <b>Barcha kanal va guruhlarga a'zosiz!</b>\n\n"
             "Endi botdan to'liq foydalanishingiz mumkin.\n\n/start"
         )
         await callback.answer()

@@ -12,7 +12,7 @@ def main_menu_kb() -> ReplyKeyboardMarkup:
     builder.button(text='📚 Statistika')
     builder.button(text='ℹ️ Yordam')
     builder.button(text='⚙️ Sozlamalar')
-    builder.button(text='🔥 Duel')
+    builder.button(text='🚀 Kelajak uchun rejalar')
     builder.adjust(2, 2, 2, 2)
     return builder.as_markup(resize_keyboard=True)
 
@@ -110,6 +110,12 @@ def duel_menu_kb() -> InlineKeyboardMarkup:
     builder.button(text='◀️ Orqaga', callback_data='back_main')
     builder.adjust(1, 1, 1, 1)
     return builder.as_markup()
+
+def future_plan_kb() -> InlineKeyboardMarkup:
+    return InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text='🏠 Asosiy menyu', callback_data='back_main')],
+    ])
+
 
 def duel_difficulty_kb() -> InlineKeyboardMarkup:
     builder = InlineKeyboardBuilder()
