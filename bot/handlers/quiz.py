@@ -105,8 +105,8 @@ async def start_callback(callback: CallbackQuery):
         expires_at = int(time.time()) + expires
         async with db_transaction() as tx:
             await tx.execute(
-                'INSERT INTO attempts (user_id, mode, difficulty, category, total_questions, question_order_json, order_hash, started_at, status) VALUES (?,?,?,?,?,?,?,?,?)',
-                (user['id'], mode, difficulty, category, qty, question_payload(questions), res['order_hash'], now, 'active'))
+                'INSERT INTO attempts (user_id, mode, difficulty, category, total_questions, question_order_json, order_hash, started_at, status, quiz_mode) VALUES (?,?,?,?,?,?,?,?,?,?)',
+                (user['id'], mode, difficulty, category, qty, question_payload(questions), res['order_hash'], now, 'active', 'standard'))
             cursor = await tx.execute('SELECT last_insert_rowid() AS id')
             attempt_id = (await cursor.fetchone())['id']
             await tx.execute(

@@ -251,6 +251,7 @@ async def init_db(db_path: str):
         await db.execute('ALTER TABLE duel_queue ADD COLUMN chat_id INTEGER NOT NULL DEFAULT 0')
     except aiosqlite.OperationalError:
         pass
+    await _migrate_schema(db)
     try:
         row = await (await db.execute('PRAGMA integrity_check')).fetchone()
         if row and row[0] != 'ok':
@@ -262,6 +263,28 @@ async def init_db(db_path: str):
     _db_conn = db
     _db_lock = asyncio.Lock()
     return db
+
+
+async def _column_exists(db: aiosqlite.Connection, table: str, column: str) -> bool:
+    rows = await (await db.execute(f'PRAGMA table_info({table})')).fetchall()
+    return any(r['name'] == column for r in rows)
+
+
+async def _migrate_schema(db: aiosqlite.Connection) -> None:
+    logger = __import__('logging').getLogger(__name__)
+    migrations = [
+        ('attempts', 'category', "TEXT NOT NULL DEFAULT ''"),
+        ('attempts', 'quiz_mode', "TEXT NOT NULL DEFAULT 'standard'"),
+        ('statistics', 'xp', 'INTEGER NOT NULL DEFAULT 0'),
+        ('statistics', 'level', 'INTEGER NOT NULL DEFAULT 1'),
+    ]
+    for table, column, col_def in migrations:
+        if not await _column_exists(db, table, column):
+            try:
+                await db.execute(f'ALTER TABLE {table} ADD COLUMN {column} {col_def}')
+                logger.info("migration_added_column table=%s column=%s", table, column)
+            except aiosqlite.OperationalError as exc:
+                logger.warning("migration_failed table=%s column=%s error=%s", table, column, exc)
 
 async def get_db() -> aiosqlite.Connection:
     global _db_conn, _db_lock
