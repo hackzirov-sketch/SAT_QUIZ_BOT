@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: sat-quiz-teacher-platform
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python render_start.py
+    autoDeploy: true
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: ADMIN_IDS
+        sync: false
+      - key: TZ
+        value: Asia/Tashkent
+      - key: LOG_LEVEL
+        value: INFO
+      - key: DATABASE_PATH
+        value: data/quiz_bot.db
+      - key: VOCABULARY_PATH
+        value: data/vocabulary.json
+      - key: WEEKLY_REPORT_ENABLED
+        value: "1"
+      - key: WEEKLY_REPORT_WEEKDAY
+        value: "0"
+      - key: WEEKLY_REPORT_HOUR
+        value: "9"
+      - key: WEEKLY_REPORT_MINUTE
+        value: "0"

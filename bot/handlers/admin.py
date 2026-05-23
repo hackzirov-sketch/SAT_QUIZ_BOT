@@ -1,13 +1,14 @@
-import json
-import logging
 import time
+from html import escape
+
 from aiogram import Router, F
 from aiogram.filters import Command
 from aiogram.types import Message, CallbackQuery
-from bot.database import get_db, now_iso
-from bot.config import ADMIN_IDS
+from bot.database import get_db
+from bot.config import is_admin_id
 from bot.keyboards import admin_kb
 from bot.formatting import format_seconds
+from bot.services.weekly_report_service import send_weekly_report
 
 router = Router()
 bot_instance = None
@@ -17,7 +18,49 @@ def set_bot(b):
     bot_instance = b
 
 def is_admin(user_id: int) -> bool:
-    return user_id in ADMIN_IDS
+    return is_admin_id(user_id)
+
+
+def _chat_type_value(msg) -> str:
+    return getattr(msg.chat.type, 'value', str(msg.chat.type))
+
+
+def _chat_title(msg) -> str:
+    return (
+        getattr(msg.chat, 'title', None)
+        or getattr(msg.chat, 'username', None)
+        or getattr(msg.chat, 'full_name', None)
+        or str(msg.chat.id)
+    )
+
+
+async def _set_weekly_chat(db, msg, enabled: bool) -> str:
+    chat_type = _chat_type_value(msg)
+    if chat_type == 'private':
+        return "Bu buyruq guruh ichida ishlaydi. Botni guruhga qo'shing va guruhda /admin weekly_on yuboring."
+
+    title = _chat_title(msg)
+    await db.execute(
+        '''
+        INSERT INTO channel_config (chat_id, chat_type, chat_title, enabled, weekly_report)
+        VALUES (?, ?, ?, 1, ?)
+        ON CONFLICT(chat_id) DO UPDATE SET
+          chat_type = excluded.chat_type,
+          chat_title = excluded.chat_title,
+          enabled = 1,
+          weekly_report = excluded.weekly_report
+        ''',
+        (msg.chat.id, chat_type, title, 1 if enabled else 0),
+    )
+    await db.commit()
+
+    if enabled:
+        return (
+            f"✅ Haftalik hisobot yoqildi: <b>{escape(title)}</b>\n"
+            "Har dushanba 09:00 da reyting va duel natijalari shu guruhga yuboriladi.\n"
+            "Tekshirish uchun: /admin weekly"
+        )
+    return f"⛔ Haftalik hisobot o'chirildi: <b>{escape(title)}</b>"
 
 @router.message(Command('admin'))
 async def admin_command(message: Message):
@@ -31,7 +74,15 @@ async def admin_command(message: Message):
 
     if not action:
         await message.reply(
-            "🛡 <b>Admin panel</b>\n\n/admin stats\n/admin active\n/admin clean [kun]\n/admin channels\n/admin weekly\n/admin duels",
+            "🛡 <b>Admin panel</b>\n\n"
+            "/admin stats\n"
+            "/admin active\n"
+            "/admin clean [kun]\n"
+            "/admin channels\n"
+            "/admin weekly_on\n"
+            "/admin weekly_off\n"
+            "/admin weekly\n"
+            "/admin duels",
             reply_markup=admin_kb())
         return
 
@@ -86,7 +137,16 @@ async def _handle_admin_action(msg, action: str, payload: str = ''):
 
     elif action == 'channels':
         channels = await (await db.execute('SELECT * FROM channel_config WHERE enabled = 1')).fetchall()
-        lines = ['📢 <b>Kanal/Group sozlamalari</b>\n\n/admin add_chat <chat_id> <type> <title>\n/admin remove_chat <chat_id>\n']
+        lines = [
+            '📢 <b>Kanal/Group sozlamalari</b>\n',
+            'Guruhda /admin weekly_on yuborsangiz haftalik hisobot yoqiladi.',
+            'O\'chirish: /admin weekly_off',
+            'Qo\'lda yuborish: /admin weekly',
+            '',
+            '/admin add_chat <chat_id> <type> <title>',
+            '/admin remove_chat <chat_id>',
+            '',
+        ]
         if channels:
             lines.append('Faol kanallar:')
             for ch in channels:
@@ -98,7 +158,11 @@ async def _handle_admin_action(msg, action: str, payload: str = ''):
         if len(parts) < 2:
             await msg.reply('Format: /admin add_chat <id> <type> <title>')
             return
-        chat_id = int(parts[0])
+        try:
+            chat_id = int(parts[0])
+        except ValueError:
+            await msg.reply('Chat ID raqam bo\'lishi kerak.')
+            return
         chat_type = parts[1]
         title = ' '.join(parts[2:]) if len(parts) > 2 else None
         await db.execute(
@@ -108,11 +172,12 @@ async def _handle_admin_action(msg, action: str, payload: str = ''):
         await msg.reply(f'✅ Kanal qo\'shildi: {chat_id}')
 
     elif action == 'remove_chat':
-        chat_id = payload.strip()
-        if not chat_id.isdigit():
+        try:
+            chat_id = int(payload.strip())
+        except ValueError:
             await msg.reply('ID kiriting.')
             return
-        await db.execute('DELETE FROM channel_config WHERE chat_id = ?', (int(chat_id),))
+        await db.execute('DELETE FROM channel_config WHERE chat_id = ?', (chat_id,))
         await db.commit()
         await msg.reply(f'✅ O\'chirildi: {chat_id}')
 
@@ -120,7 +185,15 @@ async def _handle_admin_action(msg, action: str, payload: str = ''):
         if not bot_instance:
             await msg.reply('Bot ishga tushmagan.')
             return
-        result = await _send_weekly_report(db)
+        result = await send_weekly_report(db, bot_instance)
+        await msg.reply(result)
+
+    elif action == 'weekly_on':
+        result = await _set_weekly_chat(db, msg, True)
+        await msg.reply(result)
+
+    elif action == 'weekly_off':
+        result = await _set_weekly_chat(db, msg, False)
         await msg.reply(result)
 
     elif action == 'duels':
@@ -173,50 +246,3 @@ async def _clean_old_data(db, days_old: int = 30):
         await db.execute(f'DELETE FROM attempts WHERE id IN ({placeholders})', old_ids)
         await db.commit()
     return {'deleted': result}
-
-async def _send_weekly_report(db):
-    channels = await (await db.execute('SELECT * FROM channel_config WHERE enabled = 1 AND weekly_report = 1')).fetchall()
-    if not channels:
-        return 'Haftalik hisobot uchun kanal sozlanmagan.'
-    lb = await (await db.execute(
-        'SELECT l.*, u.username, u.first_name FROM leaderboard l JOIN users u ON u.id = l.user_id ORDER BY l.score DESC, l.completion_seconds ASC LIMIT 20'
-    )).fetchall()
-    xp_lb = await (await db.execute(
-        'SELECT s.xp, s.level, u.telegram_id, u.username, u.first_name FROM statistics s JOIN users u ON u.id = s.user_id WHERE s.xp > 0 ORDER BY s.xp DESC LIMIT 20'
-    )).fetchall()
-    duels = await (await db.execute(
-        'SELECT d.*, u1.username AS p1name, u1.first_name AS p1first, u2.username AS p2name, u2.first_name AS p2first '
-        'FROM duel_matches d LEFT JOIN users u1 ON u1.id = d.player1_id LEFT JOIN users u2 ON u2.id = d.player2_id '
-        'WHERE d.status = ? ORDER BY d.finished_at DESC LIMIT 5', ('finished',))).fetchall()
-    c = await _admin_counts(db)
-
-    lines = [
-        '📊 <b>Haftalik hisobot</b> 📊\n',
-        f'👥 Jami foydalanuvchilar: {c["users"]}',
-        f'🧠 Jami testlar: {c["attempts"]}',
-        f'✅ Tugagan: {c["finished_attempts"]}',
-        '',
-        '🏆 <b>TOP 20</b>',
-    ]
-    for i, r in enumerate(lb):
-        name = f"@{r['username']}" if r['username'] else (r['first_name'] or 'User')
-        lines.append(f"{i+1}. {name} — {r['score']}/100")
-    lines.extend(['', '⭐ <b>XP TOP 20</b>'])
-    for i, r in enumerate(xp_lb):
-        name = f"@{r['username']}" if r['username'] else (r['first_name'] or 'User')
-        lines.append(f"{i+1}. {name} — {r['xp']} XP")
-    if duels:
-        lines.extend(['', '🔥 <b>Duellar</b>'])
-        for d in duels:
-            p1 = d['p1name'] or d['p1first'] or 'P1'
-            p2 = d['p2name'] or d['p2first'] or 'P2'
-            lines.append(f"• {p1} {d['player1_score']} - {d['player2_score']} {p2}")
-    text = '\n'.join(lines)
-    sent = 0
-    for ch in channels:
-        try:
-            await bot_instance.send_message(ch['chat_id'], text, parse_mode='HTML')
-            sent += 1
-        except Exception as e:
-            logging.error(f"Failed to send weekly to {ch['chat_id']}: {e}")
-    return f"✅ Hisobot {sent}/{len(channels)} kanalga yuborildi."

@@ -95,9 +95,11 @@ def admin_kb() -> InlineKeyboardMarkup:
     builder.button(text='🏆 Reyting eksport', callback_data='admin:export')
     builder.button(text='🧹 Tozalash', callback_data='admin:clean')
     builder.button(text='📢 Kanal/Group', callback_data='admin:channels')
+    builder.button(text='✅ Weekly yoqish', callback_data='admin:weekly_on')
+    builder.button(text='⛔ Weekly o\'chirish', callback_data='admin:weekly_off')
     builder.button(text='🗓 Haftalik hisobot', callback_data='admin:weekly')
     builder.button(text='🔥 Duel natijalari', callback_data='admin:duels')
-    builder.adjust(2, 2, 2, 1)
+    builder.adjust(2, 2, 2, 2, 1)
     return builder.as_markup()
 
 def duel_menu_kb() -> InlineKeyboardMarkup:

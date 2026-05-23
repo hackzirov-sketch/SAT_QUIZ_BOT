@@ -1,11 +1,15 @@
+import logging
+
 from aiogram import Router, F
 from aiogram.filters import CommandStart, Command
 from aiogram.types import Message, CallbackQuery
 from bot.database import get_db
 from bot.utils.db_helpers import upsert_user
 from bot.keyboards import main_menu_kb, start_kb
+from bot.services.attempt_service import finish_attempt
 
 router = Router()
+logger = logging.getLogger(__name__)
 
 @router.message(CommandStart())
 async def cmd_start(message: Message):
@@ -23,7 +27,10 @@ async def cmd_start(message: Message):
 async def test_boshlash(message: Message):
     db = await get_db()
     user = await upsert_user(db, message.from_user.id, message.from_user.username, message.from_user.first_name)
-    cursor = await db.execute('SELECT * FROM active_sessions WHERE user_id = ? AND status = ?', (user['id'], 'active'))
+    cursor = await db.execute(
+        'SELECT s.* FROM active_sessions s JOIN attempts a ON a.id = s.attempt_id '
+        'WHERE s.user_id = ? AND s.status = ? AND a.status = ?',
+        (user['id'], 'active', 'active'))
     active = await cursor.fetchone()
     if active:
         await message.answer('Sizda faol test bor.')
@@ -57,8 +64,8 @@ async def yordam(message: Message):
 async def back_main(callback: CallbackQuery):
     try:
         await callback.message.edit_text('🧠 <b>Asosiy menyu</b>')
-    except:
-        pass
+    except Exception:
+        logger.exception("back_main_edit_failed user_id=%s", callback.from_user.id)
     await callback.answer()
 
 @router.message(Command('cancel'))
@@ -70,7 +77,5 @@ async def cancel(message: Message):
         'WHERE s.user_id = ? AND s.status = ? AND a.status = ?', (user['id'], 'active', 'active'))
     active = await cursor.fetchone()
     if active:
-        await db.execute('UPDATE attempts SET status = ? WHERE id = ?', ('cancelled', active['attempt_id']))
-        await db.execute('UPDATE active_sessions SET status = ? WHERE id = ?', ('cancelled', active['id']))
-        await db.commit()
+        await finish_attempt(db, active['attempt_id'], 'cancelled')
     await message.answer('🛑 Faol test bekor qilindi.', reply_markup=main_menu_kb())

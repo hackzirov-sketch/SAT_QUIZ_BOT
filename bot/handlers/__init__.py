@@ -13,17 +13,19 @@ from .settings import router as settings_router
 from bot.subscription import router as subscription_router
 
 error_router = Router()
+logger = logging.getLogger(__name__)
 
 @error_router.errors()
 async def global_error_handler(event: ErrorEvent):
-    logging.error(f"Handler error: {event.exception}", exc_info=event.exception)
+    exc = event.exception
+    logger.error("handler_error", exc_info=(type(exc), exc, exc.__traceback__))
     try:
         if event.update.message:
             await event.update.message.answer("❌ Xatolik yuz berdi. Iltimos qayta urinib ko'ring.")
         elif event.update.callback_query:
             await event.update.callback_query.answer("❌ Xatolik yuz berdi.")
-    except:
-        pass
+    except Exception:
+        logger.exception("failed_to_notify_user_about_error")
 
 routers = [
     error_router,

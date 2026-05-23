@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdumumin Saydullayev | SAT Math va sertifikat natijalari</title>
+<meta name="description" content="Abdumumin Saydullayevning SAT Math natijalari, milliy sertifikatlari va o‘quvchilar yutuqlari.">
+<meta property="og:title" content="Abdumumin Saydullayev | SAT Math natijalari">
+<meta property="og:description" content="SAT matematika, milliy sertifikat va o‘quvchilar sertifikatlari jamlangan rasmiy sahifa.">
+<meta property="og:image" content="{{ url_for('static', filename='images/hero-photo.jpg') }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+</script>
+<style>
+:root {
+  --bg: oklch(13% 0.05 252);
+  --bg-deep: oklch(9% 0.045 255);
+  --surface: oklch(17% 0.055 252);
+  --surface-soft: oklch(21% 0.06 248);
+  --surface-warm: oklch(20% 0.055 74);
+  --ink: oklch(96% 0.012 230);
+  --ink-soft: oklch(86% 0.035 232);
+  --muted: oklch(71% 0.055 238);
+  --gold: oklch(86% 0.18 88);
+  --gold-strong: oklch(77% 0.2 78);
+  --green: oklch(82% 0.22 152);
+  --cyan: oklch(76% 0.17 220);
+  --coral: oklch(72% 0.17 27);
+  --violet: oklch(72% 0.17 304);
+  --line: oklch(100% 0 0 / 0.12);
+  --shadow: 0 22px 70px oklch(4% 0.03 253 / 0.46);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: clip;
+  color: var(--ink);
+  font-family: "Rajdhani", system-ui, sans-serif;
+  background:
+    linear-gradient(115deg, oklch(100% 0 0 / 0.045) 1px, transparent 1px),
+    linear-gradient(205deg, oklch(100% 0 0 / 0.035) 1px, transparent 1px),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 56%, oklch(12% 0.055 184) 100%);
+  background-size: 56px 56px, 92px 92px, auto;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    linear-gradient(120deg, transparent 0 12%, oklch(86% 0.18 88 / 0.15) 22%, transparent 38%),
+    linear-gradient(300deg, transparent 0 36%, oklch(82% 0.22 152 / 0.13) 53%, transparent 72%),
+    linear-gradient(18deg, transparent 0 45%, oklch(72% 0.17 304 / 0.1) 68%, transparent 90%);
+}
+
+a { color: inherit; }
+
+:focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  border-bottom: 1px solid var(--line);
+  background: oklch(11% 0.045 252 / 0.88);
+  backdrop-filter: blur(18px);
+}
+
+.nav {
+  max-width: 1240px;
+  min-height: 68px;
+  margin: 0 auto;
+  padding: 0 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.brand-mark {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border: 1px solid oklch(86% 0.18 88 / 0.52);
+  border-radius: 12px;
+  color: var(--gold);
+  background:
+    linear-gradient(135deg, oklch(86% 0.18 88 / 0.18), transparent),
+    var(--surface);
+  box-shadow: 0 0 28px oklch(86% 0.18 88 / 0.18);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.nav-links a {
+  position: relative;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  font-weight: 700;
+  transition: color .22s var(--ease-out-quart), transform .22s var(--ease-out-quart);
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10px;
+  height: 2px;
+  transform: scaleX(0);
+  transform-origin: right;
+  background: var(--green);
+  transition: transform .24s var(--ease-out-expo);
+}
+
+.nav-links a:hover {
+  color: var(--ink);
+  transform: translateY(-1px);
+}
+
+.nav-links a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.nav-cta {
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid oklch(76% 0.17 220 / 0.38);
+  border-radius: 999px;
+  color: var(--ink);
+  background: oklch(76% 0.17 220 / 0.13);
+}
+
+.hero {
+  max-width: 1240px;
+  min-height: 76vh;
+  margin: 0 auto;
+  padding: 84px 22px 50px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(330px, 0.78fr);
+  gap: 52px;
+  align-items: center;
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  color: var(--gold);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+h1 {
+  margin: 0;
+  max-width: 760px;
+  font-family: "Cinzel", serif;
+  font-size: 64px;
+  line-height: 1.02;
+  letter-spacing: 0;
+  text-shadow: 0 18px 54px oklch(86% 0.18 88 / 0.18);
+}
+
+.title-line,
+.title-subline {
+  display: block;
+  overflow: hidden;
+}
+
+.word {
+  display: inline-block;
+  transform: translateY(106%);
+  animation: wordRise .9s var(--ease-out-expo) forwards;
+}
+
+.word:nth-child(2) { animation-delay: .12s; }
+.title-subline .word { animation-delay: .22s; }
+
+.hero-text {
+  max-width: 690px;
+  margin: 22px 0 0;
+  color: var(--ink-soft);
+  font-size: 20px;
+  line-height: 1.65;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13px;
+  margin-top: 32px;
+}
+
+.button {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 12px 19px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: transform .22s var(--ease-out-quart), box-shadow .22s var(--ease-out-quart), border-color .22s var(--ease-out-quart);
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button:active {
+  transform: translateY(0) scale(.98);
+}
+
+.button.gold {
+  color: oklch(21% 0.06 72);
+  background: linear-gradient(135deg, oklch(96% 0.11 94), var(--gold), var(--gold-strong));
+  box-shadow: 0 20px 52px oklch(86% 0.18 88 / 0.28);
+}
+
+.button.outline {
+  color: var(--ink);
+  border-color: oklch(100% 0 0 / 0.18);
+  background: oklch(100% 0 0 / 0.052);
+}
+
+.button.cyan {
+  color: var(--ink);
+  border-color: oklch(76% 0.17 220 / 0.44);
+  background: linear-gradient(135deg, oklch(76% 0.17 220 / 0.22), oklch(72% 0.17 304 / 0.14));
+}
+
+.hero-proof {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.proof-chip {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid oklch(100% 0 0 / 0.13);
+  border-radius: 999px;
+  color: var(--ink-soft);
+  background: oklch(100% 0 0 / 0.052);
+  box-shadow: 0 12px 34px oklch(4% 0.03 253 / 0.22);
+}
+
+.chip-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--green);
+  box-shadow: 0 0 18px oklch(82% 0.22 152 / 0.64);
+}
+
+.hero-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+
+.stage-shell {
+  position: relative;
+  isolation: isolate;
+  width: min(100%, 420px);
+  border: 1px solid oklch(100% 0 0 / 0.16);
+  border-radius: 26px;
+  padding: 9px;
+  background:
+    linear-gradient(145deg, oklch(100% 0 0 / 0.1), transparent 38%),
+    linear-gradient(315deg, oklch(82% 0.22 152 / 0.14), transparent 46%),
+    var(--surface);
+  box-shadow: var(--shadow);
+  overflow: visible;
+}
+
+.stage-shell::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 30px;
+  z-index: -1;
+  background: conic-gradient(from 35deg, transparent, oklch(86% 0.18 88 / 0.36), transparent, oklch(76% 0.17 220 / 0.34), transparent);
+  animation: stageSpin 14s linear infinite;
+}
+
+.hero-photo {
+  margin: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--surface-soft);
+}
+
+.hero-photo img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  display: block;
+  object-fit: cover;
+  filter: saturate(1.06) contrast(1.03);
+}
+
+.floating-badge {
+  position: absolute;
+  z-index: 3;
+  min-width: 132px;
+  padding: 12px 14px;
+  border: 1px solid oklch(100% 0 0 / 0.16);
+  border-radius: 18px;
+  background: oklch(12% 0.045 252 / 0.86);
+  box-shadow: 0 18px 42px oklch(4% 0.03 253 / 0.36);
+  backdrop-filter: blur(14px);
+  overflow: hidden;
+}
+
+.floating-badge::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-110%) skewX(-18deg);
+  background: linear-gradient(90deg, transparent, oklch(96% 0.11 94 / 0.28), transparent);
+  animation: badgeShine 3.8s var(--ease-out-expo) infinite;
+}
+
+.floating-badge strong {
+  position: relative;
+  z-index: 1;
+  display: block;
+  color: var(--gold);
+  font-family: "Cinzel", serif;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.floating-badge span {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin-top: 5px;
+  color: var(--ink-soft);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.badge-a {
+  left: -26px;
+  top: 42px;
+  border-color: oklch(86% 0.18 88 / 0.42);
+  box-shadow: 0 18px 42px oklch(4% 0.03 253 / 0.36), 0 0 28px oklch(86% 0.18 88 / 0.22);
+  animation: badgePulseFloat 4.8s var(--ease-out-quart) infinite;
+}
+
+.badge-b {
+  right: -26px;
+  bottom: 68px;
+  animation: floatBadge 6.6s var(--ease-out-quart) infinite reverse;
+}
+
+.section {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 66px 22px;
+}
+
+.section-head {
+  margin-bottom: 32px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 440px);
+  gap: 26px;
+  align-items: end;
+}
+
+.section-title {
+  margin: 0;
+  font-family: "Cinzel", serif;
+  font-size: 32px;
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+.section-title.gold { color: var(--gold); }
+.section-title.green { color: var(--green); }
+.section-title.cyan { color: var(--cyan); }
+
+.section-note {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.62;
+}
+
+.profile-section {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 18px 22px 66px;
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(320px, 1.1fr);
+  gap: 32px;
+  align-items: stretch;
+}
+
+.profile-intro {
+  position: relative;
+  border: 1px solid oklch(100% 0 0 / 0.14);
+  border-radius: 24px;
+  padding: 30px;
+  background:
+    linear-gradient(145deg, oklch(86% 0.18 88 / 0.13), transparent 42%),
+    var(--surface);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.profile-intro p {
+  margin: 16px 0 0;
+  color: var(--ink-soft);
+  font-size: 19px;
+  line-height: 1.68;
+}
+
+.profile-lottie {
+  width: 112px;
+  height: 72px;
+  margin-bottom: 12px;
+}
+
+.credential-board {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.credential {
+  min-height: 128px;
+  position: relative;
+  border: 1px solid oklch(100% 0 0 / 0.13);
+  border-radius: 20px;
+  padding: 18px;
+  background:
+    linear-gradient(135deg, oklch(100% 0 0 / 0.075), transparent 54%),
+    var(--surface-soft);
+  box-shadow: 0 18px 44px oklch(4% 0.03 253 / 0.25);
+  overflow: hidden;
+  transition: transform .24s var(--ease-out-quart), border-color .24s var(--ease-out-quart);
+}
+
+.credential:hover {
+  transform: translateY(-4px);
+  border-color: oklch(86% 0.18 88 / 0.34);
+}
+
+.credential small {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.credential strong {
+  display: block;
+  margin-top: 8px;
+  color: var(--ink);
+  font-size: 23px;
+  line-height: 1.16;
+}
+
+.credential.accent-green {
+  background:
+    linear-gradient(135deg, oklch(82% 0.22 152 / 0.16), transparent 58%),
+    var(--surface-soft);
+}
+
+.credential.accent-coral {
+  background:
+    linear-gradient(135deg, oklch(72% 0.17 27 / 0.14), transparent 58%),
+    var(--surface-soft);
+}
+
+.teacher-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+}
+
+.student-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+}
+
+.carousel-dots {
+  display: none;
+}
+
+.card-wrap {
+  position: relative;
+  border-radius: 18px;
+  transition: transform .25s var(--ease-out-quart), filter .25s var(--ease-out-quart);
+}
+
+.card-wrap:hover {
+  transform: translateY(-6px);
+  filter: brightness(1.08);
+}
+
+.spinner {
+  position: absolute;
+  inset: -3px;
+  border-radius: 21px;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.spinner::before {
+  content: "";
+  position: absolute;
+  inset: -80%;
+  animation: spinBorder 3s linear infinite;
+}
+
+.spinner::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 16px;
+  background: var(--surface);
+}
+
+.gold-card .spinner::before {
+  background: conic-gradient(from 0deg, transparent 0deg, transparent 55deg, var(--gold-strong) 76deg, var(--gold) 94deg, oklch(96% 0.11 94) 114deg, var(--gold) 132deg, transparent 168deg, transparent 360deg);
+}
+
+.green-card .spinner::before {
+  background: conic-gradient(from 0deg, transparent 0deg, transparent 55deg, oklch(38% 0.16 155) 76deg, var(--green) 94deg, oklch(93% 0.13 150) 114deg, var(--cyan) 132deg, transparent 168deg, transparent 360deg);
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: 0 18px 45px oklch(4% 0.03 253 / 0.32);
+}
+
+.pdf-status {
+  min-height: 260px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  background:
+    linear-gradient(135deg, oklch(76% 0.17 220 / 0.08), transparent),
+    var(--surface-soft);
+}
+
+.pdf-canvas {
+  width: 100%;
+  display: block;
+  background: oklch(97% 0.004 230);
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 15px 16px;
+  border-top: 1px solid var(--line);
+}
+
+.card-title {
+  margin: 0;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.card-subtitle {
+  margin: 3px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  color: var(--ink);
+  text-decoration: none;
+  background: oklch(100% 0 0 / 0.052);
+  transition: transform .2s var(--ease-out-quart), background .2s var(--ease-out-quart);
+}
+
+.icon-btn:hover {
+  transform: translateY(-2px);
+  background: oklch(100% 0 0 / 0.095);
+}
+
+.cta-band {
+  max-width: 1240px;
+  margin: 20px auto 0;
+  padding: 0 22px 66px;
+}
+
+.cta-inner {
+  position: relative;
+  min-height: 188px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 22px;
+  align-items: center;
+  border: 1px solid oklch(100% 0 0 / 0.14);
+  border-radius: 26px;
+  padding: 28px;
+  background:
+    linear-gradient(112deg, oklch(76% 0.17 220 / 0.18), transparent 52%),
+    linear-gradient(292deg, oklch(82% 0.22 152 / 0.16), transparent 58%),
+    var(--surface);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.cta-inner h2 {
+  margin: 0;
+  font-family: "Cinzel", serif;
+  font-size: 30px;
+  letter-spacing: 0;
+}
+
+.cta-inner p {
+  max-width: 680px;
+  margin: 12px 0 0;
+  color: var(--ink-soft);
+  line-height: 1.62;
+}
+
+.cta-lottie {
+  width: 120px;
+  height: 120px;
+}
+
+.social-footer {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 54px 22px 38px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.social-link {
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--ink-soft);
+  text-decoration: none;
+  background: oklch(100% 0 0 / 0.052);
+  font-weight: 700;
+  transition: transform .22s var(--ease-out-quart), border-color .22s var(--ease-out-quart);
+}
+
+.social-link:hover {
+  transform: translateY(-2px);
+  border-color: oklch(86% 0.18 88 / 0.34);
+}
+
+.empty-state {
+  border: 1px dashed oklch(100% 0 0 / 0.2);
+  border-radius: 18px;
+  padding: 32px;
+  color: var(--muted);
+  text-align: center;
+  background: oklch(100% 0 0 / 0.035);
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .7s var(--ease-out-expo), transform .7s var(--ease-out-expo);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes wordRise {
+  to { transform: translateY(0); }
+}
+
+@keyframes stageSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes floatBadge {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -12px, 0); }
+}
+
+@keyframes badgePulseFloat {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: brightness(1);
+  }
+  45% {
+    transform: translate3d(0, -12px, 0) scale(1.035);
+    filter: brightness(1.12);
+  }
+}
+
+@keyframes badgeShine {
+  0%, 42% { transform: translateX(-120%) skewX(-18deg); }
+  72%, 100% { transform: translateX(120%) skewX(-18deg); }
+}
+
+@keyframes spinBorder {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 980px) {
+  .hero,
+  .profile-section {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding-top: 58px;
+  }
+
+  h1 { font-size: 48px; }
+
+  .stage-shell {
+    width: min(100%, 380px);
+  }
+
+  .section-head {
+    grid-template-columns: 1fr;
+  }
+
+  .teacher-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .nav {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 14px 16px;
+  }
+
+  .nav-links {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 2px;
+  }
+
+  .hero,
+  .section,
+  .profile-section,
+  .cta-band,
+  .social-footer {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  h1 {
+    font-size: 34px;
+  }
+
+  .hero {
+    min-height: auto;
+    gap: 30px;
+    padding-top: 40px;
+    padding-bottom: 30px;
+  }
+
+  .hero-text,
+  .profile-intro p {
+    font-size: 16px;
+  }
+
+  .stage-shell {
+    width: min(100%, 286px);
+  }
+
+  .hero-photo img {
+    aspect-ratio: 4 / 4.65;
+  }
+
+  .hero-proof {
+    display: none;
+  }
+
+  .hero-actions .button {
+    width: 100%;
+  }
+
+  .floating-badge {
+    min-width: 112px;
+    padding: 10px 11px;
+  }
+
+  .floating-badge strong {
+    font-size: 20px;
+  }
+
+  .badge-a {
+    left: 8px;
+    top: 18px;
+  }
+
+  .badge-b {
+    right: 8px;
+    bottom: 44px;
+  }
+
+  .profile-intro {
+    padding: 22px;
+  }
+
+  .credential-board {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .credential {
+    min-height: 112px;
+    padding: 14px;
+  }
+
+  .credential strong {
+    font-size: 18px;
+  }
+
+  .section-title {
+    font-size: 24px;
+  }
+
+  .section {
+    padding-top: 46px;
+    padding-bottom: 46px;
+  }
+
+  .profile-section {
+    gap: 18px;
+    padding-bottom: 46px;
+  }
+
+  .pdf-canvas {
+    height: 390px;
+    object-fit: contain;
+    object-position: top center;
+  }
+
+  .student-carousel {
+    position: relative;
+    overflow: hidden;
+    max-width: 430px;
+    margin: 0 auto;
+    border-radius: 20px;
+  }
+
+  .student-grid {
+    display: flex;
+    gap: 0;
+    transition: transform .55s var(--ease-out-expo);
+    will-change: transform;
+  }
+
+  .student-grid .card-wrap {
+    min-width: 100%;
+    flex: 0 0 100%;
+    padding: 3px;
+  }
+
+  .student-grid .card-wrap:hover {
+    transform: none;
+  }
+
+  .student-grid .spinner::before {
+    animation-duration: 4s;
+  }
+
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 16px;
+  }
+
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    border: 0;
+    border-radius: 50%;
+    background: oklch(100% 0 0 / 0.26);
+    padding: 0;
+    transition: width .22s var(--ease-out-quart), background .22s var(--ease-out-quart);
+  }
+
+  .carousel-dot.active {
+    width: 24px;
+    border-radius: 999px;
+    background: var(--green);
+    box-shadow: 0 0 18px oklch(82% 0.22 152 / 0.45);
+  }
+
+  .card-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .cta-inner {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 20px;
+  }
+
+  .cta-inner h2 {
+    font-size: 22px;
+  }
+
+  .cta-inner .hero-actions .button {
+    width: auto;
+    flex: 1 1 136px;
+  }
+
+  .cta-lottie {
+    display: none;
+  }
+
+  .cta-band {
+    padding-bottom: 38px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  [data-reveal],
+  .word {
+    opacity: 1;
+    transform: none;
+  }
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <nav class="nav">
+    <a class="brand" href="/">
+      <span class="brand-mark">AS</span>
+      <span>Abdumumin Saydullayev</span>
+    </a>
+    <div class="nav-links">
+      <a href="#ustoz">Ustoz</a>
+      <a href="#natijalar">Natijalar</a>
+      <a href="#sertifikatlar">Sertifikatlar</a>
+      <a class="nav-cta" href="https://t.me/sat_vocabs_quiz_bot" target="_blank" rel="noopener">Quiz bot</a>
+      <a href="#aloqa">Aloqa</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">SAT Math, milliy sertifikat, real natijalar</p>
+      <h1 class="kinetic-title">
+        <span class="title-line"><span class="word">Abdumumin</span> <span class="word">Saydullayev</span></span>
+        <span class="title-subline"><span class="word">natijalari</span></span>
+      </h1>
+      <p class="hero-text" data-reveal>
+        Universitet bo‘yicha oliy ma’lumotli, 2-darajali oliy toifali o‘qituvchi.
+        SAT matematika qismidan 700 ball, milliy sertifikat bo‘yicha 3 karra A+ daraja
+        va 5 yillik tajribaga ega mutaxassis ustoz.
+      </p>
+      <div class="hero-actions" data-reveal>
+        <a class="button gold" href="#natijalar">Natijalarni ko‘rish</a>
+        <a class="button cyan" href="https://t.me/sat_vocabs_quiz_bot" target="_blank" rel="noopener">SAT quiz bot</a>
+        <a class="button outline" href="#aloqa">Aloqa</a>
+      </div>
+      <div class="hero-proof" data-reveal>
+        <span class="proof-chip"><span class="chip-dot"></span> 3 karra A+ daraja</span>
+        <span class="proof-chip"><span class="chip-dot"></span> SAT Math 700</span>
+        <span class="proof-chip"><span class="chip-dot"></span> 5 yillik tajriba</span>
+      </div>
+    </div>
+    <div class="hero-stage" data-reveal>
+      <div class="stage-shell">
+        <figure class="hero-photo">
+          <img src="{{ url_for('static', filename='images/hero-photo.jpg') }}" alt="Abdumumin Saydullayev">
+        </figure>
+        <div class="floating-badge badge-a">
+          <strong>A+</strong>
+          <span>Milliy sertifikat</span>
+        </div>
+        <div class="floating-badge badge-b">
+          <strong>700</strong>
+          <span>SAT Math ball</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ustoz" class="profile-section">
+    <article class="profile-intro" data-reveal>
+      <div class="profile-lottie" data-lottie="{{ url_for('static', filename='lottie/progress.json') }}" aria-hidden="true"></div>
+      <p class="eyebrow">Ustoz haqida</p>
+      <h2 class="section-title cyan">Aniq maqsad, o‘lchanadigan natija</h2>
+      <p>
+        Abdumumin ustoz o‘quvchilarni SAT matematika va milliy sertifikat imtihonlariga
+        tizimli tayyorlaydi. Shogirdlari 6 oy ichida Buxoro Maktabi EDU-777 maktabida
+        A va A+ natijalarga erishgan.
+      </p>
+    </article>
+    <div class="credential-board" data-reveal>
+      <article class="credential">
+        <small>Ta’lim</small>
+        <strong>Universitet bo‘yicha oliy ma’lumotli ustoz</strong>
+      </article>
+      <article class="credential accent-green">
+        <small>Daraja</small>
+        <strong>2-darajali oliy toifali o‘qituvchi</strong>
+      </article>
+      <article class="credential accent-coral">
+        <small>Sertifikat</small>
+        <strong>Milliy sertifikat bo‘yicha 3 karra A+</strong>
+      </article>
+      <article class="credential">
+        <small>Natija</small>
+        <strong>SAT matematika qismidan 700 ball</strong>
+      </article>
+    </div>
+  </section>
+
+  <section id="natijalar" class="section">
+    <div class="section-head" data-reveal>
+      <div>
+        <p class="eyebrow">O‘qituvchi natijalari</p>
+        <h2 class="section-title gold">Rasmiy hujjatlar</h2>
+      </div>
+      <p class="section-note">PDF previewlar avtomatik yuklanadi. Har bir hujjatni alohida ochish yoki yuklab olish mumkin.</p>
+    </div>
+
+    {% if teachers %}
+    <div class="teacher-grid">
+      {% for pdf in teachers %}
+      <article class="card-wrap gold-card" data-reveal>
+        <div class="spinner"></div>
+        <div class="card">
+          <div class="pdf-status">Preview yuklanmoqda...</div>
+          <canvas class="pdf-canvas" data-pdf="{{ url_for('static', filename='pdfs/' ~ pdf) }}" data-width="520"></canvas>
+          <div class="card-footer">
+            <div>
+              <p class="card-title">{{ pretty_name(pdf) }}</p>
+              <p class="card-subtitle">O‘qituvchi natijasi</p>
+            </div>
+            <div class="card-actions">
+              <a class="icon-btn" href="{{ url_for('static', filename='pdfs/' ~ pdf) }}" target="_blank" title="Ko‘rish" aria-label="PDF ko‘rish">↗</a>
+              <a class="icon-btn" href="{{ url_for('static', filename='pdfs/' ~ pdf) }}" download title="Yuklab olish" aria-label="PDF yuklab olish">↓</a>
+            </div>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">Hozircha asosiy natija PDF qo‘shilmagan.</div>
+    {% endif %}
+  </section>
+
+  <section id="sertifikatlar" class="section">
+    <div class="section-head" data-reveal>
+      <div>
+        <p class="eyebrow">O‘quvchilar</p>
+        <h2 class="section-title green">Sertifikatlar</h2>
+      </div>
+      <p class="section-note">Yangi sertifikat PDFlarini `static/pdfs` papkasiga qo‘shsangiz, sayt avtomatik ko‘rsatadi.</p>
+    </div>
+
+    {% if students %}
+    <div class="student-carousel" data-carousel data-reveal>
+      <div class="student-grid" data-carousel-track>
+      {% for pdf in students %}
+      <article class="card-wrap green-card">
+        <div class="spinner"></div>
+        <div class="card">
+          <div class="pdf-status">Preview yuklanmoqda...</div>
+          <canvas class="pdf-canvas" data-pdf="{{ url_for('static', filename='pdfs/' ~ pdf) }}" data-width="360"></canvas>
+          <div class="card-footer">
+            <div>
+              <p class="card-title">{{ pretty_name(pdf) }}</p>
+              <p class="card-subtitle">O‘quvchi sertifikati</p>
+            </div>
+            <div class="card-actions">
+              <a class="icon-btn" href="{{ url_for('static', filename='pdfs/' ~ pdf) }}" target="_blank" title="Ko‘rish" aria-label="PDF ko‘rish">↗</a>
+              <a class="icon-btn" href="{{ url_for('static', filename='pdfs/' ~ pdf) }}" download title="Yuklab olish" aria-label="PDF yuklab olish">↓</a>
+            </div>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+      </div>
+      <div class="carousel-dots" data-carousel-dots aria-label="Sertifikat carousel nuqtalari"></div>
+    </div>
+    {% else %}
+    <div class="empty-state">O‘quvchi sertifikatlari qo‘shilsa, shu yerda chiqadi.</div>
+    {% endif %}
+  </section>
+
+  <section class="cta-band" data-reveal>
+    <div class="cta-inner">
+      <div>
+        <h2>SAT vocab quiz bot orqali mashq qiling</h2>
+        <p>
+          Inglizcha va o‘zbekcha terminlarni tez takrorlash uchun botga o‘ting.
+          Sayt ustoz natijalarini ko‘rsatadi, bot esa alohida quiz mashg‘ulotlari uchun ishlaydi.
+        </p>
+        <div class="hero-actions">
+          <a class="button cyan" href="https://t.me/sat_vocabs_quiz_bot" target="_blank" rel="noopener">Botni ochish</a>
+          <a class="button outline" href="#sertifikatlar">Sertifikatlar</a>
+        </div>
+      </div>
+      <div class="cta-lottie" data-lottie="{{ url_for('static', filename='lottie/action.json') }}" aria-hidden="true"></div>
+    </div>
+  </section>
+</main>
+
+<footer id="aloqa" class="social-footer">
+  <a class="social-link" href="https://t.me/Saydullaxojayev_AAA" target="_blank" rel="noopener">Telegram</a>
+  <a class="social-link" href="https://t.me/mathacademy01" target="_blank" rel="noopener">Telegram kanal</a>
+  <a class="social-link" href="https://t.me/sat_vocabs_quiz_bot" target="_blank" rel="noopener">SAT quiz bot</a>
+  <a class="social-link" href="https://www.instagram.com/saydullayev_abdumumin" target="_blank" rel="noopener">Instagram</a>
+  <a class="social-link" href="https://www.youtube.com/@AbdumuminSaydullayevpm" target="_blank" rel="noopener">YouTube</a>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+<script>
+document.querySelectorAll(".pdf-canvas").forEach(function(canvas) {
+  var url = canvas.getAttribute("data-pdf");
+  var desiredWidth = Number(canvas.getAttribute("data-width") || 360);
+  var status = canvas.previousElementSibling;
+
+  pdfjsLib.getDocument(url).promise
+    .then(function(pdf) { return pdf.getPage(1); })
+    .then(function(page) {
+      var dpr = window.devicePixelRatio || 1;
+      var viewport = page.getViewport({ scale: 1 });
+      var scale = (desiredWidth * dpr) / viewport.width;
+      var scaledViewport = page.getViewport({ scale: scale });
+      var context = canvas.getContext("2d");
+
+      canvas.width = scaledViewport.width;
+      canvas.height = scaledViewport.height;
+      canvas.style.width = "100%";
+
+      return page.render({ canvasContext: context, viewport: scaledViewport }).promise;
+    })
+    .then(function() {
+      if (status && status.classList.contains("pdf-status")) {
+        status.remove();
+      }
+    })
+    .catch(function() {
+      if (status && status.classList.contains("pdf-status")) {
+        status.textContent = "Preview yuklanmadi. PDF havolasini oching.";
+      }
+    });
+});
+
+var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if ("IntersectionObserver" in window && !reduceMotion) {
+  var revealObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.16 });
+
+  document.querySelectorAll("[data-reveal]").forEach(function(item, index) {
+    item.style.transitionDelay = Math.min(index * 55, 240) + "ms";
+    revealObserver.observe(item);
+  });
+} else {
+  document.querySelectorAll("[data-reveal]").forEach(function(item) {
+    item.classList.add("is-visible");
+  });
+}
+
+if (window.lottie) {
+  document.querySelectorAll("[data-lottie]").forEach(function(container) {
+    window.lottie.loadAnimation({
+      container: container,
+      renderer: "svg",
+      loop: !reduceMotion,
+      autoplay: !reduceMotion,
+      path: container.getAttribute("data-lottie")
+    });
+  });
+}
+
+document.querySelectorAll("[data-carousel]").forEach(function(carousel) {
+  var track = carousel.querySelector("[data-carousel-track]");
+  var slides = Array.prototype.slice.call(track.querySelectorAll(".card-wrap"));
+  var dotsBox = carousel.querySelector("[data-carousel-dots]");
+  var current = 0;
+  var timer = null;
+
+  if (slides.length <= 1) {
+    return;
+  }
+
+  slides.forEach(function(_, index) {
+    var dot = document.createElement("button");
+    dot.className = "carousel-dot" + (index === 0 ? " active" : "");
+    dot.type = "button";
+    dot.setAttribute("aria-label", (index + 1) + "-sertifikat");
+    dot.addEventListener("click", function() {
+      goTo(index);
+      restart();
+    });
+    dotsBox.appendChild(dot);
+  });
+
+  function isMobileCarousel() {
+    return window.matchMedia("(max-width: 720px)").matches;
+  }
+
+  function updateDots() {
+    dotsBox.querySelectorAll(".carousel-dot").forEach(function(dot, index) {
+      dot.classList.toggle("active", index === current);
+    });
+  }
+
+  function goTo(index) {
+    current = (index + slides.length) % slides.length;
+    if (isMobileCarousel()) {
+      track.style.transform = "translateX(" + (-current * 100) + "%)";
+    } else {
+      track.style.transform = "";
+    }
+    updateDots();
+  }
+
+  function start() {
+    stop();
+    if (isMobileCarousel() && !reduceMotion) {
+      timer = window.setInterval(function() {
+        goTo(current + 1);
+      }, 3000);
+    }
+  }
+
+  function stop() {
+    if (timer) {
+      window.clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  function restart() {
+    stop();
+    start();
+  }
+
+  carousel.addEventListener("mouseenter", stop);
+  carousel.addEventListener("mouseleave", start);
+  carousel.addEventListener("touchstart", stop, { passive: true });
+  carousel.addEventListener("touchend", start, { passive: true });
+
+  window.addEventListener("resize", function() {
+    goTo(current);
+    start();
+  });
+
+  goTo(0);
+  start();
+});
+</script>
+</body>
+</html>

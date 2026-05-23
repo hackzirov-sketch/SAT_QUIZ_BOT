@@ -1,3 +1,5 @@
+import logging
+
 from aiogram import Router, F
 from aiogram.filters import Command
 from aiogram.types import Message, CallbackQuery
@@ -7,6 +9,7 @@ from bot.keyboards import settings_kb
 from bot.formatting import mode_label, difficulty_label
 
 router = Router()
+logger = logging.getLogger(__name__)
 
 def _settings_text(s: dict) -> str:
     mode = mode_label(s.get('preferred_mode', 'eng_uzb'))
@@ -78,5 +81,5 @@ async def settings_callback(callback: CallbackQuery):
     if s:
         try:
             await callback.message.edit_text(_settings_text(dict(s)), reply_markup=settings_kb(dict(s)))
-        except:
-            pass
+        except Exception:
+            logger.exception("settings_refresh_failed user_id=%s", callback.from_user.id)

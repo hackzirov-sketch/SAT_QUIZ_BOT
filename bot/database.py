@@ -1,17 +1,31 @@
+import asyncio
+from contextlib import asynccontextmanager
 import aiosqlite
-import json
 import os
-from typing import Optional, Any
+from typing import Optional
+
+from bot.config import DB_BUSY_TIMEOUT_MS
 
 DB_PATH: str = ''
 _db_conn: Optional[aiosqlite.Connection] = None
+_db_lock: Optional[asyncio.Lock] = None
+
+
+async def _connect(db_path: str) -> aiosqlite.Connection:
+    db = await aiosqlite.connect(db_path, timeout=max(DB_BUSY_TIMEOUT_MS / 1000, 1))
+    db.row_factory = aiosqlite.Row
+    await db.execute('PRAGMA foreign_keys=ON')
+    await db.execute(f'PRAGMA busy_timeout={DB_BUSY_TIMEOUT_MS}')
+    await db.execute('PRAGMA journal_mode=WAL')
+    await db.execute('PRAGMA synchronous=NORMAL')
+    await db.execute('PRAGMA cache_size=-8000')
+    return db
 
 async def init_db(db_path: str):
-    global DB_PATH, _db_conn
+    global DB_PATH, _db_conn, _db_lock
     DB_PATH = db_path
     os.makedirs(os.path.dirname(db_path), exist_ok=True)
-    db = await aiosqlite.connect(db_path)
-    db.row_factory = aiosqlite.Row
+    db = await _connect(db_path)
     await db.executescript('''
         PRAGMA journal_mode=WAL;
         PRAGMA synchronous=NORMAL;
@@ -227,20 +241,27 @@ async def init_db(db_path: str):
         CREATE INDEX IF NOT EXISTS idx_leaderboard_rank ON leaderboard(score DESC, completion_seconds ASC, finished_at ASC);
         CREATE INDEX IF NOT EXISTS idx_answers_attempt ON answers(attempt_id);
         CREATE INDEX IF NOT EXISTS idx_active_sessions_status ON active_sessions(status);
+        CREATE INDEX IF NOT EXISTS idx_active_sessions_attempt_status ON active_sessions(attempt_id, status);
+        CREATE INDEX IF NOT EXISTS idx_active_sessions_user_status ON active_sessions(user_id, status);
+        CREATE INDEX IF NOT EXISTS idx_active_sessions_expires ON active_sessions(expires_at, status);
     ''')
     try:
         await db.execute('ALTER TABLE duel_queue ADD COLUMN chat_id INTEGER NOT NULL DEFAULT 0')
-    except:
+    except aiosqlite.OperationalError:
         pass
     await db.commit()
     _db_conn = db
+    _db_lock = asyncio.Lock()
     return db
 
 async def get_db() -> aiosqlite.Connection:
-    global _db_conn
+    global _db_conn, _db_lock
     if _db_conn is None:
-        _db_conn = await aiosqlite.connect(DB_PATH)
-        _db_conn.row_factory = aiosqlite.Row
+        if not DB_PATH:
+            raise RuntimeError('Database is not initialized')
+        _db_conn = await _connect(DB_PATH)
+    if _db_lock is None:
+        _db_lock = asyncio.Lock()
     return _db_conn
 
 def get_db_sync() -> aiosqlite.Connection:
@@ -250,3 +271,21 @@ def get_db_sync() -> aiosqlite.Connection:
 def now_iso() -> str:
     from datetime import datetime, timezone
     return datetime.now(timezone.utc).isoformat()
+
+
+@asynccontextmanager
+async def db_transaction(mode: str = 'IMMEDIATE'):
+    """Serialize writes on the shared SQLite connection and rollback on errors."""
+    global _db_lock
+    db = await get_db()
+    if _db_lock is None:
+        _db_lock = asyncio.Lock()
+    async with _db_lock:
+        await db.execute(f'BEGIN {mode}')
+        try:
+            yield db
+        except Exception:
+            await db.rollback()
+            raise
+        else:
+            await db.commit()
