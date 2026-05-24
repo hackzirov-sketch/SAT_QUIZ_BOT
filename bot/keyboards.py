@@ -3,9 +3,13 @@ from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
 
 from bot.formatting import mode_label, difficulty_label
 
+DICTIONARY_PAGE_SIZE = 10
+DICTIONARY_WORD_LABEL_MAX = 24
+
 def main_menu_kb() -> ReplyKeyboardMarkup:
     builder = ReplyKeyboardBuilder()
     builder.button(text='🧠 Test boshlash')
+    builder.button(text='📖 Lug‘at')
     builder.button(text='🗓 Daily Challenge')
     builder.button(text='🏆 Reyting')
     builder.button(text='📊 Natijalarim')
@@ -13,8 +17,41 @@ def main_menu_kb() -> ReplyKeyboardMarkup:
     builder.button(text='ℹ️ Yordam')
     builder.button(text='⚙️ Sozlamalar')
     builder.button(text='🚀 Kelajak uchun rejalar')
-    builder.adjust(2, 2, 2, 2)
+    builder.adjust(2, 2, 2, 2, 1)
     return builder.as_markup(resize_keyboard=True)
+
+
+def clamp_dictionary_page(page: int, total_items: int, page_size: int = DICTIONARY_PAGE_SIZE) -> int:
+    if total_items <= 0:
+        return 0
+    total_pages = (total_items + page_size - 1) // page_size
+    return max(0, min(page, total_pages - 1))
+
+
+def _dictionary_label(value: str, max_len: int = DICTIONARY_WORD_LABEL_MAX) -> str:
+    value = (value or '').strip()
+    if len(value) <= max_len:
+        return value
+    return f"{value[:max_len - 1].rstrip(' -_')}…"
+
+
+def dictionary_kb(words: list, page: int, total_items: int) -> InlineKeyboardMarkup:
+    total_pages = max(1, (total_items + DICTIONARY_PAGE_SIZE - 1) // DICTIONARY_PAGE_SIZE)
+    page = clamp_dictionary_page(page, total_items)
+    builder = InlineKeyboardBuilder()
+    for word in words:
+        builder.button(
+            text=_dictionary_label(str(word['english'])),
+            callback_data=f"dict:w:{word['id']}:{page}",
+        )
+    builder.adjust(2)
+    builder.row(
+        InlineKeyboardButton(text='⬅️ Oldingi', callback_data=f'dict:p:{max(0, page - 1)}'),
+        InlineKeyboardButton(text=f'{page + 1}/{total_pages}', callback_data=f'dict:p:{page}'),
+        InlineKeyboardButton(text='Keyingi ➡️', callback_data=f'dict:p:{min(total_pages - 1, page + 1)}'),
+    )
+    builder.row(InlineKeyboardButton(text='🏠 Asosiy menyu', callback_data='back_main'))
+    return builder.as_markup()
 
 def start_kb(preferred_mode: str = '', preferred_difficulty: str = '') -> InlineKeyboardMarkup:
     builder = InlineKeyboardBuilder()

@@ -5,24 +5,25 @@ from bot.config import ROOT, VOCABULARY_PATH, LEVEL_THRESHOLDS
 from bot.quiz_engine import level_name
 
 async def load_vocabulary(db) -> list:
-    """Load vocabulary from DB; if empty, import from JSON."""
+    """Load vocabulary from DB and import any JSON words that are missing."""
     cursor = await db.execute('SELECT COUNT(*) as c FROM vocabulary')
     row = await cursor.fetchone()
-    if row and row['c'] > 0:
+    json_path = VOCABULARY_PATH or str(ROOT / 'data/vocabulary.json')
+    if row and row['c'] > 0 and not os.path.exists(json_path):
         cursor = await db.execute('SELECT * FROM vocabulary ORDER BY id')
         return await cursor.fetchall()
-
-    # Import from JSON
-    json_path = VOCABULARY_PATH or str(ROOT / 'data/vocabulary.json')
     if not os.path.exists(json_path):
         return []
 
     with open(json_path, 'r', encoding='utf-8') as f:
         raw = json.load(f)
 
+    existing_rows = await (await db.execute('SELECT LOWER(english) AS english FROM vocabulary')).fetchall()
+    existing_en = {r['english'] for r in existing_rows}
     seen_en = set()
     seen_pair = set()
     cleaned = []
+    primary_updates = []
     for item in raw:
         eng = (item.get('english', '') or '').strip().lower()
         uzb = (item.get('uzbek', '') or '').strip()
@@ -31,18 +32,27 @@ async def load_vocabulary(db) -> list:
         diff = item.get('difficulty')
         if not eng or not uzb:
             continue
+        if src == 'User SAT Core':
+            primary_updates.append((uzb, cat, src, diff, eng))
         pk = f"{eng}:{uzb.lower()}"
-        if eng in seen_en or pk in seen_pair:
+        if eng in existing_en or eng in seen_en or pk in seen_pair:
             continue
         seen_en.add(eng)
         seen_pair.add(pk)
         cleaned.append((eng, uzb, cat, src, diff))
 
-    await db.executemany(
-        'INSERT INTO vocabulary (english, uzbek, category, source, difficulty) VALUES (?, ?, ?, ?, ?)',
-        cleaned,
-    )
-    await db.commit()
+    if primary_updates:
+        await db.executemany(
+            'UPDATE vocabulary SET uzbek = ?, category = ?, source = ?, difficulty = ? WHERE LOWER(english) = ?',
+            primary_updates,
+        )
+    if cleaned:
+        await db.executemany(
+            'INSERT INTO vocabulary (english, uzbek, category, source, difficulty) VALUES (?, ?, ?, ?, ?)',
+            cleaned,
+        )
+    if primary_updates or cleaned:
+        await db.commit()
     cursor = await db.execute('SELECT * FROM vocabulary ORDER BY id')
     return await cursor.fetchall()
 

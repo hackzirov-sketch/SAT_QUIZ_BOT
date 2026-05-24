@@ -10,6 +10,8 @@ from bot.config import DB_BUSY_TIMEOUT_MS
 DB_PATH: str = ''
 _db_conn: Optional[aiosqlite.Connection] = None
 _db_lock: Optional[asyncio.Lock] = None
+_MIGRATION_TABLES = frozenset({'attempts', 'statistics', 'users'})
+_TRANSACTION_MODES = frozenset({'DEFERRED', 'IMMEDIATE', 'EXCLUSIVE'})
 
 
 async def _connect(db_path: str) -> aiosqlite.Connection:
@@ -268,6 +270,8 @@ async def init_db(db_path: str):
 
 
 async def _column_exists(db: aiosqlite.Connection, table: str, column: str) -> bool:
+    if table not in _MIGRATION_TABLES:
+        raise ValueError(f'Unsupported migration table: {table}')
     rows = await (await db.execute(f'PRAGMA table_info({table})')).fetchall()
     return any(r['name'] == column for r in rows)
 
@@ -282,6 +286,8 @@ async def _migrate_schema(db: aiosqlite.Connection) -> None:
         ('users', 'subscription_required', 'INTEGER NOT NULL DEFAULT 1'),
     ]
     for table, column, col_def in migrations:
+        if table not in _MIGRATION_TABLES or not column.isidentifier():
+            raise ValueError(f'Unsupported migration target: {table}.{column}')
         if not await _column_exists(db, table, column):
             try:
                 await db.execute(f'ALTER TABLE {table} ADD COLUMN {column} {col_def}')
@@ -314,6 +320,9 @@ def now_iso() -> str:
 async def db_transaction(mode: str = 'IMMEDIATE'):
     """Serialize writes on the shared SQLite connection and rollback on errors."""
     global _db_lock
+    mode = mode.upper()
+    if mode not in _TRANSACTION_MODES:
+        raise ValueError(f'Unsupported transaction mode: {mode}')
     db = await get_db()
     if _db_lock is None:
         _db_lock = asyncio.Lock()

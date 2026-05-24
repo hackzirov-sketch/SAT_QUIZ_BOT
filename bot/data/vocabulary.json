@@ -91,16 +91,16 @@
     "id": 12,
     "english": "composite",
     "uzbek": "murakkab",
-    "category": "Algebra",
-    "source": "SAT Vocabulary Handbook",
+    "category": "Number Types",
+    "source": "User SAT Core",
     "difficulty": "easy"
   },
   {
     "id": 13,
     "english": "congruent",
     "uzbek": "teng",
-    "category": "Algebra",
-    "source": "SAT Vocabulary Handbook",
+    "category": "Geometry",
+    "source": "User SAT Core",
     "difficulty": "easy"
   },
   {
@@ -114,9 +114,9 @@
   {
     "id": 15,
     "english": "constant",
-    "uzbek": "doimiy",
+    "uzbek": "oʻzgarmas",
     "category": "Algebra",
-    "source": "SAT Vocabulary Handbook",
+    "source": "User SAT Core",
     "difficulty": "easy"
   },
   {
@@ -244,15 +244,15 @@
     "english": "equation",
     "uzbek": "tenglama",
     "category": "Algebra",
-    "source": "SAT Vocabulary Handbook",
+    "source": "User SAT Core",
     "difficulty": "easy"
   },
   {
     "id": 32,
     "english": "equivalent",
-    "uzbek": "ekvivalent",
+    "uzbek": "teng",
     "category": "Algebra",
-    "source": "SAT Vocabulary Handbook",
+    "source": "User SAT Core",
     "difficulty": "easy"
   },
   {
@@ -395,8 +395,8 @@
     "id": 50,
     "english": "integer",
     "uzbek": "butun son",
-    "category": "Algebra",
-    "source": "SAT Vocabulary Handbook",
+    "category": "Number Types",
+    "source": "User SAT Core",
     "difficulty": "easy"
   },
   {
@@ -546,9 +546,9 @@
   {
     "id": 69,
     "english": "prime",
-    "uzbek": "tub",
-    "category": "Algebra",
-    "source": "SAT Vocabulary Handbook",
+    "uzbek": "tub son",
+    "category": "Number Types",
+    "source": "User SAT Core",
     "difficulty": "easy"
   },
   {
@@ -667,8 +667,8 @@
     "id": 84,
     "english": "remainder",
     "uzbek": "qoldiq",
-    "category": "Algebra",
-    "source": "SAT Vocabulary Handbook",
+    "category": "Basic Operations",
+    "source": "User SAT Core",
     "difficulty": "easy"
   },
   {
@@ -732,7 +732,7 @@
     "english": "solution",
     "uzbek": "yechim",
     "category": "Algebra",
-    "source": "SAT Vocabulary Handbook",
+    "source": "User SAT Core",
     "difficulty": "easy"
   },
   {
@@ -1132,7 +1132,7 @@
     "english": "isosceles",
     "uzbek": "teng yonli",
     "category": "Geometry",
-    "source": "SAT Vocabulary Handbook",
+    "source": "User SAT Core",
     "difficulty": "easy"
   },
   {
@@ -1154,9 +1154,9 @@
   {
     "id": 145,
     "english": "length",
-    "uzbek": "uzunlik",
+    "uzbek": "uzunligi",
     "category": "Geometry",
-    "source": "SAT Vocabulary Handbook",
+    "source": "User SAT Core",
     "difficulty": "easy"
   },
   {
@@ -1258,9 +1258,9 @@
   {
     "id": 158,
     "english": "polygon",
-    "uzbek": "ko'pburchak",
+    "uzbek": "koʻpburchak",
     "category": "Geometry",
-    "source": "SAT Vocabulary Handbook",
+    "source": "User SAT Core",
     "difficulty": "easy"
   },
   {
@@ -1570,9 +1570,9 @@
   {
     "id": 197,
     "english": "division",
-    "uzbek": "bo'lish",
-    "category": "Arithmetic",
-    "source": "SAT Vocabulary Handbook",
+    "uzbek": "boʻlish",
+    "category": "Basic Operations",
+    "source": "User SAT Core",
     "difficulty": "easy"
   },
   {
@@ -1610,9 +1610,9 @@
   {
     "id": 202,
     "english": "multiplication",
-    "uzbek": "ko'paytirish",
-    "category": "Arithmetic",
-    "source": "SAT Vocabulary Handbook",
+    "uzbek": "koʻpaytirish",
+    "category": "Basic Operations",
+    "source": "User SAT Core",
     "difficulty": "easy"
   },
   {
@@ -1940,7 +1940,7 @@
     "english": "consecutive",
     "uzbek": "ketma-ket",
     "category": "Number Types",
-    "source": "SAT Vocabulary Handbook",
+    "source": "User SAT Core",
     "difficulty": "easy"
   },
   {
@@ -1956,7 +1956,7 @@
     "english": "even",
     "uzbek": "juft",
     "category": "Number Types",
-    "source": "SAT Vocabulary Handbook",
+    "source": "User SAT Core",
     "difficulty": "easy"
   },
   {
@@ -1964,7 +1964,7 @@
     "english": "negative",
     "uzbek": "manfiy",
     "category": "Number Types",
-    "source": "SAT Vocabulary Handbook",
+    "source": "User SAT Core",
     "difficulty": "easy"
   },
   {
@@ -1972,7 +1972,7 @@
     "english": "odd",
     "uzbek": "toq",
     "category": "Number Types",
-    "source": "SAT Vocabulary Handbook",
+    "source": "User SAT Core",
     "difficulty": "easy"
   },
   {
@@ -1988,7 +1988,7 @@
     "english": "positive",
     "uzbek": "musbat",
     "category": "Number Types",
-    "source": "SAT Vocabulary Handbook",
+    "source": "User SAT Core",
     "difficulty": "easy"
   },
   {
@@ -2012,7 +2012,7 @@
     "english": "function",
     "uzbek": "funksiya",
     "category": "Functions",
-    "source": "SAT Vocabulary Handbook",
+    "source": "User SAT Core",
     "difficulty": "easy"
   },
   {
@@ -2812,8 +2812,8 @@
     "english": "line segment",
     "uzbek": "kesma",
     "category": "Geometry",
-    "source": "SAT Vocabulary Handbook",
-    "difficulty": "hard"
+    "source": "User SAT Core",
+    "difficulty": "easy"
   },
   {
     "id": 353,
@@ -3430,5 +3430,357 @@
     "category": "Basic Operations",
     "source": "SAT Vocabulary Handbook",
     "difficulty": "hard"
+  },
+  {
+    "id": 430,
+    "english": "addition",
+    "uzbek": "qoʻshish",
+    "category": "Basic Operations",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 431,
+    "english": "subtraction",
+    "uzbek": "ayirish",
+    "category": "Basic Operations",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 432,
+    "english": "both",
+    "uzbek": "ikkalasida",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 433,
+    "english": "cost",
+    "uzbek": "narx",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 434,
+    "english": "renting",
+    "uzbek": "ijaraga olish",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 435,
+    "english": "when",
+    "uzbek": "qachon",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 436,
+    "english": "the same",
+    "uzbek": "bir xil",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 437,
+    "english": "if",
+    "uzbek": "agar",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 438,
+    "english": "what",
+    "uzbek": "nima",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 439,
+    "english": "value",
+    "uzbek": "qiymat",
+    "category": "Algebra",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 440,
+    "english": "of",
+    "uzbek": "-ning",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 441,
+    "english": "which",
+    "uzbek": "qaysi",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 442,
+    "english": "given",
+    "uzbek": "berilgan",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 443,
+    "english": "paid",
+    "uzbek": "toʻlamoq",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 444,
+    "english": "total",
+    "uzbek": "umumiy",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 445,
+    "english": "make",
+    "uzbek": "bajarmoq (amalga oshirmoq)",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 446,
+    "english": "represent",
+    "uzbek": "ifodalamoq",
+    "category": "Algebra",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 447,
+    "english": "this",
+    "uzbek": "bu",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 448,
+    "english": "situation",
+    "uzbek": "holat",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 449,
+    "english": "infinitely",
+    "uzbek": "cheksiz",
+    "category": "Algebra",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 450,
+    "english": "many",
+    "uzbek": "ko?p",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 451,
+    "english": "each",
+    "uzbek": "har biri",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 452,
+    "english": "side",
+    "uzbek": "tomon",
+    "category": "Geometry",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 453,
+    "english": "how many",
+    "uzbek": "nechta",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 454,
+    "english": "how much",
+    "uzbek": "qancha",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 455,
+    "english": "divided",
+    "uzbek": "boʻlmoq",
+    "category": "Basic Operations",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 456,
+    "english": "part",
+    "uzbek": "qism",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 457,
+    "english": "equal",
+    "uzbek": "teng",
+    "category": "Algebra",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 458,
+    "english": "true",
+    "uzbek": "toʻgʻri",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 459,
+    "english": "no solution",
+    "uzbek": "yechim yoʻq",
+    "category": "Algebra",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 460,
+    "english": "pairs",
+    "uzbek": "juftlik",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 461,
+    "english": "between",
+    "uzbek": "orasida",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 462,
+    "english": "have",
+    "uzbek": "bor",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 463,
+    "english": "librarian",
+    "uzbek": "kutubxona",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 464,
+    "english": "distribute",
+    "uzbek": "taqsimlamoq",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 465,
+    "english": "left over",
+    "uzbek": "qolib ketmoq",
+    "category": "Basic Operations",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 466,
+    "english": "group",
+    "uzbek": "guruh",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 467,
+    "english": "variables",
+    "uzbek": "oʻzgaruvchi",
+    "category": "Algebra",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 468,
+    "english": "object",
+    "uzbek": "jism",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 469,
+    "english": "mass",
+    "uzbek": "massa",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 470,
+    "english": "correctly",
+    "uzbek": "toʻgʻri",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 471,
+    "english": "increased",
+    "uzbek": "oshmoq",
+    "category": "Algebra",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 472,
+    "english": "corresponds",
+    "uzbek": "mos kelmoq",
+    "category": "Functions",
+    "source": "User SAT Core",
+    "difficulty": "easy"
+  },
+  {
+    "id": 473,
+    "english": "could be",
+    "uzbek": "boʻlmoq",
+    "category": "General",
+    "source": "User SAT Core",
+    "difficulty": "easy"
   }
 ]

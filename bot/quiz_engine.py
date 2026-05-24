@@ -8,6 +8,8 @@ from bot.config import (
     LEVEL_THRESHOLDS, LEVEL_NAMES,
 )
 
+PRIMARY_SOURCE = 'User SAT Core'
+
 def level_name(lv: int) -> str:
     return LEVEL_NAMES[lv] if 0 <= lv < len(LEVEL_NAMES) else LEVEL_NAMES[1]
 
@@ -104,6 +106,14 @@ class QuizEngine:
             })
         return questions
 
+    def _select_primary_first(self, pool: list[dict], count: int) -> list[dict]:
+        primary = [e for e in pool if e.get('source') == PRIMARY_SOURCE]
+        rest = [e for e in pool if e.get('source') != PRIMARY_SOURCE]
+        selected = shuffle(primary)[:count]
+        if len(selected) < count:
+            selected.extend(shuffle(rest)[:count - len(selected)])
+        return shuffle(selected)
+
     def generate_questions(self, user_id: int, mode: str, count: int = QUIZ_QUESTION_COUNT,
                            difficulty: str = '', category: str = '', for_daily: bool = False) -> dict:
         pool = list(self._pool(difficulty, category, count))
@@ -113,13 +123,16 @@ class QuizEngine:
         if for_daily:
             today = datetime.now(timezone.utc).strftime('%Y-%m-%d')
             seed = sum(ord(c) for c in today)
-            seeded = sorted(pool, key=lambda e: (e['id'] * 31 + seed) % 10007)
-            selected = seeded[:count]
+            primary = [e for e in pool if e.get('source') == PRIMARY_SOURCE]
+            rest = [e for e in pool if e.get('source') != PRIMARY_SOURCE]
+            seeded_primary = sorted(primary, key=lambda e: (e['id'] * 31 + seed) % 10007)
+            seeded_rest = sorted(rest, key=lambda e: (e['id'] * 31 + seed) % 10007)
+            selected = (seeded_primary + seeded_rest)[:count]
             ids = ','.join(str(e['id']) for e in selected)
             order_hash = hashlib.sha256(f"daily:{today}:{ids}".encode()).hexdigest()
             return {'questions': self._build_questions(selected, mode), 'order_hash': order_hash, 'selected': selected}
 
-        selected = shuffle(pool)[:count]
+        selected = self._select_primary_first(pool, count)
         ids = ','.join(str(e['id']) for e in selected)
         order_hash = hashlib.sha256(f"{mode}:{ids}".encode()).hexdigest()
         return {'questions': self._build_questions(selected, mode), 'order_hash': order_hash, 'selected': selected}
