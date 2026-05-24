@@ -10,10 +10,14 @@ from bot.database import get_db
 from bot.config import DATABASE_PATH, is_admin_id
 from bot.keyboards import admin_kb
 from bot.formatting import format_seconds
+from bot.services.health_service import admin_diagnostics
+from bot.services.subscription_service import cache_stats as subscription_cache_stats
 from bot.services.weekly_report_service import send_weekly_report
 
 router = Router()
 bot_instance = None
+_admin_last_action: dict[int, float] = {}
+_ADMIN_COOLDOWN_SECONDS = 1.0
 
 def set_bot(b):
     global bot_instance
@@ -21,6 +25,23 @@ def set_bot(b):
 
 def is_admin(user_id: int) -> bool:
     return is_admin_id(user_id)
+
+
+def _admin_allowed(user_id: int) -> bool:
+    now = time.monotonic()
+    last = _admin_last_action.get(user_id, 0.0)
+    if now - last < _ADMIN_COOLDOWN_SECONDS:
+        return False
+    _admin_last_action[user_id] = now
+    return True
+
+
+async def _audit_admin_action(db, actor_id: int | None, action: str, chat_id: int | None) -> None:
+    await db.execute(
+        'INSERT INTO admin_audit_log (actor_id, action, chat_id, created_at) VALUES (?,?,?,?)',
+        (actor_id or 0, action[:64], chat_id or 0, datetime.now(timezone.utc).isoformat()),
+    )
+    await db.commit()
 
 
 def _chat_type_value(msg) -> str:
@@ -84,11 +105,15 @@ async def admin_command(message: Message):
             "/admin weekly_on\n"
             "/admin weekly_off\n"
             "/admin weekly\n"
-            "/admin duels",
+            "/admin duels\n"
+            "/admin diagnostics",
             reply_markup=admin_kb())
         return
 
-    await _handle_admin_action(message, action, payload)
+    if not _admin_allowed(message.from_user.id):
+        await message.reply('Juda tez. Bir soniyadan keyin urinib ko\'ring.')
+        return
+    await _handle_admin_action(message, action, payload, actor_id=message.from_user.id)
 
 @router.callback_query(F.data.startswith('admin:'))
 async def admin_callback(callback: CallbackQuery):
@@ -96,11 +121,15 @@ async def admin_callback(callback: CallbackQuery):
         await callback.answer('Admin emas.')
         return
     action = callback.data.split(':', 1)[1]
+    if not _admin_allowed(callback.from_user.id):
+        await callback.answer('Juda tez.')
+        return
     await callback.answer()
-    await _handle_admin_action(callback.message, action, '')
+    await _handle_admin_action(callback.message, action, '', actor_id=callback.from_user.id)
 
-async def _handle_admin_action(msg, action: str, payload: str = ''):
+async def _handle_admin_action(msg, action: str, payload: str = '', actor_id: int | None = None):
     db = await get_db()
+    await _audit_admin_action(db, actor_id, action, getattr(msg.chat, 'id', None) if msg else None)
     if action == 'stats':
         c = await _admin_counts(db)
         await msg.reply(
@@ -111,6 +140,21 @@ async def _handle_admin_action(msg, action: str, payload: str = ''):
             f"⏱ Faol: <b>{c['active_sessions']}</b>\n"
             f"📝 Javoblar: <b>{c['answers']}</b>\n"
             f"📚 Lug'at: <b>{c['vocab']}</b>")
+
+    elif action == 'diagnostics':
+        diag = await admin_diagnostics()
+        cache = subscription_cache_stats()
+        await msg.reply(
+            "<b>Diagnostics</b>\n\n"
+            f"DB: {'OK' if diag['db_alive'] else 'FAIL'}\n"
+            f"Integrity: {'OK' if diag['db_integrity_ok'] else 'FAIL'}\n"
+            f"Polling: {'OK' if diag['polling_alive'] else 'OFF'}\n"
+            f"Vocab: {diag['vocabulary_count']}\n"
+            f"DB size: {diag['db_size']} bytes\n"
+            f"WAL size: {diag['wal_size']} bytes\n"
+            f"Uptime: {diag['uptime_seconds']}s\n"
+            f"Subscription cache: {cache['subscription_cache_entries']}"
+        )
 
     elif action == 'active':
         rows = await (await db.execute(

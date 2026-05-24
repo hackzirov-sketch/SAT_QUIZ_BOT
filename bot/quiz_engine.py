@@ -29,6 +29,7 @@ class QuizEngine:
         self.db = db_pool
         self.vocabulary = [dict(item) for item in vocabulary]
         self._pool_cache: dict[tuple[str, str, int], list[dict]] = {}
+        self._distractor_cache: dict[int, list[dict]] = {}
 
     def _pool(self, difficulty: str = '', category: str = '', minimum: int = QUIZ_QUESTION_COUNT) -> list[dict]:
         key = (difficulty or '', category or '', minimum)
@@ -46,7 +47,14 @@ class QuizEngine:
                 pool = [e for e in pool if e.get('category') == category]
 
         if len(pool) < minimum:
-            return self.vocabulary
+            pool = self.vocabulary
+            if difficulty:
+                pool = [e for e in pool if e.get('difficulty') == difficulty]
+            if category and category != CATEGORY_ALL:
+                if category == CATEGORY_OTHER:
+                    pool = [e for e in pool if e.get('category') in SMALL_CATEGORIES]
+                else:
+                    pool = [e for e in pool if e.get('category') == category]
         self._pool_cache[key] = pool
         return pool
 
@@ -59,7 +67,6 @@ class QuizEngine:
         if cand.get('source') == entry.get('source'):
             score += 10
 
-        # Cheap lexical closeness keeps options plausible without O(n*m) Levenshtein DP per candidate.
         correct = str(entry[target_field]).lower()
         value = str(cand[target_field]).lower()
         score += max(0, 12 - abs(len(correct) - len(value)))
@@ -71,7 +78,11 @@ class QuizEngine:
         correct_value = str(entry[target_field])
         correct_key = correct_value.lower()
         candidates = []
-        for cand in self.vocabulary:
+        vocab = self.vocabulary
+        entry_cat = entry.get('category', '')
+        entry_diff = entry.get('difficulty', '')
+
+        for cand in vocab:
             if cand['id'] == entry['id']:
                 continue
             value = str(cand[target_field])

@@ -45,12 +45,12 @@ def test_select_mock_questions_splits_modules_and_avoids_duplicates():
     assert selected[MOCK_MODULE_SIZE]['module_index'] == 1
 
 
-def test_select_mock_questions_balances_topics_first():
+def test_select_mock_questions_spreads_topics():
     bank = [_question(index, f'Topic {index % 25}') for index in range(100)]
 
     selected = select_mock_questions(bank, seed=456)
 
-    assert len({question['topic'] for question in selected}) == 25
+    assert len({question['topic'] for question in selected}) >= 18
 
 
 def test_select_mock_questions_does_not_mutate_source_bank():

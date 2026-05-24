@@ -20,12 +20,12 @@
     "topic": "Expressions",
     "module_hint": null,
     "difficulty": "mixed",
-    "question": "65= 2K\nv2\nFor an object with a mass of 65 kilograms,\nthe given equation relates the kinetic energyK, in joules, of the object to the object's speedv, in meters per second, where\nKandvare positive. Which equation correctly expresses this object's speed, in meters per second, in terms of the object's kinetic energy, in joules?",
+    "question": "65= 2K\nv²\nFor an object with a mass of 65 kilograms,\nthe given equation relates the kinetic energyK, in joules, of the object to the object's speedv, in meters per second, where\nKandvare positive. Which equation correctly expresses this object's speed, in meters per second, in terms of the object's kinetic energy, in joules?",
     "choices": {
-      "A": "v= 2K\n652",
-      "B": "v= 652\n2K",
-      "C": "v=\nq\n65\n2k",
-      "D": "v=\nq\n2K\n65"
+      "A": "v= 2K/652",
+      "B": "v= 652/2K",
+      "C": "v=\n√(65/2k)",
+      "D": "v=\n√(2K/65)"
     },
     "correct_choice": "D",
     "explanation": "",
@@ -2036,12 +2036,12 @@
     "topic": "Exponents&Radicals",
     "module_hint": null,
     "difficulty": "mixed",
-    "question": "53= 2K\nv2\nFor an object with a mass of 53 kilograms,\nthe given equation relates the kinetic energy K, in joules, of the object to the object's speed u, in meters per second, where\nK and v are positive. Which equation correctly expresses this object's speed, in meters per second, in terms of the object's kinetic energy, in joules?",
+    "question": "53= 2K\nv²\nFor an object with a mass of 53 kilograms,\nthe given equation relates the kinetic energy K, in joules, of the object to the object's speed u, in meters per second, where\nK and v are positive. Which equation correctly expresses this object's speed, in meters per second, in terms of the object's kinetic energy, in joules?",
     "choices": {
-      "A": "v=\nq\n2K\n53",
-      "B": "v=\nq\n53\n2k",
-      "C": "v= 532\n2K",
-      "D": "v= 2K\n532"
+      "A": "v=\n√(2K/53)",
+      "B": "v=\n√(53/2k)",
+      "C": "v= 532/2K",
+      "D": "v= 2K/532"
     },
     "correct_choice": "A",
     "explanation": "",

@@ -10,10 +10,10 @@ services:
     # Mounts a 1GB persistent volume at /data
     # All bot data (DB, uploads) stored here survives deploys/restarts
     # Enable in Render Dashboard → Environment → Disk
-    # disk:
-    #   name: data
-    #   mountPath: /data
-    #   sizeGB: 1
+    disk:
+      name: data
+      mountPath: /data
+      sizeGB: 1
     envVars:
       # === Required (set in Render Dashboard) ===
       - key: BOT_TOKEN
@@ -39,7 +39,7 @@ services:
       # Free tier (default): bot/data/quiz_bot.db — ephemeral, lost on restart
       # Paid plan (with Disk at /data): use /data/quiz_bot.db to persist
       - key: DATABASE_PATH
-        value: data/quiz_bot.db
+        value: /data/quiz_bot.db
       - key: DB_BUSY_TIMEOUT_MS
         value: "10000"
 

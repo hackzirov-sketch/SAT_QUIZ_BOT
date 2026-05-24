@@ -26,7 +26,7 @@ from aiogram.enums import ParseMode
 from waitress import serve
 
 from bot.config import BOT_POLLING_ENABLED, BOT_TOKEN, DATABASE_PATH, PORT
-from bot.database import db_transaction, get_db, init_db
+from bot.database import db_transaction, get_db, init_db, integrity_check, wal_checkpoint
 from bot.handlers.admin import set_bot as set_admin_bot
 from bot.handlers.duel import set_bot as set_duel_bot
 from bot.main import configure_logging, setup_dispatcher
@@ -34,6 +34,7 @@ from bot.quiz_engine import QuizEngine
 from bot.services.session_sweeper import run_session_sweeper
 from bot.services.weekly_report_service import run_weekly_report_scheduler
 from bot.utils.db_helpers import load_vocabulary
+from bot.runtime_state import runtime_state
 from teacher_site.app import app as flask_app
 
 
@@ -43,6 +44,17 @@ _polling_started = False
 _polling_lock_fd: int | None = None
 _POLLING_LOCK_PATH = os.path.join(tempfile.gettempdir(), 'quiz_bot_polling.lock')
 _DB_MAINT_INTERVAL = 14_400  # 4 hours between incremental_vacuum
+
+
+def validate_render_sqlite_path() -> None:
+    if os.name != 'posix':
+        return
+    if not os.environ.get('RENDER'):
+        return
+    if not DATABASE_PATH.startswith('/data/'):
+        raise RuntimeError('DATABASE_PATH must be under /data on Render when using SQLite')
+    if not os.path.isdir('/data'):
+        raise RuntimeError('/data persistent disk is not mounted')
 
 
 def _acquire_polling_lock() -> bool:
@@ -115,8 +127,11 @@ async def run_db_maintenance() -> None:
             db = await get_db()
             async with db_transaction():
                 await db.execute('PRAGMA incremental_vacuum(500)')
-            async with db_transaction():
-                await db.execute('PRAGMA wal_checkpoint(TRUNCATE)')
+            await wal_checkpoint('TRUNCATE')
+            ok = await integrity_check()
+            runtime_state.last_db_check_ok = ok
+            runtime_state.last_db_check_at = time.time()
+            runtime_state.scheduler_alive['db-maintenance'] = True
             logger.info("db_maintenance_completed interval=%ss", _DB_MAINT_INTERVAL)
         except asyncio.CancelledError:
             break
@@ -139,6 +154,7 @@ async def run_telegram_bot() -> None:
     vocab_data = await load_vocabulary(db)
     if not vocab_data:
         raise RuntimeError('Vocabulary is empty')
+    runtime_state.vocabulary_count = len(vocab_data)
 
     engine = QuizEngine(None, vocab_data)
     bot = Bot(token=BOT_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
@@ -155,6 +171,13 @@ async def run_telegram_bot() -> None:
         await bot.delete_webhook(drop_pending_updates=False)
         polling_task = asyncio.create_task(dp.start_polling(bot), name='polling')
         shutdown_task = asyncio.create_task(_shutdown_event.wait(), name='shutdown-wait')
+        runtime_state.polling_started = True
+        runtime_state.polling_alive = True
+        runtime_state.scheduler_alive.update({
+            'session-sweeper': True,
+            'weekly-report': True,
+            'db-maintenance': True,
+        })
         logger.info("telegram_polling_started pid=%s polling_task=%s", os.getpid(), id(polling_task))
         done, pending = await asyncio.wait(
             [polling_task, shutdown_task],
@@ -175,11 +198,12 @@ async def run_telegram_bot() -> None:
         await asyncio.gather(*tasks, return_exceptions=True)
         try:
             db = await get_db()
-            await db.execute('PRAGMA wal_checkpoint(TRUNCATE)')
+            await wal_checkpoint('TRUNCATE')
             logger.info("wal_checkpoint_completed")
         except Exception:
             pass
         await bot.session.close()
+        runtime_state.polling_alive = False
         _release_polling_lock()
         logger.info("telegram_polling_stopped")
 
@@ -191,6 +215,7 @@ def run_flask_with_health() -> None:
 
 def _run_flask_site() -> None:
     threads = int(os.environ.get('WEB_THREADS', '8'))
+    runtime_state.flask_alive = True
     logger.info("flask_site_started host=0.0.0.0 port=%s threads=%s", PORT, threads)
     serve(flask_app, host='0.0.0.0', port=PORT, threads=threads)
 
@@ -199,7 +224,9 @@ async def main() -> None:
     configure_logging()
     logger.info("render_start_main pid=%s polling=%s", os.getpid(), BOT_POLLING_ENABLED)
     _data_disk = os.path.isdir('/data') if os.name == 'posix' else None
+    runtime_state.render_disk_mounted = _data_disk
     logger.info("db_path=%s render_disk_mounted=%s", DATABASE_PATH, _data_disk)
+    validate_render_sqlite_path()
     loop = asyncio.get_event_loop()
     try:
         loop.add_signal_handler(signal.SIGTERM, _signal_handler)

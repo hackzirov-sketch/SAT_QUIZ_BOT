@@ -3,7 +3,9 @@ from __future__ import annotations
 import os
 from pathlib import Path
 
-from flask import Flask, render_template
+import asyncio
+
+from flask import Flask, jsonify, render_template
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -72,7 +74,14 @@ def index():
 
 @app.route("/health")
 def health():
-    return "Teacher Saydullayev site is alive."
+    try:
+        from bot.services.health_service import health_snapshot
+
+        snapshot = asyncio.run(health_snapshot())
+        status = 200 if snapshot.get("ok") else 503
+        return jsonify(snapshot), status
+    except Exception as exc:
+        return jsonify({"ok": False, "flask_alive": True, "error": type(exc).__name__}), 503
 
 
 if __name__ == "__main__":

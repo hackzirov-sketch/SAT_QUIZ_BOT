@@ -5,13 +5,22 @@ from bot.config import ROOT, VOCABULARY_PATH, LEVEL_THRESHOLDS
 from bot.quiz_engine import level_name
 
 async def load_vocabulary(db) -> list:
-    """Load vocabulary from DB and import any JSON words that are missing."""
-    cursor = await db.execute('SELECT COUNT(*) as c FROM vocabulary')
-    row = await cursor.fetchone()
+    from bot.database import set_json_fallback
+
+    try:
+        cursor = await db.execute('SELECT COUNT(*) as c FROM vocabulary')
+        row = await cursor.fetchone()
+    except Exception:
+        logger = __import__('logging').getLogger(__name__)
+        logger.exception('db_fetch_vocab_count_failed_falling_back_to_json')
+        return _load_vocab_json_fallback()
+
     json_path = VOCABULARY_PATH or str(ROOT / 'data/vocabulary.json')
     if row and row['c'] > 0 and not os.path.exists(json_path):
         cursor = await db.execute('SELECT * FROM vocabulary ORDER BY id')
-        return await cursor.fetchall()
+        vocab = await cursor.fetchall()
+        set_json_fallback({'source': 'db', 'data': [dict(v) for v in vocab]})
+        return vocab
     if not os.path.exists(json_path):
         return []
 
@@ -54,22 +63,29 @@ async def load_vocabulary(db) -> list:
     if primary_updates or cleaned:
         await db.commit()
     cursor = await db.execute('SELECT * FROM vocabulary ORDER BY id')
-    return await cursor.fetchall()
+    vocab = await cursor.fetchall()
+    set_json_fallback({'source': 'db', 'data': [dict(v) for v in vocab]})
+    return vocab
 
 async def upsert_user(db, telegram_id: int, username: str = None, first_name: str = None) -> dict:
     now = now_iso()
-    async with db_transaction() as tx:
-        await tx.execute(
-            'INSERT INTO users (telegram_id, username, first_name, created_at, updated_at) VALUES (?, ?, ?, ?, ?) '
-            'ON CONFLICT(telegram_id) DO UPDATE SET username=excluded.username, first_name=excluded.first_name, updated_at=excluded.updated_at',
-            (telegram_id, username, first_name, now, now),
-        )
-        cursor = await tx.execute('SELECT * FROM users WHERE telegram_id = ?', (telegram_id,))
-        user = await cursor.fetchone()
-        if user:
-            await tx.execute('INSERT OR IGNORE INTO settings (user_id, updated_at) VALUES (?, ?)', (user['id'], now))
-            await tx.execute('INSERT OR IGNORE INTO statistics (user_id, updated_at) VALUES (?, ?)', (user['id'], now))
-    return user
+    try:
+        async with db_transaction() as tx:
+            await tx.execute(
+                'INSERT INTO users (telegram_id, username, first_name, created_at, updated_at) VALUES (?, ?, ?, ?, ?) '
+                'ON CONFLICT(telegram_id) DO UPDATE SET username=excluded.username, first_name=excluded.first_name, updated_at=excluded.updated_at',
+                (telegram_id, username, first_name, now, now),
+            )
+            cursor = await tx.execute('SELECT * FROM users WHERE telegram_id = ?', (telegram_id,))
+            user = await cursor.fetchone()
+            if user:
+                await tx.execute('INSERT OR IGNORE INTO settings (user_id, updated_at) VALUES (?, ?)', (user['id'], now))
+                await tx.execute('INSERT OR IGNORE INTO statistics (user_id, updated_at) VALUES (?, ?)', (user['id'], now))
+        return user
+    except Exception:
+        logger = __import__('logging').getLogger(__name__)
+        logger.exception('upsert_user_failed tg_id=%s', telegram_id)
+        return {'id': 0, 'telegram_id': telegram_id, 'username': username, 'first_name': first_name}
 
 async def ensure_settings(db, user_id: int):
     cursor = await db.execute('SELECT id FROM settings WHERE user_id = ?', (user_id,))
@@ -113,13 +129,16 @@ def row_get(row, key: str, default=None):
 
 
 async def weakness_data(db, user_id: int) -> list:
-    cursor = await db.execute('''
-        SELECT a.is_correct, v.category FROM answers a
-        JOIN vocabulary v ON v.id = a.question_id
-        WHERE a.attempt_id IN (SELECT id FROM attempts WHERE user_id = ?)
-        ORDER BY a.answered_at DESC LIMIT 200
-    ''', (user_id,))
-    return await cursor.fetchall()
+    try:
+        cursor = await db.execute('''
+            SELECT a.is_correct, v.category FROM answers a
+            JOIN vocabulary v ON v.id = a.question_id
+            WHERE a.attempt_id IN (SELECT id FROM attempts WHERE user_id = ?)
+            ORDER BY a.answered_at DESC LIMIT 200
+        ''', (user_id,))
+        return await cursor.fetchall()
+    except Exception:
+        return []
 
 async def record_mistake(db, user_id: int, vocab_id: int, english: str, uzbek: str, category: str):
     now = now_iso()
@@ -145,3 +164,18 @@ async def mistake_count(db, user_id: int) -> int:
     cursor = await db.execute('SELECT COUNT(*) as c FROM mistakes WHERE user_id = ?', (user_id,))
     row = await cursor.fetchone()
     return row['c'] if row else 0
+
+
+def _load_vocab_json_fallback() -> list:
+    import json as _json
+    from bot.database import set_json_fallback
+
+    json_path = VOCABULARY_PATH or str(ROOT / 'data/vocabulary.json')
+    if not os.path.exists(json_path):
+        return []
+    with open(json_path, 'r', encoding='utf-8') as f:
+        raw = _json.load(f)
+    set_json_fallback({'source': 'json_fallback', 'data': raw, 'count': len(raw)})
+    logger = __import__('logging').getLogger(__name__)
+    logger.warning('vocab_loaded_via_json_fallback count=%s', len(raw))
+    return [dict(item) for item in raw]

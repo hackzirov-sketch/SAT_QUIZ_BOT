@@ -1,6 +1,7 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
 
+from bot.constants import ANSWER_LETTERS
 from bot.formatting import mode_label, difficulty_label
 
 DICTIONARY_PAGE_SIZE = 10
@@ -91,9 +92,9 @@ def mistakes_kb() -> InlineKeyboardMarkup:
     builder.adjust(1, 1, 1)
     return builder.as_markup()
 
-CATEGORY_LABELS = {'all': 'Hamma', 'Algebra': 'Algebra', 'Geometry': 'Geometry', 'Statistics': 'Statistics', 'other': 'Boshqa'}
-
 def category_kb(mode: str, difficulty: str) -> InlineKeyboardMarkup:
+    from bot.constants import CATEGORY_LABELS
+
     builder = InlineKeyboardBuilder()
     for cat in ['all', 'Algebra', 'Geometry', 'Statistics', 'other']:
         builder.button(text=CATEGORY_LABELS.get(cat, cat), callback_data=f"start:{mode}:{difficulty}:{cat}")
@@ -112,10 +113,9 @@ def active_quiz_kb(attempt_id: int) -> InlineKeyboardMarkup:
     ])
 
 def answer_kb(attempt_id: int, question_index: int, options: list) -> InlineKeyboardMarkup:
-    letters = ['A', 'B', 'C', 'D']
     builder = InlineKeyboardBuilder()
     for i, opt in enumerate(options):
-        builder.button(text=f"{letters[i]}) {opt}", callback_data=f"ans:{attempt_id}:{question_index}:{letters[i]}")
+        builder.button(text=f"{ANSWER_LETTERS[i]}) {opt}", callback_data=f"ans:{attempt_id}:{question_index}:{ANSWER_LETTERS[i]}")
     builder.adjust(1)
     return builder.as_markup()
 
@@ -123,9 +123,38 @@ def answer_kb(attempt_id: int, question_index: int, options: list) -> InlineKeyb
 def mock_menu_kb() -> InlineKeyboardMarkup:
     builder = InlineKeyboardBuilder()
     builder.button(text='▶️ Boshlash', callback_data='mock:start')
+    builder.button(text='📚 Mavzu tanlash', callback_data='mock:topics')
     builder.button(text='📋 Qoidalar', callback_data='mock:rules')
     builder.button(text='🏠 Asosiy menyu', callback_data='back_main')
-    builder.adjust(1, 1, 1)
+    builder.adjust(1, 1, 1, 1)
+    return builder.as_markup()
+
+
+def mock_topics_kb(topics: list[str]) -> InlineKeyboardMarkup:
+    builder = InlineKeyboardBuilder()
+    builder.button(text='🔀 Hamma mavzular', callback_data='mock:topic:all')
+    for t in topics:
+        builder.button(text=t, callback_data=f'mock:topic:{t}')
+    builder.button(text='◀️ Orqaga', callback_data='mock:menu')
+    builder.adjust(2, 2)
+    return builder.as_markup()
+
+
+def mock_feedback_kb(attempt_id: int, question_index: int, choices: dict, correct_letter: str, selected_letter: str, is_last: bool = False) -> InlineKeyboardMarkup:
+    builder = InlineKeyboardBuilder()
+    for letter in ['A', 'B', 'C', 'D']:
+        label = _dictionary_label(str(choices[letter]), 56)
+        if letter == correct_letter:
+            text = f'✅ {letter}) {label}'
+        elif letter == selected_letter:
+            text = f'❌ {letter}) {label}'
+        else:
+            text = f'{letter}) {label}'
+        builder.button(text=text, callback_data='mock:noop')
+    next_data = 'mock:finish' if is_last else f'mock:next:{attempt_id}:{question_index}'
+    next_text = '🏁 Yakunlash' if is_last else '➡️ Davom etish'
+    builder.row(InlineKeyboardButton(text=next_text, callback_data=next_data))
+    builder.adjust(1)
     return builder.as_markup()
 
 

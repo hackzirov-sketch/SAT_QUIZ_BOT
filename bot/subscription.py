@@ -40,13 +40,26 @@ def subscription_text(missing: list[dict[str, Any]]) -> str:
     return '\n'.join(lines)
 
 
+_sub_required_cache: dict[int, tuple[bool, float]] = {}
+_SUB_CACHE_TTL = 60.0
+
+
 async def is_subscription_required(user_id: int) -> bool:
-    db = await get_db()
-    cursor = await db.execute('SELECT subscription_required FROM users WHERE telegram_id = ?', (user_id,))
-    row = await cursor.fetchone()
-    if row is None:
-        return True
-    return bool(row['subscription_required'])
+    import time
+
+    now = time.monotonic()
+    cached = _sub_required_cache.get(user_id)
+    if cached and cached[1] > now:
+        return cached[0]
+    try:
+        db = await get_db()
+        cursor = await db.execute('SELECT subscription_required FROM users WHERE telegram_id = ?', (user_id,))
+        row = await cursor.fetchone()
+        result = bool(row['subscription_required']) if row is not None else True
+    except Exception:
+        result = True
+    _sub_required_cache[user_id] = (result, now + _SUB_CACHE_TTL)
+    return result
 
 
 async def mark_subscription_ok(user_id: int):
@@ -129,10 +142,11 @@ class SubscriptionMiddleware(BaseMiddleware):
         text = subscription_text(missing)
         keyboard = subscription_keyboard(missing)
         logger.info(
-            "subscription_gate_shown user_id=%s missing=%s event=%s",
+            "subscription_gate_shown user_id=%s missing_count=%s event_prefix=%s event_len=%s",
             user.id,
-            [req.get('chat_id') for req in missing],
-            event_text[:32],
+            len(missing),
+            event_text.split(':', 1)[0][:32],
+            len(event_text),
         )
         if isinstance(event, Message):
             await event.answer(text, reply_markup=keyboard)

@@ -1,4 +1,5 @@
 import logging
+import re
 from aiogram import Router
 from aiogram.types import CallbackQuery, ErrorEvent, Message
 from .start import router as start_router
@@ -17,6 +18,12 @@ from bot.subscription import router as subscription_router
 error_router = Router()
 fallback_router = Router()
 logger = logging.getLogger(__name__)
+
+
+def _command_name(text: str | None) -> str:
+    if not text or not text.startswith('/'):
+        return ''
+    return re.split(r'\s+', text, maxsplit=1)[0][:32]
 
 @error_router.errors()
 async def global_error_handler(event: ErrorEvent):
@@ -41,23 +48,27 @@ async def global_error_handler(event: ErrorEvent):
 
 @fallback_router.message()
 async def fallback_message(message: Message):
+    text = message.text or ''
     logger.warning(
-        "unhandled_message user_id=%s chat_id=%s text=%r content_type=%s",
+        "unhandled_message user_id=%s chat_id=%s content_type=%s text_len=%s command=%s",
         message.from_user.id if message.from_user else None,
         message.chat.id if message.chat else None,
-        message.text,
         message.content_type,
+        len(text),
+        _command_name(text),
     )
-    if message.text and message.text.startswith('/'):
+    if text.startswith('/'):
         await message.answer("Buyruq topilmadi. /start ni bosing.")
 
 
 @fallback_router.callback_query()
 async def fallback_callback(callback: CallbackQuery):
+    data = callback.data or ''
     logger.warning(
-        "unhandled_callback user_id=%s data=%r",
+        "unhandled_callback user_id=%s data_len=%s prefix=%s",
         callback.from_user.id if callback.from_user else None,
-        callback.data,
+        len(data),
+        data.split(':', 1)[0][:32],
     )
     await callback.answer("Tugma eskirgan. /start ni bosing.", show_alert=False)
 

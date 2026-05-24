@@ -8,6 +8,11 @@ from dotenv import load_dotenv
 load_dotenv(dotenv_path=pathlib.Path(__file__).parent / '.env')
 
 ROOT = pathlib.Path(__file__).parent
+DATA_DIR = ROOT / 'data'
+MOCK_TESTS_DIR = DATA_DIR / 'mock_tests'
+MOCK_IMAGES_DIR = DATA_DIR / 'mock_images'
+PDF_RESULTS_DIR = DATA_DIR / 'pdf_results'
+RENDERED_IMAGES_DIR = DATA_DIR / 'rendered_images'
 
 def _env_str(name: str, default: str = '') -> str:
     return os.getenv(name, default).strip()

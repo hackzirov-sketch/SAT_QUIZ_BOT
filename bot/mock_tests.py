@@ -6,13 +6,17 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
 
-from bot.config import ROOT
+from bot.config import MOCK_TESTS_DIR
 
-MOCK_BANK_PATH = ROOT / 'data' / 'mock_tests' / 'math_mock_bank.json'
+MOCK_BANK_PATH = MOCK_TESTS_DIR / 'math_mock_bank.json'
 MOCK_TOTAL_QUESTIONS = 44
 MOCK_MODULE_SIZE = 22
 MOCK_MODULE_SECONDS = 35 * 60
 MOCK_CHOICES = ('A', 'B', 'C', 'D')
+
+
+def mock_module_size(total: int) -> int:
+    return min(MOCK_MODULE_SIZE, (total + 1) // 2)
 
 
 class MockBankError(RuntimeError):
@@ -40,42 +44,21 @@ def validate_mock_question(question: dict[str, Any]) -> bool:
     )
 
 
-def select_mock_questions(bank: list[dict[str, Any]], *, seed: int | None = None) -> list[dict[str, Any]]:
-    if len(bank) < MOCK_TOTAL_QUESTIONS:
-        raise MockBankError('Mock test hali tayyor emas.')
+def select_mock_questions(bank: list[dict[str, Any]], *, seed: int | None = None, topic: str | None = None) -> list[dict[str, Any]]:
+    filtered = [q for q in bank if topic is None or q['topic'] == topic]
+    available = len(filtered)
+    if available < 1:
+        raise MockBankError('Bu mavzuda savol yo\'q.')
+
+    total = min(MOCK_TOTAL_QUESTIONS, available)
+    module_size = mock_module_size(total)
 
     rng = random.Random(seed)
-    by_topic: dict[str, list[dict[str, Any]]] = defaultdict(list)
-    for question in bank:
-        by_topic[question['topic']].append(question)
-    for questions in by_topic.values():
-        rng.shuffle(questions)
+    rng.shuffle(filtered)
+    selected = [dict(q) for q in filtered[:total]]
 
-    selected: list[dict[str, Any]] = []
-    topic_names = list(by_topic)
-    rng.shuffle(topic_names)
-
-    for topic in topic_names:
-        if len(selected) >= MOCK_TOTAL_QUESTIONS:
-            break
-        selected.append(by_topic[topic].pop())
-
-    topic_index = 0
-    while len(selected) < MOCK_TOTAL_QUESTIONS:
-        available = [topic for topic in topic_names if by_topic[topic]]
-        if not available:
-            break
-        topic = available[topic_index % len(available)]
-        selected.append(by_topic[topic].pop())
-        topic_index += 1
-
-    if len(selected) < MOCK_TOTAL_QUESTIONS:
-        raise MockBankError('Mock test hali tayyor emas.')
-
-    rng.shuffle(selected)
-    selected = [dict(question) for question in selected]
-    module_1 = selected[:MOCK_MODULE_SIZE]
-    module_2 = selected[MOCK_MODULE_SIZE:MOCK_TOTAL_QUESTIONS]
+    module_1 = selected[:module_size]
+    module_2 = selected[module_size:total]
     for index, question in enumerate(module_1, start=1):
         question['module'] = 1
         question['module_index'] = index
@@ -142,3 +125,7 @@ def mock_result_text(attempt: dict[str, Any], questions: list[dict[str, Any]], a
 
 def mock_topic_counts(bank: list[dict[str, Any]]) -> dict[str, int]:
     return dict(Counter(q['topic'] for q in bank))
+
+
+def get_mock_topics(bank: list[dict[str, Any]]) -> list[str]:
+    return sorted(set(q['topic'] for q in bank))

@@ -11,6 +11,8 @@ from bot.config import REQUIRED_SUBSCRIPTIONS, SUBSCRIPTION_CACHE_TTL, SUBSCRIPT
 logger = logging.getLogger(__name__)
 
 _subscription_cache: dict[tuple[int, str], tuple[bool, float]] = {}
+_last_successful_check: dict[tuple[int, str], float] = {}
+RECHECK_INTERVAL_SECONDS = 86_400
 
 
 def _cache_key(user_id: int, chat_id: Any) -> tuple[int, str]:
@@ -25,12 +27,16 @@ async def is_subscribed(bot: Bot, user_id: int, req: dict[str, Any], *, force_re
     key = _cache_key(user_id, chat_id)
     cached = _subscription_cache.get(key)
     now = time.monotonic()
-    if not force_refresh and cached and cached[1] > now:
+    last_ok = _last_successful_check.get(key, 0)
+    needs_periodic_recheck = last_ok and now - last_ok >= RECHECK_INTERVAL_SECONDS
+    if not force_refresh and not needs_periodic_recheck and cached and cached[1] > now:
         return cached[0]
 
     try:
         member = await bot.get_chat_member(chat_id, user_id)
         ok = member.status not in (ChatMemberStatus.LEFT, ChatMemberStatus.KICKED)
+        if ok:
+            _last_successful_check[key] = now
     except TelegramAPIError as exc:
         logger.warning("subscription_check_failed chat_id=%s user_id=%s error=%s", chat_id, user_id, exc)
         ok = not SUBSCRIPTION_STRICT
@@ -53,3 +59,11 @@ def invalidate_cache(user_id: int):
     keys = [k for k in _subscription_cache if k[0] == user_id]
     for k in keys:
         _subscription_cache.pop(k, None)
+        _last_successful_check.pop(k, None)
+
+
+def cache_stats() -> dict[str, int]:
+    return {
+        'subscription_cache_entries': len(_subscription_cache),
+        'subscription_success_entries': len(_last_successful_check),
+    }

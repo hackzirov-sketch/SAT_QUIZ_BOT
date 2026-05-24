@@ -6,6 +6,7 @@ from datetime import datetime, timezone, timedelta
 import aiosqlite
 from aiogram import Router, F
 from aiogram.types import CallbackQuery
+from bot.constants import ANSWER_LETTERS
 from bot.database import db_transaction, get_db, now_iso
 from bot.utils.db_helpers import upsert_user, add_xp, record_mistake, clear_mistake
 from bot.quiz_engine import QuizEngine
@@ -13,11 +14,12 @@ from bot.formatting import question_text, answer_feedback, final_result_text, fo
 from bot.keyboards import active_quiz_kb, answer_kb, main_menu_kb, start_kb, category_kb
 from bot.services.active_session_service import get_resumable_attempt
 from bot.services.attempt_service import finish_attempt
+from bot.services.quiz_service import create_attempt_with_session, compact_question_payload
+from bot.services.sat_analytics_service import record_sat_answer
 
 router = Router()
 engine: QuizEngine = None
 logger = logging.getLogger(__name__)
-ANSWER_LETTERS = ('A', 'B', 'C', 'D')
 
 def set_quiz_engine(e: QuizEngine):
     global engine
@@ -33,11 +35,7 @@ def _parse_int(value: str) -> int | None:
 
 def question_payload(questions: list[dict]) -> str:
     fields = ('id', 'english', 'uzbek', 'category', 'difficulty', 'prompt', 'correct_answer', 'options')
-    return json.dumps(
-        [{k: q[k] for k in fields} for q in questions],
-        ensure_ascii=False,
-        separators=(',', ':'),
-    )
+    return compact_question_payload(questions, fields)
 
 async def send_current_question(message_or_callback, attempt: dict, session: dict, questions: list = None):
     db = await get_db()
@@ -45,14 +43,18 @@ async def send_current_question(message_or_callback, attempt: dict, session: dic
         cursor = await db.execute('SELECT question_order_json FROM attempts WHERE id = ?', (attempt['id'],))
         row = await cursor.fetchone()
         questions = json.loads(row['question_order_json']) if row else []
-    cursor = await db.execute('SELECT * FROM settings WHERE user_id = ?', (attempt['user_id'],))
-    s = await cursor.fetchone()
     index = attempt['current_index']
     if index >= len(questions):
         return
     q = questions[index]
     remaining = max(0, session['expires_at'] - int(time.time())) if session['expires_at'] else 0
-    minimal = bool(s and s['minimal_mode']) if s else False
+    minimal = False
+    try:
+        cursor = await db.execute('SELECT minimal_mode FROM settings WHERE user_id = ?', (attempt['user_id'],))
+        s = await cursor.fetchone()
+        minimal = bool(s and s['minimal_mode'])
+    except Exception:
+        pass
     text = question_text(q, index, attempt['total_questions'], remaining, attempt['mode'], minimal)
     await message_or_callback.answer(text, reply_markup=answer_kb(attempt['id'], index, q['options']))
 
@@ -103,15 +105,18 @@ async def start_callback(callback: CallbackQuery):
         questions = res['questions']
         now = now_iso()
         expires_at = int(time.time()) + expires
-        async with db_transaction() as tx:
-            await tx.execute(
-                'INSERT INTO attempts (user_id, mode, difficulty, category, total_questions, question_order_json, order_hash, started_at, status, quiz_mode) VALUES (?,?,?,?,?,?,?,?,?,?)',
-                (user['id'], mode, difficulty, category, qty, question_payload(questions), res['order_hash'], now, 'active', 'standard'))
-            cursor = await tx.execute('SELECT last_insert_rowid() AS id')
-            attempt_id = (await cursor.fetchone())['id']
-            await tx.execute(
-                'INSERT INTO active_sessions (attempt_id, user_id, chat_id, expires_at, status, created_at, updated_at) VALUES (?,?,?,?,?,?,?)',
-                (attempt_id, user['id'], callback.message.chat.id, expires_at, 'active', now, now))
+        attempt_id = await create_attempt_with_session(
+            user_id=user['id'],
+            chat_id=callback.message.chat.id,
+            mode=mode,
+            difficulty=difficulty,
+            category=category,
+            total_questions=qty,
+            question_order_json=question_payload(questions),
+            order_hash=res['order_hash'],
+            expires_at=expires_at,
+            quiz_mode='standard',
+        )
         attempt = {'id': attempt_id, 'user_id': user['id'], 'current_index': 0, 'total_questions': qty, 'mode': mode}
         session = {'attempt_id': attempt_id, 'expires_at': expires_at}
         await callback.answer('Test boshlandi!')
@@ -212,7 +217,11 @@ async def answer_callback(callback: CallbackQuery):
         await callback.answer('Eski tugma.')
         return
     q = questions[question_index]
-    selected_answer = q['options'][ANSWER_LETTERS.index(selected_letter)]
+    opt_idx = ANSWER_LETTERS.index(selected_letter)
+    if opt_idx >= len(q['options']):
+        await callback.answer('Noto‘g‘ri variant.', show_alert=True)
+        return
+    selected_answer = q['options'][opt_idx]
     is_correct = selected_answer == q['correct_answer']
 
     now = now_iso()
@@ -222,6 +231,15 @@ async def answer_callback(callback: CallbackQuery):
             await tx.execute(
                 'INSERT INTO answers (attempt_id, question_id, question_index, selected_answer, correct_answer, is_correct, answered_at) VALUES (?,?,?,?,?,?,?)',
                 (attempt_id, q['id'], question_index, selected_answer, q['correct_answer'], 1 if is_correct else 0, now))
+            await record_sat_answer(
+                tx,
+                user_id=user['id'],
+                attempt_id=attempt_id,
+                question=q,
+                user_answer=selected_answer,
+                correct_answer=q['correct_answer'],
+                is_correct=is_correct,
+            )
             cursor = await tx.execute(
                 'UPDATE attempts SET score = score + ?, current_index = current_index + 1, correct_count = correct_count + ?, wrong_count = wrong_count + ? WHERE id = ? AND status = ? AND current_index = ?',
                 (points, 1 if is_correct else 0, 0 if is_correct else 1, attempt_id, 'active', question_index))

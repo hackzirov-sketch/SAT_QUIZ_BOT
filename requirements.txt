@@ -5,3 +5,7 @@ Flask==3.1.1
 pypdf==6.11.0
 python-dotenv==1.1.0
 waitress==3.0.2
+
+# AI Provider dependencies (optional — for AI-enhanced features)
+# google-generativeai>=0.8.0
+# groq>=0.12.0

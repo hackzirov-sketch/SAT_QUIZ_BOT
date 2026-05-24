@@ -3,6 +3,7 @@ from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 import aiosqlite
 import os
+import shutil
 from typing import Optional
 
 from bot.config import DB_BUSY_TIMEOUT_MS
@@ -10,6 +11,8 @@ from bot.config import DB_BUSY_TIMEOUT_MS
 DB_PATH: str = ''
 _db_conn: Optional[aiosqlite.Connection] = None
 _db_lock: Optional[asyncio.Lock] = None
+_json_fallback: dict | None = None
+SCHEMA_VERSION = 2
 _MIGRATION_TABLES = frozenset({'attempts', 'statistics', 'users'})
 _TRANSACTION_MODES = frozenset({'DEFERRED', 'IMMEDIATE', 'EXCLUSIVE'})
 
@@ -240,6 +243,50 @@ async def init_db(db_path: str):
             enabled INTEGER NOT NULL DEFAULT 1,
             weekly_report INTEGER NOT NULL DEFAULT 0
         );
+        CREATE TABLE IF NOT EXISTS admin_audit_log (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            actor_id INTEGER NOT NULL,
+            action TEXT NOT NULL,
+            chat_id INTEGER,
+            created_at TEXT NOT NULL
+        );
+        CREATE TABLE IF NOT EXISTS schema_version (
+            id INTEGER PRIMARY KEY CHECK (id = 1),
+            version INTEGER NOT NULL,
+            updated_at TEXT NOT NULL
+        );
+        CREATE TABLE IF NOT EXISTS sat_mistake_notebook (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER NOT NULL,
+            attempt_id INTEGER,
+            question_id TEXT NOT NULL,
+            user_answer TEXT NOT NULL,
+            correct_answer TEXT NOT NULL,
+            topic TEXT NOT NULL DEFAULT '',
+            subtopic TEXT NOT NULL DEFAULT '',
+            difficulty TEXT NOT NULL DEFAULT '',
+            mistake_reason TEXT NOT NULL DEFAULT '',
+            retry_count INTEGER NOT NULL DEFAULT 0,
+            created_at TEXT NOT NULL,
+            updated_at TEXT NOT NULL,
+            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+            FOREIGN KEY (attempt_id) REFERENCES attempts(id) ON DELETE SET NULL
+        );
+        CREATE TABLE IF NOT EXISTS sat_topic_stats (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER NOT NULL,
+            topic TEXT NOT NULL,
+            subtopic TEXT NOT NULL DEFAULT '',
+            difficulty TEXT NOT NULL DEFAULT '',
+            attempts INTEGER NOT NULL DEFAULT 0,
+            correct INTEGER NOT NULL DEFAULT 0,
+            wrong INTEGER NOT NULL DEFAULT 0,
+            slow INTEGER NOT NULL DEFAULT 0,
+            total_seconds INTEGER NOT NULL DEFAULT 0,
+            updated_at TEXT NOT NULL,
+            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+            UNIQUE (user_id, topic, subtopic, difficulty)
+        );
         CREATE INDEX IF NOT EXISTS idx_vocabulary_english ON vocabulary(english);
         CREATE INDEX IF NOT EXISTS idx_vocabulary_category ON vocabulary(category);
         CREATE INDEX IF NOT EXISTS idx_attempts_user_status ON attempts(user_id, status);
@@ -250,12 +297,19 @@ async def init_db(db_path: str):
         CREATE INDEX IF NOT EXISTS idx_active_sessions_attempt_status ON active_sessions(attempt_id, status);
         CREATE INDEX IF NOT EXISTS idx_active_sessions_user_status ON active_sessions(user_id, status);
         CREATE INDEX IF NOT EXISTS idx_active_sessions_expires ON active_sessions(expires_at, status);
+        CREATE INDEX IF NOT EXISTS idx_daily_leaderboard_rank ON daily_leaderboard(challenge_id, score DESC, completion_seconds ASC);
+        CREATE INDEX IF NOT EXISTS idx_duel_matches_status_finished ON duel_matches(status, finished_at);
+        CREATE INDEX IF NOT EXISTS idx_answers_answered_at ON answers(answered_at);
+        CREATE INDEX IF NOT EXISTS idx_sat_topic_stats_user ON sat_topic_stats(user_id, topic);
+        CREATE INDEX IF NOT EXISTS idx_sat_mistake_user ON sat_mistake_notebook(user_id, updated_at);
+        CREATE INDEX IF NOT EXISTS idx_admin_audit_created ON admin_audit_log(created_at);
     ''')
     try:
         await db.execute('ALTER TABLE duel_queue ADD COLUMN chat_id INTEGER NOT NULL DEFAULT 0')
     except aiosqlite.OperationalError:
         pass
     await _migrate_schema(db)
+    await _set_schema_version(db)
     try:
         row = await (await db.execute('PRAGMA integrity_check')).fetchone()
         if row and row[0] != 'ok':
@@ -267,6 +321,17 @@ async def init_db(db_path: str):
     _db_conn = db
     _db_lock = asyncio.Lock()
     return db
+
+
+async def _set_schema_version(db: aiosqlite.Connection) -> None:
+    await db.execute(
+        '''
+        INSERT INTO schema_version (id, version, updated_at)
+        VALUES (1, ?, ?)
+        ON CONFLICT(id) DO UPDATE SET version=excluded.version, updated_at=excluded.updated_at
+        ''',
+        (SCHEMA_VERSION, now_iso()),
+    )
 
 
 async def _column_exists(db: aiosqlite.Connection, table: str, column: str) -> bool:
@@ -303,17 +368,90 @@ async def get_db() -> aiosqlite.Connection:
     if _db_conn is None:
         if not DB_PATH:
             raise RuntimeError('Database is not initialized')
-        _db_conn = await _connect(DB_PATH)
+        try:
+            _db_conn = await _connect(DB_PATH)
+        except Exception:
+            logger = __import__('logging').getLogger(__name__)
+            logger.exception('db_connect_failed_fallback_activated')
+            raise
     if _db_lock is None:
         _db_lock = asyncio.Lock()
+    try:
+        await _db_conn.execute('SELECT 1')
+    except Exception:
+        logger = __import__('logging').getLogger(__name__)
+        logger.warning('db_connection_stale_reconnecting')
+        try:
+            await _db_conn.close()
+        except Exception:
+            pass
+        _db_conn = await _connect(DB_PATH)
+        _db_lock = asyncio.Lock()
     return _db_conn
+
 
 def get_db_sync() -> aiosqlite.Connection:
     global _db_conn
     return _db_conn
 
+
+async def is_db_healthy() -> bool:
+    try:
+        db = await get_db()
+        await db.execute('SELECT 1')
+        return True
+    except Exception:
+        return False
+
+
+async def integrity_check() -> bool:
+    try:
+        db = await get_db()
+        row = await (await db.execute('PRAGMA integrity_check')).fetchone()
+        return bool(row and row[0] == 'ok')
+    except Exception:
+        return False
+
+
+async def wal_checkpoint(mode: str = 'TRUNCATE') -> tuple[int, int, int] | None:
+    mode = mode.upper()
+    if mode not in {'PASSIVE', 'FULL', 'RESTART', 'TRUNCATE'}:
+        raise ValueError(f'Unsupported checkpoint mode: {mode}')
+    db = await get_db()
+    row = await (await db.execute(f'PRAGMA wal_checkpoint({mode})')).fetchone()
+    return tuple(row) if row else None
+
+
+def sqlite_file_stats(db_path: str | None = None) -> dict:
+    path = db_path or DB_PATH
+    wal = f'{path}-wal'
+    shm = f'{path}-shm'
+    return {
+        'path': path,
+        'exists': os.path.exists(path),
+        'db_size': os.path.getsize(path) if os.path.exists(path) else 0,
+        'wal_size': os.path.getsize(wal) if os.path.exists(wal) else 0,
+        'shm_size': os.path.getsize(shm) if os.path.exists(shm) else 0,
+    }
+
+
+async def backup_sqlite(destination_path: str) -> str:
+    if not DB_PATH:
+        raise RuntimeError('Database is not initialized')
+    await wal_checkpoint('TRUNCATE')
+    os.makedirs(os.path.dirname(destination_path), exist_ok=True)
+    shutil.copy2(DB_PATH, destination_path)
+    return destination_path
+
 def now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
+
+def set_json_fallback(data: dict):
+    global _json_fallback
+    _json_fallback = data
+
+def get_json_fallback() -> dict | None:
+    return _json_fallback
 
 
 @asynccontextmanager
@@ -324,8 +462,6 @@ async def db_transaction(mode: str = 'IMMEDIATE'):
     if mode not in _TRANSACTION_MODES:
         raise ValueError(f'Unsupported transaction mode: {mode}')
     db = await get_db()
-    if _db_lock is None:
-        _db_lock = asyncio.Lock()
     async with _db_lock:
         await db.execute(f'BEGIN {mode}')
         try:
