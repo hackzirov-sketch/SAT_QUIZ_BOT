@@ -146,11 +146,19 @@ async def active_quiz_callback(callback: CallbackQuery):
             ta = await (await db.execute('SELECT * FROM attempts WHERE id = ?', (attempt_id,))).fetchone()
             if ta:
                 await callback.message.edit_reply_markup(reply_markup=None)
-                rt = final_result_text(dict(ta))
+                if ta['quiz_mode'] == 'mock':
+                    from bot.handlers.mock_test import _mock_answers_for_result
+                    rt = await _mock_answers_for_result(db, dict(ta))
+                else:
+                    rt = final_result_text(dict(ta))
                 await callback.message.answer(rt)
             return
         await callback.answer()
-        await send_current_question(callback.message, attempt, session)
+        if attempt['quiz_mode'] == 'mock':
+            from bot.handlers.mock_test import send_mock_question
+            await send_mock_question(callback.message, attempt, session)
+        else:
+            await send_current_question(callback.message, attempt, session)
     elif action == 'restart':
         await finish_attempt(db, attempt_id, 'cancelled')
         await callback.answer('Faol test bekor qilindi.')

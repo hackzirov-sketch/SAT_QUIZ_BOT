@@ -23,6 +23,8 @@ async def _ensure_statistics(db, user_id: int, now: str) -> None:
 async def _update_statistics(db, attempt: dict, now: str) -> None:
     if attempt['status'] not in ('completed', 'timed_out'):
         return
+    if attempt.get('quiz_mode') == 'mock':
+        return
 
     score = attempt['score'] or 0
     seconds = attempt['completion_seconds']
@@ -65,6 +67,8 @@ async def _update_statistics(db, attempt: dict, now: str) -> None:
 
 async def _upsert_leaderboard(db, attempt: dict, now: str) -> None:
     if attempt['status'] not in ('completed', 'timed_out'):
+        return
+    if attempt.get('quiz_mode') == 'mock':
         return
     await db.execute(
         '''

@@ -9,6 +9,7 @@ DICTIONARY_WORD_LABEL_MAX = 48
 def main_menu_kb() -> ReplyKeyboardMarkup:
     builder = ReplyKeyboardBuilder()
     builder.button(text='🧠 Test boshlash')
+    builder.button(text='📝 Mock test')
     builder.button(text='📖 Lug‘at')
     builder.button(text='🗓 Daily Challenge')
     builder.button(text='🏆 Reyting')
@@ -17,7 +18,7 @@ def main_menu_kb() -> ReplyKeyboardMarkup:
     builder.button(text='ℹ️ Yordam')
     builder.button(text='⚙️ Sozlamalar')
     builder.button(text='🚀 Kelajak uchun rejalar')
-    builder.adjust(2, 2, 2, 2, 1)
+    builder.adjust(2, 2, 2, 2, 2)
     return builder.as_markup(resize_keyboard=True)
 
 
@@ -117,6 +118,31 @@ def answer_kb(attempt_id: int, question_index: int, options: list) -> InlineKeyb
         builder.button(text=f"{letters[i]}) {opt}", callback_data=f"ans:{attempt_id}:{question_index}:{letters[i]}")
     builder.adjust(1)
     return builder.as_markup()
+
+
+def mock_menu_kb() -> InlineKeyboardMarkup:
+    builder = InlineKeyboardBuilder()
+    builder.button(text='▶️ Boshlash', callback_data='mock:start')
+    builder.button(text='📋 Qoidalar', callback_data='mock:rules')
+    builder.button(text='🏠 Asosiy menyu', callback_data='back_main')
+    builder.adjust(1, 1, 1)
+    return builder.as_markup()
+
+
+def mock_answer_kb(attempt_id: int, question_index: int, choices: dict) -> InlineKeyboardMarkup:
+    builder = InlineKeyboardBuilder()
+    for letter in ['A', 'B', 'C', 'D']:
+        label = _dictionary_label(str(choices[letter]), 56)
+        builder.button(text=f"{letter}) {label}", callback_data=f"mock_ans:{attempt_id}:{question_index}:{letter}")
+    builder.adjust(1)
+    return builder.as_markup()
+
+
+def mock_module_break_kb(attempt_id: int) -> InlineKeyboardMarkup:
+    return InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text='▶️ Module 2 ni boshlash', callback_data=f'mock:module2:{attempt_id}')],
+        [InlineKeyboardButton(text='🏠 Asosiy menyu', callback_data='back_main')],
+    ])
 
 def settings_kb(settings: dict) -> InlineKeyboardMarkup:
     builder = InlineKeyboardBuilder()

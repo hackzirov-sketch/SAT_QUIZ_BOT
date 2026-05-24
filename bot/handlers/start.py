@@ -77,12 +77,13 @@ async def yordam(message: Message):
     await message.answer(
         "ℹ️ <b>Yordam</b>\n\n"
         "🧠 Test boshlash — standart 50 savol\n"
+        "📝 Mock test — SAT Math 2 modul\n"
         "🗓 Daily Challenge — kungi 10 savol\n"
         "🏆 Reyting — eng yaxshi 10\n"
         "📊 Natijalarim — oxirgi va eng yaxshi\n"
         "📚 Statistika — XP, level, tahlil\n"
         "⚙️ Sozlamalar — rejim va qiyinlik\n\n"
-        "Buyruqlar: /quiz /daily /rating /result /stats /settings /cancel",
+        "Buyruqlar: /quiz /mock /daily /rating /result /stats /settings /cancel",
         reply_markup=main_menu_kb(),
     )
 

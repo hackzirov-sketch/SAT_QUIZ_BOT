@@ -1,0 +1,6227 @@
+
+
+--- PAGE 1 ---
+
+
+
+--- PAGE 2 ---
+Y ou will never walk alone...!
+2
+
+
+--- PAGE 3 ---
+Contents
+Introduction 4
+How to Use This Book? 5
+References 6
+Algebra 7
+Algebra Formulas . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+Expressions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+Linear Equations . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
+Linear System of Equations . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
+Linear Functions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 31
+Linear Inequalities . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 39
+Advanced math 45
+Advanced Math Formulas . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 46
+Polynomials . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 49
+Exponents&Radicals . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 53
+Functions&Function Notation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 56
+Exponential Functions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 62
+Quadratics . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 70
+Problem solving 78
+Problem solving Formulas . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 79
+Percent; Ratio&Proportion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 80
+Unit Conversion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 84
+Probability . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 87
+Mean, Median, Mode, Range . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 90
+Scatterplots . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 95
+Research organizing(Margin of Error; Outliers) . . . . . . . . . . . . . . . . . . . . . . . . 102
+Geometry 105
+Geometry & Trigonometry Formulas . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 106
+Lines and Angles . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 110
+Triangles . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 116
+Trigonometry . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 120
+Circle . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 124
+Area and Volume . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 127
+Acknowledgements 132
+3
+
+
+--- PAGE 4 ---
+Introduction
+Welcome to the MathBook by @satashkent.
+Many real exam questions are officially and unofficially shared across the In-
+ternet, providing valuable practice materials for SAT students. However, these
+resources are often scattered, unstructured, and not categorized by topic, making
+it difficult for students to focus on specific areas of improvement.
+Recognizing this challenge, our team createdMathBook—a structured collec-
+tion ofreal exam questions from the past years, categorized by topic.This book
+is designed for allSAT learnerswho want an efficient and organized approach
+to mastering Digital SAT Math. We have dedicated countless hours to compiling
+and structuring these questions to ensure you get the most relevant and targeted
+practice.
+This book is divided into topics, covering all question types that appear on
+the DSAT. Each topic includes carefully selected real exam-level questions along
+with an answer sheet to help you track your progress, analyze mistakes, and
+strengthen weak areas. This structured approach will boost your confidence and
+help you recognize patterns in SAT Math problems.
+Ourprimary goalis tosupport students who are committed to excelling in
+SAT Math.
+Let’s master SAT Math together!
+4
+
+
+--- PAGE 5 ---
+How to Use This Book?
+Step 1:Open the book.If you’ve made it, congrats!
+Step 2:Pick a question.Go in order, choose a random one, or let ChatGPT
+choose.
+Step 3:Solve it.Grab a pencil, solve, and try not to overthink. If you get stuck,
+stare at the “Patalok” for a while.
+Step 4:Check your answer.If it’ s right, go next, no time for Celebrating. If
+it’s wrong, try again.
+Step 5:Repeat!Math skills don’t grow on trees (unfortunately).
+5
+
+
+--- PAGE 6 ---
+References
+All questions in this book are from College Board Real Exam Questions (2023–2025).
+This book is not affiliated with or endorsed by the College Board and is for edu-
+cational use only.
+6
+
+
+--- PAGE 7 ---
+Algebra
+
+
+--- PAGE 8 ---
+Algebra Formulas
+• Integer -A whole number, not a fraction.
+• Domain (x) -The set of possiblexvalues.
+• Range (y) -The set of possibleyvalues.
+•x-intercept -Wherey=0.
+•y-intercept -Wherex=0.
+• Standard form:
+a1x+b 1y=c 1
+a2x+b 2y=c 2
+One solution le f t1 ̸=le f t 2
+a1
+a2
+̸= b1
+b2
+No solution le f t1 =le f t 2
+right 1 ̸=right 2
+a1
+a2
+= b1
+b2
+̸= c1
+c2
+∞solution le f t1 =le f t 2
+right 1 =right 2
+a1
+a2
+= b1
+b2
+= c1
+c2
+• Slope-intercept form:y=mx+b
+•m- slope of the line,
+•b-y-intercept (whenx=0),
+•m= y2 −y 1
+x2 −x 1
+= rise
+run.
+One solution m1 ̸=m 2
+No solution m1 =m 2
+b1 ̸=b 2
+∞solution m1 =m 2
+b1 =b 2
+• Constant/Coefficient:
+Xshould be displayed/shown as constant or coefficient =Xshould be visible in the equa-
+tion/function itself.
+8
+
+
+--- PAGE 9 ---
+Expressions
+1. [August 2025]
+Which expression is equivalent to
+7x(x+4)?
+A) 7x 2 +4
+B) 7x 2 +28x
+C) 8x 2 +4
+D) 8x 2 +11x
+2. [August 2025]
+65= 2K
+v2
+For an object with a mass of 65 kilograms,
+the given equation relates the kinetic en-
+ergyK, in joules, of the object to the ob-
+ject’s speedv, in meters per second, where
+Kandvare positive. Which equation cor-
+rectly expresses this object’s speed, in me-
+ters per second, in terms of the object’s ki-
+netic energy, in joules?
+A)v= 2K
+652
+B)v= 652
+2K
+C)v=
+q
+65
+2k
+D)v=
+q
+2K
+65
+3. [August 2025]
+The percent increase in mass of a certain
+red kangaroo from 110 days old to 210
+days old was 773%. If this red kangaroo’s
+mass was k grams at 110 days old, which
+expression represents its mass, in grams,
+at 210 days old?
+A) 0.07k
+B) 1.07k
+C) 7.73k
+D) 8.73k
+4. [August 2025]
+The percent increase in mass of a certain
+red kangaroo from 90 days old to 160 days
+old was 438%. If this red kangaroo’s mass
+was k grams at 90 days old, which expres-
+sion represents its mass, in grams, at 160
+days old?
+A) 0.06k
+B) 1.06k
+C) 4.38k
+D) 5.38k
+5. [August 2025]
+Which expression is equivalent to
+(8nr2 +2nr) + (4n 2r+3nr)?
+A) 12n 2r2 +5nr
+B) 12n 3r3 +5n 2r2
+C) 32n 3r3 +6n 2r2
+D) 8nr 2 +4n 2r+5nr
+6. [August 2025]
+R= 0.43l
+A
+The given equation relates the resistance
+R, in ohms, of a wire to its lengthl, in
+meters, and its cross-sectional areaA, in
+square meters. Which equation correctly
+expresses the length, in meters, of the wire
+in terms of its resistance, in ohms, and its
+cross-sectional area, in square meters?
+A)l= R−A
+0.43
+B)l= R+A
+0.43
+C)l= 0.43R
+A
+D)l= AR
+0.43
+9
+
+
+--- PAGE 10 ---
+7. [August 2025]
+Which expression is equivalent to
+6x(x+7)?
+A) 6x 2 +7x
+B) 6x 2 +42x
+C) 7x 2 +7x
+D) 6x 2 +13x
+8. [August 2025]
+b−38= x
+y
+The given equation relates the positive
+numbersb,x, andy. Which equation cor-
+rectly expressesxin terms ofbandy?
+A)x=by−38
+B)x= b−38
+y
+C)x=by−38y
+D)x= by−38
+y
+9. [August 2025]
+Which expression represents the product
+of(x −9y8z4)and(x 5z4 +y 3z−7)?
+A)x −4y8z8 +y 3z−7
+B) 4 −4z8 +x −9z−3
+C)x −4y8z8 +x −9y11z−3
+D)x −4z8 +y 11z−3
+10. [August 2025]
+a
+(b+c) =55
+The given equation relates the positive
+numbersa,b, andc. Which equation cor-
+rectly expressesain terms ofbandc?
+A)a= (b+c)
+B)a=55−(b+c)
+C)a=55(b+c)
+D)a= 55
+(b+c)
+11. [September 2025]
+a
+b+c =64
+The given equation relates the positive
+numbers a, b, and c. Which equation cor-
+rectly expresses a in terms of b and c?
+A)a=b+c
+B)a=64−(b+c)
+C)a=64(b+c)
+D)a= 64
+(b+c)
+12. [September 2025]
+Which expression is equivalent to
+(3x3 −8x+5)−(4x 6 +9x−2)?
+A)−4x 6 +3x 3 −17x+7
+B)−x 9 −17x−7
+C)−x 9 −x+3
+D)−4x 6 +3x 3 +x+3
+10
+
+
+--- PAGE 11 ---
+13. [September 2025]
+Which expression is equivalent to
+v4 −590v 3?
+A)v 3(v+590)
+B)(c 2 +59)(v 2 −10)
+C)(v 2 −59)(v 2 −10)
+D)v 3(v−590)
+14. [September 2025]
+b−19= x
+y
+The given equation relates the positive
+numbersb,x, andy. Which equation cor-
+rectly expressesxin terms ofbandy?
+A)x= (b−19)
+y
+B)x=by−19y
+C)x= (by−19)
+y
+D)x=by−19
+15. [September 2025]
+The length of a rectangle is 35 centimeters
+greater than its width. Which equation
+gives the areaA, in square centimeters, of
+the rectangle in terms of the widthw, in
+centimeters, of the rectangle?
+A)A= (w)(w+35)
+B)A= (w)(35w)
+C)A= (w)( w
+35 )
+D)A= (w)(w−35)
+16. [September 2025]
+Which expression represents the product
+of(x −9y6z5)and(x 4z5 +y 8z−7)?
+A)x −5y6z10 +y 8z−7
+B)x −5y6z10 +x −9y14z−2
+C)x −5z10 +x −9z−2
+D)x −5z10 +y 14z−2
+17. [October 2025]
+18qrt−2qrs+10rst=0
+In the given equation,q,r,s, andtare posi-
+tive, and q
+t is greater than 5. Which expres-
+sion is equivalent tos?
+A) −9qt
+q−5t
+B) 9qt
+q−5t
+C) 18qrt
+D) 2qt
+q−5t
+18. [October 2025]
+If 5c=15, what is the value of 5c−8?
+A) 3
+B) 67
+C) 7
+D) 23
+11
+
+
+--- PAGE 12 ---
+19. [October 2025]
+A city has an area ofxsquare miles and
+the population density of 1035 people per
+square mile. The suburb adjacent to the
+city has an area ofysquare miles and
+the population density of 535 people per
+square mile. The combined population of
+the city and the suburb adjacent to the city
+is 13,165 people. Which equation repre-
+sents this situation?
+A) 1035x+535y=13165
+B) 1035x+535=13165y
+C) 1035x+535=1570y
+D) 1035x+535y=1570
+20. [October 2025]
+5a= 4b2
+a −20a
+The given equation relates the positive
+variablesaandb. Which equation cor-
+rectly expressesain terms ofb?
+A)a= 4b
+25
+B)a= 4b2
+25
+C)a= 2b
+5
+D)a= 2b2
+5
+21. [October 2025]
+Which expression is equivalent to
+4x(5xy)?
+A) 20x 2y
+B) 4x 2y
+C) 20x 2y2
+D) 5x 2y2
+22. [October 2025]
+Which expression is equivalent to
+72t2s3 −48t 3s?
+A) 4t 2s(18ts−12s)
+B) 4t 2s(18s2 −12t)
+C) 4ts(18s 2 −12ts)
+D) 4ts(18t 2s2 −12t)
+23. [October 2025]
+b2 +4c=7d
+The given equation relates the real num-
+bersb,c, andd, whered> 4
+7 c. Which
+equation correctly expressesbin terms of
+candd?
+A)b= 7d+4c
+2
+B)b= 7d−4c
+2
+C)b=±
+√
+7d+4c
+D)b=±
+√
+7d−4c
+24. [October 2025]
+f(x) =2x+3
+g(x) =7x−2
+h(x) =5x+6
+The functionsf,g, andhare defined as
+shown. Iff(x)·g(x)−h(x) =ax 2 +bx+
+c, wherea,b, andcare constants, what is
+the value ofb?
+A)−5
+B) 12
+C) 20
+D) 22
+12
+
+
+--- PAGE 13 ---
+Answers: Expressions
+Number Answer Number Answer
+1 B 2 D
+3 D 4 D
+5 D 6 D
+7 B 8 C
+9 C 10 C
+11 C 12 A
+13 D 14 B
+15 A 16 B
+17 B 18 C
+19 A 20 C
+21 A 22 B
+23 D 24 B
+13
+
+
+--- PAGE 14 ---
+Linear Equations
+1. [August 2025]
+If x−17
+18 = x−17
+6 , what is the value of
+x+17 ?
+A) 0
+B) 3
+C) 17
+D) 34
+2. [August 2025]
+In the linear functionf,f(0) =5 and
+f(7) =5. Which equation definesf?
+A)f(x) =0
+B)f(x) =7
+C)f(x) =5
+D)f(x) =x+5
+3. [August 2025]
+If 4+ 5(7−x)
+2 = 8(7−x)
+3 , what is the
+value of 7−x?
+4. [August 2025]
+c(x−6) =−7(x+k)
+In the given equation,candkare con-
+stants. The equation has exactly one so-
+lution. Which of the following statements
+must be true?
+A) The value ofccannot be -7.
+B) The value ofccannot be− 7
+6
+C) The value ofkcannot be 6
+7
+D) The value ofkcannot be -6
+5. [August 2025]
+Micah deposited a total of $6,600 into two
+retirement accounts last year by deposit-
+ingxdollars once each month into one
+account andydollars twice each month
+into the other account. Which equation
+represents this situation?
+A) 6600=12x+12y
+B) 6600=12x+24y
+C) 6600=24x+12y
+D) 6600=24x+24y
+6. [August 2025]
+If|16−2x|=58, which of the following is
+a value of 8−x?
+A) 0
+B) 8
+C) 29
+D) 42
+7. [August 2025]
+If 10+ 8(7−x)
+5 = 5(7−x)
+3 , what is the value
+of 7−x?
+8. [August 2025]
+|a+10|=21
+What is a possible solution to the given
+equation?
+A) -21
+B) -10
+C) 0
+D) 11
+14
+
+
+--- PAGE 15 ---
+9. [September 2025]
+During hibernation, American black bears
+do not eat or replenish calories. A cer-
+tain black bear weighed 304 pounds when
+entering hibernation and lost weight at a
+rate of 0.6 pound per day.At this rate, how
+many days after entering hibernation did
+the black bear weigh 250 pounds?
+10. [September 2025]
+What is thex-intercept of the graph of
+4x+y=24 in thexy-plane?
+A) (6, 0)
+B) (0, 0)
+C) (28, 0)
+D) (4, 0)
+11. [September 2025]
+1.5c+3d=42
+The given equation describes the relation-
+ship between the number of cats,c, and the
+number of dogs,d, that can be cared for at
+a pet care business during a week. If the
+business cares for 14 dogs during a week,
+how many cats can it care for during this
+week?
+A) 0
+B) 42
+C) 21
+D) 3
+12. [September 2025]
+On January 1, 2000, the population of a
+town was 26,252 and on January 1, 2010,
+the population was 26,753. The equation
+10x+26, 252=26, 753 describes this sit-
+uation. Which of the following is the best
+interpretation ofxin this context?
+A) The percentage by which the popula-
+tion of the town increased each year
+between 2000 and 2010
+B) The total increase in population be-
+tween 2000 and 2010
+C) The projected population of the town
+10 years after 2010
+D) The average increase per year of the
+population between 2000 and 2010
+13. [September 2025]
+8(t+4)−10(t+4) =34
+What value oftis the solution to the given
+equation?
+14. [September 2025]
+g=14− x
+23
+The equation shown gives the estimated
+amount of gasg, in gallons, that remains
+in the gas tank of a car after being driven
+xmiles, where 0≤x≤322. What is the
+estimated amount of gas, in gallons, that
+remains in the gas tank of the car when
+x=230?
+A) 14
+B) 0
+C) 9
+D) 4
+15
+
+
+--- PAGE 16 ---
+15. [September 2025]
+Number
+of cars
+Maximum number
+of passengers and
+crew
+2 75
+7 245
+9 313
+The table shows the linear relationship be-
+tween the number of cars,c, on a com-
+muter train and the maximum number of
+passengers and crew,p, that the train can
+carry. Which equation represents the lin-
+ear relationship betweencandp?
+A) 34p−c=7
+B) 34c−p=7
+C) 34p−c=−7
+D) 34c−p=−7
+16. [September 2025]
+If 4(2x−0.6) +x=0.45+0.3x, what is
+the value of 870x?
+17. [September 2025]
+38x+85y=360
+The given equation represents the volume
+of mulchx, in cubic feet, and the volume of
+soily, in cubic feet, in a mixture of mulch
+and soil that weighs 360 pounds. If the vol-
+ume of soil in the mixture is 2 cubic feet,
+what is the volume of mulch in the mix-
+ture, in cubic feet?
+18. [September 2025]
+A partially filled container containing 28
+milliliters of water is placed under a leaky
+faucet that produces one 0.05-milliliter
+drop of water every 5 seconds. Until the
+container is full, which of the following
+can be used to represent the volumev, in
+milliliters, of water in the containertsec-
+onds after it is placed under the faucet,
+wheretis a multiple of 5?
+A)v=5t
+B)v=0.25t+28
+C)v=0.01t+28
+D)v=0.05t+28
+19. [September 2025]
+g=13− x
+29
+The equation shown gives the estimated
+amount of gas g, in gallons, that remains
+in the gas tank of a car after being driven
+xmiles, where 0≤x≤377. What is the
+estimated amount of gas, in gallons, that
+remains in the gas tank of the car when
+x=290?
+A) 13
+B) 0
+C) 3
+D) 16
+20. [September 2025]
+What is the slope of the graph ofy= 7
+12 x
+in the xy-plane?
+A) 0
+B) 7
+12
+C)− 7
+12
+D) 12
+7
+16
+
+
+--- PAGE 17 ---
+21. [September 2025]
+34x+79y=260
+The given equation represents the volume
+of mulchx, in cubic feet, and the volume of
+soily, in cubic feet, in a mixture of mulch
+and soil that weighs 260 pounds. If the vol-
+ume of soil in the mixture is 2 cubic feet,
+what is the volume of mulch in the mix-
+ture, in cubic feet?
+22. [September 2025]
+A partially filled container containing 26
+milliliters of water is placed under a leaky
+faucet that produces one 0.03-milliliter
+drop of water every 3 seconds. Until the
+container is full, which of the following
+can be used to represent the volumev, in
+milliliters, of water in the containertsec-
+onds after it is placed under the faucet,
+wheretis a multiple of 3?
+A)v=0.01t+26
+B)v=0.09t+26
+C)v=3t
+D)v=0.03t+26
+23. [September 2025]
+If x+5
+3 = x+5
+13 , the value ofx+5 is between
+which of the following pairs of values?
+A) 7 and 13
+B) 4 and 6
+C)−4 and 4
+D)−6 and−3
+24. [September 2025]
+During hibernation, American black bears
+do not eat or replenish calories. A certain
+black bear weighed 515 pounds when en-
+tering hibernation and lost weight at a rate
+of 0.5 pound per day. At this rate, how
+many days after entering hibernation did
+the black bear weigh 490 pounds?
+25. [September 2025]
+Ifx+1=3, what is the value of 2(x+1)?
+26. [September 2025]
+1.5c+3d=108
+The given equation describes the relation-
+ship between the number of cats,c, and the
+number of dogs,d, that can be cared for at
+a pet care business during a week. If the
+business cares for 36 dogs during a week,
+how many cats can it care for during this
+week?
+A) 3
+B) 54
+C) 0
+D) 108
+27. [September 2025]
+6(t+7)−8(t+7) =38
+What value oftis the solution to the given
+equation?
+17
+
+
+--- PAGE 18 ---
+28. [September 2025]
+If x+5
+4 = x+5
+13 , the value ofx+5 is between
+which of the following pairs of values?
+A) -2 and 2
+B) 7 and 13
+C) -6 and -4
+D) 2 and 6
+29. [October 2025]
+9x+17=9x+k
+In the given equation,kis a constant.
+The equation has infinitely many solu-
+tions. What is the value ofk?
+30. [October 2025]
+In thexy-plane, linekpasses through the
+points(3, 0)and(0, 5). Which of the fol-
+lowing is an equation of linek?
+A) 3x−5y=15
+B) 5x+3y=15
+C) 3x+5y=15
+D) 5x−3y=15
+31. [October 2025]
+A chemist combines 25 grams of com-
+pound A, 35 grams of compound B, andx
+grams of compound C. The resulting mix-
+ture has a mass of 125 grams. Find the
+value ofx.
+A) 25
+B) 65
+C) 35
+D) 10
+32. [October 2025]
+Carmen needs at least 100 signatures to
+submit a petition. If Carmen already has
+51 signatures, what is the minimum num-
+ber of additional signatures Carmen needs
+to submit the petition?
+A) 41
+B) 151
+C) 49
+D) 51
+33. [October 2025]
+There are a total of 340 seats in a school
+auditorium. During an assembly, students
+occupied 50% of the seats in the audito-
+rium. How many seats did the students
+occupy during this assembly?
+A) 290
+B) 25
+C) 170
+D) 50
+34. [October 2025]
+A phone plan charges a flat monthly fee
+plus a fixed rate per minute of calls. In
+January, a customer made 80 minutes of
+calls and was billed $22. In February, the
+same customer made 200 minutes of calls
+and was billed $40. Which of the following
+represents the monthly bill B, in dollars, as
+a function of the number of minutes m?
+A)B=0.10m+14
+B)B=0.15m+10
+C)B=0.12m+12
+D)B=0.20m+6
+18
+
+
+--- PAGE 19 ---
+35. [October 2025]
+If 5c=15, what is the value of 5c−8?
+A) 3
+B) 67
+C) 7
+D) 23
+36. [October 2025]
+7j=k+13m
+The given equation relates the distinct pos-
+itive numbersj,k, andm. Which equation
+correctly expressesjin terms ofkandm?
+A)j=7(k+13m)
+B)j= k
+7 +13m
+C)j=k+ 13m
+7
+D)j= k+13m
+7
+37. [October 2025]
+The functionfis defined byf(x) = x
+5 +9.
+For what value ofxdoesf(x) =13?
+A) 20
+B) -32
+C) -13
+D) -22
+38. [October 2025]
+How many solutions does the equation
+14x=6x+8xhave?
+A) Exactly one
+B) Zero
+C) Infinitely many
+D) Exactly two
+39. [October 2025]
+A designer used a total of 23 yards of
+blue fabric and yellow fabric for a sewing
+project. The designer used 17 yards of blue
+fabric. How many yards of yellow fabric
+were used?
+40. [October 2025]
+If 9x+4=67, what is the value of
+90x+40?
+A) 7
+B) 70
+C) 130
+D) 670
+41. [October 2025]
+The equation 58=2x+2ygives the
+perimeter of a rectangular garden that has
+lengthx, in feet, and widthy, in feet. The
+width of the garden is 14 feet. What is the
+length, in feet, of the garden?
+42. [October 2025]
+During hibernation, American black bears
+do not eat or replenish calories. A cer-
+tain black bear weighed 293 pounds when
+entering hibernation and lost weight at a
+mean rate of 0.9 pounds per day. At this
+rate, how many days after entering hiber-
+nation would the black bear weigh 230
+pounds?
+A) 57
+B) 63
+C) 70
+D) 207
+19
+
+
+--- PAGE 20 ---
+43. [October 2025]
+x
+5 + y
+9 = 47
+45
+An engineer connects resistors in series,
+where the resistors in the series have a to-
+tal resistance of 47
+45 ohms. In this series,
+there arexresistors of type A, which each
+have a resistance ofaohms, andyresis-
+tors of type B, which each have a resistance
+ofbohms. The given equation represents
+this situation. According to this equation,
+what is the positive difference between the
+value ofaand the value ofb?
+A) 47
+B) 4
+C) 47
+45
+D) 4
+45
+44. [October 2025]
+b(6−x) =5x+12
+In the equation above,bis a constant. The
+equation has exactly one solution forx.
+Which of the following CANNOT be a
+value ofb?
+A) -5
+B) 0
+C) 5
+D) 10
+45. [October 2025]
+The total costf(x), in dollars, to lease a
+car for 24 months from a particular car
+dealership is given byf(x) =24x+1000,
+wherexis the monthly payment, in dol-
+lars. What is the total cost to lease a car
+when the monthly payment is $300?
+A) $6200
+B) $7000
+C) $8200
+D) $25300
+46. [October 2025]
+nx+7t=−tx+8n
+In the given equation, n and t are con-
+stants. The equation has no solution. What
+can be the value ofn+t?
+47. [October 2025]
+Each 3.0-ounce serving of cheddar cheese
+and each 1.2-ounce serving of tuna pro-
+vides about 1 microgram of vitamin B12.
+If a total of 1.7 micrograms of vitamin
+B12 are consumed from eatingxounces of
+cheese andyounces of tuna, which equa-
+tion best represents this situation?
+A) 3.0x+1.2y=1.7
+B) 0.33x+0.83y=1.7
+C) 0.83x+0.33y=1.7
+D) 1.2x+3.0y=1.7
+20
+
+
+--- PAGE 21 ---
+48. [August 2025 ]
+If 2x=8, what is the value of 10x?
+A) 9
+B) 13
+C) 20
+D) 40
+21
+
+
+--- PAGE 22 ---
+Answers: Linear Equations
+Number Answer Number Answer
+1 D 2 C
+3 24 4 A
+5 B 6 C
+7 150 8 D
+9 90 10 A
+11 A 12 D
+13 -21 14 D
+15 D 16 285
+17 5 18 C
+19 C 20 B
+21 3 22 A
+23 C 24 50
+25 6 26 C
+27 -26 28 A
+29 17 30 B
+31 B 32 C
+33 C 34 B
+35 C 36 D
+37 A 38 C
+39 6 40 D
+41 15 42 C
+22
+
+
+--- PAGE 23 ---
+Number Answer Number Answer
+43 D 44 A
+45 C 46 0
+47 B 48 D
+23
+
+
+--- PAGE 24 ---
+Linear System of Equations
+1. [August 2025]
+3x+6y=17
+−3x−4y=5
+The solution to the given system of equa-
+tions is(x,y). What is the value of 2y?
+2. [August 2025]
+y=−12x+16
+y=−20x+24
+What is the solution(x,y)to the given sys-
+tem of equations?
+A) (1,4)
+B) (16,24)
+C) (24,16)
+D) (4,1)
+3. [August 2025]
+2x=9+7y
+−2x=3+7y
+The solution to the given system of equa-
+tions is(x,y). What is the value of 4x?
+4. [August 2025]
+x2 +y+3=3
+8x+16−y=0
+The solution to the given system of equa-
+tions is(x,y). What is the value ofx?
+A) -16
+B) -4
+C) 2
+D) 8
+5. [August 2025]
+y=3x+5, 000
+y=−3x+13, 000
+The solution to the given system of equa-
+tions is(x,y). What is the value of 2y?
+A) 36000
+B) 18000
+C) 9000
+D) 8000
+6. [August 2025]
+y= (x−6)(x+5)
+y=11x−66
+The solution to the given system of equa-
+tions is(x,y). What is the value of 2y?
+A) 0
+B) -5
+C) -6
+D) 6
+7. [August 2025]
+y=3x+11, 000
+y=−3x+13, 000
+The solution to the given system of equa-
+tions is (x, y). What is the value of 2y?
+A) 48000
+B) 24,000
+C) 12,000
+D) 2,000
+24
+
+
+--- PAGE 25 ---
+8. [August 2025]
+An artist made 13 pieces of pottery using
+42 pounds of clay. The pottery included
+only bowls and vases. Each bowl used
+2 pounds of clay and each vase used 4
+pounds of clay. How many vases did the
+artist make?
+A) 5
+B) 6
+C) 7
+D) 8
+9. [September 2025]
+y=−15x+19
+y=−20x+24
+What is the solution(x,y)to the given sys-
+tem of equations?
+A) (24, 19)
+B) (19, 24)
+C) (4, 1)
+D) (1, 4)
+10. [September 2025]
+5(9x+7+ c
+5 ) =45x
+In the given equation,cis a constant.
+The equation has infinitely many solu-
+tions. What is the value ofc?
+11. [September 2025]
+Ifx+4y=31 and 9x−20y=−57, what
+is the value ofy?
+12. [September 2025]
+8x+32y=38
+12x+48y=57
+At how many points do the graphs of the
+given equations intersect in thexy-plane?
+A) Exactly one
+B) Infinitely many
+C) Exactly two
+D) Zero
+13. [September 2025]
+Ifx+3y=29 and 7x−12y=−61, what
+is the value ofy?
+14. [September 2025]
+8x+32y=30
+12x+48y=45
+At how many points do the graphs of the
+given equations intersect in the xy-plane?
+A) zero
+B) exactly one
+C) infinitely many
+D) exactly two
+15. [September 2025]
+y=−10x+13
+y=−12x+15
+What is the solution to the given system of
+equations?
+A)(13, 15)
+B)(15, 13)
+C)(3, 1)
+D)(1, 3)
+25
+
+
+--- PAGE 26 ---
+16. [September 2025]
+3x+y=21
+9x−y=3
+How many solutions does the given sys-
+tem of equations have?
+A) Infinitely many
+B) Zero
+C) Exactly two
+D) Exactly one
+17. [September 2025]
+(x+k) + 9
+2 (y+t) +19=0
+(x+k)− 9
+2 (y+t)−19=0
+In the given system of equations, k and t
+are constants. The solution to this system
+is(x,y). What is the value of 18(y+t)?
+A) -76
+B) 0
+C) 38
+D) 9
+18. [October 2025]
+x+4y=−3
+4x−y=22
+The solution to the given system of equa-
+tions is(x,y). What is the value of 3x−5y?
+19. [October 2025]
+0.5x+1.2y=90
+1.5x+3.6y=27
+How many solutions does the given sys-
+tem of equations have??
+A) Infinitely many
+B) Exactly two
+C) Exactly one
+D) Zero
+20. [October 2025]
+For a study, a research team measured
+the heights of 380 king penguins from the
+Kerguelen Islands and 190 king penguins
+from the Falkland Islands. The research
+team determined that the mean height of
+the 380 king penguins from the Kerguelen
+Islands was 87 centimeters and the mean
+height of the 190 king penguins from the
+Falkland Islands was 93 centimeters. What
+was the mean height, in centimeters, of all
+570 king penguins the research team mea-
+sured for this study?
+A) 91
+B) 89
+C) 90
+D) 88
+21. [October 2025]
+y= 1
+2 x−7
+1
+2 y=3x+2
+The solution to the given equations is
+(x,y). What is the value of(y−x)?
+26
+
+
+--- PAGE 27 ---
+22. [October 2025]
+ax−by=52
+2ax−8y=48
+In the given system of equations,aandb
+are constants. The graphs of these equa-
+tions in thexy-plane intersect at the point
+(2, 4). What is the value ofb?
+A) 3
+B) 4
+C) -8
+D) -3
+23. [October 2025]
+x+6y=28
+6y=14
+The solution to the given system of equa-
+tions is(x,y). What is the value ofx?
+24. [October 2025]
+x2 +y 2 =36
+y=mx+ b
+4
+In the given system of equations,mandb
+are negative constants. In thexy-plane, the
+graphs of the equations in the given sys-
+tem intersect at the point(−5,y), where
+y<0. Which expression represents the
+value ofb?
+A)− 5m
+4 +
+√
+11
+4
+B) 5m
+4 −
+√
+11
+4
+C)−20m+4
+√
+11
+D) 20m−4
+√
+11
+25. [October 2025]
+A biologist mixed a solution that is 0.3%
+sodium chloride by mass with a solution
+that is 0.15% sodium chloride by mass to
+obtain a new solution, which has a mass
+of 80 grams and contains 0.21 grams of
+sodium chloride. How many grams of
+0.3% sodium chloride solution did the bi-
+ologist use?
+A) 0.14
+B) 20
+C) 60
+D) 79.86
+26. [October 2025]
+x y
+0 -10
+1 -4
+2 2
+Linekalso lies in thexy-plane and is de-
+fined by the equationy=4x. At what
+point(x,y)do linesjandkintersect?
+A) (5, 20)
+B) (5, -44)
+C) (6, 24)
+D) (6, 26)
+27. [October 2025]
+In the given system of equations,tis a con-
+stant. If the system has no solution, what
+is the value oft?
+4x−6y=10y+2
+ty= 1
+2 +2x
+27
+
+
+--- PAGE 28 ---
+28. [October 2025]
+−2−1 1 2 3 4 5 6 7 8 9
+−2
+−1
+1
+2
+3
+4
+5
+6
+7
+8
+9
+x
+y
+The graph of a system of a linear equation
+and a nonlinear equation is shown. What
+is the solution(x,y)to this system?
+A) (4,0)
+B) (5,4)
+C) (0,0)
+D) (0,5)
+29. [October 2025]
+0.5x+1.2y=9
+1.5x+3.6y=27
+How many solutions does the given sys-
+tem of equations have?
+A) Infinitely many
+B) Exactly two
+C) Exactly one
+D) Zero
+30. [October 2025]
+The graph of a system of a linear equation
+and a nonlinear equation is shown. What
+is the solution(x,y)to this system?
+−6 −4 −2 2 4 6 8
+−8
+−6
+−4
+−2
+2
+4
+6
+8
+10
+x
+y
+A)(0, 0)
+B)(0,−2)
+C)(−2, 2)
+D)(3, 0)
+31. [September 2025]
+9x+y=22
+10x−y=16
+How many solutions does the given equa-
+tions have?
+A) Exactly one
+B) Infinitely many
+C) Zero
+D) Exactly two
+28
+
+
+--- PAGE 29 ---
+32. [September 2025]
+x+5=14
+y=3x 2 +3
+At what point(x,y)do the graphs of the
+equations in the given system intersect?
+A)(9, 243)
+B)(14, 591)
+C)(9, 246)
+D)(14, 3)
+29
+
+
+--- PAGE 30 ---
+Answers: Linear System of Equations
+Number Answer Number Answer
+1 22 2 A
+3 6 4 B
+5 B 6 A
+7 B 8 D
+9 D 10 -35
+11 6 12 B
+13 8 14 C
+15 D 16 D
+17 A 18 25
+19 D 20 B
+21 -6 22 D
+23 14 24 D
+25 C 26 A
+27 8 28 B
+29 A 30 C
+31 A 32 C
+30
+
+
+--- PAGE 31 ---
+Linear Functions
+1. [August 2025]
+The functionf(x) =−30x+310 gives the
+predicted height above the groundf(x),
+in feet,of a model airplane a minutes after
+it begins to descend. What is the predicted
+height above the ground, in feet, of the
+model airplane 2 minutes after it begins to
+descend?
+A) 60
+B) 250
+C) 280
+D) 370
+2. [August 2025]
+x
+y
+Time since initial deposit (months)
+Bank account balance (dollars)
+0 2 4 6 8 100.0
+10.0
+20.0
+30.0
+40.0
+50.0
+60.0
+70.0
+80.0
+A bank account was opened with an ini-
+tial deposit. Over the next several months,
+regular deposits were made into this ac-
+count, and there were no withdrawals
+made during this time. The graph of the
+functionfshown, wherey=f(x), esti-
+mates the account balance, in dollars, in
+this bank accountxmonths since the ini-
+tial deposit. To the nearest whole dollar,
+what is the amount of the initial deposit
+estimated by the graph?
+3. [August 2025]
+In thexy-plane, linespasses through the
+point (0, 0) and is parallel to the line repre-
+sented by the equationy=36x+6. If line
+salso passes through the point(9,d), what
+is the value ofd?
+4. [August 2025]
+The functionfis defined byf(x) =
+25x+70. What is the value off(x)when
+x=2
+A) 50
+B) 97
+C) 120
+D) 190
+5. [August 2025]
+The table below gives the number of
+hours,h, of labor and a plumber’s total
+chargef(h), in dollars, for two different
+jobs.
+Hours (h) Total Chargef(h)
+1 120
+3 220
+There is a linear relationship betweenh
+andf(h). Which equation represents this
+relationship?
+A)f(h) =20h+100
+B)f(h) =100h+20
+C)f(h) =50h+70
+D)f(h) =70h+50
+31
+
+
+--- PAGE 32 ---
+6. [August 2025]
+What is the slope of the graph of
+60x−10y=−48 in the xy-plane?
+A) -6
+B)− 5
+4
+C) 5
+4
+D) 6
+7. [August 2025]
+In the relationship between variablesx
+andy, each increase of 8 in the value of
+xdecreases the value ofyby 3. When the
+value ofxis 16, the value ofyis 10. Which
+equation represents this relationship?
+A)y=− 3
+8 x+10
+B)y=− 3
+8 x+16
+C)y=− 8
+3 x+10
+D)y=− 8
+3 x+ 158
+3
+8. [August 2025]
+Javier deposits $45 in a savings account
+at the end of each week. At the beginning
+of the 1st week of a year there was $900 in
+that savings account. How much money,
+in dollars, will be in the account at the end
+of the 4th week of the year?
+A) 720
+B) 945
+C) 949
+D) 1,080
+9. [August 2025 ]
+Line k contains the points(−3,−48),
+(v, 0), and(5, 56). What is the value of
+v?
+10. [August 2025]
+Kai used fabric measuring 4 yards in
+length to make each costume for a school
+play. The relationship between the num-
+ber of costumes that Kai made,x, and the
+total length of fabric that he purchasedy,
+in yards, is represented by the equation
+y−4x=5. What is the best interpretation
+of 5 in this context?
+A) Kai made 5 costumes
+B) Kai purchased a total of 5 yards of
+fabric.
+C) Kai used a a total of 5 yards of fabric
+to make the costumes.
+D) Kai purchased 5 yards more fabric
+than he used to costumes.
+11. [August 2025]
+During the first 8.00 seconds after a car
+started moving, its speed increased to 11.0
+meters per second. From 8.00 seconds to
+14.0 seconds after the car started mov-
+ing, its speed increased from 11.0 meters
+per second to 23.0 meters per second. To
+the nearest hundredth, what is the posi-
+tive difference between the average rate
+of change of the speed of the car, in meters
+per second per second, during the first 8.00
+seconds after the car started moving and
+the average rate of change of the speed of
+the car, in meters per second per second,
+from 8.00 seconds to 14.0 seconds after the
+car started moving?
+12. [August 2025]
+The function m is defined by
+m(x) =3x+6 and the functionpis de-
+fined byp(x) =6−xWhat is the value of
+2m(6)−p(6)?
+32
+
+
+--- PAGE 33 ---
+13. [August 2025]
+x y
+0 n
+5 n+24
+10 n+48
+There is a linear relationship betweenx
+andy. The table shows three values of
+xand their corresponding values ofyin
+terms of a constantn. What is the slope
+of the line that represents this relationship
+in thexy-plane?
+14. [August 2025 ]
+A book-of-the-month club charges $16 for
+the first book purchased during the month
+and an additional $11 for each book after
+the first. Which equation describes this sit-
+uation, whereyis the total cost, in dollars,
+for books purchased during a month,xis
+the number of books purchased during the
+month, andx>0?
+A)y=x+16
+B)y=11x+16
+C)y=11(x−1) +16
+D)y= (x−1) +16
+15. [ August 2025]
+What is the slope of the graph of
+48x−6y=−32 in thexy−plane?
+A) -8
+B)− 3
+2
+C) 3
+2
+D) 8
+16. [August 2025 ]
+The table gives the number of hours,h,
+of labor and a plumber’s total chargef(h),
+in dollars, for two different jobs.
+h f(h)
+1 125
+3 225
+There is a linear relationship betweenh
+andf(h). Which equation represents this
+relationship?
+A)f(h) =25h+100
+B)f(h) =100h+25
+C)f(h) =50h+75
+D)f(h) =75h+50
+17. [August 2025]
+The functionfis defined by
+f(x) =7x−65. If the point(k, 2k)lies
+on the graph ofy=f(x)in the xy-plane,
+wherekis a constant, what is the value of
+k?
+A) 7
+B) 14
+C) 13
+D) 165
+18. [October 2025 ]
+Charles saves 3
+5 of the $225 he earns each
+week from his summer job. If Charles
+continues to save at this rate, how much
+money, in dollars, will Charles save in 3
+weeks?
+33
+
+
+--- PAGE 34 ---
+19. [August 2025 ]
+In the relationship between variables x
+and y, each increase of 7 in the value of
+x decreases the value of y by 3. When the
+value of x is 14, the value of y is 9. Which
+equation represents this relationship?
+A)y= −3
+7 x+9
+B)y= −3
+7 x+15
+C)y= −7
+3 x+9
+D)y= −7
+3 x+ 125
+3
+20. [August 2025 ]
+x g(x)
+1 44
+2 38
+3 32
+4 26
+For the linear functiong, the table shows
+four values ofxand their corresponding
+values ofg(x). The function can be writ-
+ten asg(x) =mx+b, wheremandbare
+constants. What is the value ofb?
+A) 6
+B) 22
+C) 44
+D) 50
+21. [ September 2025]
+For the linear functionf, the graph of
+y=f(x)in the xy-plane passes through
+the points (0,6) and (7, 7). What is the
+slope ofy=f(x)?
+22. [September 2025 ]
+There is a linear relationship between the
+mass of an object attached to a vertical
+spring and the length of the spring exten-
+sion. The table shows data collected after
+certain objects were each attached to the
+spring.
+Mass of objectLength of spring extension
+20 grams 7 cm
+60 grams 21 cm
+What is the length of the spring extension,
+in centimeters, when a 50 gram object is at-
+tached to the spring?
+A) 24.5
+B) 34
+C) 14
+D) 17.5
+23. [ August 2025]
+Line p is defined bykx+8y=17. Line
+p passes through the points(r, 0)and
+(0,t)in the xy-plane, where k, r, and t are
+nonzero constants and r is not equal to t.
+Which expression represents the value of
+k?
+A) 17
+t
+B) 17
+r
+C) 8
+t
+D) 8
+r
+34
+
+
+--- PAGE 35 ---
+24. [October 2025]
+x
+y
+-8 -6 -4 -2 0 2 4 6 8
+-10
+-8
+-6
+-4
+-2
+0
+2
+• The line slants gradually up from left
+to right.
+• The line passes through the following
+points:
+–(-6,-8)
+–(0,-7)
+–(6,-6)
+The graph of the linear functionfis
+shown, wherey=f(x). What is the slope
+of the graph off?
+A) 1
+6
+B) -7
+C) - 1
+6
+D) 7
+25. [October 2025 ]
+q
+t = 9q
+s +5
+In the given equation,q,r,s, andtare posi-
+tive, and q
+t is greater than 5. Which expres-
+sion is equivalent tos?
+A) −9qt
+q−5t
+B) 9qt
+q−5t
+C) 18qrt
+D) 2qt
+q−5t
+26. [ October 2025]
+For certain air temperatures, the table
+gives wind chill temperatures for two dif-
+ferent wind speeds.
+Airtemperature
+Wind chilltemperature at windspeed 5 mph
+Wind chilltemperature at windspeed 15 mph
+27◦F 21◦F 15◦F
+29◦F 24◦F 18◦F
+31◦F 26◦F 20◦F
+According to the table, what is the wind
+chill temperature, in degrees Fahrenheit
+(◦F), when the air temperature is 26
+Fahrenheit ( ◦F) and the wind speed is 15
+mph? (Disregard the degree when enter-
+ing your answer) ?
+35
+
+
+--- PAGE 36 ---
+27. [ October 2025]
+A city has an area ofxsquare miles and
+the population density of 1035 people per
+square mile. The suburb adjacent to the
+city has an area ofysquare miles and
+the population density of 535 people per
+square mile. The combined population of
+the city and the suburb adjacent to the city
+is 13,165 people. Which equation repre-
+sents this situation?
+A) 1035x+535y=13165
+B) 1035x+535=13165y
+C) 1035x+535=1570y
+D) 1035x+535y=1570
+28. [ October 2025]
+The functionf(x) =−40x+340 gives the
+predicted height above the groundf(x),
+in feet, of a model airplane a minutes after
+it begins to descend. What is the predicted
+height above the ground, in feet, of the
+model airplane 3 minutes after it begins to
+descend?
+A) 120
+B) 220
+C) 300
+D) 460
+29. [ August 2025]
+A company developed a plan to set the
+selling price of a product. The com-
+pany determined that for a selling price of
+$120.00, zero products would be sold. For
+each $2.50 decrease in the selling price, the
+number of products sold would increase
+by one. For a revenue of exactly $1,437.50,
+which of the following could be the num-
+ber of products sold? (revenue = pricex
+number of products sold)
+A) 23
+B) 24
+C) 527
+D) 1440
+30. [ October 2025]
+In thexy-plane, what is the slope of the
+line that passes through the points (0,0)
+and (13,14)?
+A) 13
+B) 14
+13
+C) 13
+14
+D) 14
+36
+
+
+--- PAGE 37 ---
+31. [October 2025]
+x y
+−2s 17
+−s 14
+s 8
+The table shows three values ofaand their
+corresponding values ofy, wheresis a
+constant. There is a linear relationship be-
+tweenaandy. Which of the following
+equations represents this relationship?
+A)sx+3y=11s
+B) 3x+sy=11s
+C) 5
+D) 10
+32. [September 2025]
+Number of carsMaximum number of passengers and crew
+2 102
+6 294
+10 486
+The table shows the linear relationship be-
+tween the number of cars, c, on a com-
+muter train and the maximum number of
+passengers and crew, p, that the train can
+carry. Which equation represents the lin-
+ear relationship between c and p?
+A) 48p−c=−6
+B) 48c−p=6
+C) 48p−c=6
+D) 48c−p=−6
+37
+
+
+--- PAGE 38 ---
+Answers: Linear Functions
+Number Answer Number Answer
+1 B 2 15
+3 324 4 C
+5 C 6 D
+7 B 8 D
+9 0.692; 9/13 10 D
+11 0.63 12 48
+13 24/5; 4.8 14 C
+15 D 16 C
+17 C 18 405
+19 B 20 B
+21 1/7 22 D
+23 B 24 A
+25 B 26 18
+27 A 28 B
+29 A 30 B
+31 B 32 D
+38
+
+
+--- PAGE 39 ---
+Linear Inequalities
+1. [ August 2025]
+In a set of three consecutive integers,
+where the integers are ordered from least
+to greatest, the first integer is represented
+byx. The sum of 4 and the second integer
+is less than the product of 17 and the third
+integer. Which inequality represents this
+situation?
+A) 4+ (x+1)>17(x+2)
+B) 4+ (x+1)<17(x+2)
+C) 4+ (x+2)>17(x+3)
+D) 4+ (x+2)<17(x+3)
+2. [August 2025]
+x
+y
+O
+The graphs ofy=−3x+7 andy=x−5
+are shown. PointP(not shown) has co-
+ordinates (-3, 5) and lies in the shaded re-
+gion. The coordinates ofPsatisfy which of
+the following inequality?
+I.y<−3x+7
+II.y>x−5
+A) I only
+B) II only
+C) I and II
+D) Neither I nor II
+3. [ August 2025]
+A numberxis less than 8 more than 1
+2
+times the value of a numbery. Ifyis an in-
+teger andx=17, what is the least possible
+value ofy?
+4. [ August 2025]
+To win a game show, a contestant needs
+to score at least 70 total points from two
+rounds. Correct responses in the first
+round are worth 4 points each, and correct
+responses in the second round are worth 5
+points each. Which inequality models this
+situation, where f is the number of correct
+responses in the first round and s is the
+number of correct responses in the second
+round?
+A)f+s≤70
+B) 4f+5s≥70
+C) 5f+s≥70
+D) 5f+4s≤70
+5. [September 2025 ]
+A freight elevator can hold a maximum
+weight of 5,340 pounds during one trip.
+A 190-pound person needs to deliver sev-
+eral boxes using the freight elevator. Some
+of these boxes weigh 25 pounds each and
+the others weigh 64 pounds each. Which
+inequality represents the possible combi-
+nations of the number of 25-pound boxes,
+x, and the number of 64-pound boxes,y,
+the person can deliver during one trip if
+only the person and the boxes are on the
+freight elevator?
+A) 64x+25y≥5340
+B) 64x+25y≤5340
+C) 25x+64y≥5150
+D) 25x+64y≤5150
+39
+
+
+--- PAGE 40 ---
+6. [ September 2025]
+y>2x−90
+y<− 1
+6 x−8
+For which of the following tables are all the
+values ofxand their corresponding val-
+ues ofysolutions to the given system of
+inequalities?
+A)
+x y
+18 -8
+24 -9
+30 -10
+B)
+x y
+18 -14
+24 -15
+30 -16
+C)
+x y
+18 -11
+24 -12
+30 -13
+D)
+x y
+18 -57
+24 -58
+30 -59
+7. [ September 2025]
+y> 9
+2 x+b
+In the given inequality,bis a positive con-
+stant. Which of the following does NOT
+contain any points(x,y)in thexy-plane
+that are solutions to this inequality?
+A) The region wherex>0 andy>0
+B) The region wherex<0 andy<0
+C) The region wherex<0 andy>0
+D) The region wherex>0 andy<0
+8. [ September 2025]
+y> 9
+7 x+b
+In the given inequality,bis a positive con-
+stant. Which of the following does NOT
+contain any points(x,y)in thexy-plane
+that are solutions to this inequality?
+A) The region wherex<0 andy<0
+B) The region wherex<0 andy>0
+C) The region wherex>0 andy>0
+D) The region wherex>0 andy<0
+9. [ October 2025]
+In thexy-plane, which of the following
+does NOT contain any points that are part
+of the solution set to 5x−7y>35?
+A) The x-axis
+B) The region wherex>0 andy>0
+C) The region wherex<0 andy<0
+D) The region wherex<0 andy>0
+40
+
+
+--- PAGE 41 ---
+10. [September 2025 ]
+y<x
+y>−5x−10
+For which of the following tables are all the
+values ofxand their corresponding val-
+ues ofysolutions to the given system of
+inequalities?
+A)
+x y
+6 11
+7 10
+8 9
+B)
+x y
+6 4
+7 5
+8 6
+C)
+x y
+-13 -15
+-12 -14
+-11 -13
+D)
+x y
+-13 -6
+-12 -7
+-11 -8
+11. [ September 2025]
+y<x
+y>−4x−9
+For which of the following tables are all the
+values ofxand their corresponding val-
+ues ofysolutions to the given system of
+inequalities?
+A)
+x y
+5 4
+6 5
+7 6
+B)
+x y
+-12 -5
+-11 -6
+-10 -7
+C)
+x y
+-12 -13
+-11 -12
+-10 -11
+D)
+x y
+5 10
+6 9
+7 8
+41
+
+
+--- PAGE 42 ---
+12. [September 2025 ]
+A freight elevator can hold a maximum
+weight of 5,450 pounds during one trip.
+A 190-pound person needs to deliver sev-
+eral boxes using the freight elevator. Some
+of these boxes weigh 23 pounds each and
+the others weigh 60 pounds each. Which
+inequality represents the possible combi-
+nations of the number of 23-pound boxes,
+x, and the number of 60-pound boxes,y,
+the person can deliver during one trip if
+only the person and the boxes are on the
+freight elevator?
+A) 60x+23y≥5450
+B) 23x+60y≥5260
+C) 60x+23y≤5450
+D) 23x+60y≤5260
+13. [September 2025 ]
+y>2x−72
+y< −1
+6 x−9
+For which of the following tables are all the
+values ofxand their corresponding val-
+ues ofysolutions to the given system of
+inequalities?
+A)
+x y
+12 -11
+18 -12
+24 -13
+B)
+x y
+12 -14
+18 -15
+24 -16
+C)
+x y
+12 -57
+18 -58
+24 -59
+D)
+x y
+12 -8
+18 -9
+24 -10
+14. [ October 2025]
+A pet service that takes care of both cats
+and dogs can care for at most 43 animals.
+Which inequality represents this situation,
+wherecis the number of cats anddis the
+number of dogs?
+A)c−d≤43
+B)c−d≥43
+C)c+d≥43
+D)c+d≤43
+15. [ October 2025]
+Carmen needs at least 100 signatures to
+submit a petition. If Carmen already has
+51 signatures, what is the minimum num-
+ber of additional signatures Carmen needs
+to submit the petition?
+A) 41
+B) 151
+C) 49
+D) 51
+42
+
+
+--- PAGE 43 ---
+16. [ October 2025]
+An environmental scientist needs to collect
+at least 38 samples of red clay soil for anal-
+ysis. Ifrrepresents the number of samples
+the scientist collects for analysis, which in-
+equality represents this situation?
+A)r≤38
+B)r−38≥38
+C)r−38≤38
+D)r≥38
+17. [October 2025 ]
+An agricultural scientist needs to collect at
+least 200 soil samples in a certain area for a
+study on soil quality. If the scientist has
+already collected 168 soil samples, what
+is the minimum number of additional soil
+samples the scientist needs to collect for
+the study?
+A) 368
+B) 12
+C) 148
+D) 32
+18. [ October 2025]
+Zuri has a goal to run at least 16 miles per
+week while training for a race. This week,
+she has run 4 miles. Ifxrepresents the ad-
+ditional number of miles Zuri needs to run
+this week to meet her goal, which inequal-
+ity represents this situation?
+A) 4−x≤16
+B) 4+x≤16
+C) 4−x≥16
+D) 4+x≥16
+43
+
+
+--- PAGE 44 ---
+Answers: Linear Inequalities
+Number Answer Number Answer
+1 B 2 C
+3 19 4 B
+5 D 6 B
+7 D 8 D
+9 D 10 B
+11 A 12 D
+13 B 14 D
+15 c 16 D
+17 D 18 D
+44
+
+
+--- PAGE 45 ---
+Advanced
+math
+
+
+--- PAGE 46 ---
+Advanced Math Formulas
+Quadratic Functions-Forms
+• Standard Form:y=ax 2 +bx+c, where:
+•c−y-intercept.
+• Factored Form:y=a(x−x 1)(x−x 2), where:
+•x 1,x 2−x-intercepts.
+• Vertex Form:y=a(x−h) 2 +k, where:
+• (h,k)-vertex coordinate.
+−5 −4 −3 −2 −1 1 2 3 4 5 6
+−5
+−4
+−3
+−2
+−1
+1
+2
+3
+4
+5
+6 Axis of Symmetry
+Vertex
+y-intercept
+x-intercepts
+x
+y
+Axis of symmetry andx-coordinate of vertex:− b
+2a
+Graph Reflection Rules
+•−f(x)→Reflection about thex-axis
+•f(−x)→Reflection about they-axis
+Whenf(x) =x 3 +1
+x
+y
+f(x)
+x
+y
+f(−x)
+x
+y
+−f(x)
+46
+
+
+--- PAGE 47 ---
+• MidpointofA(x 1,y 1),B(x 2,y 2):
+ x1 +x 2
+2 , y1 +y 2
+2
+
+.
+• Distance formula:
+p
+(x2 −x 1)2 + (y2 −y 1)2.
+Function Translation Rules
+•f(x+1)graph movesLEFTone.
+•f(x−1)graph movesRIGHTone.
+•f(x) +1 graph movesUPone.
+•f(x)−1 graph movesDOWNone.
+x
+y
+y=f(x−1)
+x
+y
+y=f(x+1)
+x
+y
+y=f(x)−1
+x
+y
+y=f(x) +1
+Graph Amplification Rules
+x-intercepts remain the same, but for other points:
+•2f(x)graph movesfartherfromx-axis.
+• 1
+2 f(x)graph movesclosertox-axis.
+x
+y
+y=f(x)
+x
+y
+y=2f(x)
+x
+y
+y=5f(x)
+47
+
+
+--- PAGE 48 ---
+x
+y
+y= 1
+2 f(x)
+x
+y
+y= 1
+3 f(x)
+48
+
+
+--- PAGE 49 ---
+Polynomials
+1. [September 2025]
+For the polynomial functionf, the grapf
+ofy=f(x)in thexy-plane passes through
+the points (-3,0), (1,0) and (4,0).Which of
+the following must be a factor off(x)?
+A)x+1
+B)x+4
+C)x−1
+D)x−3
+2. [August 2025]
+x(x−14)(x+9)(x−5) 2 =0
+What is the greatest solution to the given
+equation?
+3. [August 2025]
+x(x−13)(x+9)(x−5) 2 =0
+What is the greatest solution to the given
+equation?
+4. [August 2025]
+Which expression is a factor of
+x5 +x 4y+xy 8 +y 9?
+A)x 4 +y 8
+B)x 4 +y 9
+C)x 5 +y 8
+D)x 5 +y 9
+5. [September 2025]
+Which equation is equivalent to
+v4 −450v 3?
+A)(v 2 −45)(v 2 −10)
+B)(v 2 +45)(v 2 −10)
+C)v 3(v+450)
+D)v 3(v−450)
+6. [September 2025]
+For the polynomial functionf, the graph
+ofy=f(x)in the xy-plane passes through
+the points (-4,0), (3,0), and (5,0). Which of
+the following must be a factor off(x)?
+A)x+5
+B)x+3
+C)x−3
+D)x−4
+7. [September 2025]
+For the polynomial functionf, the graph
+ofy=f(x)in the xy-plane passes through
+the points (-4, 0), (1, 0), and (9, 0). Which
+of the following must be a factor off(x)?
+A)x−1
+B)x+9
+C)x−4
+D)x+1
+49
+
+
+--- PAGE 50 ---
+8. [September 2025]
+−8−7−6−5−4−3−2−1 1 2 3 4 5 6 7 8
+−8
+−7
+−6
+−5
+−4
+−3
+−2
+−1
+1
+2
+3
+4
+5
+6
+7
+8
+x
+y
+The graph of the polynomial functionfis
+shown, wherey=f(x). What is the value
+off(5)?
+A) 2
+B) 5
+C)−3
+D) 0
+9. [October 2025]
+−4(v−9)(v−2)(v+7) =0
+What value ofvis a solution to the given
+equation?
+A)−2
+B) 7
+C) 9
+D)−4
+10. [October 2025]
+−1 1
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+O
+x
+y
+The graph of the polynomial functionf,
+wherey=f(x), is shown. They-intercept
+of the graph is(0,y). What is the value of
+y?
+11. [October 2025]
+Which expression is a factor of
+3x2 +57x+15?
+A) 3x 2
+B) 5x
+C) 3
+D) 57x
+50
+
+
+--- PAGE 51 ---
+12. [October 2025]
+5a= 4b2
+a −20a
+The given equation relates the positive
+variablesaandb. Which equation cor-
+rectly expressesain terms ofb?
+A)a= 4b
+25
+B)a= 4b2
+25
+C)a= 2b
+5
+D)a= 2b2
+5
+13. [October 2025]
+x
+(x−1)(x+1) = 25
+16x
+Which value is a solution to the given
+equation?
+A) 5
+3
+B) 1
+6
+C) 5
+18
+D) 1
+14. [October 2025]
+9x+x=7x+x+9
+Which of the following equations has the
+same solution as the given equation?
+A) 16x=−9
+B) 16x=9
+C) 2x=9
+D) 2x−9
+51
+
+
+--- PAGE 52 ---
+Answers: Polynomials
+Number Answer Number Answer
+1 C 2 14
+3 13 4 A
+5 D 6 C
+7 A 8 D
+9 C 10 5
+11 C 12 C
+13 A 14 C
+52
+
+
+--- PAGE 53 ---
+Exponents&Radicals
+1. [September 2025]
+√w+22=28
+What is the solution to the given equation?
+A) 2
+B) 3
+C) 12
+D) 36
+2. [September 2025]
+For what value ofais
+a√
+r42 equivalent to
+r6/7, wherer>1.
+3. [August 2025]
+53= 2K
+v2
+For an object with a mass of 53 kilograms,
+the given equation relates the kinetic en-
+ergy K, in joules, of the object to the ob-
+ject’s speed u, in meters per second, where
+K and v are positive. Which equation cor-
+rectly expresses this object’s speed, in me-
+ters per second, in terms of the object’s ki-
+netic energy, in joules?
+A)v=
+q
+2K
+53
+B)v=
+q
+53
+2k
+C)v= 532
+2K
+D)v= 2K
+532
+4. [September 2025]
+The expression
+7
+p
+p5
+p
+pt+3 , wheretis a con-
+stant, is equivalent to 7
+p
+p2 for all positive
+values ofp. What is the value oft?
+A)− 15
+7
+B)− 27
+7
+C)− 24
+7
+D)− 18
+7
+5. [September 2025]
+√
+x2 =24−5x
+A) 2
+B) 4
+C) 19
+D) 30
+6. [September 2025]
+Which expression is equivalent to 1
+5y8 ,
+wherey>1?
+A) y−8
+5
+B)(5y) −8
+C) 5y −8
+D) 5
+y−8
+53
+
+
+--- PAGE 54 ---
+7. [September 2025]
+√
+x2 =80−9x
+What is the solution to the given equation?
+A) 4
+B) 71
+C) 90
+D) 8
+54
+
+
+--- PAGE 55 ---
+Answers: Exponents&Radicals
+Number Answer Number Answer
+1 D 2 49
+3 A 4 A
+5 B 6 A
+7 D
+55
+
+
+--- PAGE 56 ---
+Functions&Function Notation
+1. [September 2025]
+The functionfis defined byf(x) =
+7x3 +6. What is the value off(2)?
+2. [September 2025]
+The functiongis defined byg(x) =19−x.
+What is the value ofg(4)?
+A) 4
+B) 15
+C) 19
+D) 23
+3. [August 2025]
+−10 −8 −6 −4 −2 2 4 6 8 10
+2
+4
+6
+8
+10
+12
+x
+y
+• Moving from left to right, the curve
+passes from quadrant 2 to quadrant 1
+• The curve has 2 relative minimums
+and 1 relative maximum.
+• The curve passes through the follow-
+ing points:
+• (negative 3 comma 4)
+• (0 comma 7)
+• (3 comma 4)
+The graph of the functionfis shown,
+wherey=f(x). What is the value of
+f(0)?
+A)−7
+B)−3
+C) 3
+D) 7
+56
+
+
+--- PAGE 57 ---
+4. [August 2025]
+The functionfis defined by
+f(x) =25x+20. What is the value off(x)
+whenx=2?
+A) 47
+B) 50
+C) 70
+D) 90
+5. [August 2025]
+−10−8 −6 −4 −2 2 4 6 8 10
+2
+4
+6
+8
+10
+12
+x
+f(x)
+The graph of the functionfis shown,
+wherey=f(). What is the value off(0)?
+A) 6
+B) 2
+C)−2
+D)−6
+6. [September 2025]
+−8 −6 −4 −2 2 4 6 8
+−8
+−6
+−4
+−2
+2
+4
+6
+8
+x
+y
+The graph of the polynomial functionfis
+shown, wherey=f(x). What is the value
+off(2)?
+A) 2
+B) 0
+C) 5
+D)−3
+7. [September 2025]
+f(x) =4(g(x))−2
+g(x) =|13x−8|
+The functionsfandgare defined by the
+given equations. What is the value of
+f(−10)?
+A)−554
+B)−42
+C) 550
+D) 138
+57
+
+
+--- PAGE 58 ---
+8. [September 2025]
+The functionfis defined byf(x) =20x 3.
+The graph ofy=f(−x) +cin the
+xy-plane, wherecis a positive integer con-
+stant, has anx-intercept at(r, 0)and a
+y-intercept at(0,t), whererandtare con-
+stants. Which of the following must be
+true aboutrandt?
+A)r>0 andt>0
+B)r>0 andt<0
+C)r<0 andt>0
+D)r<0 andt<0
+9. [September 2025]
+f(x) =5(g(x))−3
+g(x) =|13x−9|
+The functionsfandgare defined by the
+given equations. What is the value of
+f(−10)?
+A) 692
+B) 139
+C) 698
+D) -53
+10. [September 2025]
+The functionfis defined byf(x) =11x 3.
+The graph ofy=f(−x) +cin the xy-
+plane, where isca positive integer con-
+stant, has an x-intercept at (r, 0) and a y-
+intercept at (0, t), where and are constants.
+Which of the following must be true about
+r and t?
+A)r<0 andt<0
+B)r<0 andt>0
+C)r>0 andt>0
+D)r>0 andt<0
+11. [September 2025]
+The functionwis defined by
+w(r) = 1
+r−8 − r−5
+−r+4.25 . What is the greatest
+possible value ofrsuch thatw(r) =0?
+12. [September 2025]
+f(x) =3d(26x+27) +18
+Which of the following represents the x-
+intercept of the graph ofy=f(x) +6 in
+the xy-plane, wheredis a constant?
+A)(81d+24, 0)
+B)( −81d−24
+78d , 0)
+C)(6− 81d+18
+78d , 0)
+D)( −45
+78d+6 , 0)
+13. [October 2025]
+The functionhis defined by
+h(x) =5(9x−10). What is the value of
+h(10)?
+A) 400
+B) 10
+C) 50
+D) 90
+58
+
+
+--- PAGE 59 ---
+14. [October 2025]
+The functionA(b) =7b 2 gives the area of a
+right triangle, in square centimeters (cm2),
+if the length of its base isbcm and the
+length of its height is 14 times the length
+of its base. Which of the following is the
+best interpretation ofA(18) =2,268?
+A) If the length of the base of the trian-
+gle is 2,268 cm, then the length of the
+height of the triangle is 18 cm.
+B) If the length of the base of the triangle
+is 18 cm, then the length of the height
+of the triangle is 2,268 cm.
+C) If the length of the base of the triangle
+is 18 cm, then the area of the triangle
+is 2,268 cm2.
+D) If the length of the base of the triangle
+is 2,268 cm, then the area of the trian-
+gle is 18 cm2.
+15. [October 2025]
+The functionf(x) =−40x+340 gives the
+predicted height above the groundf(x),
+in feet, of a model airplane a minutes after
+it begins to descend. What is the predicted
+height above the ground, in feet, of the
+model airplane 3 minutes after it begins to
+descend?
+A) 120
+B) 220
+C) 300
+D) 460
+16. [October 2025]
+The functionfis defined by
+f(x) =2x 3 + 1
+3 x2 −x. What is the value
+off(1)?
+A) 4
+3
+B) 2
+C) 10
+3
+D) 6
+17. [October 2025]
+Functionfis defined asf(x) = (2x−5) 2,
+and functiongis defined as
+g(x) =2(2x+7). Which of the following
+is equivalent tof(x) +g(x)?
+A) 4x 2 −16x+11
+B) 4x 2 −16x+39
+C) 4x 2 −6x+39
+D) 4x 2 +24x+11
+18. [October 2025]
+Harper deposited a fixed amount into her
+bank account each month. The function
+f(t) =400+30tgives the amount, in
+dollars, in Harper’s bank account aftert
+monthly deposits. What is the best inter-
+pretation of 30 in this context?
+A) With each monthly deposit, the
+amount in Harper’s bank account in-
+creased by $30.
+B) Before Harper made any monthly de-
+posits, the amount in her bank ac-
+count was $30.
+C) After one monthly deposit, the
+amount in Harper’s bank account
+was $30.
+D) Harper made a total of 30 monthly
+deposits.
+59
+
+
+--- PAGE 60 ---
+19. [October 2025]
+0 4 8 12 16 20 24
+$ 0
+$ 50
+$ 100
+$ 150
+$ 200
+$ 250
+$ 300
+$ 350
+(0, 275)
+(24, 75)
+The graph shown gives the estimated
+value, in dollars, of a mountain bike as a
+function of the number of months since it
+was purchased. What is the best interpre-
+tation of the y-intercept of the graph in this
+context?
+A) The estimated value of the bike de-
+creased by approximately 2.75% each
+year after it was purchased.
+B) The estimated value of the bike had
+decreased by $275 in the 24 months
+after it was purchased.
+C) The estimated value of the bike 24
+months after it was purchased was
+$275.
+D) The estimated value of the bike was
+$275 when it was purchased.
+20. [October 2025]
+The functionfis defined byf(x) =x 3 +7.
+What is the value off(2)?
+21. [October 2025]
+The functionfis defined byf(x) = 1
+8x .
+What is the value off(x)whenx=9?
+22. [October 2025]
+−6 −4 −2 2 4 6
+−8
+−6
+−4
+−2
+2
+4
+6
+8
+x
+y
+The complete graph ofy=f(x)is shown.
+For how many values ofxdoesf(x) =0?
+A) One
+B) Two
+C) Three
+D) Four
+23. [October 2025]
+The function is defined byf(x) = x+11
+5 ,
+andf(a) =−18, whereais a constant.
+What is the value ofa?
+A)−101
+B)−79
+C)− 79
+5
+D)− 7
+5
+60
+
+
+--- PAGE 61 ---
+Answers: Functions&Function Notation
+Number Answer Number Answer
+1 62 2 B
+3 D 4 C
+5 A 6 B
+7 C 8 A
+9 A 10 C
+11 13/2;6.5 12 B
+13 A 14 C
+15 B 16 A
+17 B 18 A
+19 D 20 15
+21 1/72 22 C
+23 A
+61
+
+
+--- PAGE 62 ---
+Exponential Functions
+1. [September 2025]
+Anton is selling toys from his toy collec-
+tion. When he started selling the toys,
+there were 2,800 toys in the collection. At
+the end of each week for 3 weeks after An-
+ton started selling the toys, the number of
+toys in the collection had decreased by 1/2
+of the toys in the collection at the end of
+the previous week. Which equation gives
+the number of toys,c, in the collectionw
+weeks after Anton started selling the toys,
+where 0≤w≤36.
+A)c=w
+1
+2
+B)c=2800 w
+C)c=1400( 1
+2 )w
+D)c=2800( 1
+2 )w
+2. [August 2025]
+−4 −3 −2 −1 1 2 3 4
+−6
+−4
+−2
+2
+4
+6
+8
+10
+x
+y
+The graph of the functionfis shown,
+wherey=f(x). What is the value off(0)?
+A) 6
+B) 2
+C)−2
+D)−6
+3. [August 2025]
+P(t) =1, 200(1.06) t
+The functionPgives the estimated num-
+ber of sea lions in a certain area, where t
+is the number of years since a study be-
+gan. What is the best interpretation of
+P(0) =1, 200 in this context?
+A) The estimated number of sea lions in
+the area increased by 1,200 each year
+during the study.
+B) The estimated number of sea lions in
+the area increased by 106 each year
+during the study.
+C) The estimated number of sea lions in
+the area was 1,200 when the study be-
+gan.
+D) The estimated number of sea lions in
+the area was 106 when the study be-
+gan.
+4. [September 2025]
+f(x) =20(2) x +6(2) x
+The functionfis defined by the given
+equation. Which of the following equiva-
+lent forms offdisplays, as a coefficient or
+a base, they-coordinate of the y-intercept
+of the graph ofy=f(x)in thexy-plane?
+A)f(x) =80(2) x−2 +24(2) x−2
+B)f(x) =2(10(2) x +3(2) x)
+C)f(x) =20(4)
+x
+2 +6(4) x
+2
+D)f(x) =26(2) x
+62
+
+
+--- PAGE 63 ---
+5. [August 2025]
+The functionfis defined byf(x) =a x −b,
+whereaandbare constants. In the xy-
+plane, the graph ofy=f(x)passes
+through the points(c, 4)and(2c, 114),
+wherecis a constant. Which of the fol-
+lowing could be the value ofb?
+A) 7
+B) 14
+C) 110
+D) 118
+6. [August 2025]
+The functionfis defined byf(x) =a x −b,
+whereaandbare constants. In the xy-
+plane, the graph ofy=f(x)passes
+through the points(c, 5)and(2c, 137),
+wherecis a constant. Which of the fol-
+lowing could be the value ofb?
+A) 7
+B) 16
+C) 132
+D) 142
+7. [August 2025]
+P(t) =1, 900(1.07) t
+The function P gives the estimated num-
+ber of sea lions in a certain area, where t
+is the number of years since a study be-
+gan. What is the best interpretation of P(0)
+= 1,900 in this context?
+A) The estimated number of sea lions in
+the area increased by 1,900 each year
+during the study.
+B) The estimated number of sea lions in
+the area increased by 107 each year
+during the study.
+C) The estimated number of sea lions in
+the area was 1,900 when the study be-
+gan.
+D) The estimated number of sea lions in
+the area was 107 when the study be-
+gan.
+8. [August 2025]
+The function f is defined byf(x) =5(4)
+−x
+6 .
+What is the value off(12)?
+A)−80
+B)−40
+C)− 1
+400
+D) 5
+16
+9. [August 2025]
+The number of bacteria in a growth
+medium is expected to increase by 160%
+every 2 hours during a period of observa-
+tion. The number of bacteria in the growth
+medium was estimated to be 8,000 when
+the period of observation began. Which
+function P gives the expected number of
+bacteria in this growth medium t hours
+after the period of observation began?
+A)P(t) =8000(1.60)
+t
+2
+B)P(t) =8000(1.60) 2t
+C)P(t) =8000(2.60)
+t
+2
+D)P(t) =8000(2.60) 2t
+63
+
+
+--- PAGE 64 ---
+10. [August 2025]
+2 4 6 8 10
+300
+600
+900
+1,200
+1,500
+1,800
+x
+y
+The graph shows the estimated number
+of cell phone subscribers, y, in a town x
+years since 1990. Which equation repre-
+sents the exponential relationship between
+the number of cell phone subscribers in the
+town and the number of years since 1990,
+where 0≤x≤10?
+A)y=370(0.17) x
+B)y=370(1.17) x
+C)y=1779(0.83) x
+D)y=1779(1.83) x
+11. [September 2025]
+A researcher observes a sample of a nu-
+clide. An exponential model estimates
+that the mass, in grams, of the sample
+decreases by 23% every 21.87 minutes.
+Which of the following equations could
+represent this model, whereMis the es-
+timated mass, in grams, of the samplet
+minutes after the researcher began observ-
+ing the sample?
+A)M=100(0.77)
+t
+21.87
+B)M=100(0.23)
+t
+21.87
+C)M=100(0.23) t+21.87
+D)M=100(0.77) t+21.87
+12. [September 2025]
+g(x) = 1
+11 (5(2) x +4)
+The functiongis defined by the given
+equation. For all values ofx, the value of
+g(x)is greater thank, wherekis a constant.
+What is the greatest possible value ofk?
+A) 4
+B) 4
+1
+C) 9
+D) 9
+11
+13. [September 2025]
+A beaker containing a liquid is placed on a
+table. The function
+g(t) =295+ (364−295)(2.72) −0.104t gives
+the approximate temperature, in kelvins,
+of the liquidtminutes after the beaker
+was placed on the table. According to this
+function, what was the approximate tem-
+perature, in kelvins, of the liquid when the
+beaker was placed on the table?
+14. [September 2025]
+The functionfis defined byf(x) =a x +b,
+whereaandbare constants anda>0. In
+thexy-plane, the graph ofy=f(x)has
+ay-intercept at (0,-22) and passes through
+the point (2,41). What is the value ofa+b?
+15. [September 2025]
+The population of a certain city doubled
+every 75 years from 1651 to 1951. The pop-
+ulation of this city was 160,000 in 1951.
+What was the population of this city in
+1651?
+64
+
+
+--- PAGE 65 ---
+16. [September 2025]
+A certain investment account offers a spe-
+cial interest rate for the first 4 months the
+account is open followed by a lower inter-
+est rate for the remainder of the time the
+account is open. Bennett opened one of
+these accounts with an original account
+balance of $900 and did not make any
+other deposits or withdrawals. 4 months
+after Bennett opened the account, the bal-
+ance had increased by 0.6% of the original
+balance. 6 months after Bennett opened
+the account, the balance had increased by
+an additional 0.1% of the balance at the
+end of the first 4 months. Every 2 months
+after the first 6 months, the balance had
+increased by an additional 0.1% of the bal-
+ance 2 months before. Which of the follow-
+ing equations could represent the account
+balanceB(x), in dollars,xmonths after the
+account was opened, wherex≥4?
+A)B(x) =905.40(1.001) 2x−8
+B)B(x) =905.40(1.001)
+x
+2 − 4
+2
+C)B(x) =905.40(1.001)
+x
+2 −4
+D)B(x) =905.40(1.001) 2x−4
+17. [September 2025]
+A beaker containing a liquid is placed
+on a table. The functiong(t) =297+
+(363−297)(2.72) −0.103t gives the approx-
+imate temperature, in kelvins, of the liq-
+uid t minutes after the beaker was placed
+on the table. According to this function,
+what was the approximate temperature, in
+kelvins, of the liquid when the beaker was
+placed on the table?
+18. [September 2025]
+The functionfis defined byf(x) =a x +b,
+where a and b are constants anda>0. In
+the xy-plane, the graph ofy=f(x)has a
+y-intercept at (0, -22) and passes through
+the point (2, 26). What is the value ofa+b?
+19. [September 2025]
+The population of a certain city doubled
+every 75 years from 1657 to 1957. The pop-
+ulation of this city was 240,000 in 1957.
+What was the population of this city in
+1657?
+20. [September 2025]
+A certain investment account offers a spe-
+cial interest rate for the first months the ac-
+count is open followed by a lower interest
+rate for the remainder of the time the ac-
+count is open. Bennett opened one of these
+accounts with an original account balance
+of $600and did not make any other de-
+posits or withdrawals. 6 months after Ben-
+nett opened the account, the balance had
+increased by 0.4% of the original balance. 8
+months after Bennett opened the account,
+the balance had increased by an additional
+0.3% of the balance at the end of the first
+6 months. Every 2 months after the first 8
+months, the balance had increased by an
+additional of 0.3% the balance 2 months
+before. Which of the following equations
+could represent the account balanceB(x),
+in dollars,xmonths after the account was
+opened, wherex≥6?
+A)B(x) =602.40(1.003)
+x
+2 −6
+B)B(x) =602.40(1.003)
+x
+2 −3
+C)B(x) =602.40(1.003) 2x−12
+D)B(x) =602.40(1.003) 2x−6
+21. [September 2025]
+What is the y-intercept of the graph of
+y=6 x +12 in the xy-plane?
+A)(0, 6)
+B)(0, 12)
+C)(0, 18)
+D)(0, 13)
+65
+
+
+--- PAGE 66 ---
+22. [September 2025]
+A researcher observes a sample of a nu-
+clide. An exponential model estimates
+that the mass, in grams, of the sample
+decreases by 27% every 14.07 minutes.
+Which of the following equations could
+represent this model, where M is the es-
+timated mass, in grams, of the sample t
+minutes after the researcher began observ-
+ing the sample?
+A)M=100(0.27)
+t
+14.07
+B)M=100(0.27) t+14.07
+C)M=100(0.73)
+t
+14.07
+D)M=100(0.73) t+14.07
+23. [September 2025]
+g(x) = 1
+11 (6(2) x +7)
+The functiongis defined by the given
+equation. For all values ofx, the value of
+g(x)is greater than k, where k is a con-
+stant. What is the greatest possible value
+ofk?
+A) 0
+B) 13
+11
+C) 7
+11
+D) 7
+24. [October 2025]
+The y-intercept of the graph of
+y=6(1.85) x in thexy-plane is(0,y). What
+is the value ofy?
+25. [October 2025]
+A model estimates that the initial num-
+ber of photons in an X-ray beam is 800
+when the beam reaches the surface of a
+certain material. The model also estimates
+that when the beam passes through this
+material, the number of photons in the
+beam decreases by 50% for each 7 mil-
+limeters of the material the beam passes
+through. Which equation represents this
+model, whereIis the estimated number
+of photons in the beam when the beam
+reaches a pointamillimeters from the sur-
+face?
+A)I=800(7)
+x
+2
+B)I=800(0.5) x
+C)I=800(2)
+x
+7
+D)I=800(0.5)
+x
+7
+26. [October 2025]
+The functionfis defined by
+f(x) =2x 3 + 1
+3 x2 −x. What is the value
+off(1)?
+A) 4
+3
+B) 2
+C) 10
+3
+D) 6
+27. [October 2025]
+The functionfis defined byf(x) =a(4) x,
+whereais a positive constant. In the
+xy-plane, the graph ofy=f(x)passes
+through the point (0,13). What is the value
+off(0)?
+A) 4
+B) 1
+C) 13
+D) 9
+66
+
+
+--- PAGE 67 ---
+28. [October 2025]
+f(x) =4000(0.90) x
+A conservation scientist implemented a
+program to reduce a certain invasive insect
+population in an area. The given function
+estimates this insect species’ populationx
+years after 2008, wherex≤8. Which of
+the following is the best interpretation of
+4000 in this context?
+A) The estimated percent decrease in the
+insect population for this species and
+area every 8 years after 2008
+B) The estimated initial insect popula-
+tion for this species and area in 2008
+C) The estimated percent decrease in the
+insect population for this species and
+area each year after 2008
+D) The estimated insect population for
+this species and area 8 years after 2008
+29. [October 2025]
+Forx=0,yhas a value of 200. The value
+ofyincreases by 40% for every increase of
+1 in the value ofx. Which equation repre-
+sents this situation?
+A)y=200(x) 40
+B)y=200(1.40) x
+C)y=200(40) x
+D)y=200(x) 1.40
+30. [October 2025]
+The functionfis defined byf(x) =b x +c,
+wherebandcare positive constants. In
+thexy-plane, the graph ofy=f(x)passes
+through the point(0, 25). What is the
+value off(0)?
+31. [October 2025]
+The relationship between the variablesx
+andyis defined by an exponential equa-
+tion. Whenx=0, the value ofyis 40, and
+for every increase in the value ofxby 1,
+the corresponding value ofyincreases by
+50% of its previous value. Which equation
+represents this relationship?
+A)y=40(1.50) x
+B)y=40(1.05) x
+C)y=50(1.40) x
+D)y=50(1.04) x
+32. [October 2025]
+y=9( a
+7 )x+c −b
+How many times does the graph of the
+given equation in thexy-plane cross the
+x-axis, where a, b, and c are positive con-
+stants such thata>7 andb<c?
+A) Zero
+B) One
+C) Two
+D) Three
+33. [October 2025]
+The functionhis defined byh(x) =a x +b,
+whereaandbare positive constants. The
+graph ofy=h(x)in thexy-plane passes
+through the points(0, 10)and(2, 13).
+What is the value ofab?
+A) 13
+B) 18
+C) 20
+D) 26
+67
+
+
+--- PAGE 68 ---
+34. [October 2025]
+The functionfis defined by
+f(x) =56(0.19) x. For any positive inte-
+gern, the value off(n)isp% less than the
+value off(n−1). What is the value ofp?
+A) 19
+B) 44
+C) 56
+D) 81
+68
+
+
+--- PAGE 69 ---
+Answers: Exponential Functions
+Number Answer Number Answer
+1 D 2 C
+3 C 4 D
+5 A 6 A
+7 C 8 D
+9 C 10 B
+11 A 12 B
+13 364 14 -15
+15 10000 16 B
+17 363 18 -16
+19 15000 20 B
+21 D 22 C
+23 C 24 6
+25 D 26 A
+27 C 28 B
+29 B 30 25
+31 A 32 B
+33 B 34 D
+69
+
+
+--- PAGE 70 ---
+Quadratics
+1. [September 2025]
+1
+cx = x
+96 + 1
+c
+In the given equation,cis a constant. If the
+equation has exactly one solution, what is
+the value ofc?
+2. [August 2025]
+x2 −9x+1=0
+What is the one solution to the given equa-
+tion?
+A) 9+
+√
+77
+2
+B) 9+
+√
+85
+2
+C) −9+
+√
+77
+2
+D) −9+
+√
+85
+2
+3. [August 2025]
+For a certain type of rope, the equation
+y=900ax 2, whereais a constant, gives the
+estimated breaking strengthy, in pounds,
+of a rope with a circumference ofxinches.
+Based on this equation, if a rope of this
+type has a circumference of 2.75 inches,
+it has an estimated breaking strength of
+9,528.75 pounds. What is the estimated
+breaking strength, in pounds, of a rope of
+this type that has a circumference of 8.50
+inches?
+4. [August 2025]
+(x+k) 2 +31=31
+In the given equation,kis a constant.
+How many distinct real solutions does this
+equation have?
+A) Zero
+B) Exactly one
+C) Exactly two
+D) Infinitely many
+5. [August 2025]
+f(x) =4x 2 +56x+197
+The functiongis defined byg(x) =f(x+
+6). What is the minimum value of g(x)?
+A)−13
+B)−7
+C) 1
+D) 7
+6. [August 2025]
+(x−k) 2 = (k−4a)(x−k)
+In the given equation,aandkare con-
+stants, wherek>4aThe sum of the so-
+lutions to the equation is 3k+37 What is
+the value ofa?
+70
+
+
+--- PAGE 71 ---
+7. [September 2025]
+If( 1
+2 x− 21
+2 )2 −81=0, what is the value of
+(x−21) 2?
+A) 324
+B) 162
+C) 21
+D) 9
+8. [September 2025]
+y=7x 2 −bx−6
+Which of the following equations is equal
+to the given equation above, wherebis a
+positive constant.
+A)y=7(x− b
+14 )2 −6− b2
+28
+B)y=7(x− b
+14 )2 −6
+C)y=7(x+ b
+14 )2 −6− b2
+28
+D)y=7(x+ b
+14 )2 −6
+9. [September 2025]
+−x2 +bx−49=0
+In the given equation,bis an integer. The
+equation has no real solution. What is least
+possible value ofb?
+10. [August 2025]
+y−x=46
+y=x 2 −44x
+The graphs of the equations in the given
+system intersect at the point(x,y)in the
+xy-plane. What is a possible value of y?
+A) 46
+B) 47
+C) 91
+D) 92
+11. [September 2025]
+−5x2 −x+9=0
+What is the greatest solution to the given
+equation?
+A)− 1
+5 +
+√
+181
+5
+B)− 1
+10 +
+√
+181
+10
+C)− 1
+5 −
+√
+181
+5
+D)− 1
+10 −
+√
+181
+10
+12. [September 2025]
+If(x+2) 2 =28, what is the value of
+x2 +4x?
+A) 56
+B) 28
+C) 32
+D) 24
+71
+
+
+--- PAGE 72 ---
+13. [September 2025]
+1
+78 x2 + (s− 1
+78 t)x−st=0
+In the given equation,sandtare positive
+constants. The product of the solutions to
+the given equation is−2kst, wherekis a
+constant. What is the value ofk?
+14. [September 2025]
+A quadratic function gives the estimated
+length of daylightd(t), in hours, in a cer-
+tain citytmonths after March 1, where
+0≤t≤7. According to the function, the
+estimated length of daylight is 13.44 hours
+5 months after March 1 and the maximum
+estimated length of daylight is 13.89 hours
+3.5 months after March 1. Based on this
+function, what is the estimated length of
+daylight, in hours, on March 1?
+15. [September 2025]
+kx2 −16x=27x 2 −8
+In the given equation,kis an integer con-
+stant. If the equation has two distinct
+real solutions, what is the greatest possible
+value ofk?
+16. [September 2025]
+The expressionx 2 +kx+14, wherekis
+a constant, can be rewritten as
+(x+n)(x+7), wherenis a constant. What
+is the value ofk?
+A) 2
+B) 5
+C) 9
+D) 7
+17. [September 2025]
+−5x2 −x+9=0
+What is the greatest solution to the given
+equation?
+A)− 1
+5 +
+√
+181
+5
+B)− 1
+10 +
+√
+181
+10
+C)− 1
+5 −
+√
+181
+5
+D)− 1
+10 −
+√
+181
+10
+18. [September 2025]
+In the xy-plane, the graph of the equa-
+tiony=−x 2 +7x−104 intersects the line
+y=cat exactly one point. What is the
+value ofc?
+A)− 367
+4
+B)− 7
+2
+C)−104
+D)− 465
+4
+19. [September 2025]
+The expressionx 2 +kx+55, where k is
+a constant, can be rewritten as
+(x+n)(x+11), where n is a constant.
+What is the value of k?
+A) 16
+B) 6
+C) 11
+D) 5
+72
+
+
+--- PAGE 73 ---
+20. [September 2025]
+−3x2 −5x+6=0
+What is the greatest solution to the given
+equation?
+A) −5
+6 −
+√
+97
+6
+B) −5
+3 +
+√
+97
+3
+C) −5
+6 +
+√
+97
+6
+D) −5
+3 −
+√
+97
+3
+21. [September 2025]
+x2 +49x+1=0
+What is one of the solutions to the given
+equation?
+A) −49+
+p
+(49)2 −4(1)(1)
+2(1)
+B) −49+
+p
+(49)2 −4(49)(49)
+2(49)
+C) −1+
+p
+(1)2 −4(1)(49)
+2(1)
+D) −1+
+p
+(1)2 −4(49)(1)
+2(49)
+22. [September 2025]
+1
+24 x2 + (s− 1
+24 t)x−st=0
+In the given equation,sandtare positive
+constants. The product of the solutions to
+the given equation is−2kst, wherekis a
+constant. What is the value ofk?
+23. [September 2025]
+f(x) =−16x 2 +76
+The functionfgives the estimated height,
+in feet, of an acornxseconds after the
+acorn fell from a tree. Based on the func-
+tion, what is the estimated height, in feet,
+of the acorn before it fell from the tree?
+24. [September 2025]
+(x−7)(x−8)
+x−3 =0
+What is the sum of the solutions to the
+given equation?
+A) 8
+B) 18
+C) 15
+D) 3
+25. [September 2025]
+−6x+42px=84
+In the given equation,pis a constant. The
+equation has no solution. What is the
+value ofp?
+A) 1
+3
+B) 0
+C) 2
+D) 1
+7
+73
+
+
+--- PAGE 74 ---
+26. [September 2025]
+If(x+2) 2 =18, what is the value of
+x2 +4x?
+A) 14
+B) 22
+C) 36
+D) 18
+27. [September 2025]
+A quadratic function gives the estimated
+length of daylightd(t), in hours, in a cer-
+tain city t months after March 1, where
+0≤t≤7. According to the function, the
+estimated length of daylight is 12.66 hours
+6 months after March 1 and the maximum
+estimated length of daylight is 13.91 hours
+3.5 months after March 1. Based on this
+function, what is the estimated length of
+daylight, in hours, on March 1?
+28. [September 2025]
+nx2 −16x=26x 2 −8
+In the given equation,nis an integer con-
+stant. If the equation has two distinct
+real solutions, what is the greatest possible
+value ofn?
+29. [October 2025]
+A quadratic function models the height,
+in feet, of an object above the ground in
+terms of the time, in seconds, after the ob-
+ject was launched. The model estimates
+that the object was launched from an ini-
+tial height of 0.00 feet above the ground
+and was at a maximum height of 207.36
+feet above the ground 3.6 seconds after it
+was launched. The model also estimates
+that the object was at a height of 184.32
+feet above the groundxseconds after it
+was launched. What is a possible value of
+x?
+30. [October 2025]
+x2 +49x+1=0
+A) −49+
+p
+(49)2 −4(1)(1)
+2(1)
+B) −49+
+p
+(49)2 −4(49)(49)
+2(49)
+C) −1+
+p
+(1)2 −4(1)(49)
+2(1)
+D) −1+
+p
+(1)2 −4(49)(1)
+2(49)
+31. [October 2025]
+15x2 =15(9)
+What is the negative solution to the given
+equation?
+32. [October 2025]
+They-intercept of the graph ofy= 5x 2 +72
+is(0,y). What is the value ofy?
+74
+
+
+--- PAGE 75 ---
+33. [October 2025]
+80x2 +80x=−10
+One solution to the given equation can be
+written asx= −8−k
+√
+2
+16 , wherekis a con-
+stant. What is the value ofk?
+A) 4
+B) 80
+C) 32
+D) 128
+34. [October 2025]
+k2 −47=97
+What is the positive solution to the given
+equation?
+A) 144
+B) 12
+C) 72
+D) 50
+35. [October 2025]
+What is they-intercept of the graph of
+y=x 2 +27 in thexy-plane?
+A)(0,−27)
+B)(0, 28)
+C)(0, 27)
+D)(0, 0)
+36. [October 2025]
+For a certain type of rope, the equation
+y=900ax 2, whereais a constant, gives the
+estimated breaking strengthy, in pounds,
+of a rope with a circumference ofxinches.
+Based on this equation, if a rope of this
+type has a circumference of 1.75 inches,
+it has an estimated breaking strength of
+3,858.75 pounds. What is the estimated
+breaking strength, in pounds, of a rope of
+this type that has a circumference of 3.50
+inches?
+37. [October 2025]
+x2 − 81
+16 =0
+How many distinct real solutions does the
+given equation have?
+A) Zero
+B) Exactly one
+C) Exactly two
+D) Infinitely many
+38. [October 2025]
+h(t) =−16t 2 +b
+The functionhestimates an object’s height,
+in feet, above the groundtseconds after
+the object is dropped, wherebis a con-
+stant. The function estimates that the ob-
+ject is 19.36 feet above the ground when it
+is dropped att=0. How many seconds
+after being dropped does the function esti-
+mate the object will hit the ground?
+75
+
+
+--- PAGE 76 ---
+39. [October 2025]
+x2 + (
+√
+k−3)x+42=0
+In the given equation,kis a constant.
+The equation has exactly one real solution.
+What is the value ofk?
+A) 171
+B) 168
+C) 165
+D) 45
+40. [October 2025]
+9x2 +8=nx
+In the given equation,nis a constant. The
+equation has exactly one solution. What is
+the value of n2
+8
+76
+
+
+--- PAGE 77 ---
+Answers: Quadratics
+Number Answer Number Answer
+1 -24 2 A
+3 91035 4 B
+5 C 6 -37/4
+7 A 8 A
+9 -13 10 D
+11 B 12 D
+13 39 14 11.44; 286/25
+15 34 16 C
+17 B 18 A
+19 A 20 C
+21 A 22 12
+23 76 24 C
+25 D 26 A
+27 11.46 28 33
+29 2.4; 4.8 30 A
+31 -3 32 72
+33 A 34 B
+35 C 36 15435
+37 C 38 1.1;11/10
+39 A 40 36
+77
+
+
+--- PAGE 78 ---
+Problem
+solving
+
+
+--- PAGE 79 ---
+Problem Solving Formulas
+• Mean (Average)= Sum of values
+Total number of values.
+• Mode -The most frequently occurring value.
+• Range -The difference between the highest and lowest values in a dataset.max-min
+• Median -The middle value in a sorted dataset, which divides the data into two equal halves.
+• Low standard deviation:Data points are close to the mean.
+• High standard deviation:Data is spread over a wide range.
+• Margin of Error:How It Changes
+Decreases When:
+• Bigger Sample Size:More data reduces uncertainty.
+• Variability Decreases:Less spread in the data narrows the error range.
+Increases When:
+• Smaller Sample Size:Less data increases uncertainty.
+• Variability Increases:More spread in the data enlarges the margin.
+• Probability= desired outcomes
+total possible outcomes.
+• Percent Change= new−old
+old ·100%.
+• Box Plot -a way of summarizing data by showing:
+•Theminimum value(left whisker).
+•Thelower quartile(Q 1), which is the 25% point.
+•Themedian(50% point).
+•Theupper quartile(Q 3), which is the 75% point.
+•Themaximum value(right whisker).
+•TheInterquartile Range (IQR)which isQ 3 −Q 1.
+min
+Q1 Median Q3
+max
+IQR=Q 3 −Q 1
+79
+
+
+--- PAGE 80 ---
+Percent; Ratio&Proportion
+1. [September 2025 ]
+An entomologist placed an initial popula-
+tion of 40 Tenebrio molitor, a type of beetle,
+into a habitat and monitored the popula-
+tion over time. When the number of Tene-
+brio molitor in the habitat reached 170%
+of the initial population, the entomologist
+moved 75% of the Tenebrio molitor to a
+second habitat. How many Tenebrio moli-
+tor did the entomologist move to the sec-
+ond habitat at this time?
+2. [August 2025 ]
+A certain bonefish can swim at a maxi-
+mum speed of 17 meters per second. At
+this maximum speed, how many meters
+would this bonefish swim in 10 seconds?
+3. [August 2025 ]
+An object’s speed is increasing at a rate
+of 6.80 meters per second squared. What
+is this rate in miles per minute squared,
+rounded to the nearest tenth? (Use 1
+mile=1,609 meters.)
+4. [September 2025 ]
+The ratio 6 to 3 is equivalent to the ratio 24
+to 3k, where k is a constant. What is the
+value ofk?
+A) 0.75
+B) 4
+C) 12
+D) 72
+5. [August 2025 ]
+On a plot of land, 48.0% of the square
+footage is farmland and the remaining
+square footage is pasture. There are build-
+ings on exactly 23.5% of the square footage
+of the farmland, and there are buildings
+on exactly 16.0% of the square footage of
+the pasture. If there are buildings on ex-
+actlyp% of the square footage of the plot
+of land, what is the value ofp?
+6. [September 2025 ]
+For the positive quantities h, j, and k, 11%
+of h is equivalent to 33% of j, and j is equiv-
+alent to 14% of k. What percentage of k is
+h? (Disregard the % sign when entering
+your answer. For example, if your answer
+is 39%, enter 39)
+7. [August 2025 ]
+An object travels x inches in y seconds.
+At this rate, which expression represents
+the time, in seconds, it takes the object to
+travel a distance of 22xinches?
+A) 22
+y
+B) y
+22
+C) 22y
+D) 22+y
+80
+
+
+--- PAGE 81 ---
+8. [September 2025 ]
+A certain goose species can fly at an aver-
+age speed of 16 meters per second when in
+continuous flight. At this rate, how many
+meters would this goose species fly in 6
+seconds?
+A) 96
+B) 16
+C) 10
+D) 22
+9. [September 2025 ]
+Stefan purchased 700 feet of fencing. He
+used 80% of this fencing to surround a
+vegetable garden. How many feet of fenc-
+ing did Stefan use to surround the veg-
+etable garden?
+A) 40
+B) 16
+C) 560
+D) 620
+10. [September 2025 ]
+A certain pigeon species can fly at an aver-
+age speed of 16 meters per second when in
+continuous flight. At this rate, how many
+meters would this pigeon species fly in 3
+seconds?
+A) 16
+B) 13
+C) 48
+D) 19
+11. [August 2025 ]
+For the positive quantitiesh,j, andk, 12%
+ofhis equivalent to 95% ofj, andjis equiv-
+alent to 24% ofk. What percentage ofkis
+h? (Disregard the % sign when entering
+your answer. For example, if your answer
+is 39%, enter 39)
+12. [September 2025 ]
+For the positive quantities h, j, and k, 13%
+of h is equivalent to 19% of j, and j is equiv-
+alent to of 91% of k . What percentage of k
+is h? (Disregard the % sign when entering
+your answer. For example, if your answer
+is 39% , enter 39)
+13. [August 2025 ]
+Stefan purchased 500 feet of fencing. He
+used 80% of this fencing to surround a
+vegetable garden. How many feet of fenc-
+ing did Stefan use to surround the veg-
+etable garden?
+A) 12
+B) 420
+C) 400
+D) 40
+81
+
+
+--- PAGE 82 ---
+14. [October 2025 ]
+There are a total of 340 seats in a school
+auditorium. During an assembly, students
+occupied 50% of the seats in the audito-
+rium. How many seats did the students
+occupy during this assembly?
+A) 290
+B) 25
+C) 170
+D) 50
+15. [October 2025 ]
+The ratio ofktopis constant. Ifk=7,
+thenp=6. What is the value ofkwhen
+p=336?
+A) 288
+B) 56
+C) 48
+D) 392
+16. [October 2025 ]
+Charles saves 3
+5 of the $225 he earns each
+week from his summer job. If Charles
+continues to save at this rate, how much
+money, in dollars, will Charles save in 3
+weeks?
+17. [October 2025 ]
+What is 10% of 450?
+A) 35
+B) 440
+C) 405
+D) 45
+18. [August 2025 ]
+The mass of object A is 444% of the mass of
+object B, and the mass of object A is 0.740%
+of the mass of object C. If the mass of ob-
+ject C isp% of the mass of object B, what is
+the value ofp?
+82
+
+
+--- PAGE 83 ---
+Answers: Percent, Ratio & Proportion
+Number Answer Number Answer
+1 51 2 170
+3 15.2 4 B
+5 19.6 6 42
+7 C 8 A
+9 C 10 C
+11 190 12 133
+13 C 14 C
+15 D 16 405
+17 D 18 60000
+83
+
+
+--- PAGE 84 ---
+Unit Conversion
+1. [September 2025 ]
+A certain town has an area of 13,753,344
+square yards. What is the area, in
+square miles, of this town? (1 mile = 1,760
+yards)
+A) 7,814.4
+B) 2.11
+C) 3,708.55
+D) 4.44
+2. [September 2025 ]
+A dog’s mass is 24 kilograms. What is
+the dog’s mass, in grams? (1 kilogram =
+1,000 grams)
+3. [September 2025 ]
+The area of a rectangular region is increas-
+ing at a rate of 210 square feet per hour.
+Which of the following is closest to this
+rate in square meters per minute? (Use 1
+meter = 3.28 feet.)
+A) 0.33
+B) 1.07
+C) 11.48
+D) 19.52
+4. [September 2025 ]
+A certain town has an area of 12,669,184
+square yards. What is the area, in square
+miles, of this town?(1 mile = 1,760 yards)
+A) 2.02
+B) 7198.4
+C) 4.09
+D) 3559.38
+5. [September 2025 ]
+The area of a rectangular region is increas-
+ing at a rate of 190 square feet per hour.
+Which of the following is closest to this
+rate in square meters per minute ? (Use 1
+meter = 3.28 feet.)
+A) 10.39
+B) 0.97
+C) 0.29
+D) 17.66
+6. [October 2025 ]
+A triathlon is a multisport race consisting
+of three different legs. A triathlon partic-
+ipant completed the cycling leg with an
+average speed of 17,700 miles per hour.
+What was the average speed, in million
+yards per hour, of the participant during
+the cycling leg?(1 mile=1,760 yards)
+84
+
+
+--- PAGE 85 ---
+7. [October 2025 ]
+A triathlon is a multisport race consisting
+of three different legs. A triathlon partici-
+pant completed the cycling leg with an av-
+erage speed of 19.3 miles per hour. What
+was the average speed, in yards per hour,
+of the participant during the cycling leg?
+(1 mile = 1760 yards)
+A) 33968
+B) 91.2
+C) 57.9
+D) 5280
+8. [October 2025 ]
+A length of 450 meters is equal to how
+many decimeters? (1 meter = 10 decime-
+ters)
+9. [October 2025 ]
+A certain town has an area of 4.29 square
+miles. What is the area, in square yards, of
+this town? (1 mile = 1760 yards)
+A) 410
+B) 7,550
+C) 722,051
+D) 13,288,704
+85
+
+
+--- PAGE 86 ---
+Answers: Unit Conversion
+Number Answer Number Answer
+1 D 2 24000
+3 A 4 C
+5 C 6 31.152
+7 A 8 4500
+9 D
+86
+
+
+--- PAGE 87 ---
+Probability
+1. [August 2025 ]
+Survey Results
+Annuals 159
+Perennials 295
+A total of 454 gardeners selected at ran-
+dom were asked if they preferred peren-
+nials or annuals. The results of the sur-
+vey are shown in the table above. Accord-
+ing to these results, if 5,448 gardeners were
+choosing plants, how many more would
+prefer perennials than would prefer annu-
+als?
+A) 136
+B) 1632
+C) 1908
+D) 3540
+2. [September 2025 ]
+The table summarizes the distribution of age
+and assigned group for 90 participants in a
+study.
+0–9 years 10–19 years 20+ years Total
+Group A 15 11 4 30
+Group B 4 5 21 30
+Group C 11 14 5 30
+Total 30 30 30 90
+One of these participants will be selected
+at random. What is the probability of
+selecting a participant from group A,
+given that the participant is at least 10
+years of age?
+A) 1
+6
+B) 1
+4
+C) 11
+30
+D) 1
+2
+3. [September 2025 ]
+A department store sells pants in three
+lengths: short, regular, and long. The ta-
+ble summarizes the distribution of pant
+length, by color, for all the pants in the
+store.
+BlackBrownBlueTotal
+Short 19 20 24 63
+Regular 17 21 22 60
+Long 14 25 19 58
+Total 50 66 65 181
+A pair of pants is selected at random.
+What is the probability of selecting a pair
+of pants that is brown, given that the pair
+of pants is regular length? (Express your
+answer as a decimal or fraction, not as a
+percent.)
+87
+
+
+--- PAGE 88 ---
+4. [September 2025 ]
+A department store sells pants in three
+lengths: short, regular, and long. The ta-
+ble summarizes the distribution of pant
+length, by color, for all the pants in the
+store.
+Black Brown Blue Total
+Short 25 14 24 63
+Regular 23 15 22 60
+Long 20 19 19 58
+Total 68 48 65 181
+A pair of pants is selected at random.
+What is the probability of selecting a pair
+of pants that is brown, given that the pair
+of pants is regular length? (Express your
+answer as a decimal or fraction, not as a
+percent.)
+5. [October 2025 ]
+Each of 185 animals can be classified as
+one of three species, as shown in the fre-
+quency table.
+Classification Frequency
+species X 112
+species Y 3
+species Z 70
+If one of the animals is selected at random,
+what is the probability of selecting an ani-
+mal of species Y?
+A) 70
+185
+B) 3
+185
+C) 182
+185
+D) 112
+185
+6. [October 2025 ]
+The table shows the distribution of peo-
+ple in a certain city by age group.
+Age group Proportion
+Less than 18 years old 26%
+18-40 years old 21%
+41-65 years old 29%
+Greater than 65 years old 24%
+If a person in this city is selected at ran-
+dom, which of the following is closest to
+the probability of selecting a person who
+is greater than 65 years old, given that the
+person is at least 18 years old?
+A) 0.24
+B) 0.32
+C) 0.50
+D) 0.92
+88
+
+
+--- PAGE 89 ---
+Answers: Probability
+Number Answer Number Answer
+1 B 2 B
+3 0.35;7/20 4 1/4;0.25
+5 B 6 B
+89
+
+
+--- PAGE 90 ---
+Mean, Median, Mode, Range
+1. [September 2025 ]
+The dot plots represent the distributions
+of values in data sets A and B.
+Data Set A Data Set B
+4 5 6 7 8 9 10 4 5 6 7 8 9 10
+Which of the following statements must be
+true?
+I. The median of data set A is equal to
+the median of data set B.
+II. The standard deviation of data set A
+is equal to the standard deviation of
+data set B.
+A) I and II
+B) I only
+C) II only
+D) Neither I nor II
+2. [August 2025 ]
+A farmer gave two groups of chickens dif-
+ferent types of chicken feed for a month
+to measure the effect on egg production.
+The lists give the number of eggs col-
+lected from each chicken in each of the
+two groups.
+Group G: 8, 16, 18, 18, 24
+Group H: 16, 18, 18, 24
+Which statement correctly compares the
+median number of eggs collected for
+groupGand the median number of eggs
+collected for groupH?
+A) The median number of eggs collected
+for groupGis equal to the median
+number of eggs collected for groupH.
+B) The median number of eggs collected
+for groupGis greater than the me-
+dian number of eggs collected for
+groupH.
+C) The median number of eggs collected
+for groupGis less than the median
+number of eggs collected for groupH.
+D) There is not enough information to
+compare the median number of eggs
+collected for groupGand the median
+number of eggs collected for groupH.
+3. [September 2025 ]
+−3x+15px=30
+In the given equatoin,pis a constant. The
+equation had no solution. What is the
+value ofp?
+A)( 2
+3
+B) 0
+C) 2
+D) 1
+5
+90
+
+
+--- PAGE 91 ---
+4. [September 2025 ]
+At a nature preserve, a wildlife biologist
+counted ducks from an observation deck
+at the same time each day for 41 days. The
+table summarizes the resulting data set,
+data set A.
+Number of ducks Number of days
+0 1
+1 7
+2 8
+3 9
+4 8
+5 7
+18 1
+The data value 18 was recorded in error
+and is removed from data set A to create
+data set B, which consists of the remain-
+ing 40 data values. Which statement best
+compares the median of data set A and the
+median of data set B?
+A) There is not enough information to
+compare the medians of the two data
+sets.
+B) The median of data set B is equal to
+the median of data set A.
+C) The median of data set B is greater
+than the median of data set A.
+D) The median of data set B is less than
+the median of data set A.
+5. [September 2025 ]
+Each of the following frequency tables rep-
+resents a data set. Which data set has the
+greatest mean?
+A)
+Value Frequency
+10 3
+20 4
+30 5
+40 6
+B)
+Value Frequency
+10 7
+20 4
+30 4
+40 7
+C)
+Value Frequency
+10 5
+20 5
+30 5
+40 5
+D)
+Value Frequency
+10 6
+20 5
+30 5
+40 6
+91
+
+
+--- PAGE 92 ---
+6. [September 2025 ]
+Each of the following frequency tables rep-
+resents a data set. Which data set has the
+greatest mean?
+A)
+Value Frequency
+60 3
+70 3
+80 3
+90 3
+B)
+Value Frequency
+60 4
+70 3
+80 3
+90 4
+C)
+Value Frequency
+60 1
+70 2
+80 3
+90 4
+D)
+Value Frequency
+60 5
+70 2
+80 2
+90 5
+7. [September 2025 ]
+At a nature preserve, a wildlife biologist
+counted ducks from an observation deck
+at the same time each day for 41 days. The
+table summarizes the resulting data set,
+data set A.
+Number of ducksNumber of days
+0 1
+1 7
+2 8
+3 9
+4 8
+5 7
+13 1
+The data value 13 was recorded in error
+and is removed from data set A to create
+data set B, which consists of the remain-
+ing 40 data values. Which statement best
+compares the median of data set A and the
+median of data set B?
+A) The median of data set B is greater
+than the median of data set A.
+B) There is not enough information to
+compare the medians of the two data
+sets.
+C) The median of data set B is equal to
+the median of data set A.
+D) The median of data set B is less than
+the median of data set A.
+92
+
+
+--- PAGE 93 ---
+8. [October 2025 ]
+For a study, a research team measured
+the heights of 380 king penguins from the
+Kerguelen Islands and 190 king penguins
+from the Falkland Islands. The research
+team determined that the mean height of
+the 380 king penguins from the Kerguelen
+Islands was 87 centimeters and the mean
+height of the 190 king penguins from the
+Falkland Islands was 93 centimeters. What
+was the mean height, in centimeters, of all
+570 king penguins the research team mea-
+sured for this study?
+A) 91
+B) 89
+C) 90
+D) 88
+9. [October 2025 ]
+The List give us the speeds, in miles per
+hour, of 7 servers made by a professional
+tennis player.
+121, 123, 123, 125, 151, 154, 155
+What is the mean speed, in miles per hour,
+of these 7 serves?
+10. [October 2025 ]
+a, 26, 29,b, 31, 47,c
+For the given data set, the data values are
+listed in ascending order, where a, b, and
+c are constants. For this data set, the mean
+is 36, the median is 29, and the range is 72.
+What is the value of c?
+A) 54
+B) 72
+C) 81
+D) 98
+11. [October 2025 ]
+For data setA, the table summarizes the
+distribution of the number of pieces of
+mail received by a business each day
+during a period of 11 days.
+Pieces of mail Days
+0 2
+3 2
+4 2
+5 2
+6 1
+7 1
+13 1
+The data value 13 is removed from data set
+Ato create data setB, which consists of
+the remaining 10 data values. Which state-
+ment best compares the median of data set
+Aand the median of data setB?
+A) The median of data set B is less than
+the median of data set A.
+B) The median of data set B is greater
+than the median of data set A.
+C) The median of data set B is equal to
+the median of data set A.
+D) There is not enough information to
+compare the medians of the two data
+sets.
+93
+
+
+--- PAGE 94 ---
+Answers: Mean, Median, Mode, Range
+Number Answer Number Answer
+1 C 2 A
+3 D 4 B
+5 A 6 C
+7 C 8 B
+9 136 10 C
+11 C
+94
+
+
+--- PAGE 95 ---
+Scatterplots
+1. [September 2025 ]
+The scatterplot shows the relationship be-
+tween two variables,xandy. A line of
+best fit for the data is also shown.
+x
+y
+0
+10
+20
+30
+40
+50
+60
+70
+80
+90
+100
+110
+2 4 6 8 10
+For how many of the 9 data points is the
+actualy-value greater than they-value pre-
+dicted by the line of best fit?
+A) 8
+B) 7
+C) 5
+D) 2
+2. [August 2025 ]
+The graph shows the number of internet
+users worldwidey, in billion,xyears after
+2007.
+0 1 2 3 4 5 6 7 8 90
+1
+2
+3
+4
+5
+6
+x
+y
+Which of the following is closest to the
+number of internet users worldwide, in
+billions, 5 years after 2007?
+A) 1.4
+B) 2.4
+C) 3.4
+D) 4.4
+95
+
+
+--- PAGE 96 ---
+3. [September 2025 ]
+The scatterplot shows data setA, which
+consists of the weightsy, in pounds, of a
+Labrador retriever puppy at various ages,
+x, in months. The equation of a line of
+best fit for the relationship in data set A
+can be written asy=−5.1+8.7x, where
+2≥x≥6
+x
+y
+1 2 3 4 5 6 7 8 9 10
+10.0
+20.0
+30.0
+40.0
+50.0
+60.0
+70.0
+The puppy was weighed again at 9 months
+old and weighed 52 pounds. Data set B
+consists of all the data points in data set A
+as well as the data point (9, 52). The equa-
+tion of a line of best fit for data setBcan
+be written asy=r+st, where r and s are
+constants and 2≥x≥9. Assuming the
+equations of the lines of best fit are calcu-
+lated in the same way, which of the follow-
+ing is the best estimate for the value ofs?
+A) 5.9
+B) 8.7
+C) 13.8
+D) 17.7
+4. [September 2025 ]
+The scatterplot shows the relationship be-
+tween two variables, x and y. A line of best
+fit is also shown.
+1 2 3 4 5 6
+1
+2
+3
+4
+5
+6
+x
+y
+Which of the following equations best rep-
+resents the line of best fit shown?
+A)y=0
+B)y=1.7
+C) 0.7
+D)y=1.7+0.7x
+5. [October 2025 ]
+230 240 250 260 270
+385
+420
+455
+490
+525
+t
+d
+Which of the following equations is the
+most appropriate linear model for the data
+shown?
+A)d=−62.1+2.02t
+B)d=162.1+2.02t
+C)d=357.8+2.02t
+D)d=392.8+2.02t
+96
+
+
+--- PAGE 97 ---
+6. [October 2025 ]
+For the first 10 hours of an experiment, the
+scatterplot shows the temperaturey, in de-
+grees Fahrenheit ( ◦F), of an object at vari-
+ous timesx, in hours, since the start of the
+experiment. A line of best fit is also shown.
+0 2 4 6 8 10
+0
+150
+300
+450
+600
+Time (hours)
+Temperature (◦F)
+Which of the following is the best interpre-
+tation of the slope of the line of best fit?
+A) The predicted temperature increases
+at a constant rate of approximately
+40◦F per hour over the 10-hour pe-
+riod.
+B) The predicted temperature decreases
+at a constant rate of approximately
+40◦F per hour over the 10-hour pe-
+riod.
+C) The predicted temperature decreases
+at a constant rate of approximately
+180◦F per hour over the 10-hour pe-
+riod.
+D) The predicted temperature increases
+at a constant rate of approximately
+180◦F per hour over the 10-hour pe-
+riod.
+7. [September 2025 ]
+1 2 3 4 5 6
+30
+50
+70
+90
+110
+130
+150
+Age (years)
+Body length (cm)
+The scatterplot shows 5 measurements of
+the body length, in centimeters (cm), of a
+New Zealand fur seal from an age of 1 year
+to 6 years old. A line of best fit is also
+shown. For a New Zealand fur seal at an
+age of 3 years old, what is the body length
+predicted by the line of best fit, to the near-
+est 10 cm?
+8. [September 2025 ]
+1 2 3 4 5 6
+20
+40
+60
+80
+100
+120
+140
+Age (years)
+Body length (cm)
+The scatterplot shows 5 measurements of
+the body length, in centimeters (cm), of a
+New Zealand fur seal from an age of 1 year
+to 6 years old. A line of best fit is also
+shown. For a New Zealand fur seal at an
+age of 3 years old, what is the body length
+predicted by the line of best fit, to the near-
+est ?
+97
+
+
+--- PAGE 98 ---
+9. [September 2025 ]
+For the first 10 hours of an experiment, the
+scatterplot shows the temperaturey, in de-
+greesFahrenheit(F), of an object at various
+times,xin hours, since the start of the ex-
+periment. A line of best fit is also shown.
+2 4 6 8 10
+225
+375
+525
+Time (hours)
+Temperature (◦F)
+Which of the following is the best interpre-
+tation of the slope of the line of best fit?
+A) The predicted temperature increases
+at a constant rate of approximately
+170°Fper hour over the 10-hour pe-
+riod.
+B) The predicted temperature decreases
+at a constant rate of approximately
+170°Fper hour over the 10-hour pe-
+riod.
+C) The predicted temperature increases
+at a constant rate of approximately
+per hourover the 10-hour period.
+D) The predicted temperature decreases
+at a constant rate of approximately
+40°F perhour over the 10-hour period.
+10. [October 2025 ]
+−5 −3 −1 1 3 5
+20
+40
+60
+80
+x
+y
+• The scatterplot has 13 data points.
+• The data points are in an exponential
+pattern trending up from left to right.
+• The data points have the following
+approximate coordinates:
+(−4.3, 19) (−4, 19) (−3.5, 19)
+(−2.5, 20) (−1.7, 21) (−0.8, 23)
+(0, 24) (0.5, 25) (1.8, 30)
+(3, 42) (3.3, 46) (4, 49)
+(4.3, 57)
+Which of the following equations is the
+most appropriate model for the data
+shown in the scatterplot?
+A)y=24(1.55) x
+B)y=24(1.55) x +18
+C)y= (1.55) x +23
+D)y=6(1.55) x +18
+98
+
+
+--- PAGE 99 ---
+11. [October 2025 ]
+The scatterplot shows the relationship be-
+tweenxandyfor the 10 data points in data
+set A.
+x
+y
+-4 -3 -2 -1 0 1 2 3 4
+0
+20
+40
+60
+80
+100
+120
+140
+160
+Data set B is created by multiplying they-
+value of each data point from data set A by
+40. Which of the following equations is the
+most appropriate model for data set B?
+A)y=5(2.04) x
+B)y=40(2.04) x +40
+C)y=5(2.04) x +40
+D)y=199(2.04) x +2.04
+12. [October 2025 ]
+Day
+day 1day 2day 3day 4
+0
+20
+40
+60
+80
+100
+120
+The line graph shows the number of cus-
+tomers who visited a restaurant each day
+during a four-day period in the summer.
+According to the line graph, for which
+day during this four-day period did the
+restaurant have the smallest number of
+customers who visited?
+A) Day 1
+B) Day 2
+C) Day 3
+D) Day 4
+99
+
+
+--- PAGE 100 ---
+13. [October 2025 ]
+A group of 10 gardeners recorded data on
+the germination rates of their tomato crop
+for one growing season. The scatterplot
+shows the relationship between the num-
+ber of tomato seeds planted,x, and the
+number of tomato seeds that germinated,
+y, for each of the gardeners. A line of best
+fit is also shown.
+200 400
+200
+400
+x
+y
+Which of the following is the best interpre-
+tation of the slope of the line of best fit in
+this context?
+A) The number of tomato seeds planted
+is predicted to increase by 60 seeds
+every 100 days.
+B) The number of tomato seeds planted
+is predicted to increase by 300 seeds
+every 100 days.
+C) The number of tomato seeds that ger-
+minate is predicted to increase by 60
+seeds for every additional 100 tomato
+seeds that are planted.
+D) The number of tomato seeds that ger-
+minate is predicted to increase by 300
+seeds for every additional 100 tomato
+seeds that are planted.
+100
+
+
+--- PAGE 101 ---
+Answers: Scatterplots
+Number Answer Number Answer
+1 C 2 B
+3 A 4 D
+5 A 6 A
+7 110 8 100
+9 C 10 D
+11 D 12 A
+13 C
+101
+
+
+--- PAGE 102 ---
+Research organizing(Margin of Error;
+Outliers)
+1. [October 2025 ]
+For a survey, a sample of 996 people was
+selected at random from all registered vot-
+ers in a county. Based on the survey, it is
+estimated that 42% of all registered vot-
+ers in the county are in favor of a new
+law, with an associated margin of error of
+3.07%. Which of the following best de-
+scribes the plausible values for the percent
+of all registered voters in the county who
+are in favor of the new law?
+A) Any value greater than 38.93% and
+less than 45.07%
+B) Any value greater than 38.93%
+C) Any value less than 38.92% or greater
+than 45.07%
+D) Any value less than 45.07%
+2. [September 2025 ]
+A science club from a certain high school
+in Ohio conducted an experiment to study
+the effects of smell on taste. A sample of
+125 students was selected at random from
+the high school to participate in the exper-
+iment. First, the students tasted a pureed
+food sample while wearing covered gog-
+gles and nose plugs. Then, the students
+tasted the same pureed food sample with-
+out nose plugs. 50 students were able to
+correctly identify the pureed food sam-
+ple while wearing nose plugs. Which of
+the following is the largest population to
+which the results of the experiment can be
+generalized?
+A) The 50 students who were able to cor-
+rectly identify the pureed food sam-
+ple while wearing nose plugs
+B) All students from the high school
+C) The 125 students who participated in
+the experiment
+D) All students from high schools in
+Ohio
+102
+
+
+--- PAGE 103 ---
+3. [September 2025 ]
+A science club from a certain high school
+in Ohio conducted an experiment to study
+the effects of smell on taste. A sample of
+100 students was selected at random from
+the high school to participate in the exper-
+iment. First, the students tasted a pureed
+food sample while wearing covered gog-
+gles and nose plugs. Then, the students
+tasted the same pureed food sample with-
+out nose plugs. 35 students were able to
+correctly identify the pureed food sam-
+ple while wearing nose plugs. Which of
+the following is the largest population to
+which the results of the experiment can be
+generalized?
+A) All students from the high school
+B) The 100 students who participated in
+the experiment
+C) The 35 students who were able to cor-
+rectly identify the pureed food sam-
+ple while wearing nose plugs
+D) All students from high schools in
+Ohio
+4. [October 2025 ]
+For certain air temperatures, the table
+gives wind chill temperatures for two dif-
+ferent wind speeds.
+Airtemperature
+Wind chilltemperature at windspeed 5 mph
+Wind chilltemperature at windspeed 15 mph
+27◦F 21◦F 15◦F
+29◦F 24◦F 18◦F
+31◦F 26◦F 20◦F
+According to the table, what is the wind
+chill temperature, in degrees Fahrenheit
+(◦F), when the air temperature is 26
+Fahrenheit ( ◦F) and the wind speed is 15
+mph? (Disregard the degree when enter-
+ing your answer)
+5. [October 2025 ]
+The frequency table summarizes the 105
+data values in a data set.
+Data valueFrequency
+28 13
+30 15
+31 16
+32 17
+33 16
+34 15
+35 13
+What is the minimum value of the data
+set?
+6. [October 2025 ]
+A snack company advertises that bags of
+pretzels produced by the company weigh,
+on average, 1 pound each. To test this, Sam
+selected at random 40 bags of pretzels pro-
+duced by the company and weighed each
+bag. Based on his measurements, Sam es-
+timated that for all bags of pretzels pro-
+duced by the company, the average weight
+per bag is 1.05 pounds, with a margin of
+error of 0.06 pounds. For all bags of pret-
+zels produced by the company, which of
+the following is the most appropriate con-
+clusion about?
+A) 0.99≤w≤1.05
+B)w=1.05
+C) 1.05≤w≤1.11
+D) 0.99≤w≤1.11
+103
+
+
+--- PAGE 104 ---
+Answers: Research Organizing
+Number Answer Number Answer
+1 A 2 B
+3 A 4 14
+5 28 6 D
+104
+
+
+--- PAGE 105 ---
+Geometry
+
+
+--- PAGE 106 ---
+Geometry & Trigonometry Formulas
+Triangles
+•The sum of the measures in degrees of
+the angles of a triangle is 180◦.
+a◦ c◦
+b◦
+x◦
+Anexterior angleis
+always equal to the sum
+of the two angles in the
+triangle furthest from it.
+In this case,x=a+b.
+b
+h
+A= 1
+2 hb
+a
+b
+c
+c2 =a 2 +b 2
+Special Right Triangles
+x
+x
+√
+3
+2x
+30◦
+60◦
+s
+s s
+√
+2
+45◦
+45◦
+Trigonometry
+12
+513
+x◦
+•sinx= opposite
+hypotenuse = 5
+13
+•cosx= adjacent
+hypotenuse = 12
+13
+•tanx= opposite
+adjacent = 5
+12
+• sinx=cos( π
+2 −x)
+• cosx=sin( π
+2 −x)
+•cosx=siny, whenx+y=90 ◦
+a
+b h
+cb
+ca
+A
+BC
+H
+•h= √cacb
+•h= ab
+c
+•CH−height=h
+•AH=c b
+•HB=c a
+106
+
+
+--- PAGE 107 ---
+Similarity&Congruency
+•Two figures (such as triangles) aresimilar (∼)if they have the same shape, regardless of
+their size.△ABC∼ △MNK
+A C
+B
+α
+β
+γ
+c1
+b1a1
+α
+β
+γ
+M K
+N
+c2
+b2a2
+a1
+a2
+= b1
+b2
+= c1
+c2
+= p1
+p2
+= h1
+h2
+,
+ a1
+a2
+2
+= A1
+A2
+,
+If two 3D shapes are similar:
+ a1
+a2
+3
+= V1
+V2
+.
+•Two figures arecongruent ( ∼=)if they have exactly the same size and shape. This means that
+all corresponding sides and angles in the figures are equal.
+A C
+B
+α
+β
+γ
+c
+ba
+α
+β
+γ
+D F
+E
+c
+ba
+• SSS (Side-Side-Side):
+If all three sides of one triangle are equal to the corresponding three sides of another triangle,
+then the triangles are congruent.
+△ABC ∼= △DEF
+When:AB=DE,BC=EF,CA=FD.
+• SAS (Side-Angle-Side):
+If two sides and the included angle of one triangle are equal to two sides and the included
+angle of another triangle, then the triangles are congruent.
+△ABC ∼= △DEF
+When:AB=DE,∠B=∠E,BC=EF.
+• ASA (Angle-Side-Angle):
+If two angles and the included side of one triangle are equal to two angles and the included
+side of another triangle, then the triangles are congruent.
+△ABC ∼= △DEF
+When:∠A=∠D,AB=DE,∠B=∠E.
+107
+
+
+--- PAGE 108 ---
+• AAS (Angle-Angle-Side) or SAA (Side-Angle-Angle):
+If two angles and a non-included side of one triangle are equal to the corresponding two
+angles and side of another triangle, then the triangles are congruent.
+△ABC ∼= △DEF
+When:∠A=∠D,∠B=∠E,BC=EF.
+108
+
+
+--- PAGE 109 ---
+3D shapes
+ℓ
+h
+w
+V=ℓhw
+r
+h
+V=hπr 2
+r
+V= 4
+3 πr3
+h
+r
+V= 1
+3 πr2h
+ℓ
+w
+h
+V= 1
+3 wlh
+Circle
+•The number of degrees of arc in a circle
+is 360◦.
+•The number of radians of arc in a circle
+is 2π.
+A
+B
+C
+O
+60◦
+60◦
+30◦
+•OA−radius=r
+•∠AOB−central angle
+•∠ACB−inscribed angle
+• Arc length: θ
+360 ·2πr
+• Area of sector: θ
+360 ·πr 2
+θ−central angle in degrees.
+x
+y
+(a,b)
+r
+(x−a) 2 + (y−b) 2 =r 2
+•r−radius
+•(a,b)−center coordinate of circle
+•Sum of interior angles=180 ◦(n−2)•Sum of exterior angles=360 ◦
+109
+
+
+--- PAGE 110 ---
+Lines and Angles
+1. [August 2025]
+A C
+F EG D
+B
+In the figure, triangleAEGis congurent to
+triangleCFD, whereEcorresponds toF.
+The measure of angleCBEis 56 ◦. What is
+the measure in degrees , of angleEAG?
+2. [August 2025]
+L
+M
+N
+K
+In quadrilateralKLMNshown,KL=3,
+LM=3,KN=27, andMN=27. Di-
+agonalsKMandLN(not shown) intersect
+at pointG(not shown), whereGK=1
+andGM=1 if the length of diagonalLN
+is √p+ √w, wherepandware integers,
+what is the value ofp+w?
+3. [August 2025]
+In the figure, lineqis parallel to liner, and
+both are intersected by lines. Ify=2x+7,
+what is the value ofx?
+q
+r
+s
+57◦
+y
+A) 25
+B) 32
+C) 58
+D) 68
+4. [August 2025]
+The measure of angleGis π
+10 radians. If
+the measure of angleGis 9nin degrees,
+wherenis a constant, what is the value of
+n?
+A) 2
+B) 9
+C) 10
+D) 18
+110
+
+
+--- PAGE 111 ---
+5. [August 2025]
+A line intersects two parallel lines, form-
+ing four acute angles and four obtuse an-
+gles. The measure of one of the acute an-
+gles is(7x−410) ◦. The sum of the mea-
+sures of one of the acute angles and three
+of the obtuse angles is(−14x+w) ◦. What
+is the value ofw?
+6. [August 2025]
+The measure of angle S is 7π
+17 radians. The
+measure of angle T is 2 times the measure
+of angle S. Which expression represents
+the measure, in degrees, of angle T?
+A) 7
+17 (900)(2)
+B) 7
+17 (180)(2)
+C) 7
+17π (90)(2)
+D) 7π
+17 1802
+7. [August 2025]
+r
+s
+t
+121◦ 59◦
+x◦
+Note: Figure not drawn to scale.
+In the figure shown, lineris parallel to line
+s, and linetintersects both lines. What is
+the value ofx?
+A) 121
+B) 90
+C) 31
+D) 180
+8. [August 2025]
+A rectangle has a perimeter of 36 inches. If
+the sum of the lengths of three sides of the
+rectangle is 21 inches, what is the length,
+in inches, of the fourth side?
+A) 3
+B) 57
+C) 15
+D) 36
+9. [September 2025]
+r
+s
+t
+77◦103◦
+a◦
+77◦
+Note: Figure not drawn to scale.
+In the figure shown, linesrandsare par-
+allel, and linetintersects both lines. What
+is the value ofa?
+A) 180
+B) 77
+C) 167
+D) 90
+111
+
+
+--- PAGE 112 ---
+10. [September 2025]
+The measure of angle K is π
+2(12) radians.
+The measure of angleLis 12 times the
+measure of angleK. What is the measure,
+in degrees, of angleL?
+A) 102
+B) 12
+C) 78
+D) 90
+11. [September 2025]
+In triangle ABC, the measure of angle A is
+52 and AC=40. In triangle PQR, the mea-
+sure of angle P is 52 and PR=120 . Which
+additional piece of information is suffi-
+cient to prove that triangle ABC is similar
+to triangle PQR?
+A) AB = 45 and PQ = 45.
+B) AB = 45 and QR = 135.
+C) The measures of angle B and angle R
+are 40◦ and 88◦, respectively.
+D) The measures of angle B and angle Q
+are 52◦ and 40◦, respectively
+12. [October 2025]
+TriangleABCis similar to triangleDEF,
+where angleAcorresponds to angleDand
+angleCcorresponds to angleF. AnglesC
+andFare right angles. If tanA= 612
+35 ,
+what is the value of sinD?
+A) 612
+613
+B) 35
+613
+C) 613
+612
+D) 613
+35
+13. [October 2025]
+r st
+a◦
+b◦
+c◦
+• Clockwise from top left, the 3 lines are
+labeledt,r, ands.
+• Linetintersects both linerand lines.
+• At the intersection of linetand liner,
+1 angle is labeled clockwise from top
+left as follows:
+–Top right:a ◦
+• At the intersection of linetand line
+s, 2 angles are labeled clockwise from
+top left as follows:
+–Top left:b ◦
+–Bottom left:c ◦
+• Note: Figure not drawn to scale.
+In the figure, linesrandsare parallel and
+linetintersects both lines. Ifa=4k+57
+andb= k
+2 +55, what is the value ofc?
+14. [October 2025]
+In a right triangle, the measure of one of
+the acute angles is 14 ◦. What is the mea-
+sure of the other acute angle, in degrees?
+(Disregard the degree when entering your
+answer.)
+112
+
+
+--- PAGE 113 ---
+15. [October 2025]
+s
+q
+r
+45◦
+y◦
+Note: Figure not drawn to scale.;
+In the figure, lineqis parallel to liner,
+and both lines are intersected by lines. If
+y=2x+9, what is the value ofx?
+A) 27
+B) 73
+C) 63
+D) 18
+16. [October 2025]
+The measure of angleZis 45 ◦. What is
+the measure, in radians, of angleZ?
+A) 1
+2 π
+B) 3
+4 π
+C) 1
+8 π
+D) 1
+4 π
+17. [October 2025]
+p
+r
+t
+x◦
+72◦
+Note: Figure not drawn to scale
+In the figure, linepis parallel to liner,
+and linetintersects both lines. What is the
+value ofx?
+A) 36
+B) 72
+C) 180
+D) 252
+113
+
+
+--- PAGE 114 ---
+18. [October 2025]
+r sk
+z◦
+y◦
+x◦
+w◦
+Note: Figure not drawn to scale
+In the figure shown, linekintersects lines
+rands. Ifw=147, which additional piece
+of information is sufficient to prove that
+linesrandsare parallel?
+A)x=33
+B)y=147
+C)w+y=180
+D)y+z=180
+114
+
+
+--- PAGE 115 ---
+Answers: Lines and Angles
+Number Answer Number Answer
+1 62 2 736
+3 C 4 A
+5 1360 6 B
+7 A 8 C
+9 B 10 D
+11 C 12 A
+13 117.4 14 76
+15 C 16 D
+17 B 18 B
+115
+
+
+--- PAGE 116 ---
+Triangles
+1. [August 2025]
+The length of each side of triangleAis 270
+millimeters. The length of each side of tri-
+angleBis double the length of each side of
+triangleA. What is the length, in millime-
+ters, of each side of triangleB?
+A) 270
+B) 272
+C) 540
+D) 1,080
+2. [August 2025]
+BC
+A
+In the right triangle shown, what is the
+value ofcosA?
+A) 1
+47
+B) 1
+29
+C) 29
+47
+D) 47
+29
+3. [August 2025]
+A
+B
+C
+In the figure shown, the length of AB is
+22. Which statement provides sufficient
+information to prove that triangle ABC is
+isosceles?
+A) The length ofACis 11.
+B) The length ofBCis 22.
+C) The measure of angleAis 70 ◦.
+D) The sum of the measures of anglesA,
+B, andCis 180 ◦.
+4. [September 2025]
+What is they-intercept of the graph of
+y=5 x +20 in thexy-plane?
+A) (0, 5)
+B) (0, 21)
+C) (0, 20)
+D) (0, 25)
+5. [September 2025]
+In triangleABC, the measure of angleA
+is 56◦ andAC=35. In trianglePQR, the
+measure of anglePis 56 ◦ andPR=105.
+Which additional piece of information is
+sufficient to prove that triangleABCis
+similar to trianglePQR?
+A)AB=50 andPQ=50
+B) The measures of angleBand angleR
+are 32◦ and 92◦, respectively.
+C) The measures of angleBand angleQ
+are 56◦ and 32◦, respectively.
+D)AB=50 andQR=50
+116
+
+
+--- PAGE 117 ---
+6. [September 2025]
+In triangleRST, angleTis a right angle,
+pointLlies onRS, pointKlies onST, and
+LKis parallel toRT. If the length ofRT
+is 72 units, the length ofLKis 24 units,
+and the area ofRSTtriangle is 396 square
+units, what is the length ofKT, in units?
+7. [October 2025]
+A
+B C
+56◦
+Note: Figure not drawn to scale
+• AngleBis a right angle.
+• The measure of angleAis 56 ◦.
+• Note: Figure not drawn to scale.
+In right triangleABCshown, what is the
+measure of∠C?
+A) 124 ◦
+B) 146 ◦
+C) 56 ◦
+D) 34 ◦
+8. [October 2025]
+A triangle has a base length of 48 centime-
+ters and a height of 96 centimeters. What
+is the area, in square centimeters, of the
+triangle?
+A) 2304
+B) 1152
+C) 4608
+D) 144
+9. [October 2025]
+a
+12
+14
+Note: Figure not drawn to scale
+Which equation gives the relationship be-
+tween the side length of the triangle
+shown?
+A) 12 2 +14 2 =a 2
+B)a 2 +12 2 =14 2
+C)a+12=14
+D) 12+14=a
+10. [October 2025]
+X
+Y Z
+35◦
+Note: Figure not drawn to scale
+In triangleXYZ, the measure of angleYis
+90 degrees. TriangleRST(not shown) is
+similar to triangleXYZsuch thatR,S, and
+Tcorrespond toX,Y, andZ, respectively.
+Each side of triangleRSTis 19 times the
+length of the corresponding side of trian-
+gleXYZ. What is the measure, in degrees,
+of one of the angles in triangleRST?
+117
+
+
+--- PAGE 118 ---
+11. [October 2025]
+A
+B
+CA′
+B′
+C′
+Note: Figure not drawn to scale
+TrianglesABCandA ′B′C′ are shown. Tri-
+angleABCis dilated by a scale factor of 6
+to form triangleA ′B′C′. If the length of AB
+is 18, what is the length of A′B′?
+A) 3
+B) 6
+C) 24
+D) 108
+12. [October 2025]
+The table gives the areas and perimeters
+of two similar rectangles, wherenis a
+constant
+Area (square inches)Perimeter (inches)
+RectangleA 630 210
+Rectangle B 2,520 n
+What is the value ofn?
+A) 2100
+B) 1680
+C) 840
+D) 420
+118
+
+
+--- PAGE 119 ---
+Answers: Triangles
+Number Answer Number Answer
+1 C 2 C
+3 B 4 B
+5 B 6 22/3; 7.33
+7 D 8 A
+9 B 10 90
+11 D 12 D
+119
+
+
+--- PAGE 120 ---
+Trigonometry
+1. [August 2025]
+In the right triangle shown, what is the
+value o fcosA?
+4323
+B
+A
+C
+A) 1
+43
+B) 1
+23
+C) 23
+43
+D) 43
+23
+2. [August 2025]
+RS=504
+ST=128
+TR=520
+The side lengths of triangleRSTare given.
+TriangleRSTis similar to triangleUVW,
+whereScorresponds toVandTcorre-
+sponds toW. What is the value of tanW?
+A) 16
+65
+B) 16
+63
+C) 63
+65
+D) 63
+16
+3. [September 2025]
+K
+J
+L
+55
+y◦
+Note: Figure not drawn to scale.
+In triangleJKL, cosy ◦ = 54
+55. What is the
+length ofKL?
+4. [September 2025]
+QuadrilateralMNOPis similar to quadri-
+lateralQRSTsuch thatM,N,O, andPcor-
+respond toQ,R,S, andT, respectively. The
+length of each side of quadrilateralMNOP
+is 2 times the length of its corresponding
+side in quadrilateralQRST. The measure
+of anglePis 50 ◦ andST=8. Which of the
+following must be true?
+A)OP=8
+B) The measure of angleTis 50 ◦.
+C) The measure of angleRis 100 ◦.
+D)OP=32
+120
+
+
+--- PAGE 121 ---
+5. [September 2025]
+R
+Q
+S
+c
+y◦
+10
+4
+Note: Figure not drawn to scale.
+In triangleQRS, what is the value of
+tany ◦?
+A) c
+4
+B) c
+10
+C) 4
+10
+D) 10
+4
+6. [September 2025]
+4
+9
+c
+R
+Q
+S
+y
+In triangle QRS, what is the value of
+tan(y)?
+A) c
+9
+B) 4
+9
+C) c
+4
+D) 9
+4
+7. [September 2025]
+59
+K
+J
+L
+y
+In triangleJKL,cos(y) = 58
+59. What is the
+length ofKL?
+8. [October 2025]
+TriangleABCis similar to triangleDEF,
+where angleAcorresponds to angleDand
+angleCcorresponds to angleF. AnglesC
+andFare right angles. If tanA= 612
+35 ,
+what is the value of sinD?
+A) 612
+613
+B) 35
+613
+C) 613
+612
+D) 613
+35
+9. [October 2025]
+TriangleABCis similar to triangleDEF,
+where angleAcorresponds to angleDand
+angleCcorresponds to angleF. AnglesB
+andEare right angles. If cosA= 14√
+421
+,
+what is the value of 1
+sinF
+A) 15√
+421
+B) 14√
+421
+C)
+√
+421
+14
+D)
+√
+421
+15
+121
+
+
+--- PAGE 122 ---
+10. [October 2025]
+RS
+Q
+37
+Note: Figure not drawn to scale
+In triangleQRSshown,QR<RS. Which
+expression represents the length ofQS?
+A) 37 cosQ
+B) 37 sinQ
+C) 37
+cosQ
+D) 37
+sinQ
+122
+
+
+--- PAGE 123 ---
+Answers: Trigonometry
+Number Answer Number Answer
+1 C 2 D
+3 54 4 B
+5 C 6 B
+7 58 8 A
+9 C 10 C
+123
+
+
+--- PAGE 124 ---
+Circle
+1. [September2025]
+A circle has circumference of 89πcentime-
+ters. What is the diameter, in centimeter,
+of the circle?
+2. [September2025]
+CirclesAandBare graphed in thexy-
+plane. CircleAis represented by the equa-
+tion(x+8) 2 + (y−8) 2 =64 and intersects
+the x-axis at the point(r,s). CircleBhas
+its center at(r,s)and has a radius of the
+same length as circleA. Which equation
+represents circleB?
+A)x 2 + (y+8) 2 =64
+B)x 2 + (y−8) 2 =64
+C)(x+8) 2 +y 2 =64
+D)(x−8) 2 +y 2 =64
+3. [August 2025]
+CircleNhas a radius of 8 millimeters
+(mm). CircleMhas an area of 144πmm².
+What is the total area, in mm², of circlesN
+andM?
+A) 20π
+B) 160π
+C) 176π
+D) 208π
+4. [August 2025]
+PointsFandGlie on a circle with center
+H. SegmentFGis a diameter of the circle.
+If the length of segmentFGis 82 centime-
+ters, what is the length, in centimeters, of
+segmentFH?
+5. [August 2025]
+A circle in the xy-plane has its center at
+(-4, -7). Linekis tangent to this circle at the
+point (-7, -8). What is the slope of linek?
+A)−3
+B)− 1
+3
+C) 1
+3
+D) 3
+6. [September 2025]
+A circle in thexy-plane has its center at
+(2, 9). Line t is tangent to this circle at the
+point(a,−4), where a is a constant. The
+slope of linetis 6
+5 . What is the value ofa?
+A)− 68
+5
+B)− 53
+6
+C) 77
+6
+D) 88
+5
+7. [August 2025]
+Points F and G lie on a circle with center
+H. Segment FG is a diameter of the circle.
+If the length of segment FG is 98 centime-
+ters, what is the length, in centimeters, of
+segment FH?
+8. [September 2025]
+In the xy-plane, the graph of the equation
+(x−3) 2 + (y−8) 2 =9 is a circle. The
+point(6,c), wherecis a constant, lies on
+this circle. What is the value ofc?
+124
+
+
+--- PAGE 125 ---
+9. [September 2025]
+In thexy-plane, an equation of circle A is
+(x−2) 2 + (y−3) 2 =25. Circle B has the
+same center as circle A but has a radius
+that is twice the radius of circle A. Which
+equation represents circle B?
+A)(x−2) 2 + (y−3) 2 =625
+B)(x−2) 2 + (y−3) 2 =50
+C)(x−2) 2 + (y−3) 2 =250(x−2) 2 +
+(y−3) 2 =100
+D)(x−2) 2 + (y−3) 2 =100
+10. [September 2025]
+In thexy-plane, the graph of the equation
+(x−3) 2 + (y−8) 2 =9 is a circle. The
+point(6,c), wherecis a constant, lies on
+this circle. What is the value ofc?
+11. [September 2025]
+In the xy-plane, an equation of circle A
+is(x−2) 2 + (y−4) 2 =9. Circle B has the
+same center as circle A but has a radius
+that is twice the radius of circle A. Which
+equation represents circle B?
+A)(x−2) 2 + (y−4) 2 =81
+B)(x−2) 2 + (y−4) 2 =36
+C)(x−2) 2 + (y−4) 2 =18
+D)(x−2) 2 + (y−4) 2 =54
+12. [October 2025]
+CircleKhas a radius of 8 millimeters
+(mm). CircleLhas an area of 144 mm 2.
+What is the total area, in mm 2, of circlesK
+andL?
+A) 40π
+B) 20π
+C) 80π
+D) 208π
+13. [October 2025]
+In thexy-plane, the graph of the equation
+(x−3) 2 + (y−8) 2 =9 is a circle. The
+point(6,c), wherecis a constant, lies on
+this circle. What is the value ofc?
+14. [October 2025]
+In the xy-plane, an equation of circle A
+is(x−2) 2 + (y−4) 2 =9. Circle B has the
+same center as circle A but has a radius
+that is twice the radius of circle A. Which
+equation represents circle B?
+A)(x−2) 2 + (y−4) 2 =81
+B)(x−2) 2 + (y−4) 2 =36
+C)(x−2) 2 + (y−4) 2 =18
+D)(x−2) 2 + (y−4) 2 =54
+15. [October 2025]
+A circle in thexy-plane has its center at
+(−4, 1)and the point(−8, 4)lies on the
+circle. Which equation represents this cir-
+cle?
+A)(x−4) 2 + (y+1) 2 =5
+B)(x+4) 2 + (y−1) 2 =25
+C)(x−4) 2 + (y+1) 2 =25
+D)(x+4) 2 + (y−1) 2 =5
+16. [October 2025]
+A circle has centerP, and pointsAand
+Blie on the circle. The measure of arcAB
+is 45◦ and the length of arcABis 4πunits.
+What is the length, in units, of the radius
+of the circle?
+125
+
+
+--- PAGE 126 ---
+Answers: Circle
+Number Answer Number Answer
+1 89 2 C
+3 D 4 41
+5 A 6 D
+7 49 8 8
+9 D 10 8
+11 B 12 D
+13 8 14 B
+15 B 16 16
+126
+
+
+--- PAGE 127 ---
+Area and Volume
+1. [September 2025]
+A right circular cone has a base diame-
+ter of 28 inches and a height of 6 inches.
+The volume of this cone iskπcubic inches.
+What is the value ofk?
+2. [September 2025]
+A rectangular poster has an area of 330
+square inches. A copy of poster is made in
+which the length and width of the original
+poster are each increased by 50%. What is
+the area of the copy, in square inches?
+3. [September 2025]
+A piece of string with a length of 108
+inches is cut into two parts. One part has
+a length ofxinches, and the other part has
+a length ofyinches. The value ofxis 8
+more than 4 times the value ofy. What is
+the value ofx?
+A) 25
+B) 29
+C) 58
+D) 88
+4. [September 2025]
+A rectangle has a length that is 73 times
+its width. The functiony= (73w)(w)rep-
+resents this situation, where y is the area,
+in square feet, of the rectangle andy>0.
+Which of the following is the best interpre-
+tation of 73win this context?
+A) The length of the rectangle, in feet.
+B) The area of the rectangle, in square
+feet.
+C) The difference between the length
+and the width of the rectangle, in feet.
+D) The width of the rectangle, in feet.
+5. [August 2025]
+The points (0, 15), (10, 8), and (10, 3) are
+shown in the xy-plane, where the x-axis
+and y-axis are measured in units.
+0 1 2 3 4 5 6 7 8 9 10 110
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+x
+y
+These points define one of the bases of a
+triangular prism. The distance between
+the two bases of the prism is 20 units.
+What is the volume, in cubic units, of the
+prism?
+6. [September 2025]
+RectanglesABCDandEFGHare simi-
+lar. The length of each side ofEFGHis 6
+times the length of the corresponding side
+ofABCD. The area of ABCD is 90 square
+units. What is the area, in square units, of
+EFGH?
+A) 15
+B) 36
+C) 540
+D) 3, 240
+127
+
+
+--- PAGE 128 ---
+7. [October 2025]
+The width of a rectangle is 3 centimeters.
+The length of the rectangle is 20 centime-
+ters longer than the width. What is the
+area, in square centimeters, of this rectan-
+gle?
+A) 6
+B) 26
+C) 69
+D) 3
+8. [October 2025]
+h(x) = 1
+2 (x)(77)
+The given function h represents the area,
+in square inches, of a triangle with a base
+of x inches and a fixed height. What is the
+height, in inches, of the triangle?
+A) 1
+77
+B) 77
+2
+C) 77
+D) 154
+9. [October 2025]
+Cylinder Volume
+(cubic
+units)
+Right circular
+cylinder A
+32π
+Right circular
+cylinder B
+4000π
+The table shows the volume of two sim-
+ilar solids, right circular cylinderAand
+right circular cylinderB. The radius of the
+right circular cylinderAis 4 units. The
+surface area of right circular cylinderAis
+kπsquare units, and the surface area of
+right circular cylinderBisnπsquare units,
+wherekandnare constants. What is the
+value ofn−k? (The surface area of a right
+circular cylinder with radiusrand height
+his 2πr 2 +2πrh.)
+10. [October 2025]
+Cube B has a volume of 216 cubic inches.
+The length of each edge of cube A isk
+times the length of each edge of cube B. If
+cube A has a volume of 5,832 cubic inches,
+what is the value ofk?
+A) 27
+B) 3
+C) 6
+D) 36
+11. [September 2025]
+A rectangle has an area of 48 square me-
+ters and a length of 12 meters. What is the
+width, in meters, of the rectangle?
+A) 576
+B) 36
+C) 4
+D) 144
+12. [September 2025]
+The length of the diagonal of a square is
+196
+√
+2
+2 units. What is the area, in square
+units, of the square?
+A) 19, 208
+B) 98
+C) 392
+D) 9, 604
+13. [September 2025]
+In triangleRST, angleTis a right angle,
+pointLlies onRS, pointKlies onST, and
+LKis parallel toRT. If the lengthRTis 63
+units, the length ofLKis 21 units, and the
+area of triangleRSTis 630 square units,
+what is the length ofKT, in units?
+128
+
+
+--- PAGE 129 ---
+14. [September 2025]
+A right square pyramid has a height of
+6 units and a volume of 128 cubic units.
+What is the length, in units, of one side of
+the base of the pyramid?
+A) 256
+B) 8
+C) 64
+3
+D) 8
+√
+3
+3
+15. [September 2025]
+A rectangle has an area of 66 square me-
+ters and a length of 11 meters. What is the
+width, in meters, of the rectangle?
+A) 6
+B) 55
+C) 726
+D) 121
+16. [September 2025]
+The length of the diagonal of a square is
+186
+√
+2
+2 units. What is the area, in square
+units, of the square?
+A) 8, 649
+B) 17, 298
+C) 93
+D) 372
+17. [September 2025]
+Cube B has a volume of 125 cubic inches.
+The length of each edge of cube A isk
+times the length of each edge of cube B. If
+cube A has a volume of 3,375 cubic inches,
+what is the value ofk?
+A) 27
+B) 3
+C) 25
+D) 5
+18. [September 2025]
+A right square pyramid has a height of
+6 units and a volume of 128 cubic units.
+What is the length, in units, of one side of
+the base of the pyramid?
+A) 8
+B) 256
+C) 64
+3
+D) 8
+√
+3
+3
+19. [September 2025]
+CircleKhas a radius of 8 millimeters
+(mm). CircleLhas an area of 144 mm 2.
+What is the total area, in mm 2, of circlesK
+andL?
+A) 40π
+B) 20π
+C) 80π
+D) 208π
+20. [September 2025]
+A triangle has a base length of 48 centime-
+ters and a height of 96 centimeters. What
+is the area, in square centimeters, of the
+triangle?
+A) 2304
+B) 1152
+C) 4608
+D) 144
+21. [October 2025]
+A right circular cylinder has a height of
+16 inches and a volume of 3136πcubic
+inches. What is the radius, in inches, of
+this cylinder?
+129
+
+
+--- PAGE 130 ---
+22. [October 2025]
+The length of a side of squareXis 9 cen-
+timeters. The area of rectangleYis 32
+square centimeters. What is the total area,
+in square centimeters, of squareXand
+rectangleY?
+A) 145
+B) 113
+C) 82
+D) 81
+23. [September 2025]
+The density of a certain type of marble
+stone is 2.6000 grams per cubic centime-
+ter. If a sample of this type of stone is
+in the shape of a sphere with a diameter
+of 31.000 centimeters, what is the mass of
+this sample, in grams, to the nearest whole
+number? (Use 3.14159 forπ.)
+130
+
+
+--- PAGE 131 ---
+Answers: Area and Volume
+Number Answer Number Answer
+1 392 2 742.5
+3 D 4 A
+5 500 6 D
+7 C 8 C
+9 1152 10 B
+11 C 12 D
+13 40/3; 13.33 14 B
+15 A 16 A
+17 B 18 A
+19 D 20 A
+21 14 22 B
+23 40556
+131
+
+
+--- PAGE 132 ---
+Acknowledgements
+We’ve reached the end of ”MathBook 3.0 by @satashkent’s R&D Team”. Before
+we close, let’s acknowledge the dedicated team that brought this project to life.
+Directed by Jahongir Luqmonov and Nurbek Abdumajitov— Leading the
+project and managing its academic vision, structure, and overall execution.
+Content Entry by Ayyubkhan Khayrullaev, Jamoliddin Muhiddinov, and
+Muhammadamin Usmonov– Responsible for content entry and creating accu-
+rate, well-structured answer sheets.
+Content Entry by Ulug’bek Abduhamidov- Contributing to content entry
+and technical preparation of the book.
+Every question in this book has been carefully selected, entered, and re-
+viewed to ensure accuracy and exam-level quality.
+Powered by@satashkent’s Research and Development Team.
+132
+
+
+--- PAGE 133 ---
