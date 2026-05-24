@@ -40,6 +40,8 @@ services:
       # Paid plan (with Disk at /data): use /data/quiz_bot.db to persist
       - key: DATABASE_PATH
         value: /data/quiz_bot.db
+      - key: ALLOW_EPHEMERAL_SQLITE_FALLBACK
+        value: "1"
       - key: DB_BUSY_TIMEOUT_MS
         value: "10000"
 

@@ -52,6 +52,12 @@ def validate_render_sqlite_path() -> None:
     if not os.environ.get('RENDER'):
         return
     if not DATABASE_PATH.startswith('/data/'):
+        if os.environ.get('ALLOW_EPHEMERAL_SQLITE_FALLBACK', '').lower() in {'1', 'true', 'yes', 'on'}:
+            logger.error(
+                "ephemeral_sqlite_fallback_enabled db_path=%s persistent_disk_missing_data_will_not_survive_deploys",
+                DATABASE_PATH,
+            )
+            return
         raise RuntimeError('DATABASE_PATH must be under /data on Render when using SQLite')
     if not os.path.isdir('/data'):
         raise RuntimeError('/data persistent disk is not mounted')

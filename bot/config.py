@@ -56,6 +56,7 @@ WEBHOOK_SETUP_TOKEN = _env_str('WEBHOOK_SETUP_TOKEN')
 DB_BUSY_TIMEOUT_MS = _env_int('DB_BUSY_TIMEOUT_MS', 5000, minimum=1000)
 SUBSCRIPTION_CACHE_TTL = _env_int('SUBSCRIPTION_CACHE_TTL', 600, minimum=0)
 SUBSCRIPTION_STRICT = _env_bool('SUBSCRIPTION_STRICT', True)
+ALLOW_EPHEMERAL_SQLITE_FALLBACK = _env_bool('ALLOW_EPHEMERAL_SQLITE_FALLBACK', False)
 SESSION_SWEEP_INTERVAL = _env_int('SESSION_SWEEP_INTERVAL', 10, minimum=2)
 BOT_POLLING_ENABLED = _env_bool('BOT_POLLING_ENABLED', True)
 WEEKLY_REPORT_ENABLED = _env_bool('WEEKLY_REPORT_ENABLED', True)
@@ -65,6 +66,14 @@ WEEKLY_REPORT_MINUTE = _env_int('WEEKLY_REPORT_MINUTE', 0, minimum=0)
 AI_MENTOR_ENABLED = _env_bool('AI_MENTOR_ENABLED', False)
 AI_DAILY_LIMIT_USD = float(_env_str('AI_DAILY_LIMIT_USD', '0.50'))
 AI_USER_COOLDOWN_SECONDS = _env_int('AI_USER_COOLDOWN_SECONDS', 20, minimum=0)
+
+if (
+    os.environ.get('RENDER')
+    and DATABASE_PATH.startswith('/data/')
+    and not pathlib.Path('/data').is_dir()
+    and ALLOW_EPHEMERAL_SQLITE_FALLBACK
+):
+    DATABASE_PATH = _resolve_path('data/quiz_bot.db', 'data/quiz_bot.db')
 
 if WEEKLY_REPORT_WEEKDAY > 6:
     raise SystemExit('WEEKLY_REPORT_WEEKDAY must be between 0 and 6')
