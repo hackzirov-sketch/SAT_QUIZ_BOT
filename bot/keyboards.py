@@ -4,7 +4,7 @@ from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
 from bot.formatting import mode_label, difficulty_label
 
 DICTIONARY_PAGE_SIZE = 10
-DICTIONARY_WORD_LABEL_MAX = 24
+DICTIONARY_WORD_LABEL_MAX = 48
 
 def main_menu_kb() -> ReplyKeyboardMarkup:
     builder = ReplyKeyboardBuilder()
@@ -35,13 +35,21 @@ def _dictionary_label(value: str, max_len: int = DICTIONARY_WORD_LABEL_MAX) -> s
     return f"{value[:max_len - 1].rstrip(' -_')}…"
 
 
+def _dictionary_word_label(word, max_len: int = DICTIONARY_WORD_LABEL_MAX) -> str:
+    english = str(word['english']).strip()
+    uzbek = str(word['uzbek']).strip() if 'uzbek' in word.keys() else ''
+    if uzbek:
+        return _dictionary_label(f'{english} — {uzbek}', max_len)
+    return _dictionary_label(english, max_len)
+
+
 def dictionary_kb(words: list, page: int, total_items: int) -> InlineKeyboardMarkup:
     total_pages = max(1, (total_items + DICTIONARY_PAGE_SIZE - 1) // DICTIONARY_PAGE_SIZE)
     page = clamp_dictionary_page(page, total_items)
     builder = InlineKeyboardBuilder()
     for word in words:
         builder.button(
-            text=_dictionary_label(str(word['english'])),
+            text=_dictionary_word_label(word),
             callback_data=f"dict:w:{word['id']}:{page}",
         )
     builder.adjust(2)

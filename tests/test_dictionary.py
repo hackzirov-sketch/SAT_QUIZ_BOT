@@ -14,13 +14,13 @@ class MockRow:
 
 
 def test_dictionary_keyboard_uses_two_columns_and_navigation():
-    words = [{'id': index, 'english': f'word-{index}'} for index in range(1, 11)]
+    words = [{'id': index, 'english': f'word-{index}', 'uzbek': f"so'z-{index}"} for index in range(1, 11)]
 
     markup = dictionary_kb(words, page=0, total_items=25)
 
     assert len(markup.inline_keyboard) == 7
-    assert [button.text for button in markup.inline_keyboard[0]] == ['word-1', 'word-2']
-    assert [button.text for button in markup.inline_keyboard[4]] == ['word-9', 'word-10']
+    assert [button.text for button in markup.inline_keyboard[0]] == ["word-1 — so'z-1", "word-2 — so'z-2"]
+    assert [button.text for button in markup.inline_keyboard[4]] == ["word-9 — so'z-9", "word-10 — so'z-10"]
     assert [button.text for button in markup.inline_keyboard[5]] == ['⬅️ Oldingi', '1/3', 'Keyingi ➡️']
     assert markup.inline_keyboard[5][0].callback_data == 'dict:p:0'
     assert markup.inline_keyboard[5][2].callback_data == 'dict:p:1'
@@ -35,11 +35,11 @@ def test_clamp_dictionary_page_bounds():
 
 
 def test_dictionary_keyboard_truncates_long_labels_but_keeps_callback_id():
-    words = [{'id': 42, 'english': 'a-very-long-dictionary-word-label'}]
+    words = [{'id': 42, 'english': 'a-very-long-dictionary-word-label', 'uzbek': 'juda-uzun-tarjima-matni'}]
 
     markup = dictionary_kb(words, page=0, total_items=1)
 
-    assert markup.inline_keyboard[0][0].text == 'a-very-long-dictionary…'
+    assert markup.inline_keyboard[0][0].text == 'a-very-long-dictionary-word-label — juda-uzun-t…'
     assert markup.inline_keyboard[0][0].callback_data == 'dict:w:42:0'
 
 
