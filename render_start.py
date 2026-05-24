@@ -55,6 +55,13 @@ def validate_render_sqlite_path() -> None:
         raise RuntimeError('DATABASE_PATH must be under /data on Render when using SQLite')
     if not os.path.isdir('/data'):
         raise RuntimeError('/data persistent disk is not mounted')
+    probe_path = os.path.join('/data', '.quiz_bot_write_probe')
+    try:
+        with open(probe_path, 'w', encoding='utf-8') as probe:
+            probe.write(str(os.getpid()))
+        os.remove(probe_path)
+    except OSError as exc:
+        raise RuntimeError('/data persistent disk is not writable') from exc
 
 
 def _acquire_polling_lock() -> bool:
