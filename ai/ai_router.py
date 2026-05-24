@@ -17,8 +17,8 @@ from satmath.mistake_analysis import MistakeAnalyzer
 class AIRouter:
     def __init__(self, gemini_key: str | None = None, groq_key: str | None = None,
                  daily_limit: float = 0.50):
-        self.gemini = GeminiClient(api_key=gemini_key)
-        self.groq = GroqClient(api_key=groq_key)
+        self.gemini = GeminiClient(api_key=gemini_key) if gemini_key else None
+        self.groq = GroqClient(api_key=groq_key) if groq_key else None
         self.budget = TokenBudget(daily_limit_usd=daily_limit)
         self.cache = AICache()
 
@@ -31,6 +31,8 @@ class AIRouter:
         if not self.budget.can_make_call('llama-3.3-70b-versatile', 'explain',
                                           len(question.get('question_text', ''))):
             logger.info('budget exceeded for explain, using local fallback')
+            return self._local_explain(question)
+        if self.groq is None:
             return self._local_explain(question)
 
         try:
@@ -60,6 +62,8 @@ class AIRouter:
         if not self.budget.can_make_call('llama-3.3-70b-versatile', 'mistake_analysis',
                                           len(question.get('question_text', ''))):
             return self._local_mistake(question, user_answer)
+        if self.groq is None:
+            return self._local_mistake(question, user_answer)
 
         try:
             result = self.groq.analyze_mistake(
@@ -81,6 +85,8 @@ class AIRouter:
     def short_feedback(self, question: dict, is_correct: bool) -> str:
         if not self.budget.can_make_call('llama-3.3-70b-versatile', 'short_feedback',
                                           len(question.get('question_text', ''))):
+            return self._local_feedback(question, is_correct)
+        if self.groq is None:
             return self._local_feedback(question, is_correct)
         try:
             result = self.groq.short_feedback(
@@ -109,6 +115,8 @@ class AIRouter:
         if not self.budget.can_make_call('llama-3.3-70b-versatile', 'desmos_solution',
                                           len(question.get('question_text', ''))):
             return existing or 'Desmos yechimi mavjud emas.'
+        if self.groq is None:
+            return existing or 'Desmos yechimi mavjud emas.'
 
         try:
             result = self.groq.desmos_solution(
@@ -134,6 +142,8 @@ class AIRouter:
         if not self.budget.can_make_call('gemini-2.0-flash', 'extract_page'):
             logger.warning('budget exceeded for pdf extraction')
             return []
+        if self.gemini is None:
+            return []
 
         try:
             questions = self.gemini.extract_questions_from_pdf(pdf_path, page_range)
@@ -155,6 +165,8 @@ class AIRouter:
 
         if not self.budget.can_make_call('gemini-2.0-flash', 'classify', len(question_text)):
             return {}
+        if self.gemini is None:
+            return {}
 
         try:
             result = self.gemini.classify_question(question_text)
@@ -174,6 +186,8 @@ class AIRouter:
             return cached
 
         if not self.budget.can_make_call('gemini-2.0-flash', 'describe_image'):
+            return ''
+        if self.gemini is None:
             return ''
 
         try:

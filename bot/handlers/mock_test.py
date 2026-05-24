@@ -14,6 +14,7 @@ from bot.keyboards import (
     active_quiz_kb, main_menu_kb, mock_answer_kb, mock_feedback_kb,
     mock_menu_kb, mock_module_break_kb, mock_topics_kb,
 )
+from bot.keyboards_ai import ai_answer_kb
 from bot.mock_images import get_image_path
 from bot.mock_tests import (
     MOCK_MODULE_SECONDS,
@@ -370,6 +371,15 @@ async def mock_answer_callback(callback: CallbackQuery):
             await callback.message.edit_caption(caption=callback.message.html_text or callback.message.caption, reply_markup=fb_kb)
         except Exception:
             await callback.message.edit_reply_markup(reply_markup=fb_kb)
+    await callback.message.answer(
+        'AI Mentor yordam kerakmi?',
+        reply_markup=ai_answer_kb(
+            attempt_id,
+            question_index,
+            is_correct,
+            bool(question.get('desmos_recommended') or question.get('desmos_needed')),
+        ),
+    )
 
 
 @router.callback_query(F.data.startswith('mock:next:'))

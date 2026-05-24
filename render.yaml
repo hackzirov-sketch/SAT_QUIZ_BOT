@@ -67,3 +67,13 @@ services:
         value: "9"
       - key: WEEKLY_REPORT_MINUTE
         value: "0"
+      - key: AI_MENTOR_ENABLED
+        value: "1"
+      - key: AI_DAILY_LIMIT_USD
+        value: "0.50"
+      - key: AI_USER_COOLDOWN_SECONDS
+        value: "20"
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false

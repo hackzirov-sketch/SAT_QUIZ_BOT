@@ -9,6 +9,7 @@ DICTIONARY_WORD_LABEL_MAX = 48
 
 def main_menu_kb() -> ReplyKeyboardMarkup:
     builder = ReplyKeyboardBuilder()
+    builder.button(text='AI Mentor')
     builder.button(text='🧠 Test boshlash')
     builder.button(text='📝 Mock test')
     builder.button(text='📖 Lug‘at')
@@ -19,7 +20,7 @@ def main_menu_kb() -> ReplyKeyboardMarkup:
     builder.button(text='ℹ️ Yordam')
     builder.button(text='⚙️ Sozlamalar')
     builder.button(text='🚀 Kelajak uchun rejalar')
-    builder.adjust(2, 2, 2, 2, 2)
+    builder.adjust(2, 2, 2, 2, 2, 1)
     return builder.as_markup(resize_keyboard=True)
 
 

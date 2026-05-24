@@ -5,5 +5,5 @@ python-dotenv==1.1.0
 pypdf==6.11.0
 
 # AI Provider dependencies (optional — for AI-enhanced features)
-# google-generativeai>=0.8.0
-# groq>=0.12.0
+google-generativeai>=0.8.0
+groq>=0.12.0

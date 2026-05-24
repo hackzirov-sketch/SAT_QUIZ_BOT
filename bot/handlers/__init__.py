@@ -13,6 +13,7 @@ from .stats import router as stats_router
 from .settings import router as settings_router
 from .dictionary import router as dictionary_router
 from .mock_test import router as mock_test_router
+from .mentor import router as mentor_router
 from bot.subscription import router as subscription_router
 
 error_router = Router()
@@ -77,6 +78,6 @@ routers = [
     subscription_router,
     start_router, quiz_router, daily_router, admin_router,
     chill_router, mistakes_router, duel_router, stats_router, settings_router,
-    dictionary_router, mock_test_router,
+    dictionary_router, mock_test_router, mentor_router,
     fallback_router,
 ]

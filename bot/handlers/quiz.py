@@ -12,6 +12,7 @@ from bot.utils.db_helpers import upsert_user, add_xp, record_mistake, clear_mist
 from bot.quiz_engine import QuizEngine
 from bot.formatting import question_text, answer_feedback, final_result_text, format_wrong_answers
 from bot.keyboards import active_quiz_kb, answer_kb, main_menu_kb, start_kb, category_kb
+from bot.keyboards_ai import ai_answer_kb
 from bot.services.active_session_service import get_resumable_attempt
 from bot.services.attempt_service import finish_attempt
 from bot.services.quiz_service import create_attempt_with_session, compact_question_payload
@@ -269,6 +270,15 @@ async def answer_callback(callback: CallbackQuery):
     await callback.message.edit_reply_markup(reply_markup=None)
     fb = answer_feedback(is_correct, q['correct_answer'])
     await callback.message.answer(fb)
+    await callback.message.answer(
+        'AI Mentor yordam kerakmi?',
+        reply_markup=ai_answer_kb(
+            attempt_id,
+            question_index,
+            is_correct,
+            bool(q.get('desmos_recommended') or q.get('desmos_needed')),
+        ),
+    )
     await callback.answer('✅' if is_correct else '❌')
 
     if finished:
